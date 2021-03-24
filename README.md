@@ -1,4 +1,5 @@
 # Service Seeker
+Service Seeker App that facilitates to search , find order service provider .
 
 ## Live demo :tv: 
 [Heroku link , Click here to visit our app]()
