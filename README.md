@@ -1,5 +1,4 @@
-# Service Seeker ![](https://discord.com/assets/dc147b62a179d59b5098c926628ebab1.svg =36x36)
-
+# Service Seeker
 
 ## Live demo :tv: 
 [Heroku link , Click here to visit our app]()
