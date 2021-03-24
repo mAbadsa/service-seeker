@@ -53,13 +53,21 @@ I can register specifying my service, hourly pricing and extra information, and 
 ![db image](https://i.imgur.com/3oYE5N3.png)
 
 
-
 ## Technologies :computer:
-BackEnd: **Node JS & Express JS & socket io**
-FrontEnd: **React JS**
-Database: **postgress sql**
-Styling: **CSS**
-Libraries: **antd , moment**
+
+#### Front-end :
+
+- ReactJS (Hooks).
+- Antd
+
+#### Back-end :
+
+- Node JS
+- Express.
+- Socket io
+
+#### Database :
+- PostgreSQL.
 
 ## Stretch Goals :goal_net:
 * export/print my bill, receive an email contain my bill.
@@ -87,6 +95,6 @@ Libraries: **antd , moment**
 * [Cloudinary](https://cloudinary.com/)
 * [Ant Design](https://ant.design/)
 * [moment](https://momentjs.com/)
-
+* [sokit.io](https://socket.io/get-started/chat#Introduction)
 
 
