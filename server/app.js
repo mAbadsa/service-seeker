@@ -1,10 +1,10 @@
+require('dotenv').config();
 const { join } = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const { createStream } = require('rotating-file-stream');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 
