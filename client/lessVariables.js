@@ -7,5 +7,5 @@ module.exports = {
   '@btn-border-radius-base': '5px',
   '@text-color': '#485C73',
   '@border-color-base': '#E0E0E0',
-  '@box-shadow-base:': '0px 0px 10px rgba(0, 0, 0, 0.09)',
+  '@box-shadow-base': '0px 0px 10px rgba(0, 0, 0, 0.09)',
 };
