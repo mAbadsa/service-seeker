@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import 'antd/dist/antd.less';
 import {
   HOME_PAGE,
   LOGIN_PAGE,
@@ -12,6 +11,7 @@ import {
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
+import 'antd/dist/antd.less';
 import './style.css';
 
 const App = () => {
