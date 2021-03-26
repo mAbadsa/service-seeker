@@ -10,6 +10,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": false,
   "files.eol": "\n",
-  "cSpell.words": ["antd"],
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "cSpell.words": ["antd"]
 }
