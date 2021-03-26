@@ -1,6 +1,6 @@
 BEGIN;
 DROP TABLE IF EXISTS users,
-provider,
+providers,
 ordes_request,
 orders,
 notification CASCADE;
