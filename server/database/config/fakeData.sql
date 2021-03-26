@@ -1,6 +1,5 @@
 insert into user (
-    id,
-    full - name,
+    full_name,
     email,
     password,
     mobile,
@@ -9,7 +8,7 @@ insert into user (
     rule
   )
 VALUES (
-    1,
+   
     'Reinald',
     'rhrishanok0@google.com',
     '123456789',
@@ -19,7 +18,7 @@ VALUES (
     'user'
   ),
   (
-    2,
+    
     'Melicent',
     'mllewelyn1@ucoz.com',
     '123456789',
@@ -29,7 +28,7 @@ VALUES (
     'user'
   ),
   (
-    3,
+    
     'Dugald',
     'dstrotone2@umich.edu',
     '123456789',
@@ -39,7 +38,7 @@ VALUES (
     'user'
   ),
   (
-    4,
+    
     'Shelli',
     'slamzed3@gnu.org',
     '123456789',
@@ -49,7 +48,7 @@ VALUES (
     'user'
   ),
   (
-    5,
+    
     'Sharon',
     'smacfall4@goo.gl',
     '123456789',
@@ -59,7 +58,7 @@ VALUES (
     'user'
   ),
   (
-    6,
+    
     'Bronson',
     'bdulinty5@mail.ru',
     '123456789',
@@ -69,7 +68,7 @@ VALUES (
     'user'
   ),
   (
-    7,
+    
     'Kirstin',
     'kattril6@hud.gov',
     '123456789',
@@ -79,7 +78,7 @@ VALUES (
     'user'
   ),
   (
-    8,
+    
     'Ronalda',
     'rangell7@wikipedia.org',
     '123456789',
@@ -89,7 +88,7 @@ VALUES (
     'user'
   ),
   (
-    9,
+    
     'Nananne',
     'nsaladino8@salon.com',
     '123456789',
@@ -99,7 +98,7 @@ VALUES (
     'user'
   ),
   (
-    10,
+    
     'Abagael',
     'amannakee9@who.int',
     '123456789',
@@ -109,7 +108,7 @@ VALUES (
     'user'
   ),
   (
-    11,
+    
     'Vernice',
     'vmacallana@illinois.edu',
     '123456789',
@@ -119,7 +118,7 @@ VALUES (
     'user'
   ),
   (
-    12,
+    
     'Aarika',
     'acrumpeb@amazon.co.uk',
     '123456789',
@@ -129,7 +128,7 @@ VALUES (
     'user'
   ),
   (
-    13,
+    
     'Adair',
     'ahendrikc@quantcast.com',
     '123456789',
@@ -139,7 +138,7 @@ VALUES (
     'user'
   ),
   (
-    14,
+    
     'Gilemette',
     'ggatesd@example.com',
     '123456789',
@@ -149,7 +148,7 @@ VALUES (
     'user'
   ),
   (
-    15,
+  
     'Fernando',
     'fjeannessone@desdev.cn',
     '123456789',
@@ -159,7 +158,7 @@ VALUES (
     'user'
   ),
   (
-    16,
+    
     'Ardenia',
     'awatersf@sciencedirect.com',
     '123456789',
@@ -169,7 +168,7 @@ VALUES (
     'user'
   ),
   (
-    17,
+    
     'Kitty',
     'krutiglianog@4shared.com',
     '123456789',
@@ -179,7 +178,7 @@ VALUES (
     'user'
   ),
   (
-    18,
+    
     'Claudell',
     'ckordah@ning.com',
     '123456789',
@@ -189,7 +188,7 @@ VALUES (
     'user'
   ),
   (
-    19,
+    
     'Olly',
     'obeetoni@biblegateway.com',
     '123456789',
@@ -199,7 +198,7 @@ VALUES (
     'user'
   ),
   (
-    20,
+    
     'Vernon',
     'vbaldacchij@msn.com',
     '123456789',
@@ -209,7 +208,7 @@ VALUES (
     'user'
   ),
   (
-    21,
+    
     'Margaretta',
     'maaronsonk@taobao.com',
     '123456789',
@@ -219,7 +218,7 @@ VALUES (
     'user'
   ),
   (
-    22,
+    
     'Ty',
     'tdunckleel@state.tx.us',
     '123456789',
@@ -229,7 +228,7 @@ VALUES (
     'user'
   ),
   (
-    23,
+    
     'Drugi',
     'ddedamm@comcast.net',
     '123456789',
@@ -239,7 +238,7 @@ VALUES (
     'user'
   ),
   (
-    24,
+    
     'Giordano',
     'gmoiseyn@devhub.com',
     '123456789',
@@ -249,7 +248,7 @@ VALUES (
     'user'
   ),
   (
-    25,
+  
     'Una',
     'upearmaino@usatoday.com',
     '123456789',
@@ -259,7 +258,7 @@ VALUES (
     'user'
   ),
   (
-    26,
+    
     'Carleton',
     'cbthamp@independent.co.uk',
     '123456789',
@@ -269,7 +268,7 @@ VALUES (
     'user'
   ),
   (
-    27,
+  
     'Clareta',
     'cemmotq@xrea.com',
     '123456789',
@@ -279,7 +278,7 @@ VALUES (
     'user'
   ),
   (
-    28,
+    
     'Veronika',
     'vprozillor@bluehost.com',
     '123456789',
@@ -289,7 +288,7 @@ VALUES (
     'user'
   ),
   (
-    29,
+    
     'Evan',
     'etodarinis@dion.ne.jp',
     '123456789',
@@ -299,7 +298,7 @@ VALUES (
     'user'
   ),
   (
-    30,
+    
     'Leandra',
     'lnezeyt@seesaa.net',
     '123456789',
@@ -309,16 +308,12 @@ VALUES (
     'user'
   );
 insert into provider (
-    id,
-    user_id,
     bio,
     price_houer,
     availability,
     rating
   )
 VALUES (
-    53,
-    1,
     'Phasellus in felis. Donec semper sapien a libero. Nam dui.
 
 Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
@@ -329,8 +324,6 @@ Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
     5
   ),
   (
-    35,
-    2,
     'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
 
 Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
@@ -339,16 +332,12 @@ Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci
     3
   ),
   (
-    35,
-    3,
     'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae, Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.',
     '$1.28',
     true,
     4
   ),
   (
-    58,
-    4,
     'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.
 
 Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.
@@ -359,8 +348,6 @@ Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula
     3
   ),
   (
-    44,
-    5,
     'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.
 
 Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.',
@@ -369,16 +356,12 @@ Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed 
     3
   ),
   (
-    55,
-    6,
     'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
     '$0.38',
     true,
     2
   ),
   (
-    52,
-    7,
     'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae, Mauris viverra diam vitae quam. Suspendisse potenti.
 
 Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
@@ -389,8 +372,6 @@ Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci
     5
   ),
   (
-    63,
-    8,
     'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.
 
 Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.',
@@ -399,16 +380,12 @@ Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer al
     4
   ),
   (
-    63,
-    9,
     'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.',
     '$2.87',
     true,
     4
   ),
   (
-    42,
-    10,
     'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.
 
 Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae, Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.
@@ -419,16 +396,12 @@ Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare
     4
   ),
   (
-    62,
-    11,
     'Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
     '$1.35',
     true,
     2
   ),
   (
-    59,
-    12,
     'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.
 
 Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.
@@ -439,16 +412,12 @@ Sed ante. Vivamus tortor. Duis mattis egestas metus.',
     1
   ),
   (
-    55,
-    13,
     'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae, Duis faucibus accumsan odio. Curabitur convallis.',
     '$1.89',
     true,
     3
   ),
   (
-    58,
-    14,
     'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.
 
 Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.
@@ -459,8 +428,6 @@ Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula
     2
   ),
   (
-    62,
-    15,
     'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.
 
 Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.',
@@ -469,16 +436,12 @@ Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quis
     1
   ),
   (
-    40,
-    16,
     'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.',
     '$6.44',
     true,
     4
   ),
   (
-    53,
-    17,
     'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.
 
 Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae, Mauris viverra diam vitae quam. Suspendisse potenti.',
@@ -487,16 +450,12 @@ Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat 
     2
   ),
   (
-    57,
-    18,
     'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.',
     '$3.74',
     true,
     4
   ),
   (
-    34,
-    19,
     'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.
 
 Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.',
@@ -505,16 +464,12 @@ Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est ris
     2
   ),
   (
-    48,
-    20,
     'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.',
     '$8.53',
     true,
     2
   ),
   (
-    39,
-    21,
     'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.
 
 Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.
@@ -525,8 +480,6 @@ Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum
     5
   ),
   (
-    56,
-    22,
     'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.
 
 Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.',
@@ -535,8 +488,6 @@ Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer al
     1
   ),
   (
-    51,
-    23,
     'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.
 
 Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.
@@ -547,8 +498,6 @@ Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibu
     1
   ),
   (
-    60,
-    24,
     'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
 
 Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
@@ -557,8 +506,6 @@ Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
     3
   ),
   (
-    42,
-    25,
     'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.
 
 In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.',
@@ -567,8 +514,6 @@ In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultric
     2
   ),
   (
-    49,
-    26,
     'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.
 
 Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.',
@@ -577,8 +522,6 @@ Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quis
     3
   ),
   (
-    51,
-    27,
     'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.
 
 Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.',
@@ -587,8 +530,6 @@ Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.',
     2
   ),
   (
-    45,
-    28,
     'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.
 
 Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.',
@@ -597,8 +538,6 @@ Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, t
     5
   ),
   (
-    45,
-    29,
     'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.
 
 Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.
@@ -609,8 +548,6 @@ Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integ
     2
   ),
   (
-    51,
-    30,
     'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.',
     '$2.62',
     true,

@@ -1,14 +1,14 @@
 BEGIN;
 DROP TABLE IF EXISTS users,
 provider,
-ordes_request,
+ordes_request,  
 orders,
 notification CASCADE;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password text NOT NULL,
-    name VARCHAR(55) NOT NULL,
+    full_name VARCHAR(55) NOT NULL,
     mobile VARCHAR(255) NOT NULL,
     avatar TEXT,
     location VARCHAR(255) NOT NULL,
