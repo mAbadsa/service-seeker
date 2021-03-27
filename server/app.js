@@ -3,8 +3,6 @@ const { join } = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const { createStream } = require('rotating-file-stream');
-const cors = require('cors');
 
 const app = express();
 
@@ -15,20 +13,6 @@ app.use(express.static(join(__dirname, '..', 'public')));
 app.use(cookieParser());
 
 app.set('PORT', process.env.PORT || 8080);
-
-// log all requests in the Apache combined format to the file access.log.
-// create a write stream (in append mode)
-const accessLogStream = createStream('access.log', {
-  interval: '1d',
-  size: '2M',
-  path: join(__dirname, 'log'),
-});
-
-// setup looger
-app.use(morgan('combined', { stream: accessLogStream }));
-
-// Enable CORS with various options.
-app.use(cors());
 
 // test route
 app.get('/', (req, res) => {
