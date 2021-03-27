@@ -8,7 +8,7 @@ const isAuthHandler = async (req, res, next) => {
     } = getUserData({ userId });
 
     return res.json({
-      userId,
+      statusCode: 200,
       data: { id, name, avatar, role },
     });
   } catch (error) {
