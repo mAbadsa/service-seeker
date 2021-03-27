@@ -6,11 +6,18 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-
-app.use(express.static(join(__dirname, '..', 'public')));
+app.use(express.static(join(__dirname, '..', 'client', 'public')));
 app.use(cookieParser());
+
+const middleware = [
+  express.json(),
+  express.urlencoded({ extended: false }),
+  cookieParser(),
+  express.static(join(__dirname, '..', 'public')),
+  morgan('dev'),
+];
+
+app.use(middleware);
 
 app.set('PORT', process.env.PORT || 8080);
 
