@@ -1,11 +1,16 @@
+import React from 'react';
+import AuthProvider from '../Context/Authentication';
+
 import './style.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>service seeker</h1>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <h1>service seeker</h1>
+      </div>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
