@@ -1,7 +1,15 @@
 {
-    "editor.formatOnSave": false,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[javascript]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
+      "source.fixAll": true
     }
-  }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "files.eol": "\n",
+  "prettier.singleQuote": true,
+  "cSpell.words": ["antd"]
+}
