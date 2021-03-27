@@ -13,6 +13,7 @@ const LoggedOutRoutes = ({ children, ...otherProps }) => {
   }
   return <Redirect to={HOME_PAGE} />;
 };
+
 LoggedOutRoutes.propTypes = {
   children: PropTypes.node.isRequired,
 };
