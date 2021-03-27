@@ -16,10 +16,10 @@ const AuthProvider = ({ children }) => {
     (async () => {
       try {
         setError(null);
-        const { data: userData } = await Axios('/api/v1/is-auth');
+        const { data: user } = await Axios('/api/v1/is-auth');
         if (unmounted) {
           setIsAuth(true);
-          setUserData(userData);
+          setUserData(user);
           setAuthLoading(false);
         }
       } catch ({ response: resError }) {
