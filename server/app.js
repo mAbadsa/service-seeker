@@ -1,27 +1,23 @@
 require('dotenv').config();
-const { join } = require('path');
+
 const express = require('express');
-const morgan = require('morgan');
+const { join } = require('path');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 
 const router = require('./router');
 
 const app = express();
-
-app.use(express.static(join(__dirname, '..', 'client', 'public')));
-app.use(cookieParser());
+app.set('PORT', process.env.PORT || 8080);
 
 const middleware = [
   express.json(),
   express.urlencoded({ extended: false }),
   cookieParser(),
   express.static(join(__dirname, '..', 'client', 'public')),
-  morgan('dev'),
+  logger('dev'),
 ];
-
 app.use(middleware);
-
-app.set('PORT', process.env.PORT || 8080);
 
 app.use('/api/v1', router);
 
