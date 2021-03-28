@@ -1,6 +1,6 @@
 const { object, string } = require('yup');
 
-const boomify = require('../../utils/boomify');
+const { boomify } = require('../../utils');
 
 const loginValidation = async (req, res, next) => {
   try {
