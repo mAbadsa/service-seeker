@@ -1,5 +1,5 @@
-const loginHandler = require('./loginHandler');
+const loginController = require('./login');
 
 module.exports = {
-  loginHandler,
+  loginController,
 };

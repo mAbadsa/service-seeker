@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
+const { sign } = require('jsonwebtoken');
 
-const { checkUserByEmail } = require('../../../database/queries/user');
-const { sign } = require('../../../utils/jwtFunctions');
-const boomify = require('../../../utils/boomify');
+const { checkUserByEmail } = require('../../database/queries/user');
+const { promiseJWT, boomify } = require('../../utils');
 
-const loginHandler = async (req, res, next) => {
+const loginController = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const {
@@ -14,11 +14,9 @@ const loginHandler = async (req, res, next) => {
     if (!user) throw boomify(404, 'User is not exist.');
 
     const isPassword = await bcrypt.compare(password, user.password);
-
     if (!isPassword) throw boomify(400, 'Invalid email/password.');
 
-    const { id: userId, role } = user;
-    const token = await sign({ userId, role });
+    const token = await promiseJWT(sign, user);
 
     res.cookie('token', token).json({
       statusCode: 200,
@@ -29,4 +27,4 @@ const loginHandler = async (req, res, next) => {
   }
 };
 
-module.exports = loginHandler;
+module.exports = loginController;

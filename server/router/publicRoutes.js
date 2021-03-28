@@ -1,17 +1,9 @@
 const router = require('express').Router();
 
-const {
-  loginValidation,
-} = require('../middleware/validation');
+const { loginValidation } = require('../middleware/validation');
 
-const {
-  loginHandler,
-} = require('../controller/user');
+const { loginController } = require('../controller');
 
-router.get('/', (req, res) => {
-  res.json({ message: 'The server is running.' });
-});
-router.post('/login', loginValidation, loginHandler);
-
+router.post('/login', loginValidation, loginController);
 
 module.exports = router;
