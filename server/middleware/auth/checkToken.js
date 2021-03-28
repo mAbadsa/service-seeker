@@ -5,8 +5,7 @@ const protectRoute = async (req, res, next) => {
   try {
     const { token } = req.cookies;
     const { userId, role } = await verifying(token);
-    req.userId = userId;
-    req.role = role;
+    req.user = { id, role };
     next();
   } catch (error) {
     next(boomify(401, 'Unauthenticated'));
