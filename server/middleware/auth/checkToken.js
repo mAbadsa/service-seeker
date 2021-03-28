@@ -1,5 +1,5 @@
 const { token } = require('morgan');
-const { verifying } = require('../../utils');
+const { verifying, boomify } = require('../../utils');
 
 const protectRoute = async (req, res, next) => {
   try {
@@ -8,7 +8,7 @@ const protectRoute = async (req, res, next) => {
     req.userId = userId;
     next();
   } catch (error) {
-    next(error);
+    next(boomify(401, 'Unauthenticated'));
   }
 };
 
