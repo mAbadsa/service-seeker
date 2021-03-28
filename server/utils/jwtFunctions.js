@@ -1,19 +1,6 @@
-const JWT = require('jsonwebtoken');
-
-const verifying = (token) =>
+const promiseJWT = (jwtFunc, inp) => {
   new Promise((resolve, reject) => {
-    JWT.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(decoded);
-      }
-    });
-  });
-
-const signatureToken = (payload) => {
-  new Promise((resolve, reject) => {
-    JWT.sign(payload, process.env.JWT_SECRET_KEY, (err, token) => {
+    jwtFunc(inp, process.env.JWT_SECRET_KEY, (err, token) => {
       if (err) {
         reject(err);
       } else {
@@ -23,4 +10,4 @@ const signatureToken = (payload) => {
   });
 };
 
-module.exports = { verifying, signatureToken };
+module.exports = promiseJWT;

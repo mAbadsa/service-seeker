@@ -1,10 +1,10 @@
-const { token } = require('morgan');
-const { verifying, boomify } = require('../../utils');
+const JWT = require('jsonwebtoken');
+const { promiseJWT, boomify } = require('../../utils');
 
 const protectRoute = async (req, res, next) => {
   try {
     const { token } = req.cookies;
-    const { userId, role } = await verifying(token);
+    const { id, role } = await promiseJWT(JWT.verify, token);
     req.user = { id, role };
     next();
   } catch (error) {
