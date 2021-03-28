@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 
 const router = require('./router');
+const { serverError, clientError } = require('./controller');
 
 const app = express();
 app.set('PORT', process.env.PORT || 8080);
@@ -27,5 +28,8 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
+
+app.use(clientError);
+app.use(serverError);
 
 module.exports = app;
