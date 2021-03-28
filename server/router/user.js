@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const { isAuthHandler } = require('../controller/user');
+const { isAuthController } = require('../controller/user');
 
-router.get('/is-auth', isAuthHandler);
+router.get('/is-auth', isAuthController);
 
 module.exports = router;

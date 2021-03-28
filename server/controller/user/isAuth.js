@@ -1,7 +1,7 @@
 const { getUserData } = require('../../database/queries/user');
 
-const isAuthHandler = async (req, res, next) => {
-  const { userId } = req;
+const isAuthController = async (req, res, next) => {
+  const { id: userId } = req.user;
   try {
     const {
       rows: [{ id, name, avatar, role }],
@@ -16,4 +16,4 @@ const isAuthHandler = async (req, res, next) => {
   }
 };
 
-module.exports = isAuthHandler;
+module.exports = isAuthController;

@@ -1,5 +1,5 @@
-const isAuthHandler = require('./isAuthHandler');
+const isAuthController = require('./isAuth');
 
 module.exports = {
-  isAuthHandler,
+  isAuthController,
 };
