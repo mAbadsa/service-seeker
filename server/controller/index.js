@@ -1,5 +1,4 @@
+const { clientError, serverError } = require('./error');
 const { isAuthHandler } = require('./user');
 
-module.exports = {
-  isAuthHandler,
-};
+module.exports = { clientError, serverError, isAuthHandler };
