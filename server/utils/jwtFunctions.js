@@ -1,5 +1,5 @@
 const promiseJWT = (jwtFunc, inp) => {
-  new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     jwtFunc(inp, process.env.JWT_SECRET_KEY, (err, result) => {
       if (err) {
         reject(err);
@@ -8,6 +8,7 @@ const promiseJWT = (jwtFunc, inp) => {
       }
     });
   });
+  return promise;
 };
 
 module.exports = promiseJWT;

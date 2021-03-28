@@ -12,4 +12,11 @@ const protectRoute = async (req, res, next) => {
   }
 };
 
-module.exports = protectRoute;
+const providerProtected = (req, res, next) => {
+  if (req.user.role === 'provider') {
+    return next();
+  }
+  return next(boomify(403, 'Unauthorize'));
+};
+
+module.exports = { protectRoute, providerProtected };

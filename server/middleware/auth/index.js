@@ -1,3 +1,3 @@
-const protectRoute = require('./checkToken');
+const { protectRoute, providerProtected } = require('./checkToken');
 
-module.exports = protectRoute;
+module.exports = { protectRoute, providerProtected };

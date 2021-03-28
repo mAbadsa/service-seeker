@@ -10,10 +10,18 @@
   },
   "plugins": ["prettier", "jest"],
   "rules": {
-    "import/no-unresolved": [
-      2, 
-      { "caseSensitive": false }
-   ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "no-new": 0,
+    "import/no-unresolved": [2, { "caseSensitive": false }],
     "prettier/prettier": [
       "error",
       {
