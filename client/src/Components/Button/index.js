@@ -1,17 +1,36 @@
 import { Button } from 'antd';
+import { CheckOutlined,} from '@ant-design/icons';
 
-const CommonButton =()=>{
-
-return(
-  <>
-    <Button type="primary">Primary Button</Button>
-    <Button>Default Button</Button>
-    <Button type="dashed">Dashed Button</Button>
-    <br />
-    <Button type="text">Text Button</Button>
-    <Button type="link">Link Button</Button>
-  </>
-  
-);
+import 'antd/dist/antd.css';
+import './style.css';
+const CommonButton = (props) => {
+  return (
+    <Button 
+      style={{
+        color: 'white',
+        backgroundColor: props.backgroundColor||'transparent',
+        fontSize: 'initial',
+        padding:
+          props.size === 'large'
+            ? '10px 150px'
+            : props.size === 'small'
+            ? '10px 30px '
+            : '10px 100px ',
+        lineHeight: 1,
+        borderRadius: '5px',
+        height:'auto'
+      }}
+      icon={props.icon}
+    >
+      {props.text}
+    </Button>
+  );
 };
-export default CommonButton
+CommonButton.defaultProps = {
+   backgroundColor: '#FFC107',
+   size: 'small',
+   text:'accept',
+  icon:<CheckOutlined/>
+    
+};
+export default CommonButton;
