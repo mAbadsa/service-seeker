@@ -10,17 +10,6 @@
   },
   "plugins": ["prettier", "jest"],
   "rules": {
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "never",
-        "objects": "never",
-        "imports": "never",
-        "exports": "never",
-        "functions": "never"
-      }
-    ],
-    "no-new": 0,
     "import/no-unresolved": [2, { "caseSensitive": false }],
     "prettier/prettier": [
       "error",
