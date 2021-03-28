@@ -1,5 +1,3 @@
-require('dotenv').config('.env');
-
 const { Pool } = require('pg');
 
 const { DEV_DATABASE_URL, DATABASE_URL, NODE_ENV } = process.env;
