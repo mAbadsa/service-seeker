@@ -19,7 +19,6 @@ const loginController = async (req, res, next) => {
     const token = await promiseJWT(sign, user);
 
     res.cookie('token', token).json({
-      statusCode: 200,
       message: 'Login successfully.',
     });
   } catch (error) {
