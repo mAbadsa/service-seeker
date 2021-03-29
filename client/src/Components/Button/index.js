@@ -14,7 +14,10 @@ const CommonButton = ({ children, handelClick, type, ...rest }) => (
 CommonButton.propTypes = {
   children: PropTypes.string.isRequired,
   handelClick: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
+};
+CommonButton.defaultProps = {
+  type: 'primary',
 };
 
 export default CommonButton;
