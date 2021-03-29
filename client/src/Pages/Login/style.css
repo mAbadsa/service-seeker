@@ -1,0 +1,51 @@
+.login{
+  height:100vh;
+}
+
+.login-right{
+  background: url(../../Utils/assist/images/login.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+  padding: 0 58px
+}
+
+.login-right>.ant-typography{
+  color: #FFFFFF;
+}
+
+.login-right .login-left__Text{
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+#login-left__title{
+  color:#5C5C5C
+}
+
+.login-left{
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+  padding: 0 58px;
+  background-color: #FAFBFC;
+}
+
+.login-left__input{
+  display: flex;
+  width: 580px;
+  margin-right:53px;
+} 
+
+.login-left__input:first-of-type{
+  padding-left: 50px;
+} 
+
+.login-left__input>input{
+  margin: 0 0 20px 20px;
+}
