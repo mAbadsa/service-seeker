@@ -1,5 +1,5 @@
 module.exports = {
-  '@primary-color': '#FFEAA7',
+  '@primary-color': '#FDCB6E',
   '@font-family': 'Inter',
   '@pagination-item-bg': '#FDCB6E',
   '@btn-primary-color': '@primary-color',
