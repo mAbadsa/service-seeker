@@ -13,7 +13,7 @@
       "ecmaVersion": 12,
       "sourceType": "module"
     },
-    "plugins": ["react", "prettier"],
+    "plugins": ["react"],
     "rules": {
       "react/jsx-filename-extension": [
         1,
