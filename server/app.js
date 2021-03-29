@@ -13,7 +13,9 @@ app.set('PORT', process.env.PORT || 8080);
 
 const middleware = [
   express.json(),
-  express.urlencoded({ extended: false }),
+  express.urlencoded({
+    extended: false,
+  }),
   cookieParser(),
   express.static(join(__dirname, '..', 'client', 'public')),
   logger('dev'),
