@@ -11,8 +11,8 @@ import {
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
-import 'antd/dist/antd.less';
 import './style.css';
+import LoginPage from '../Pages/Login';
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
           About Us
         </Route>
         <Route exact path={LOGIN_PAGE}>
-          Login Page
+          <LoginPage />
         </Route>
         <Route exact path={REGISTER_PAGE}>
           Register Page
