@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import HeaderMenu from './menu';
 import UserInfo from './UserInfo';
+import CommonButton from '../Button';
 
 const { Header, Footer, Content } = Layout;
 
@@ -33,9 +34,9 @@ const LayoutComponent = (props, isLogged, style) => {
         {isLogged ? (
           <UserInfo userPic={userPic} userName={userName} />
         ) : (
-          <button type="button" onClick={history.push('/login')}>
+          <CommonButton handelClick={history.push('/login')} type="thirdButton">
             Sign In
-          </button>
+          </CommonButton>
         )}
       </Header>
       <Content style={style}>{children}</Content>
