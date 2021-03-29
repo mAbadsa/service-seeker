@@ -6,8 +6,7 @@ const user = require('./user');
 
 // public endpoints
 router.use(publicRoutes);
-
-// User endpoints
+// protect endpoints
 router.use(protectMiddleware);
 router.use(user);
 
