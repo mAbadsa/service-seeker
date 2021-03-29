@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Layout, Menu } from 'antd';
-// import { NotificationFilled } from '@ant-design/icons';
+import { Layout } from 'antd';
+import HeaderMenu from './menu';
+import UserInfo from './UserInfo';
 
 const { Header, Footer, Content } = Layout;
-// const { SubMenu } = Menu;
 
 const headerStyle = {
   display: 'flex',
@@ -23,38 +23,15 @@ const footerStyle = {
 
 const LayoutComponent = (props, isLogged, style) => {
   const { children, userPic, userName } = props;
-  const [current, setCurrent] = useState('home');
   const history = useHistory();
-
-  const handleMenu = (e) => {
-    setCurrent(e.key);
-  };
   // expecting isLogged a boolean to specify if this person is logged or not
   return (
     <Layout>
       <Header style={headerStyle}>
+        <HeaderMenu isLogged={isLogged} />
         <div style={{ fontSize: '40px' }}>Hound</div>
-        <Menu
-          style={{ fontSize: '18px' }}
-          onClick={handleMenu}
-          selectedKeys={[current]}
-          mode="horizontal"
-        >
-          <Menu.Item key="home">Home</Menu.Item>
-          {isLogged ? <Menu.Item key="orders">Orders</Menu.Item> : null}
-          <Menu.Item key="aboutUs">About Us</Menu.Item>
-        </Menu>
         {isLogged ? (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-            }}
-          >
-            <img src={userPic} alt={userName} />
-            <p style={{ fontSize: '13px' }}>{userName}</p>
-          </div>
+          <UserInfo userPic={userPic} userName={userName} />
         ) : (
           <button type="button" onClick={history.push('/login')}>
             Sign In
