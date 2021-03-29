@@ -1,30 +1,7 @@
-const { cloudinary } = require('../../utils');
-
 const userSignup = async (req, res, next) => {
   try {
     // eslint-disable-next-line object-curly-newline
-    const {
-      username,
-      email,
-      password,
-      mobile,
-      location,
-      role,
-      avatarData,
-    } = req.body;
-
-    const { url: imageUrl } = await cloudinary.uploader.upload(avatarData, {
-      upload_preset: 'slbhisgh',
-    });
-
-    console.log({
-      username,
-      email,
-      password,
-      mobile,
-      location,
-      role,
-    });
+    const { username, email, password, mobile, location, role } = req.body;
 
     res.status(201).json({
       statusCode: 201,

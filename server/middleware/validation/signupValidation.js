@@ -11,22 +11,20 @@ const signupValidation = async (req, res, next) => {
       confirmPassword,
       mobile,
       location,
-      avatar,
       role,
     } = req.body;
     const signupSchema = object().shape({
       username: string().min(3).required(),
       email: string().email().required(),
       password: string()
-        .min(8, 'password must be at least 8 char')
-        .required('password is required'),
+        .min(8, 'Password must be at least 8 char')
+        .required('Password is required'),
       confirmPassword: string().oneOf(
         [ref('password'), null],
-        'passwords must match',
+        'Passwords must match',
       ),
       mobile: string().min(9).required(),
-      location: string().required(),
-      avatar: string().required().url(),
+      location: string().required('Loocation'),
       role: string().required(),
     });
 
@@ -38,7 +36,6 @@ const signupValidation = async (req, res, next) => {
         confirmPassword,
         mobile,
         location,
-        avatar,
         role,
       },
       { abortEarly: false },
