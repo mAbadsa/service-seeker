@@ -16,8 +16,8 @@ const loginController = async (req, res, next) => {
     const isPassword = await bcrypt.compare(password, user.password);
     if (!isPassword) throw boomify(400, 'Invalid email/password.');
 
-    const { id, rule } = user;
-    const token = await promiseJWT(sign, { id, rule });
+    const { id, role } = user;
+    const token = await promiseJWT(sign, { id, role });
 
     res.cookie('token', token).json({
       message: 'Login successfully.',
