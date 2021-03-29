@@ -10,14 +10,12 @@
   },
   "plugins": ["prettier", "jest"],
   "rules": {
-    "import/no-unresolved": [
-      2, 
-      { "caseSensitive": false }
-   ],
+    "import/no-unresolved": [2, { "caseSensitive": false }],
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true
+        "singleQuote": true,
+        "endOfLine": "auto"
       }
     ]
   }
