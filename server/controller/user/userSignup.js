@@ -1,19 +1,40 @@
+const bcrypt = require('bcrypt');
+const { sign } = require('jsonwebtoken');
+
+const {
+  checkUserByEmail,
+  createNewUser,
+} = require('../../database/queries/user');
+
+const { promiseJWT, boomify } = require('../../utils');
+
 const signupController = async (req, res, next) => {
   try {
     // eslint-disable-next-line object-curly-newline
-    const { username, email, password, mobile, location, role } = req.body;
+    const { email, password } = req.body;
 
-    res.status(201).json({
+    const {
+      rows: [check],
+    } = await checkUserByEmail({ email });
+
+    if (check) {
+      throw boomify(409, 'User already exist.');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const {
+      rows: [{ id, role }],
+    } = await createNewUser({
+      ...req.body,
+      password: hashedPassword,
+    });
+
+    const token = await promiseJWT(sign, { id, role });
+
+    res.status(201).cookie('token', token).json({
       statusCode: 201,
-      message: 'Sign up successfully',
-      data: {
-        username,
-        email,
-        password,
-        mobile,
-        location,
-        role,
-      },
+      message: 'Signed up successfully',
     });
   } catch (error) {
     next(error);

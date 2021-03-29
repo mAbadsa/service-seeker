@@ -39,7 +39,7 @@ const signupValidation = async (req, res, next) => {
         location,
         role,
       },
-      { abortEarly: false }
+      { abortEarly: false },
     );
     next();
   } catch (error) {
