@@ -1,51 +1,69 @@
-.login{
-  height:100vh;
+.login {
+  height: 100vh;
 }
 
-.login-right{
+.login-right {
   background: url(../../Utils/assist/images/login.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  height:100%;
+  height: 100%;
   display: flex;
-  flex-direction:column;
-  align-items:center;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 0 58px
+  padding: 0 58px;
 }
 
-.login-right>.ant-typography{
-  color: #FFFFFF;
+.login-right > .ant-typography {
+  color: #ffffff;
 }
 
-.login-right .login-left__Text{
+.login-right .login-left__Text {
   font-size: 19px;
   margin-bottom: 20px;
 }
 
-#login-left__title{
-  color:#5C5C5C
+#login-left__title {
+  color: #5c5c5c;
+  margin-bottom: 30px;
 }
 
-.login-left{
+.login-left {
   display: flex;
-  flex-direction:column;
-  align-items:center;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 0 58px;
-  background-color: #FAFBFC;
+  background-color: #fafbfc;
 }
 
-.login-left__input{
+.login-left__input {
   display: flex;
   width: 580px;
-  margin-right:53px;
-} 
+  margin-right: 53px;
+}
 
-.login-left__input:first-of-type{
-  padding-left: 50px;
-} 
+.login-left__input input {
+  font-size: 20px;
+}
 
-.login-left__input>input{
-  margin: 0 0 20px 20px;
+.login-left__input .ant-input-password,
+.login-left__input > .ant-input {
+  margin-left: 20px;
+  height: 45px;
+  background: #ffffff;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #6f6f6f;
+}
+
+.login-left .ant-form-item-explain-error {
+  font-size: 20px;
+  text-align: left;
+  margin-left: 145px;
+}
+
+.ant-alert {
+  margin: 23px;
 }

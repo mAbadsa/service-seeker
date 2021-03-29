@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import {
   HOME_PAGE,
@@ -9,10 +9,10 @@ import {
   ORDERS_PAGE,
   PROVIDER_PROFILE_PAGE,
   PROVIDER_DASHBOARD_PAGE,
-} from "../Utils/routes.constant";
+} from '../Utils/routes.constant';
 
-import "./style.css";
-import LoginPage from "../Pages/Login";
+import './style.css';
+import LoginPage from '../Pages/Login';
 
 const App = () => (
   <div className="App">
