@@ -1,7 +1,10 @@
 import React from 'react';
-import { NotificationFilled, LogoutOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
+import PropTypes from 'prop-types';
+import Avatar from '../Avatar';
+import NotificationList from './notification';
 
-const UserInfo = (userPic, userName) => (
+const UserInfo = (notifications, userPic, userName) => (
   <div
     style={{
       display: 'flex',
@@ -9,15 +12,24 @@ const UserInfo = (userPic, userName) => (
       justifyContent: 'space-around',
     }}
   >
-    <img
-      style={{ width: '40px', height: '40px' }}
-      src={userPic}
-      alt={userName}
-    />
+    <Avatar shape="circle" imgSrc={userPic} size="large" />
     <p style={{ fontSize: '13px' }}>{userName}</p>
-    <NotificationFilled />
+    <NotificationList notifications={notifications} imgSrc={userPic} />
     <LogoutOutlined />
   </div>
 );
+
+UserInfo.propType = {
+  notifications: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      decription: PropTypes.string,
+      created_at: PropTypes.string,
+    })
+  ).isRequired,
+  userPic: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+};
 
 export default UserInfo;
