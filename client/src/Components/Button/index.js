@@ -1,36 +1,34 @@
 import { Button } from 'antd';
-import { CheckOutlined,} from '@ant-design/icons';
+import PropTypes from 'prop-types';
 
 import 'antd/dist/antd.css';
 import './style.css';
-const CommonButton = (props) => {
+const CommonButton = ({
+  icon,
+  size,
+  text,
+  handelClick,
+  className,
+  type
+}) => {
   return (
-    <Button 
-      style={{
-        color: 'white',
-        backgroundColor: props.backgroundColor||'transparent',
-        fontSize: 'initial',
-        padding:
-          props.size === 'large'
-            ? '10px 150px'
-            : props.size === 'small'
-            ? '10px 30px '
-            : '10px 100px ',
-        lineHeight: 1,
-        borderRadius: '5px',
-        height:'auto'
-      }}
-      icon={props.icon}
-    >
-      {props.text}
+    <Button icon={icon} handelClick={handelClick} className={`initial-style ${className}`} size={size} type={type}> 
+      {text}
     </Button>
   );
 };
+CommonButton.propTypes = {
+  icon: PropTypes.node,
+  text: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  handelClick: PropTypes.func.isRequired,
+  className:PropTypes.string,
+  type:PropTypes.string,
+};
 CommonButton.defaultProps = {
-   backgroundColor: '#FFC107',
-   size: 'small',
-   text:'accept',
-  icon:<CheckOutlined/>
-    
+  backgroundColor: '#FFC107',
+  size: 'small',
+  text: 'accept',
+  className:'initial-style'
 };
 export default CommonButton;

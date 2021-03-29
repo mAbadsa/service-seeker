@@ -1,0 +1,40 @@
+.initial-style {
+  color: white;
+  border-radius: 3px;
+  border:  1px solid #ffc107;
+  transition: all 0.25s;
+
+}
+.initial-style:hover {
+  background-color: #ffffff;
+  transition: all 0.25s;
+  color: #ffc107;
+}
+.primaryButton {
+  background-color: #ffc107;
+}
+.primaryButton:hover{
+  color:#ffc107;
+  border-color: #ffc107;
+
+}
+.secondaryButton {
+  background-color: #0eb633;
+  border-color: #0eb633;
+
+}
+.secondaryButton:hover{
+  color:#0eb633;
+  border-color: #0eb633;
+
+}
+.thirdButton {
+  background-color: #332a94;
+  border-color: #332a94;
+
+}
+.thirdButton:hover{
+  color:#332a94;
+  border-color: #332a94;
+
+}
