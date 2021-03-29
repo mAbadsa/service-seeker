@@ -1,8 +1,8 @@
-const logoutHandler = (req, res) => {
+const logoutController = (req, res) => {
   res.clearCookie('token');
   res.json({
     title: 'Logout Successful',
   });
 };
 
-module.exports = logoutHandler;
+module.exports = logoutController;
