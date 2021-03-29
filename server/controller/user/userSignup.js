@@ -1,4 +1,4 @@
-const userSignup = async (req, res, next) => {
+const signupController = async (req, res, next) => {
   try {
     // eslint-disable-next-line object-curly-newline
     const { username, email, password, mobile, location, role } = req.body;
@@ -20,4 +20,4 @@ const userSignup = async (req, res, next) => {
   }
 };
 
-module.exports = userSignup;
+module.exports = signupController;

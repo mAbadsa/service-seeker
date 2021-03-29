@@ -13,6 +13,7 @@ const signupValidation = async (req, res, next) => {
       location,
       role,
     } = req.body;
+
     const signupSchema = object().shape({
       username: string().min(3).required(),
       email: string().email().required(),
@@ -38,7 +39,7 @@ const signupValidation = async (req, res, next) => {
         location,
         role,
       },
-      { abortEarly: false },
+      { abortEarly: false }
     );
     next();
   } catch (error) {
