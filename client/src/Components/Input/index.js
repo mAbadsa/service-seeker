@@ -1,27 +1,27 @@
-import { Input } from 'antd';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import { Input } from 'antd';
+
 import './style.css';
-const CommonInput = ({ placeholder, handelChange, className, type, value }) => {
-  return (
-    <Input
-      className={className}
-      placeholder={placeholder}
-      type={type}
-      value={value}
-      onChange={handelChange}
-    />
-  );
-};
-CommonInput.prototype = {
-  placeholder: PropTypes.string.isRequired,
+
+const CommonInput = ({ handelChange, className, type, ...rest }) => (
+  <Input
+    handelClick={handelChange}
+    type={type}
+    className={className}
+    {...rest}
+  />
+);
+
+CommonInput.propTypes = {
   className: PropTypes.string,
   handelChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 CommonInput.defaultProps = {
-  placeholder: 'Enter your Full name',
   className: 'input',
   type: 'text',
 };
+
 export default CommonInput;
