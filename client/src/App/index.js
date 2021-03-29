@@ -11,6 +11,8 @@ import {
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
+import Register from '../Pages/Register';
+
 import 'antd/dist/antd.less';
 import './style.css';
 
@@ -27,7 +29,7 @@ const App = () => (
         Login Page
       </Route>
       <Route exact path={REGISTER_PAGE}>
-        Register Page
+        <Register />
       </Route>
       <Route exact path={ORDERS_PAGE}>
         Orders Page

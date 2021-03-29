@@ -1,0 +1,11 @@
+.left-section {
+  background-image: url(../../Utils/assets/images/signupBg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+}
