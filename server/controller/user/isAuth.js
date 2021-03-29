@@ -5,7 +5,7 @@ const isAuthController = async (req, res, next) => {
   try {
     const {
       rows: [{ id, name, avatar, role }],
-    } = getUserData({ userId });
+    } = await getUserData({ userId });
 
     return res.json({
       statusCode: 200,
