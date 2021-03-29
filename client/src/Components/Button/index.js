@@ -1,34 +1,20 @@
-import { Button } from 'antd';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import 'antd/dist/antd.css';
+import { Button } from 'antd';
+
 import './style.css';
-const CommonButton = ({
-  icon,
-  size,
-  text,
-  handelClick,
-  className,
-  type
-}) => {
-  return (
-    <Button icon={icon} handelClick={handelClick} className={`initial-style ${className}`} size={size} type={type}> 
-      {text}
-    </Button>
-  );
-};
+
+const CommonButton = ({ children, handelClick, type, ...rest }) => (
+  <Button handelClick={handelClick} type={type} {...rest}>
+    {children}
+  </Button>
+);
+
 CommonButton.propTypes = {
-  icon: PropTypes.node,
-  text: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   handelClick: PropTypes.func.isRequired,
-  className:PropTypes.string,
-  type:PropTypes.string,
+  type: PropTypes.string.isRequired,
 };
-CommonButton.defaultProps = {
-  backgroundColor: '#FFC107',
-  size: 'small',
-  text: 'accept',
-  className:'initial-style'
-};
+
 export default CommonButton;
