@@ -1,3 +1,7 @@
+const checkUserByEmail = require('./checkUserByEmail');
 const getUserData = require('./getUserData');
 
-module.exports = { getUserData };
+module.exports = {
+  checkUserByEmail,
+  getUserData,
+};

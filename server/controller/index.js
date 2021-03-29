@@ -1,4 +1,9 @@
 const { clientError, serverError } = require('./error');
-const { isAuthController } = require('./user');
+const { loginController, isAuthController } = require('./user');
 
-module.exports = { clientError, serverError, isAuthController };
+module.exports = {
+  clientError,
+  serverError,
+  loginController,
+  isAuthController,
+};
