@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 58px;
+  padding: 0 50px;
 }
 
 .login-right > .ant-typography {
@@ -64,6 +64,70 @@
   margin-left: 145px;
 }
 
-.ant-alert {
+.login-left .ant-alert {
   margin: 23px;
+}
+
+.login-right__SignUp-btn {
+  width: 210px;
+  height: 58px;
+  border: 2px solid #ffffff;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 12px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.mobile-Sign-up-btn {
+  display: none;
+  width: 255px;
+  border-top: 1px solid #e6e7ec;
+  color: #5c5c5c;
+  margin: 0 auto;
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 27px;
+}
+@media only screen and (max-width: 1060px) {
+  .mobile-Sign-up-btn {
+    display: block;
+  }
+  .login-right {
+    display: none;
+  }
+  .login-left {
+    min-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .mobile-Sign-up-btn {
+    display: block;
+  }
+  
+  .login-left__input {
+    display: block;
+    flex-direction: column;
+    text-align: left;
+    padding: 0 !important;
+    margin-right: 0;
+    width: auto;
+  }
+
+  .login-left__input .ant-input-password,
+  .login-left__input > .ant-input {
+    margin-left: 0;
+    min-width: 100%;
+  }
+
+  .mobile-Sign-up-btn {
+    width: auto;
+  }
+
+  .login-right__SignUp-btn {
+    width: 100%;
+  }
 }

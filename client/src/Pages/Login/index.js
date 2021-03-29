@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import { Typography, Row, Col, Button, Input, Form, Alert } from 'antd';
-import { HOME_PAGE } from '../../Utils/routes.constant';
+import { HOME_PAGE, REGISTER_PAGE } from '../../Utils/routes.constant';
 import './style.css';
 
 const { Title, Text } = Typography;
@@ -104,6 +104,9 @@ const LoginPage = () => {
             >
               login
             </Button>
+            <Link className="mobile-Sign-up-btn" to={REGISTER_PAGE}>
+              Sign up
+            </Link>
           </Form.Item>
         </Form>
       </Col>
@@ -117,18 +120,19 @@ const LoginPage = () => {
         {/* ToReplace With the common btn */}
         <Button
           type="primary"
-          style={{
-            width: '210px',
-            height: '58px',
-            border: '2px solid #FFFFFF',
-            color: '#fff',
-            backgroundColor: 'transparent',
-            borderRadius: '12px',
-            fontSize: '28px',
-            fontWeight: 'bold',
-            marginTop: '20px',
-            marginBottom: '40px',
-          }}
+          className="login-right__SignUp-btn"
+          // style={{
+          //   width: '210px',
+          //   height: '58px',
+          //   border: '2px solid #FFFFFF',
+          //   color: '#fff',
+          //   backgroundColor: 'transparent',
+          //   borderRadius: '12px',
+          //   fontSize: '28px',
+          //   fontWeight: 'bold',
+          //   marginTop: '20px',
+          //   marginBottom: '40px',
+          // }}
         >
           Sign up
         </Button>
