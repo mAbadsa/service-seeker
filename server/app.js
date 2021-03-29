@@ -9,7 +9,9 @@ const router = require('./router');
 const { serverError, clientError } = require('./controller');
 
 const app = express();
+
 app.set('PORT', process.env.PORT || 8080);
+app.disable('x-powered-by');
 
 const middleware = [
   express.json(),
