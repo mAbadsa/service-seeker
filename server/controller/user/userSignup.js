@@ -15,7 +15,9 @@ const signupController = async (req, res, next) => {
 
     const {
       rows: [check],
-    } = await checkUserByEmail({ email });
+    } = await checkUserByEmail({
+      email,
+    });
 
     if (check) {
       throw boomify(409, 'User already exist.');
@@ -34,7 +36,10 @@ const signupController = async (req, res, next) => {
       await createNewProvider(id);
     }
 
-    const token = await promiseJWT(sign, { id, role });
+    const token = await promiseJWT(sign, {
+      id,
+      role,
+    });
 
     res.status(201).cookie('token', token).json({
       statusCode: 201,
