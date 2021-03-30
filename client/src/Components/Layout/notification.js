@@ -5,23 +5,17 @@ import { Menu, Dropdown } from 'antd';
 import { DownOutlined, NotificationFilled } from '@ant-design/icons';
 import Avatar from '../Avatar';
 
+import './style.css';
+
 const NotificationList = (notifications, imgSrc) => {
   const menu = () => (
     <Menu>
       {notifications.map((notif) => (
-        <Menu.Item>
+        <Menu.Item key={notif.id}>
           <Avatar shape="circle" size="large" imgSrc={imgSrc} />
-          <div
-            style={{
-              width: 'fit-content',
-              height: 'fit-content',
-              display: 'flex',
-              flexDirection: 'column',
-              alignContent: 'space-around',
-            }}
-          >
-            <p style={{ color: '#5C5C5C' }}>{notif.description}</p>
-            <p style={{ color: '#FDCB6E' }}>
+          <div className="user-info-notif">
+            <p className="notif-description">{notif.description}</p>
+            <p className="notif-time">
               {moment(notif.created_at, 'DD MM YYYY hh:mm:ss', true).fromNow()}
             </p>
           </div>
