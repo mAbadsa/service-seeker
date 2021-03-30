@@ -1,11 +1,10 @@
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
-
 const {
+  createNewProvider,
   checkUserByEmail,
   createNewUser,
-} = require('../../database/queries/user');
-const { createNewProvider } = require('../../database/queries/provider');
+} = require('../../database/queries');
 
 const { promiseJWT, boomify } = require('../../utils');
 
