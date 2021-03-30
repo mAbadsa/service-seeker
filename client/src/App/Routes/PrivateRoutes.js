@@ -3,7 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { LOGIN_PAGE, HOME_PAGE } from '../../Utils/routes.constant';
-import { AuthContext } from '../../Context/Authorization';
+import { AuthContext } from '../../Context/Authentication';
 
 const PrivateRoutes = ({ isProvider, children, ...otherProps }) => {
   const {
@@ -11,6 +11,7 @@ const PrivateRoutes = ({ isProvider, children, ...otherProps }) => {
     authLoading,
     userData: { role },
   } = useContext(AuthContext);
+
   if (isAuth && !authLoading) {
     if (!isProvider && role !== 'provider') {
       return <Redirect to={HOME_PAGE} />;
@@ -21,7 +22,7 @@ const PrivateRoutes = ({ isProvider, children, ...otherProps }) => {
 };
 
 PrivateRoutes.defaultProps = {
-  isProvider: false
+  isProvider: false,
 };
 
 PrivateRoutes.propTypes = {
