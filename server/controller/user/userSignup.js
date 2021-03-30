@@ -5,6 +5,7 @@ const {
   checkUserByEmail,
   createNewUser,
 } = require('../../database/queries/user');
+const { createNewProvider } = require('../../database/queries/provider');
 
 const { promiseJWT, boomify } = require('../../utils');
 
@@ -29,6 +30,10 @@ const signupController = async (req, res, next) => {
       ...req.body,
       password: hashedPassword,
     });
+
+    if (role === 'provider') {
+      await createNewProvider(id);
+    }
 
     const token = await promiseJWT(sign, { id, role });
 
