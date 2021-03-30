@@ -1,41 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import { LogoutOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import NotificationList from './notification';
+import AuthContext from '../../Context/Authentication';
 
 import './style.css';
 
 const UserInfo = (notifications, userPic, userName) => {
-  const [clicked, setClicked] = useState(false);
-  const history = useHistory();
+  const { setIsAuth } = useContext(AuthContext);
 
-  useEffect(async () => {
+  const handleClick = async () => {
     try {
-      const { CancelToken } = axios;
-      const source = CancelToken.source();
-      if (clicked) {
-        await axios.get('/api/v1/logout', {
-          cancelToken: source.token,
-        });
-        history.push('/');
-      }
-      return () => source.cancel('Operation canceled by the user.');
+      await axios.get('/api/v1/logout');
+      setIsAuth(false);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);
-      return err;
     }
-  }, []);
+  };
 
   return (
     <div className="logged-user-info">
       <Avatar shape="circle" imgSrc={userPic} size="large" />
       <p className="user-name">{userName}</p>
       <NotificationList notifications={notifications} imgSrc={userPic} />
-      <LogoutOutlined onClick={setClicked(true)} />
+      <LogoutOutlined onClick={handleClick} />
     </div>
   );
 };
