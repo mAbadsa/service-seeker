@@ -1,0 +1,24 @@
+.filter-container{
+    width: 783px;
+    height: 84px;
+    background: #FFFFFF;
+    box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.17);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.filter-select{
+    background: #C2C2C2;
+    width: 265px;
+}
+
+.split-text{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    color: #5C5C5C;
+}
+
