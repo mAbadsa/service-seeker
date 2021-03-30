@@ -3,7 +3,9 @@ import { useHistory } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import { Menu } from 'antd';
 
-const HeaderMenu = (isLogged) => {
+import './style.css';
+
+const HeaderMenu = () => {
   const [current, setCurrent] = useState('home');
   const history = useHistory();
 
@@ -14,17 +16,15 @@ const HeaderMenu = (isLogged) => {
   return (
     <>
       <Menu
-        style={{ fontSize: '18px' }}
+        className="nav-menu"
         onClick={handleMenu}
         selectedKeys={[current]}
         mode="horizontal"
       >
         <Menu.Item key="home">Home</Menu.Item>
-        {isLogged ? (
-          <Menu.Item onClick={history.push('/orders')} key="orders">
-            Orders
-          </Menu.Item>
-        ) : null}
+        <Menu.Item onClick={history.push('/orders')} key="orders">
+          Orders
+        </Menu.Item>
         <Menu.Item onClick={history.push('/about-us')} key="aboutUs">
           About Us
         </Menu.Item>
