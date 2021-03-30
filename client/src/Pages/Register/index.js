@@ -49,7 +49,12 @@ function Register() {
           <Form.Item
             label="Name"
             name="username"
-            rules={[{ required: true, message: 'Please input your Name!' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Name!',
+              },
+            ]}
           >
             <Input placeholder="Enter your name..." />
           </Form.Item>
@@ -57,8 +62,14 @@ function Register() {
             label="Email"
             name="email"
             rules={[
-              { type: 'email', message: 'Please enter a valid email!' },
-              { required: true, message: 'Please input your Email!' },
+              {
+                type: 'email',
+                message: 'Please enter a valid email!',
+              },
+              {
+                required: true,
+                message: 'Please input your Email!',
+              },
             ]}
           >
             <Input placeholder="Enter a valid email..." />
@@ -66,14 +77,24 @@ function Register() {
           <Form.Item
             label="Mobile"
             name="mobile"
-            rules={[{ required: true, message: 'Please input mobile number!' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please input mobile number!',
+              },
+            ]}
           >
             <Input placeholder="Enter your mobile number..." />
           </Form.Item>
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+            ]}
           >
             <Input.Password placeholder="Enter password..." />
           </Form.Item>
@@ -93,7 +114,11 @@ function Register() {
             className="select-input"
             name="location"
             label="Location"
-            rules={[{ required: true }]}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
           >
             <Select placeholder="Location" onChange={handleChange} allowClear>
               <Option value="Gaza">male</Option>
@@ -119,7 +144,5 @@ function Register() {
     </Row>
   );
 }
-
-Register.propTypes = {};
 
 export default Register;
