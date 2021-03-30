@@ -22,10 +22,10 @@ const signupValidation = async (req, res, next) => {
         .required('Password is required'),
       confirmPassword: string().oneOf(
         [ref('password'), null],
-        'Passwords must match',
+        'Passwords must match'
       ),
       mobile: string().min(9).required(),
-      location: string().required('Loocation'),
+      location: string().required('Location'),
       role: string().required(),
     });
 
@@ -39,7 +39,9 @@ const signupValidation = async (req, res, next) => {
         location,
         role,
       },
-      { abortEarly: false },
+      {
+        abortEarly: false,
+      }
     );
     next();
   } catch (error) {

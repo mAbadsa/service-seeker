@@ -18,6 +18,6 @@
         "singleQuote": true,
         "endOfLine": "auto"
       }
-    ]
-  }
+    ],"comma-dangle": ["error", "only-multiline"]
+  }       
 }

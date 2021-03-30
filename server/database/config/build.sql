@@ -8,7 +8,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password text NOT NULL,
-    name VARCHAR(55) NOT NULL,
+    username VARCHAR(55) NOT NULL,
     mobile VARCHAR(255) NOT NULL,
     avatar TEXT,
     location VARCHAR(255) NOT NULL,
