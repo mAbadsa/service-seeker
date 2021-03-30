@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Select } from 'antd';
 
 const { Option } = Select;
 
-const SelectComponent = (options) => {
-  const [value, setValue] = useState('null');
-  <Select onChange={setValue}>
+const SelectComponent = (options, handleChange, textDefault) => (
+  <Select
+    size="large"
+    defaultValue="select a service type"
+    onChange={handleChange}
+  >
+    <Option value={textDefault}>{textDefault}</Option>
     {options.map((option) => (
-      <Option key={option.key + value} value=""></Option>
+      <Option key={option} value={option}>
+        {option}
+      </Option>
     ))}
-  </Select>;
-};
+  </Select>
+);
 
 export default SelectComponent;
