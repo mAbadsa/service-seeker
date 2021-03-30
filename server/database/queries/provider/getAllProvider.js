@@ -1,8 +1,11 @@
 const connection = require('../../config/connection');
 
-const getAllProvidersById = () => {
-  const sql = { text: 'select * from providers ;' };
+const getAllProviders = () => {
+  const sql = {
+    text:
+      'SELECT * FROM users INNER JOIN providers  ON users.id = providers.user_id   ;',
+  };
   return connection.query(sql);
 };
 
-module.exports = getAllProvidersById;
+module.exports = getAllProviders;

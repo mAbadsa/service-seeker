@@ -1,5 +1,5 @@
-const getAllProvidersById = require('./getAllProvider');
+const getAllProviders = require('./getAllProvider');
 
 module.exports = {
-  getAllProvidersById,
+  getAllProviders,
 };

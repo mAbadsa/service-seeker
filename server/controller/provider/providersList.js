@@ -1,7 +1,7 @@
-const { getAllProvidersById } = require('../../database/queries/provider');
+const { getAllProviders } = require('../../database/queries/provider');
 
 const providersList = (req, res, next) => {
-  getAllProvidersById()
+  getAllProviders()
     .then(({ rows }) => res.status(200).json({ status: 200, data: rows }))
     .catch(next);
 };
