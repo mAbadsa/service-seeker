@@ -33,7 +33,12 @@
             "singleQuote": true,
             "endOfLine": "auto"
           }
-        ],    "comma-dangle": ["error", "only-multiline"]
+        ],   
+        "comma-dangle": ["error", "only-multiline"],
+        "object-curly-newline": ["error", {
+          "ObjectExpression": "always",
+          "ObjectPattern": { "multiline": true }
+      }]
 
       }
 }
