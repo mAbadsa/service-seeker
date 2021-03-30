@@ -1,6 +1,9 @@
 {
   "name": "service-seeker",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.15.0"
+  },
   "description": "Service Seeker App that facilitates searching, find an order service provider.",
   "main": "index.js",
   "scripts": {
