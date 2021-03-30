@@ -1,11 +1,151 @@
-.left-section {
+.signup {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.signup .left-section {
   background-image: url(../../Utils/assets/images/signupBg.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 50px;
+}
+
+.signup .left-section .title {
+  color: inherit;
+  font-weight: bold;
+}
+
+.signup .left-section .desc {
+  color: inherit;
+  font-size: 19px;
+}
+
+.signup .left-section .signin-link {
+  margin-top: 1.5rem;
+  color: inherit;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: transparent;
+  padding-left: 0;
+  transition: all 0.25s;
+}
+
+.signup .left-section .signin-link .ant-anchor .ant-anchor-link a {
+  color: inherit;
+  text-align: center;
+  line-height: 35px;
+  height: 35px;
+}
+
+.signup .left-section .signin-link .ant-anchor .ant-anchor-link {
+  color: white;
+  width: 200px;
+  padding: 5px 10px;
+}
+
+.signup .left-section .signin-link:hover {
+  color: white;
+  background-color: #FDCB6E;
+  border-color: #FDCB6E;
+  transition: all 0.25s;
+}
+
+.signup .left-section .signin-link .ant-anchor .ant-anchor-ink {
+  display: none;;
+}
+
+.signup .signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.signup .signup-form-container .title {
+  color: #5C5C5C;
+}
+
+.ant-form .ant-form-item .ant-form-item-label {
+  width: 30%;
+  text-align: right;
+}
+
+.signup-form-container .ant-form-horizontal .ant-form-item .ant-form-item-label > label {
+  color: #6F6F6F;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.select-input .ant-form-item-control .ant-form-item-control-input-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select {
+  width: 50%;
+}
+
+.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select-selector input {
+  height: 45px;
+  line-height: 45px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select-selector .ant-select-selection-placeholder {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.ant-form .ant-form-item .ant-form-item-control input::placeholder {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.ant-form .ant-form-item .ant-form-item-control .ant-form-item-explain-error {
+  font-size: 16px;
+  font-weight: 300;
+  padding-bottom: 10px;
+}
+
+.ant-form .radio-label {
+  font-size: 16px;
+}
+
+.signup-btn {
+  color: white !important;
+  width: 200px;
+  height: 45px !important;
+  border: 1px solid #FDCB6E !important;
+  background-color: #FDCB6E !important;
+  border-radius: 3px !important;
+  transition: all 0.25s;
+}
+
+.signup-btn:hover {
+  color: #FDCB6E !important;
+  background-color: transparent !important;
+  transition: all 0.25s;
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 640px) {
+
 }
