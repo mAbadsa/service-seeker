@@ -10,7 +10,6 @@ import {
   PROVIDER_PROFILE_PAGE,
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
-
 import 'antd/dist/antd.less';
 import './style.css';
 
