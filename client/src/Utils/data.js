@@ -1,4 +1,4 @@
-const serviceTypes = [
+export const serviceTypes = [
   'plumber',
   'Electrician',
   'carpenter',
@@ -6,7 +6,7 @@ const serviceTypes = [
   'builder',
 ];
 
-const locations = [
+export const locations = [
   'gaza',
   'haifa',
   'yafa',
@@ -21,8 +21,3 @@ const locations = [
   'maghazi',
   'dir al-balah',
 ];
-
-export default {
-  serviceTypes,
-  locations,
-};
