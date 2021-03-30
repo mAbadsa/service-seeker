@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import NotificationList from './notification';
 
+import './style.css';
+
 const UserInfo = (notifications, userPic, userName) => {
   const [clicked, setClicked] = useState(false);
   const history = useHistory();
@@ -29,15 +31,9 @@ const UserInfo = (notifications, userPic, userName) => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-      }}
-    >
+    <div className="logged-user-info">
       <Avatar shape="circle" imgSrc={userPic} size="large" />
-      <p style={{ fontSize: '13px' }}>{userName}</p>
+      <p className="user-name">{userName}</p>
       <NotificationList notifications={notifications} imgSrc={userPic} />
       <LogoutOutlined onClick={setClicked(true)} />
     </div>
