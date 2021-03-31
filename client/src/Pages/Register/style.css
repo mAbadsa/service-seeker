@@ -133,6 +133,7 @@
   border: 1px solid #FDCB6E !important;
   background-color: #FDCB6E !important;
   border-radius: 3px !important;
+  line-height: 1 !important;
   transition: all 0.25s;
 }
 

@@ -20,59 +20,19 @@ const { Title, Paragraph } = Typography;
 const { Option } = Select;
 
 function Register() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [location, setLocation] = useState('');
-  const [role, setRole] = useState('customer');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const clear = () => {
-    setUsername('');
-    setEmail(1);
-    setPassword('');
-    setConfirmPassword('');
-    setMobile('');
-    setLocation('');
-    setRole('');
-    setError('');
-    setLoading(false);
-  };
-
-  const handleChange = ({ target: { value, name } }) => {
-    switch (name) {
-      case 'username':
-        setUsername(value);
-        break;
-
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      case 'confirmPassword':
-        setConfirmPassword(value);
-        break;
-      case 'mobile':
-        setMobile(value);
-        break;
-      case 'location':
-        setLocation(value);
-        break;
-      case 'role':
-        setRole(value);
-        break;
-      default:
-    }
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async ({
+    username,
+    email,
+    password,
+    confirmPassword,
+    mobile,
+    location,
+    role,
+  }) => {
     try {
-      e.preventDefault();
       setLoading(true);
       setError('');
       const userData = {
@@ -87,18 +47,20 @@ function Register() {
       console.log(userData);
       await Axios.post('/api/v1/signup', userData);
       setLoading(false);
-      clear();
     } catch (err) {
       let errorMsg;
       if (err.errors) {
         const [firstError] = err.errors;
+        console.log(firstError);
         errorMsg = firstError;
       } else if (err.response) {
         errorMsg = err.response.data.message;
+        console.log(typeof errorMsg);
       } else {
         errorMsg = 'Some error happened please try again later';
       }
       setLoading(false);
+      console.log(errorMsg);
       setError(errorMsg);
     }
   };
@@ -131,11 +93,7 @@ function Register() {
               },
             ]}
           >
-            <Input
-              placeholder="Enter your name..."
-              onChange={handleChange}
-              value={username}
-            />
+            <Input placeholder="Enter your name..." />
           </Form.Item>
           <Form.Item
             label="Email"
@@ -151,11 +109,7 @@ function Register() {
               },
             ]}
           >
-            <Input
-              placeholder="Enter a valid email..."
-              onChange={handleChange}
-              value={email}
-            />
+            <Input placeholder="Enter a valid email..." />
           </Form.Item>
           <Form.Item
             label="Mobile"
@@ -167,11 +121,7 @@ function Register() {
               },
             ]}
           >
-            <Input
-              placeholder="Enter your mobile number..."
-              onChange={handleChange}
-              value={mobile}
-            />
+            <Input placeholder="Enter your mobile number..." />
           </Form.Item>
           <Form.Item
             label="Password"
@@ -183,11 +133,7 @@ function Register() {
               },
             ]}
           >
-            <Input.Password
-              placeholder="Enter password..."
-              onChange={handleChange}
-              value={password}
-            />
+            <Input.Password placeholder="Enter password..." />
           </Form.Item>
           <Form.Item
             label="Confirm Password"
@@ -199,11 +145,7 @@ function Register() {
               },
             ]}
           >
-            <Input.Password
-              placeholder="Confirm the password..."
-              onChange={handleChange}
-              value={confirmPassword}
-            />
+            <Input.Password placeholder="Confirm the password..." />
           </Form.Item>
           <Form.Item
             className="select-input"
@@ -215,21 +157,15 @@ function Register() {
               },
             ]}
           >
-            <Select
-              placeholder="Location"
-              onChange={handleChange}
-              value={location}
-              allowClear
-              size="small"
-            >
+            <Select placeholder="Location" allowClear size="small">
               <Option value="gaza">Gaza</Option>
               <Option value="khan Yunis">khan Yunis</Option>
               <Option value="rafah">Rafah</Option>
             </Select>
           </Form.Item>
           <Form.Item className="select-input" name="role" label="Role">
-            <Radio.Group onChange={handleChange} value={role}>
-              <Radio className="radio-label" value="customer">
+            <Radio.Group>
+              <Radio className="radio-label" value="customer" defaultChecked>
                 Customer
               </Radio>
               <Radio className="radio-label" value="provider">
@@ -240,9 +176,11 @@ function Register() {
           {error && {
             error,
           }}
-          <Button className="signup-btn" htmlType="submit">
-            {loading ? '...loading...' : 'Signup'}
-          </Button>
+          <Form.Item>
+            <Button className="signup-btn" htmlType="submit" loading={loading}>
+              Signup
+            </Button>
+          </Form.Item>
         </Form>
       </Col>
     </Row>
