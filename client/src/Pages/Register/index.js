@@ -13,10 +13,7 @@ const { Option } = Select;
 function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const myContext = useContext(AuthContext);
-  console.log({
-    myContext,
-  });
+  const { setIsAuth } = useContext(AuthContext);
   const onFinish = async ({
     username,
     email,
@@ -40,7 +37,7 @@ function Register() {
       };
       await Axios.post('/api/v1/signup', userData);
       setLoading(false);
-      // setIsAuth(true);
+      setIsAuth(true);
     } catch (err) {
       if (err.response) {
         setError(
