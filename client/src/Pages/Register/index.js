@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import {
-  Row,
-  Col,
-  Form,
-  Input,
-  Button,
-  Anchor,
-  Typography,
-  Select,
-  Radio,
-} from 'antd';
+import { Row, Col, Form, Input, Button, Typography, Select, Radio } from 'antd';
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
+import { AuthContext } from '../../Context/Authentication';
 import './style.css';
 
-const { Link } = Anchor;
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
 
 function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const handleSubmit = async ({
+  const myContext = useContext(AuthContext);
+  console.log({
+    myContext,
+  });
+  const onFinish = async ({
     username,
     email,
     password,
@@ -44,24 +38,18 @@ function Register() {
         location,
         role,
       };
-      console.log(userData);
       await Axios.post('/api/v1/signup', userData);
       setLoading(false);
+      // setIsAuth(true);
     } catch (err) {
-      let errorMsg;
-      if (err.errors) {
-        const [firstError] = err.errors;
-        console.log(firstError);
-        errorMsg = firstError;
-      } else if (err.response) {
-        errorMsg = err.response.data.message;
-        console.log(typeof errorMsg);
-      } else {
-        errorMsg = 'Some error happened please try again later';
+      if (err.response) {
+        setError(
+          err.response.status === 500
+            ? 'Something went wrong!'
+            : err.response.data.message
+        );
       }
       setLoading(false);
-      console.log(errorMsg);
-      setError(errorMsg);
     }
   };
 
@@ -74,15 +62,21 @@ function Register() {
         <Paragraph className="desc">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </Paragraph>
-        <Anchor className="signin-link" bounds={0}>
-          <Link href={LOGIN_PAGE} title="Signin" />
-        </Anchor>
+        <Link className="signin-link" to={LOGIN_PAGE}>
+          Signin
+        </Link>
       </Col>
       <Col span={15} className="signup-form-container">
         <Title className="title" level={2}>
           Create A New Account
         </Title>
-        <Form onFinish={handleSubmit}>
+        <Form
+          onFinish={onFinish}
+          initialValues={{
+            role: 'customer',
+            location: 'gaza',
+          }}
+        >
           <Form.Item
             label="Name"
             name="username"
@@ -90,6 +84,12 @@ function Register() {
               {
                 required: true,
                 message: 'Please input your Name!',
+              },
+              {
+                pattern: new RegExp(
+                  /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/
+                ),
+                message: 'Must be two parts.',
               },
             ]}
           >
@@ -165,7 +165,7 @@ function Register() {
           </Form.Item>
           <Form.Item className="select-input" name="role" label="Role">
             <Radio.Group>
-              <Radio className="radio-label" value="customer" defaultChecked>
+              <Radio className="radio-label" value="customer">
                 Customer
               </Radio>
               <Radio className="radio-label" value="provider">
@@ -181,6 +181,9 @@ function Register() {
               Signup
             </Button>
           </Form.Item>
+          <Link className="signin-link" to={LOGIN_PAGE}>
+            Signin
+          </Link>
         </Form>
       </Col>
     </Row>
