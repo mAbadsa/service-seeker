@@ -27,11 +27,9 @@ const App = () => (
         <Route exact path={ABOUT_US}>
           About Us
         </Route>
-        <Route exact path={LOGIN_PAGE}>
-          <LoggedOutRoutes>
-            <LoginPage />
-          </LoggedOutRoutes>
-        </Route>
+        <LoggedOutRoutes exact path={LOGIN_PAGE}>
+          <LoginPage />
+        </LoggedOutRoutes>
         <Route exact path={REGISTER_PAGE}>
           Register Page
         </Route>
