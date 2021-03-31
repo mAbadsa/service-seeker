@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { Typography, Row, Col, Form, Alert } from 'antd';
 
-import { HOME_PAGE, REGISTER_PAGE } from '../../Utils/routes.constant';
+import { REGISTER_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
@@ -17,7 +17,6 @@ const LoginPage = () => {
   const [error, setError] = useState();
 
   const { setIsAuth } = useContext(AuthContext);
-  const history = useHistory();
 
   const onFinish = async ({ email, password }) => {
     try {
@@ -28,7 +27,6 @@ const LoginPage = () => {
       });
       setIsAuth(true);
       setIsLoading(false);
-      history.push(HOME_PAGE);
     } catch (err) {
       if (err.response) {
         setError(
