@@ -1,24 +1,28 @@
 import React, { useContext } from 'react';
 import { element } from 'prop-types';
-import { Spin } from 'antd';
-import LayoutComponent from '../../Components/Layout';
-import AuthContext from '../../Context/Authentication';
+import { Spin, Layout } from 'antd';
+import { Content, NavBar, Footer } from '../../Components/Layout';
+import AuthProvider from '../../Context/Authentication';
 
-const Layout = ({ children }) => {
-  const { isAuth, authLoading } = useContext(AuthContext);
+const LayoutPage = ({ children }) => {
+  const { authLoading } = useContext(AuthProvider);
   return (
     <>
       {authLoading ? (
         <Spin size="large" />
       ) : (
-        <LayoutComponent isLogged={isAuth}>{children}</LayoutComponent>
+        <Layout>
+          <NavBar></NavBar>
+          <Content>{children}</Content>
+          <Footer></Footer>
+        </Layout>
       )}
     </>
   );
 };
 
-Layout.propTypes = {
+LayoutPage.propTypes = {
   children: element.isRequired,
 };
 
-export default Layout;
+export default LayoutPage;
