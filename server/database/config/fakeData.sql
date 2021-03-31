@@ -1,16 +1,16 @@
 INSERT INTO users(
+    name,
     email,
     password,
-    name,
     mobile,
-    avatar,
     location,
+    avatar,
     role
   )
 VALUES (
     'Reinald',
     'rhrishanok0@google.com',
-    '123456789',
+    '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '959-398-7264',
     '2878 Di Loreto Road',
     'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
@@ -19,7 +19,7 @@ VALUES (
   (
     'Melicent',
     'mllewelyn1@ucoz.com',
-    '123456789',
+    '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '124-136-6347',
     '0724 Kim Crossing',
     'https://previews.123rf.com/images/anwarsikumbang/anwarsikumbang1502/anwarsikumbang150200445/36649700-man-avatar-user-picture-cartoon-character-vector-illustration.jpg',
@@ -28,7 +28,7 @@ VALUES (
   (
     'Dugald',
     'dstrotone2@umich.edu',
-    '123456789',
+    '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '697-350-0993',
     '76 Birchwood Trail',
     'https://cdn0.iconfinder.com/data/icons/male-profession-flat/32/engineer-512.png',
@@ -37,7 +37,7 @@ VALUES (
   (
     'Shelli',
     'slamzed3@gnu.org',
-    '123456789',
+    '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '429-847-1775',
     '12437 Menomonie Court',
     'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png',

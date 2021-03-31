@@ -1,7 +1,13 @@
 const router = require('express').Router();
 
-const publicRouter = require('./publicRoutes');
+const { protectMiddleware } = require('../middleware/auth');
+const publicRoutes = require('./publicRoutes');
+const user = require('./user');
 
-router.use(publicRouter);
+// public endpoints
+router.use(publicRoutes);
+// protect endpoints
+router.use(protectMiddleware);
+router.use(user);
 
 module.exports = router;
