@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import { Typography, Row, Col, Button, Input, Form, Alert } from 'antd';
+import { Typography, Row, Col, Form, Alert } from 'antd';
+
 import { HOME_PAGE, REGISTER_PAGE } from '../../Utils/routes.constant';
+import { AuthContext } from '../../Context/Authentication';
+import Input from '../../Components/Input';
+import Button from '../../Components/Button';
+
 import './style.css';
 
 const { Title, Text } = Typography;
@@ -11,21 +16,24 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
+  const { setIsAuth } = useContext(AuthContext);
   const history = useHistory();
 
   const onFinish = async ({ email, password }) => {
+    console.log(isLoading);
     try {
       setIsLoading(true);
       await Axios.post('/api/v1/login', {
         email,
         password,
       });
+      setIsAuth(true);
       setIsLoading(false);
       history.push(HOME_PAGE);
     } catch (err) {
       if (err.response) {
         setError(
-          err.response.status === 400
+          err.response.status === 404
             ? err.response.data.message
             : 'Something went wrong!'
         );
@@ -59,11 +67,10 @@ const LoginPage = () => {
               htmlFor="email"
               className="login-left__input"
               style={{
-                paddingLeft: '50px',
+                paddingLeft: '42px',
               }}
             >
               Email:
-              {/* ToReplace With the common input */}
               <Input placeholder="Enter your email..." />
             </label>
           </Form.Item>
@@ -72,37 +79,25 @@ const LoginPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please enter the password!',
+                message: 'Please enter your password!',
               },
               {
-                min: 2,
+                min: 8,
                 message: 'Password must be at least 8 characters.',
               },
             ]}
           >
             <label htmlFor="password" className="login-left__input">
               Password:
-              {/* ToReplace With the common input */}
-              <Input.Password placeholder="Enter your password..." />
+              <Input type="Password" placeholder="Enter your password..." />
             </label>
           </Form.Item>
           <Form.Item>
-            {/* ToReplace With the common btn */}
             <Button
+              className="login-btn"
               type="primary"
               htmlType="submit"
               loading={isLoading}
-              // onClick={() => setIsLoading(true)}
-              style={{
-                width: '210px',
-                height: '58px',
-                color: '#fff',
-                borderRadius: '12px',
-                fontSize: '28px',
-                fontWeight: 'bold',
-                marginTop: '20px',
-                marginBottom: '40px',
-              }}
             >
               login
             </Button>
@@ -117,27 +112,14 @@ const LoginPage = () => {
           Hello, Friend
         </Title>
         <Text className="login-right__Text" color="#FFFFFF">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          From here you can create a new account if you do not have one.
         </Text>
-        {/* ToReplace With the common btn */}
-        <Button
-          type="primary"
-          className="login-right__SignUp-btn"
-          // style={{
-          //   width: '210px',
-          //   height: '58px',
-          //   border: '2px solid #FFFFFF',
-          //   color: '#fff',
-          //   backgroundColor: 'transparent',
-          //   borderRadius: '12px',
-          //   fontSize: '28px',
-          //   fontWeight: 'bold',
-          //   marginTop: '20px',
-          //   marginBottom: '40px',
-          // }}
-        >
+        <Link className="login-right__SignUp-btn" to={REGISTER_PAGE}>
           Sign up
-        </Button>
+        </Link>
+        {/* <Button type="primary" className="login-right__SignUp-btn">
+          Sign up
+        </Button> */}
       </Col>
     </Row>
   );

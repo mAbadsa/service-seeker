@@ -18,11 +18,6 @@
   color: #ffffff;
 }
 
-.login-right .login-left__Text {
-  font-size: 19px;
-  margin-bottom: 20px;
-}
-
 #login-left__title {
   color: #5c5c5c;
   margin-bottom: 30px;
@@ -41,47 +36,57 @@
   display: flex;
   width: 580px;
   margin-right: 53px;
-}
-
-.login-left__input input {
-  font-size: 20px;
+  line-height: 40px;
 }
 
 .login-left__input .ant-input-password,
 .login-left__input > .ant-input {
   margin-left: 20px;
   height: 45px;
-  background: #ffffff;
-  border: 1px solid #c7c7c7;
-  border-radius: 5px;
-  font-size: 20px;
-  color: #6f6f6f;
+  border-radius: 5px; 
 }
 
 .login-left .ant-form-item-explain-error {
   font-size: 20px;
   text-align: left;
-  margin-left: 145px;
+  margin-left: 118px;
 }
 
 .login-left .ant-alert {
   margin: 23px;
 }
 
-.login-right__SignUp-btn {
+.login-right__SignUp-btn,
+.login-btn {
   width: 210px;
-  height: 58px;
-  border: 2px solid #ffffff;
-  color: #fff;
-  background-color: transparent;
-  border-radius: 12px;
   font-size: 28px;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 40px;
 }
 
-.mobile-Sign-up-btn {
+.login-right__SignUp-btn {
+  border: 2px solid #ffffff;
+  color: #fff;
+  background-color: transparent;
+  height: 58px;
+  border-radius: 12px;
+  line-height: 50px;
+}
+
+.login-right__SignUp-btn:hover{
+  color: #FAFBFC;
+  background-color: #FDD17F;
+  border-color: #FAFBFC;
+}
+
+.login-btn,
+.mobile-Sign-up-btn{
+  line-height: 28px;
+}
+
+.mobile-Sign-up-btn{
+  line-height: 28px;
   display: none;
   width: 255px;
   border-top: 1px solid #e6e7ec;
@@ -91,13 +96,16 @@
   font-weight: bold;
   font-size: 27px;
 }
+
 @media only screen and (max-width: 1060px) {
   .mobile-Sign-up-btn {
     display: block;
   }
+
   .login-right {
     display: none;
   }
+
   .login-left {
     min-width: 100%;
   }
@@ -107,7 +115,7 @@
   .mobile-Sign-up-btn {
     display: block;
   }
-  
+
   .login-left__input {
     display: block;
     flex-direction: column;
@@ -129,5 +137,17 @@
 
   .login-right__SignUp-btn {
     width: 100%;
+  }
+
+  .login-btn {
+    width: 100%;
+  }
+
+  .login-left .ant-form-item-explain-error {
+    margin-left: 0;
+  }
+
+  .login-left .ant-alert {
+    margin: 0;
   }
 }
