@@ -15,7 +15,12 @@ const signupValidation = async (req, res, next) => {
     } = req.body;
 
     const signupSchema = object().shape({
-      username: string().min(3).required(),
+      username: string()
+        .matches(/^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/, {
+          message:
+            'The name must contained from two parts first name and last name.',
+        })
+        .required(),
       email: string().email().required(),
       password: string()
         .min(8, 'Password must be at least 8 char')
