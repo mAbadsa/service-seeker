@@ -32,7 +32,7 @@ const HeaderMenu = ({ mode, className, children, handleClick }) => {
 HeaderMenu.propTypes = {
   mode: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   children: element.isRequired,
 };
 

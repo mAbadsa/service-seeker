@@ -50,10 +50,10 @@ NotificationList.propTypes = {
     })
   ).isRequired,
   imgSrc: PropTypes.string.isRequired,
-  classNameNotif: PropTypes.string.isRequired,
-  classNameNotifInfo: PropTypes.string.isRequired,
-  classNameNotifDesc: PropTypes.string.isRequired,
-  classNameNotifTime: PropTypes.string.isRequired,
-  classNameNotifCont: PropTypes.string.isRequired,
+  classNameNotif: PropTypes.string,
+  classNameNotifInfo: PropTypes.string,
+  classNameNotifDesc: PropTypes.string,
+  classNameNotifTime: PropTypes.string,
+  classNameNotifCont: PropTypes.string,
 };
 export default NotificationList;

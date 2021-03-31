@@ -10,7 +10,7 @@ const NavBar = ({ children, className }) => {
 
 NavBar.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default NavBar;

@@ -34,9 +34,9 @@ UserInfo.propTypes = {
   ).isRequired,
   userPic: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  loggedUserInfo: PropTypes.string.isRequired,
-  userNameClass: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
+  loggedUserInfo: PropTypes.string,
+  userNameClass: PropTypes.string,
   shape: PropTypes.string.isRequired,
 };
 

@@ -10,7 +10,7 @@ const Foot = ({ children, className }) => {
 
 Foot.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default Foot;
