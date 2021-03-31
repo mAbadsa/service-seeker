@@ -7,16 +7,14 @@ import { AuthContext } from '../../Context/Authentication';
 
 const PrivateRoutes = ({ isProvider, children, ...otherProps }) => {
   const { isAuth, authLoading, userData } = useContext(AuthContext);
-  if (!authLoading) {
-    if (isAuth) {
-      if (isProvider && userData.role !== 'provider') {
-        return <Redirect to={HOME_PAGE} />;
-      }
-      return <Route {...otherProps}>{children}</Route>;
+
+  if (!authLoading && isAuth) {
+    if (isProvider && userData.role !== 'provider') {
+      return <Redirect to={HOME_PAGE} />;
     }
-    return <Redirect to={LOGIN_PAGE} />;
+    return <Route {...otherProps}>{children}</Route>;
   }
-  return <></>;
+  return <Redirect to={LOGIN_PAGE} />;
 };
 
 PrivateRoutes.defaultProps = {

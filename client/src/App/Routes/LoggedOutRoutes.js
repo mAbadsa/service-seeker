@@ -7,13 +7,11 @@ import { AuthContext } from '../../Context/Authentication';
 
 const LoggedOutRoutes = ({ children, ...otherProps }) => {
   const { isAuth, authLoading } = useContext(AuthContext);
-  if (!authLoading) {
-    if (!isAuth) {
-      return <Route {...otherProps}>{children}</Route>;
-    }
-    return <Redirect to={HOME_PAGE} />;
+
+  if (!authLoading && !isAuth) {
+    return <Route {...otherProps}>{children}</Route>;
   }
-  return <></>;
+  return <Redirect to={HOME_PAGE} />;
 };
 
 LoggedOutRoutes.propTypes = {

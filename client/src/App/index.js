@@ -11,7 +11,6 @@ import {
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
-import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
 
@@ -28,12 +27,10 @@ const App = () => (
           About Us
         </Route>
         <Route exact path={LOGIN_PAGE}>
-          <LoggedOutRoutes>
-            <LoginPage />
-          </LoggedOutRoutes>
+          <LoginPage />
         </Route>
         <Route exact path={REGISTER_PAGE}>
-          <LoggedOutRoutes>Register Page</LoggedOutRoutes>
+          Register Page
         </Route>
         <Route exact path={ORDERS_PAGE}>
           Orders Page
