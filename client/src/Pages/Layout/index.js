@@ -4,6 +4,12 @@ import { Spin, Layout } from 'antd';
 import { Content, NavBar, Footer } from '../../Components/Layout';
 import AuthProvider from '../../Context/Authentication';
 
+// if authLoading is still true keep the loading
+// if auth check role
+// if role is customer show customer navbar
+// if role is craftsman show craftsman navbar
+// content will always be children from props
+
 const LayoutPage = ({ children }) => {
   const { authLoading } = useContext(AuthProvider);
   return (
