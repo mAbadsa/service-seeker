@@ -7,7 +7,7 @@ import Avatar from '../Avatar';
 
 import './style.css';
 
-const NotificationList = (notifications, imgSrc) => {
+const NotificationList = ({ notifications, imgSrc }) => {
   const menu = () => (
     <Menu>
       {notifications.map((notif) => (
@@ -31,7 +31,7 @@ const NotificationList = (notifications, imgSrc) => {
   );
 };
 
-NotificationList.propType = {
+NotificationList.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

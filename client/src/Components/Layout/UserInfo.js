@@ -4,12 +4,12 @@ import { LogoutOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import NotificationList from './notification';
-import AuthContext from '../../Context/Authentication';
+import AuthProvider from '../../Context/Authentication';
 
 import './style.css';
 
-const UserInfo = (notifications, userPic, userName) => {
-  const { setIsAuth } = useContext(AuthContext);
+const UserInfo = ({ notifications, userPic, userName }) => {
+  const { setIsAuth } = useContext(AuthProvider);
 
   const handleClick = async () => {
     try {
@@ -31,7 +31,7 @@ const UserInfo = (notifications, userPic, userName) => {
   );
 };
 
-UserInfo.propType = {
+UserInfo.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

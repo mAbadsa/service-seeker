@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import HeaderLogged from './headerLog';
 import HeaderPublic from './headerPublic';
+import AuthProvider from '../../Context/Authentication';
 
 import './style.css';
 
 const { Header, Footer, Content } = Layout;
 
-const LayoutComponent = (props, isLogged, style) => {
-  const { children, userPic, userName } = props;
-  // expecting isLogged a boolean to specify if this person is logged or not
+const LayoutComponent = ({ children, userPic, userName }) => {
+  const { isAuth } = useContext(AuthProvider);
   return (
     <Layout>
       <Header className="header">
         <div className="logo">Hound</div>
-        {isLogged ? (
+        {isAuth ? (
           <>
             <HeaderLogged userPic={userPic} userName={userName} />
           </>
@@ -23,14 +23,10 @@ const LayoutComponent = (props, isLogged, style) => {
           <HeaderPublic />
         )}
       </Header>
-      <Content style={style}>{children}</Content>
+      <Content>{children}</Content>
       <Footer className="footer">© 2021 Hound. All rights reserved.</Footer>
     </Layout>
   );
-};
-
-LayoutComponent.defaultProps = {
-  userPic: '*',
 };
 
 LayoutComponent.propTypes = {
