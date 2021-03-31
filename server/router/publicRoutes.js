@@ -11,7 +11,6 @@ const {
 
 router.post('/login', loginValidation, loginController);
 router.get('/logout', logoutController);
-
 router.post('/signup', signupValidation, signupController);
 
 module.exports = router;

@@ -1,16 +1,16 @@
-const bcrypt = require('bcrypt');
+const { hash } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
+
 const {
-  createNewProvider,
   checkUserByEmail,
   createNewUser,
+  createNewProvider,
 } = require('../../database/queries');
 
 const { promiseJWT, boomify } = require('../../utils');
 
 const signupController = async (req, res, next) => {
   try {
-    // eslint-disable-next-line object-curly-newline
     const { email, password } = req.body;
 
     const {
@@ -23,7 +23,7 @@ const signupController = async (req, res, next) => {
       throw boomify(409, 'User already exist.');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hash(password, 10);
 
     const {
       rows: [{ id, role }],
