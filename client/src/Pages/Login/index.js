@@ -16,7 +16,7 @@ const LoginPage = () => {
   const onFinish = async ({ email, password }) => {
     try {
       setIsLoading(true);
-      await Axios.post(`/api/v1/login`, {
+      await Axios.post('/api/v1/login', {
         email,
         password,
       });
@@ -58,7 +58,9 @@ const LoginPage = () => {
             <label
               htmlFor="email"
               className="login-left__input"
-              style={{ paddingLeft: '50px' }}
+              style={{
+                paddingLeft: '50px',
+              }}
             >
               Email:
               {/* ToReplace With the common input */}
