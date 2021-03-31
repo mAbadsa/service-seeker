@@ -32,9 +32,9 @@ const LoginPage = () => {
     } catch (err) {
       if (err.response) {
         setError(
-          err.response.status === 404
-            ? err.response.data.message
-            : 'Something went wrong!'
+          err.response.status === 500
+            ? 'Something went wrong!'
+            : err.response.data.message
         );
       }
       setIsLoading(false);
