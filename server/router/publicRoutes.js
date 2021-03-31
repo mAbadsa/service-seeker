@@ -1,8 +1,11 @@
 const router = require('express').Router();
 
-const { loginValidation } = require('../middleware/validation');
-
 const {
+  signupValidation,
+  loginValidation,
+} = require('../middleware/validation');
+const {
+  signupController,
   loginController,
   logoutController,
   providersListController,
@@ -10,6 +13,7 @@ const {
 
 router.post('/login', loginValidation, loginController);
 router.get('/logout', logoutController);
+router.post('/signup', signupValidation, signupController);
 
 router.get('/providers', providersListController);
 
