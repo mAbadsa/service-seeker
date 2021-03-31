@@ -1,0 +1,13 @@
+#container-title{
+  color: #ADADAD;
+}
+
+.card-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container > div{
+  margin:12px 0;
+}
