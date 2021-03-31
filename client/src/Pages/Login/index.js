@@ -20,7 +20,6 @@ const LoginPage = () => {
   const history = useHistory();
 
   const onFinish = async ({ email, password }) => {
-    console.log(isLoading);
     try {
       setIsLoading(true);
       await Axios.post('/api/v1/login', {
@@ -117,9 +116,6 @@ const LoginPage = () => {
         <Link className="login-right__SignUp-btn" to={REGISTER_PAGE}>
           Sign up
         </Link>
-        {/* <Button type="primary" className="login-right__SignUp-btn">
-          Sign up
-        </Button> */}
       </Col>
     </Row>
   );

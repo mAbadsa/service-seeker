@@ -11,10 +11,11 @@ import {
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
-import './style.css';
-import LoginPage from '../Pages/Login';
 import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
+import LoginPage from '../Pages/Login';
+
+import './style.css';
 
 const App = () => (
   <div className="App">
