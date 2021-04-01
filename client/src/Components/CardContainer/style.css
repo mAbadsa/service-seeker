@@ -1,13 +1,12 @@
-#container-title{
-  color: #ADADAD;
+#container-title {
+  color: #adadad;
+}
+.container {
+  padding: 0 250px;
 }
 
-.card-container{
+.card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.card-container > div{
-  margin:12px 0;
 }
