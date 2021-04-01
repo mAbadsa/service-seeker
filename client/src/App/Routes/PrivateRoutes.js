@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import { LOGIN_PAGE, HOME_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 
-const PrivateRoutes = ({ isProvider, children, ...otherProps }) => {
+const PrivateRoutes = ({ isProvider, component, ...otherProps }) => {
   const { isAuth, authLoading, userData } = useContext(AuthContext);
 
   if (!authLoading && isAuth) {
     if (isProvider && userData.role !== 'provider') {
       return <Redirect to={HOME_PAGE} />;
     }
-    return <Route {...otherProps}>{children}</Route>;
+    return <Route {...otherProps} component={component} />;
   }
   return <Redirect to={LOGIN_PAGE} />;
 };
@@ -22,7 +22,7 @@ PrivateRoutes.defaultProps = {
 };
 
 PrivateRoutes.propTypes = {
-  children: PropTypes.node.isRequired,
+  component: PropTypes.func.isRequired,
   isProvider: PropTypes.bool,
 };
 
