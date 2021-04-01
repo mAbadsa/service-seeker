@@ -24,19 +24,22 @@ const Filter = ({ handleSearch }) => {
     <div className="filter-container">
       <Select
         className="filter-select"
-        textDefault="select a service type"
+        textDefault={serviceTypes[0]}
         handleChange={handleService}
         options={serviceTypes}
       />
       <p className="split-text">in</p>
       <Select
         className="filter-select"
-        textDefault="select a location"
+        textDefault={locations[0]}
         handleChange={handleLocation}
         options={locations}
       />
-      <Button type="primaryButton" handelClick={handleSearch}>
-        <SearchOutlined />
+      <Button
+        type="primaryButton"
+        handelClick={handleSearch}
+        icon={<SearchOutlined />}
+      >
         Search
       </Button>
     </div>
