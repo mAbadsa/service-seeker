@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Menu } from 'antd';
 
-import Button from '../Button';
-
 import '../Layout/style.css';
 
 const PublicMenu = () => {
@@ -39,14 +37,6 @@ const PublicMenu = () => {
           About Us
         </Menu.Item>
       </Menu>
-      <Button
-        handelClick={() => {
-          history.push('/login');
-        }}
-        className="thirdButton"
-      >
-        Sign in
-      </Button>
     </div>
   );
 };

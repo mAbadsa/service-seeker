@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { Layout, Typography } from 'antd';
@@ -6,6 +8,7 @@ import AuthProvider from '../../Context/Authentication';
 import Public from './Public';
 import UserCustomer from './User';
 import ProviderMenu from './Provider';
+import Button from '../Button';
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -16,6 +19,8 @@ const NavBar = ({ notifications }) => {
     isAuth,
     userData: { role },
   } = useContext(AuthProvider);
+  const history = useHistory();
+
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState('');
 
@@ -31,20 +36,31 @@ const NavBar = ({ notifications }) => {
 
   <Header>
     <Title level={4}>Hound</Title>
+    {/* public menus display always */}
+    <Public />
     {!isAuth ? (
-      <Public />
+      // restricted display on logout mode
+      <Button
+        handelClick={() => {
+          history.push('/login');
+        }}
+        className="thirdButton"
+      >
+        Sign in
+      </Button>
     ) : (
+      // on login mode
       <>
         {role === 'user' ? (
           <UserCustomer
-            handleClick={handleClick}
+            handleLogout={handleClick}
             errMsg={errMsg}
             isLoading={isLoading}
             notifications={notifications}
           />
         ) : (
           <ProviderMenu
-            handleClick={handleClick}
+            handleLogout={handleClick}
             errMsg={errMsg}
             isLoading={isLoading}
           />

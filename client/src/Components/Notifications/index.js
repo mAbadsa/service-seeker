@@ -6,8 +6,6 @@ import { DownOutlined, NotificationFilled } from '@ant-design/icons';
 import Avatar from '../Avatar';
 import Menu from '../Menu';
 
-import '../Layout/style.css';
-
 const NotificationList = ({
   notifications,
   imgSrc,

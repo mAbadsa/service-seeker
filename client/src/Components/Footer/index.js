@@ -1,16 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Layout } from 'antd';
+
+import './style.css';
 
 const { Footer } = Layout;
 
-const Foot = ({ children, className }) => {
-  <Footer className={className}>{children}</Footer>;
+const FooterComponent = () => {
+  <Footer className="footer">© 2021 Dribble. All rights reserved.</Footer>;
 };
-
-Foot.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
-export default Foot;
+export default FooterComponent;

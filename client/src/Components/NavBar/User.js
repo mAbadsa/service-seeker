@@ -6,9 +6,7 @@ import AuthProvider from '../../Context/Authentication';
 
 import UserInfo from '../UserInfo';
 
-import '../Layout/style.css';
-
-const UserMenu = ({ notifications, handleClick, errMsg, isLoading }) => {
+const UserMenu = ({ handleLogout, notifications, errMsg, isLoading }) => {
   const [current, setCurrent] = useState('home');
   const { userData } = useContext(AuthProvider);
   const { name, avatar } = userData;
@@ -61,9 +59,9 @@ const UserMenu = ({ notifications, handleClick, errMsg, isLoading }) => {
             <UserInfo
               loggedUserInfo="logged-user-info"
               userNameClass="user-name"
+              handleLogout={handleLogout}
               shape="circle"
               userPic={avatar}
-              handleClick={handleClick}
               userName={name}
               notifications={notifications}
             />
@@ -83,7 +81,7 @@ UserMenu.propTypes = {
       created_at: PropTypes.string,
     })
   ),
-  handleClick: PropTypes.func,
+  handleLogout: PropTypes.func,
   errMsg: PropTypes.string,
   isLoading: PropTypes.bool,
 };

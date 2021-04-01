@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import NotificationList from '../Notifications';
 
-import '../Layout/style.css';
-
 const UserInfo = ({
   notifications,
   userPic,
   userName,
-  handleClick,
+  handleLogout,
   loggedUserInfo,
   userNameClass,
   shape,
@@ -19,7 +17,7 @@ const UserInfo = ({
     <Avatar shape={shape} imgSrc={userPic} size="large" />
     <p className={userNameClass}>{userName}</p>
     <NotificationList notifications={notifications} imgSrc={userPic} />
-    <LogoutOutlined onClick={handleClick} />
+    <LogoutOutlined onClick={handleLogout} />
   </div>
 );
 
@@ -34,7 +32,7 @@ UserInfo.propTypes = {
   ),
   userPic: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
-  handleClick: PropTypes.func,
+  handleLogout: PropTypes.func,
   loggedUserInfo: PropTypes.string,
   userNameClass: PropTypes.string,
   shape: PropTypes.string.isRequired,

@@ -2,11 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Menu, Spin, Typography } from 'antd';
-import {
-  AppstoreOutlined,
-  BellOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { AppstoreOutlined } from '@ant-design/icons';
 import AuthProvider from '../../Context/Authentication';
 import Avatar from '../Avatar';
 import Button from '../Button';
@@ -15,7 +11,7 @@ import '../Layout/style.css';
 
 const { Title } = Typography;
 
-const ProviderMenu = ({ handleClick, errMsg, isLoading }) => {
+const ProviderMenu = ({ handleLogout, errMsg, isLoading }) => {
   const [current, setCurrent] = useState('Dashboard');
   const { userData } = useContext(AuthProvider);
   const { name, avatar } = userData;
@@ -60,22 +56,9 @@ const ProviderMenu = ({ handleClick, errMsg, isLoading }) => {
                     <AppstoreOutlined />
                     Dashboard
                   </Menu.Item>
-                  <Menu.Item onClick={() => {}} key="Notifications">
-                    <BellOutlined />
-                    Notifications
-                  </Menu.Item>
-                  <Menu.Item
-                    onClick={() => {
-                      history.push('/provider/profile');
-                    }}
-                    key="Profile"
-                  >
-                    <UserOutlined />
-                    Profile
-                  </Menu.Item>
                 </Menu>
               </div>
-              <Button type="default" danger handleClick={handleClick}>
+              <Button type="default" danger handleClick={handleLogout}>
                 Log Out
               </Button>
             </div>
@@ -87,7 +70,7 @@ const ProviderMenu = ({ handleClick, errMsg, isLoading }) => {
 };
 
 ProviderMenu.propTypes = {
-  handleClick: PropTypes.func,
+  handleLogout: PropTypes.func,
   errMsg: PropTypes.string,
   isLoading: PropTypes.bool,
 };
