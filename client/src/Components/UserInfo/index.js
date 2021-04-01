@@ -1,41 +1,28 @@
-import React from 'react';
-import { LogoutOutlined } from '@ant-design/icons';
+import React, { useContext } from 'react';
+import { Spin } from 'antd';
+import { LogoutOutlined, BellOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
-import NotificationList from '../Notifications';
+import AuthProvider from '../../Context/Authentication';
 
-const UserInfo = ({
-  notifications,
-  userPic,
-  userName,
-  handleLogout,
-  loggedUserInfo,
-  userNameClass,
-  shape,
-}) => (
-  <div className={loggedUserInfo}>
-    <Avatar shape={shape} imgSrc={userPic} size="large" />
-    <p className={userNameClass}>{userName}</p>
-    <NotificationList notifications={notifications} imgSrc={userPic} />
-    <LogoutOutlined onClick={handleLogout} />
-  </div>
-);
+const UserInfo = ({ handleLogout, isLoading }) => {
+  const { userData } = useContext(AuthProvider);
+  const { username, avatar } = userData;
+
+  return (
+    <div className="logged-user-info">
+      <Avatar shape="circle" imgSrc={avatar} size="large" />
+      <p className="user-name">{username}</p>
+      <BellOutlined />
+      {isLoading ? <Spin /> : <LogoutOutlined onClick={handleLogout} />}
+    </div>
+  );
+};
 
 UserInfo.propTypes = {
-  notifications: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      user_id: PropTypes.number,
-      decription: PropTypes.string,
-      created_at: PropTypes.string,
-    })
-  ),
-  userPic: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
   handleLogout: PropTypes.func,
-  loggedUserInfo: PropTypes.string,
-  userNameClass: PropTypes.string,
   shape: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
 };
 
 export default UserInfo;
