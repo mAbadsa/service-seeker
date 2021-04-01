@@ -43,7 +43,7 @@ const PublicMenu = () => {
         handelClick={() => {
           history.push('/login');
         }}
-        type="thirdButton"
+        className="thirdButton"
       >
         Sign in
       </Button>

@@ -61,11 +61,7 @@ const ProviderMenu = ({ handleClick, errMsg, isLoading }) => {
                   Profile
                 </Menu.Item>
               </Menu>
-              <Button
-                className="logout-btn"
-                handleClick={handleClick}
-                type="thirdButton"
-              >
+              <Button type="default" danger handleClick={handleClick}>
                 Log Out
               </Button>
             </div>
