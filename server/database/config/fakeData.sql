@@ -53,7 +53,9 @@ INSERT INTO providers(
 VALUES (
     1,
     'Phasellus in felis. Donec semper sapien a libero. Nam dui.
+
 Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
+
 Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
     4.6,
     true,
@@ -62,6 +64,7 @@ Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
   (
     3,
     'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
+
 Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
     7.8,
     true,
