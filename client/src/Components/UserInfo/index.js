@@ -21,7 +21,6 @@ const UserInfo = ({ handleLogout, isLoading }) => {
 
 UserInfo.propTypes = {
   handleLogout: PropTypes.func,
-  shape: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
 };
 
