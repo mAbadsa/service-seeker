@@ -1,28 +1,27 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
-import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Layout, Typography } from 'antd';
+import { Layout, Typography, Menu } from 'antd';
 import AuthProvider from '../../Context/Authentication';
 import Public from './Public';
-import UserCustomer from './User';
-import ProviderMenu from './Provider';
+import User from './User';
 import Button from '../Button';
+import UserInfo from '../UserInfo';
 
 const { Header } = Layout;
 const { Title } = Typography;
 
-const NavBar = ({ notifications }) => {
-  const {
-    setIsAuth,
-    isAuth,
-    userData: { role },
-  } = useContext(AuthProvider);
+const NavBar = () => {
+  const { setIsAuth, isAuth } = useContext(AuthProvider);
   const history = useHistory();
 
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState('');
+  const [current, setCurrent] = useState('home');
+
+  const handleMenu = (e) => {
+    setCurrent(e.key);
+  };
 
   const handleClick = async () => {
     try {
@@ -36,49 +35,31 @@ const NavBar = ({ notifications }) => {
 
   <Header>
     <Title level={4}>Hound</Title>
-    {/* public menus display always */}
-    <Public />
-    {!isAuth ? (
-      // restricted display on logout mode
-      <Button
-        handelClick={() => {
-          history.push('/login');
-        }}
-        className="thirdButton"
-      >
-        Sign in
-      </Button>
-    ) : (
-      // on login mode
-      <>
-        {role === 'user' ? (
-          <UserCustomer
-            handleLogout={handleClick}
-            errMsg={errMsg}
-            isLoading={isLoading}
-            notifications={notifications}
-          />
-        ) : (
-          <ProviderMenu
-            handleLogout={handleClick}
-            errMsg={errMsg}
-            isLoading={isLoading}
-          />
-        )}
-      </>
-    )}
+    <Menu
+      className="nav-menu"
+      onClick={handleMenu}
+      selectedKeys={[current]}
+      mode="horizontal"
+    >
+      <Public />
+      {!isAuth ? (
+        <Button
+          handelClick={() => {
+            history.push('/login');
+          }}
+          className="thirdButton"
+        >
+          Sign in
+        </Button>
+      ) : (
+        <>
+          <User />
+          <UserInfo handleLogout={handleClick} isLoading={isLoading} />
+        </>
+      )}
+    </Menu>
+    {errMsg ? <p className="error-msg">{errMsg}</p> : null}
   </Header>;
-};
-
-NavBar.propTypes = {
-  notifications: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      user_id: PropTypes.number,
-      decription: PropTypes.string,
-      created_at: PropTypes.string,
-    })
-  ),
 };
 
 export default NavBar;
