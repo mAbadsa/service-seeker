@@ -32,7 +32,8 @@ const App = () => (
             About Us
           </Route>
           <LoggedOutRoutes exact path={LOGIN_PAGE} component={LoginPage} />
-          <LoggedOutRoutes exact path={REGISTER_PAGE} component={Register} />
+          {/* <LoggedOutRoutes exact path={REGISTER_PAGE} component={Register} /> */}
+          <Route exact path={REGISTER_PAGE} component={Register} />
           <Route exact path={ORDERS_PAGE}>
             Orders Page
           </Route>

@@ -2,9 +2,10 @@ import React, { useState, useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Row, Col, Form, Input, Typography, Select, Radio } from 'antd';
+import { Row, Col, Form, Typography, Select, Radio } from 'antd';
 
 import Button from '../../Components/Button';
+import Input from '../../Components/Input';
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 import './style.css';
