@@ -13,7 +13,7 @@ const UserMenu = () => {
       {role === 'user' ? (
         <Menu.Item
           onClick={() => {
-            history.push('/');
+            history.push('/orders');
           }}
           key="Orders"
         >
