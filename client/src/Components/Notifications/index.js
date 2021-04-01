@@ -19,6 +19,25 @@ const NotificationList = ({
 }) => {
   const menu = () => (
     <Menu mode="vertical" className={classNameNotifCont} handleClick={() => {}}>
+      {notifications.length ? (
+        notifications.map((notif) => (
+          <div className={classNameNotif} key={notif.id}>
+            <Avatar shape="circle" size="large" imgSrc={imgSrc} />
+            <div className={classNameNotifInfo}>
+              <p className={classNameNotifDesc}>{notif.description}</p>
+              <p className={classNameNotifTime}>
+                {moment(
+                  notif.created_at,
+                  'DD MM YYYY hh:mm:ss',
+                  true
+                ).fromNow()}
+              </p>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No notifications found</p>
+      )}
       {notifications.map((notif) => (
         <div className={classNameNotif} key={notif.id}>
           <Avatar shape="circle" size="large" imgSrc={imgSrc} />

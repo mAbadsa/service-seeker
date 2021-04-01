@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Menu } from 'antd';
 
+import Button from '../Button';
+
 import '../Layout/style.css';
 
 const PublicMenu = () => {
@@ -13,7 +15,7 @@ const PublicMenu = () => {
   };
 
   return (
-    <>
+    <div>
       <Menu
         className="nav-menu"
         onClick={handleMenu}
@@ -24,9 +26,9 @@ const PublicMenu = () => {
           onClick={() => {
             history.push('/');
           }}
-          key="Home"
+          key="home"
         >
-          home
+          Home
         </Menu.Item>
         <Menu.Item
           onClick={() => {
@@ -37,7 +39,15 @@ const PublicMenu = () => {
           About Us
         </Menu.Item>
       </Menu>
-    </>
+      <Button
+        handelClick={() => {
+          history.push('/login');
+        }}
+        type="thirdButton"
+      >
+        Sign in
+      </Button>
+    </div>
   );
 };
 
