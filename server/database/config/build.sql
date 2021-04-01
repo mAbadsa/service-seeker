@@ -18,6 +18,7 @@ CREATE TABLE providers (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON UPDATE CASCADE NOT NULL,
     bio TEXT,
+    job_title VARCHAR(55),
     price_houer FLOAT,
     availability boolean DEFAULT false,
     rating INTEGER DEFAULT 100

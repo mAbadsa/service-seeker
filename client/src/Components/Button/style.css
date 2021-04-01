@@ -1,8 +1,13 @@
 .initial-style {
   color: white;
-  border-radius: 5px;
+  border-radius: 12px;
   border:  1px solid #ffc107;
   transition: all 0.25s;
+  font-size: 16px;
+  height: 38px;
+  width:auto;
+  line-height: 1;
+  
  
 }
 .initial-style:hover {

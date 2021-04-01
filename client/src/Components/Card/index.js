@@ -19,11 +19,11 @@ const CommonCard = ({
   avatarImage,
 }) => (
   <Card className="cardStyle">
-    <Row gutter={[16, 16]} type="flex" justify="start">
+    <Row gutter={[16, 0]} type="flex" justify="start">
       <Col sm={24} md={6} lg={6}>
         <Image src={ImageSrc} className="imageStyle" />
       </Col>
-      <Col sm={24} md={14} lg={14} className="cardDescription">
+      <Col xs={24} sm={24} md={14} lg={14} className="cardDescription">
         <Title level={4}>{TitleJob}</Title>
         <div>
           <Rate value={rate} />
@@ -38,15 +38,9 @@ const CommonCard = ({
             <Text>{priceByHour}$</Text>
           </Text>
         </div>
-        <Paragraph
-          ellipsis={{
-            rows: 4,
-          }}
-        >
-          {descriptions}
-        </Paragraph>
+        <Paragraph>{descriptions}</Paragraph>
       </Col>
-      <Col sm={24} md={4} lg={4}>
+      <Col xs={24} sm={24} md={4} lg={4}>
         <div className="cardHireMe">
           <div>
             <Avatar size={100} src={avatarImage} />
