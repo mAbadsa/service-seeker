@@ -31,7 +31,7 @@ UserInfo.propTypes = {
       decription: PropTypes.string,
       created_at: PropTypes.string,
     })
-  ).isRequired,
+  ),
   userPic: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   handleClick: PropTypes.func,
