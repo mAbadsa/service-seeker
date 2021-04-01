@@ -17,7 +17,7 @@ const cardContainer = ({ title, data, ...rest }) => {
       {data.length !== 0 ? (
         data.slice(limit[0], limit[1]).map((item) => <>{item}</>)
       ) : (
-        <Empty description="لا يوجد رياض أطفال" />
+        <Empty />
       )}
     </div>
     <Pagination
