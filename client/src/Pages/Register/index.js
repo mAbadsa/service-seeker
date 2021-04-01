@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { Row, Col, Form, Typography, Select, Radio } from 'antd';
@@ -13,31 +12,14 @@ import './style.css';
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
 
-function Register() {
+const Register = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { setIsAuth } = useContext(AuthContext);
-  const onFinish = async ({
-    username,
-    email,
-    password,
-    confirmPassword,
-    mobile,
-    location,
-    role,
-  }) => {
+  const onFinish = async (userData) => {
     try {
       setLoading(true);
       setError('');
-      const userData = {
-        username,
-        email,
-        password,
-        confirmPassword,
-        mobile,
-        location,
-        role,
-      };
       await Axios.post('/api/v1/signup', userData);
       setLoading(false);
       setIsAuth(true);
@@ -131,7 +113,7 @@ function Register() {
               },
             ]}
           >
-            <Input.Password placeholder="Enter password..." />
+            <Input type="password" placeholder="Enter password..." />
           </Form.Item>
           <Form.Item
             label="Confirm Password"
@@ -143,7 +125,7 @@ function Register() {
               },
             ]}
           >
-            <Input.Password placeholder="Confirm the password..." />
+            <Input type="password" placeholder="Confirm the password..." />
           </Form.Item>
           <Form.Item
             className="select-input"
@@ -186,6 +168,6 @@ function Register() {
       </Col>
     </Row>
   );
-}
+};
 
 export default Register;
