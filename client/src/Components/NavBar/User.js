@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Menu } from 'antd';
@@ -9,24 +8,14 @@ import UserInfo from '../UserInfo';
 
 import '../Layout/style.css';
 
-const UserMenu = ({ notifications }) => {
+const UserMenu = ({ notifications, handleClick, errMsg }) => {
   const [current, setCurrent] = useState('home');
-  const [errMsg, setErrMsg] = useState('home');
-  const { setIsAuth, userData } = useContext(AuthProvider);
+  const { userData } = useContext(AuthProvider);
   const { name, avatar } = userData;
   const history = useHistory();
 
   const handleMenu = (e) => {
     setCurrent(e.key);
-  };
-
-  const handleClick = async () => {
-    try {
-      await Axios('api/v1/logout');
-      setIsAuth(false);
-    } catch (err) {
-      setErrMsg('set interval error');
-    }
   };
 
   return (
@@ -88,6 +77,8 @@ UserMenu.propTypes = {
       created_at: PropTypes.string,
     })
   ),
+  errMsg: PropTypes.string,
+  handleClick: PropTypes.func,
 };
 
 export default UserMenu;
