@@ -1,18 +1,21 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Layout } from 'antd';
+import { Layout, Typography } from 'antd';
 import AuthProvider from '../../Context/Authentication';
+import Public from './Public';
+import User from './User';
 
 const { Header } = Layout;
+const { Title } = Typography;
 
-// always => logo
-// notAuth => menu(Home, About us) + sign in button
-// isAuth => menu(Home, Order, About us) + userInfo(Avatar, name, notification, logout)
-
-const NavBar = ({ children, className }) => {
+const NavBar = ({ className }) => {
   const { setIsAuth, isAuth } = useContext(AuthProvider);
   const [isLoading, setLoading] = useState(false);
-  <Header className={className}>{children}</Header>;
+  <Header className={className}>
+    <Title level={4}>Hound</Title>
+    <Public />
+    <User />
+  </Header>;
 };
 
 NavBar.propTypes = {
