@@ -15,7 +15,7 @@ const PublicMenu = () => {
   };
 
   return (
-    <div>
+    <div className="menu-public">
       <Menu
         className="nav-menu"
         onClick={handleMenu}
