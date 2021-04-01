@@ -13,11 +13,9 @@ import {
 
 import 'antd/dist/antd.less';
 import './style.css';
-import CardContainder from '../Components/CardContainer';
 
 const App = () => (
   <div className="App">
-    <CardContainder />
     <Switch>
       <Route exact path={HOME_PAGE}>
         Home Page
