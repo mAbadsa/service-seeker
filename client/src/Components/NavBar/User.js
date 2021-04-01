@@ -18,26 +18,8 @@ const UserMenu = ({ notifications, handleClick, errMsg, isLoading }) => {
     setCurrent(e.key);
   };
 
-  const Info = () => (
-    <>
-      {isLoading ? (
-        <Spin />
-      ) : (
-        <UserInfo
-          loggedUserInfo="logged-user-info"
-          userNameClass="user-name"
-          shape="circle"
-          userPic={avatar}
-          handleClick={handleClick}
-          userName={name}
-          notifications={notifications}
-        />
-      )}
-    </>
-  );
-
   return (
-    <div>
+    <div className="customer-container">
       <Menu
         className="nav-menu"
         onClick={handleMenu}
@@ -69,7 +51,25 @@ const UserMenu = ({ notifications, handleClick, errMsg, isLoading }) => {
           About Us
         </Menu.Item>
       </Menu>
-      {errMsg ? <p>something went wrong</p> : <Info />}
+      {errMsg ? (
+        <p className="error-msg">something went wrong</p>
+      ) : (
+        <>
+          {isLoading ? (
+            <Spin />
+          ) : (
+            <UserInfo
+              loggedUserInfo="logged-user-info"
+              userNameClass="user-name"
+              shape="circle"
+              userPic={avatar}
+              handleClick={handleClick}
+              userName={name}
+              notifications={notifications}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };
