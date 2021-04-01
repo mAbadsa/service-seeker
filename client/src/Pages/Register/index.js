@@ -2,7 +2,9 @@ import React, { useState, useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Row, Col, Form, Input, Button, Typography, Select, Radio } from 'antd';
+import { Row, Col, Form, Input, Typography, Select, Radio } from 'antd';
+
+import Button from '../../Components/Button';
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 import './style.css';
@@ -83,9 +85,7 @@ function Register() {
                 message: 'Please input your Name!',
               },
               {
-                pattern: new RegExp(
-                  /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/
-                ),
+                pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
                 message: 'Must be two parts.',
               },
             ]}
