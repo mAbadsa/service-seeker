@@ -6,9 +6,9 @@ import Header from '../NavBar';
 
 const { Content } = Layout;
 
-const LayoutComponent = ({ children }) => {
+const LayoutComponent = ({ children, notifications }) => {
   <Layout>
-    <Header></Header>
+    <Header notifications={notifications} />
     <Content>{children}</Content>
     <Footer className="footer">© 2021 Dribbble. All rights reserved.</Footer>;
   </Layout>;
@@ -16,6 +16,14 @@ const LayoutComponent = ({ children }) => {
 
 LayoutComponent.propTypes = {
   children: PropTypes.node.isRequired,
+  notifications: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      decription: PropTypes.string,
+      created_at: PropTypes.string,
+    })
+  ),
 };
 
 export default LayoutComponent;
