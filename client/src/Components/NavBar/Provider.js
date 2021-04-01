@@ -77,14 +77,6 @@ const ProviderMenu = ({ handleClick, errMsg, isLoading }) => {
 };
 
 ProviderMenu.propTypes = {
-  notifications: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      user_id: PropTypes.number,
-      decription: PropTypes.string,
-      created_at: PropTypes.string,
-    })
-  ),
   handleClick: PropTypes.func,
   errMsg: PropTypes.string,
   isLoading: PropTypes.bool,
