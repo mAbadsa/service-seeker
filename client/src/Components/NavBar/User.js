@@ -87,7 +87,7 @@ UserMenu.propTypes = {
       decription: PropTypes.string,
       created_at: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
 
 export default UserMenu;
