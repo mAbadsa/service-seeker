@@ -132,4 +132,3 @@ INSERT INTO orders(
     2,
     'order request number 1 canceled'
   );
-  
