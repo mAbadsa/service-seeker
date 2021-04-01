@@ -10,7 +10,7 @@ import ProviderMenu from './Provider';
 const { Header } = Layout;
 const { Title } = Typography;
 
-const NavBar = ({ className, notifications }) => {
+const NavBar = ({ notifications }) => {
   const {
     setIsAuth,
     isAuth,
@@ -29,7 +29,7 @@ const NavBar = ({ className, notifications }) => {
     }
   };
 
-  <Header className={className}>
+  <Header>
     <Title level={4}>Hound</Title>
     {!isAuth ? (
       <Public />
@@ -55,7 +55,6 @@ const NavBar = ({ className, notifications }) => {
 };
 
 NavBar.propTypes = {
-  className: PropTypes.string,
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
