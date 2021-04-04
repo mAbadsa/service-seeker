@@ -1,18 +1,44 @@
 .Orders {
   position: relative;
   min-height: 400px;
-  text-align: left;
   /* width: 700px; */
 }
-
+.Orders-card__details {
+  text-align: left;
+  padding-top: 3rem;
+  color: #485C73;
+}
 .Orders .bg-image {
-  /* background-image: url(../../Utils/assist/images/order-bg.png); */
   background-position: center;
   background-size: cover;
   position: absolute;
   height: 120px;
   width: 100%;
 }
+
+.image-container {
+  position: relative;
+  min-height: 250px;
+  width: 200px;
+  border-radius: 3px;
+  border: 1px solid #000;
+}
+
+.image-container span {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  width: 100%;
+  background-color: #fdcb6e95;
+  color: #f5f5f5;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  left: calc(50% - 50%);
+}
+
 
 .Orders .Orders-card {
   margin: 4.5rem 3rem;
@@ -41,4 +67,22 @@
 
 .ant-typography {
   font-size: 16px;
+}
+
+.Orders-detail-input {
+  margin-top: 2rem;
+}
+
+.hireme-btn {
+  width: 100%;
+  font-size: 24px;
+  font-weight: normal;
+  border-radius: 3px;
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .image-container {
+    margin: 0 auto;
+  }
 }
