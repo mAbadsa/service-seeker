@@ -10,17 +10,9 @@ import { locations, serviceTypes } from '../../Utils/data';
 
 const SearchBar = ({ handleSearch, handleService, handleLocation }) => (
   <div className="filter-container">
-    <Select
-      textDefault={serviceTypes[0]}
-      handleChange={handleService}
-      options={serviceTypes}
-    />
+    <Select handleChange={handleService} options={serviceTypes} />
     <p className="split-text">in</p>
-    <Select
-      textDefault={locations[0]}
-      handleChange={handleLocation}
-      options={locations}
-    />
+    <Select handleChange={handleLocation} options={locations} />
     <Button
       type="primaryButton"
       handelClick={handleSearch}
