@@ -31,12 +31,13 @@
     font-size: 13px;
 }
 
+
 .nav-menu{
     font-size: 18px;
 }
 
 .logo{
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
 }
 
@@ -54,4 +55,6 @@
 
 .login-btn{
     width: fit-content;
+    height: fit-content;
+    font-size: 15px;
 }

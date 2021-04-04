@@ -4,6 +4,13 @@ import { Layout, Menu } from 'antd';
 import { AuthContext } from '../../Context/Authentication';
 import Button from '../Button';
 import UserInfo from '../UserInfo';
+import {
+  PROVIDER_DASHBOARD_PAGE,
+  LOGIN_PAGE,
+  HOME_PAGE,
+  ORDERS_PAGE,
+  ABOUT_US,
+} from '../../Utils/routes.constant';
 
 const { Header } = Layout;
 
@@ -27,7 +34,7 @@ const NavBar = () => {
       >
         <Menu.Item
           onClick={() => {
-            history.push('/');
+            history.push(HOME_PAGE);
           }}
           key="home"
         >
@@ -35,7 +42,7 @@ const NavBar = () => {
         </Menu.Item>
         <Menu.Item
           onClick={() => {
-            history.push('/about-us');
+            history.push(ABOUT_US);
           }}
           key="About us"
         >
@@ -46,7 +53,7 @@ const NavBar = () => {
             {isAuth && userData.role === 'user' ? (
               <Menu.Item
                 onClick={() => {
-                  history.push('/orders');
+                  history.push(ORDERS_PAGE);
                 }}
                 key="Orders"
               >
@@ -55,7 +62,7 @@ const NavBar = () => {
             ) : (
               <Menu.Item
                 onClick={() => {
-                  history.push('/provider/dashboard');
+                  history.push(PROVIDER_DASHBOARD_PAGE);
                 }}
                 key="Dashboard"
               >
@@ -68,7 +75,7 @@ const NavBar = () => {
       {!isAuth ? (
         <Button
           handelClick={() => {
-            history.push('/login');
+            history.push(LOGIN_PAGE);
           }}
           className="login-btn"
           type="thirdButton"
