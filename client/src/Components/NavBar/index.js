@@ -28,8 +28,8 @@ const NavBar = () => {
       <Row
         className="row"
         gutter={{
-          sm: 24,
-          lg: 16,
+          sm: 8,
+          lg: 24,
         }}
         justify="space-between"
       >
@@ -91,7 +91,6 @@ const NavBar = () => {
                 history.push(LOGIN_PAGE);
               }}
               className="login-btn"
-              type="thirdButton"
             >
               Sign in
             </Button>
