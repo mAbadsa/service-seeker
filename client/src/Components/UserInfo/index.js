@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Spin } from 'antd';
+import { Spin, Alert } from 'antd';
 import Axios from 'axios';
 import { LogoutOutlined, BellOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
@@ -10,28 +10,35 @@ const UserInfo = () => {
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState('');
   const { userData, setIsAuth } = useContext(AuthContext);
-  const { username, avatar } = userData;
 
   const handleClick = async () => {
     try {
       setLoading(true);
-      await Axios('api/v1/logout');
+      setErrMsg('');
+      await Axios('/api/v1/logout');
       setIsAuth(false);
       setLoading(false);
     } catch (err) {
-      setErrMsg('set interval error');
+      setErrMsg('interval server error');
       setLoading(false);
     }
   };
-
   return (
-    <div className="logged-user-info">
-      <Avatar shape="circle" imgSrc={avatar} size="large" />
-      <p className="user-name">{username}</p>
-      <BellOutlined />
-      {isLoading ? <Spin /> : <LogoutOutlined onClick={handleClick} />}
-      {errMsg ? <p className="error-msg">{errMsg}</p> : null}
-    </div>
+    <>
+      <div className="logged-user-info">
+        {userData ? (
+          <>
+            <Avatar shape="circle" srcImg={userData.avatar} size="large" />
+            <p className="user-name">{userData.username}</p>
+            <BellOutlined />
+            {isLoading ? <Spin /> : <LogoutOutlined onClick={handleClick} />}
+          </>
+        ) : (
+          <spin />
+        )}
+      </div>
+      {errMsg && <Alert message={errMsg} type="error" />}
+    </>
   );
 };
 

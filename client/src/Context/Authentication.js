@@ -18,18 +18,15 @@ const AuthProvider = ({ children }) => {
         setError(null);
         const { data: user } = await Axios('/api/v1/is-auth');
         if (unmounted) {
-          setIsAuth(true);
           setUserData(user.data);
-          setAuthLoading(false);
+          setIsAuth(true);
+          setAuthLoading(!user.data);
         }
       } catch ({ response: resError }) {
         setAuthLoading(false);
-        if (resError.status === 401) {
-          setIsAuth(false);
-          setUserData(null);
-        } else {
-          setError(resError ? resError.data.message : 'internal server error.');
-        }
+        setIsAuth(false);
+        setUserData(null);
+        setError(resError ? resError.data.message : 'internal server error.');
       }
     })();
     return () => {

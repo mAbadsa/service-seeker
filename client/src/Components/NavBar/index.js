@@ -33,10 +33,10 @@ const NavBar = () => {
         }}
         justify="space-between"
       >
-        <Col className="col" span={8}>
+        <Col className="col" span={5}>
           <p className="logo">Hound</p>
         </Col>
-        <Col className="col" span={8}>
+        <Col className="col" span={11}>
           <Menu
             className="nav-menu"
             onClick={handleMenu}
@@ -59,18 +59,17 @@ const NavBar = () => {
             >
               About Us
             </Menu.Item>
-            {() => {
-              if (isAuth) {
-                if (userData.role === 'user') {
-                  <Menu.Item
-                    onClick={() => {
-                      history.push(ORDERS_PAGE);
-                    }}
-                    key="Orders"
-                  >
-                    Order
-                  </Menu.Item>;
-                } else {
+            {isAuth && userData ? (
+              <>
+                <Menu.Item
+                  onClick={() => {
+                    history.push(ORDERS_PAGE);
+                  }}
+                  key="Orders"
+                >
+                  Order
+                </Menu.Item>
+                {userData.role === 'provider' && (
                   <Menu.Item
                     onClick={() => {
                       history.push(PROVIDER_DASHBOARD_PAGE);
@@ -78,25 +77,23 @@ const NavBar = () => {
                     key="Dashboard"
                   >
                     Dashboard
-                  </Menu.Item>;
-                }
-              }
-            }}
+                  </Menu.Item>
+                )}
+                <UserInfo />
+              </>
+            ) : (
+              <Col className="col" span={8}>
+                <Button
+                  handelClick={() => {
+                    history.push(LOGIN_PAGE);
+                  }}
+                  className="login-btn"
+                >
+                  Sign in
+                </Button>
+              </Col>
+            )}
           </Menu>
-        </Col>
-        <Col className="col" span={8}>
-          {!isAuth ? (
-            <Button
-              handelClick={() => {
-                history.push(LOGIN_PAGE);
-              }}
-              className="login-btn"
-            >
-              Sign in
-            </Button>
-          ) : (
-            <UserInfo />
-          )}
         </Col>
       </Row>
     </Header>

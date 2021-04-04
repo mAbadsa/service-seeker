@@ -7,11 +7,10 @@ import {
   ABOUT_US,
   REGISTER_PAGE,
   ORDERS_PAGE,
-  PROVIDER_PROFILE_PAGE,
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
-import { LoggedOutRoutes } from './Routes';
+import { LoggedOutRoutes, PrivateRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
 import Layout from '../Pages/Layout';
@@ -32,18 +31,15 @@ const App = () => (
           <LoggedOutRoutes exact path={LOGIN_PAGE}>
             <LoginPage />
           </LoggedOutRoutes>
-          <Route exact path={REGISTER_PAGE}>
+          <LoggedOutRoutes exact path={REGISTER_PAGE}>
             Register Page
-          </Route>
-          <Route exact path={ORDERS_PAGE}>
+          </LoggedOutRoutes>
+          <PrivateRoutes exact path={ORDERS_PAGE}>
             Orders Page
-          </Route>
-          <Route exact path={PROVIDER_PROFILE_PAGE}>
-            Provider Profile Page
-          </Route>
-          <Route exact path={PROVIDER_DASHBOARD_PAGE}>
+          </PrivateRoutes>
+          <PrivateRoutes isProvider exact path={PROVIDER_DASHBOARD_PAGE}>
             Provider Dashboard Page
-          </Route>
+          </PrivateRoutes>
           <Route>Not Found 404</Route>
         </Switch>
       </Layout>

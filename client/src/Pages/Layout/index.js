@@ -11,16 +11,16 @@ import './style.css';
 const { Content } = Layout;
 
 const LayoutPage = ({ children }) => {
-  const { authLoading } = useContext(AuthContext);
+  const { authLoading, userData } = useContext(AuthContext);
 
   return (
     <>
-      {authLoading ? (
+      {authLoading && !userData ? (
         <Spin size="large" />
       ) : (
         <>
           <Header />
-          <Content>{children}</Content>
+          <Content className="page">{children}</Content>
           <Footer />
         </>
       )}
