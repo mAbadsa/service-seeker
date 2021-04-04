@@ -1,86 +1,96 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card, Row, Col, Image, Typography, Rate } from 'antd';
 
-import { Card, Row, Col, Image, Typography, Rate, Avatar } from 'antd';
+import Button from '../Button';
+import Avatar from '../Avatar';
+
 import './style.css';
-
-import CommonButton from '../Button';
 
 const { Title, Text, Paragraph } = Typography;
 
 const CommonCard = ({
-  ImageSrc,
-  TitleJob,
-  city,
-  rate,
-  priceByHour,
-  descriptions,
-  Name,
-  avatarImage,
+  provider: {
+    id,
+    username: Name,
+    cover_image: ImageSrc,
+    title: TitleJob,
+    location: city,
+    rating: rate,
+    bio: descriptions,
+    price_hour: priceByHour,
+    avatar: avatarImage,
+  },
 }) => (
-  <Card className="cardStyle">
-    <Row gutter={[16, 0]} type="flex" justify="start">
-      <Col sm={24} md={6} lg={6}>
-        <Image src={ImageSrc} className="imageStyle" />
+  <Card id={id} className="cardStyle">
+    <Row gutter={[16, 16]} type="flex" justify="center">
+      <Col sm={24} lg={6} className="imageContener">
+        <Image src={ImageSrc} className="imageStyle" preview={false} />
       </Col>
-      <Col xs={24} sm={24} md={14} lg={14} className="cardDescription">
-        <Title level={4}>{TitleJob}</Title>
-        <div>
-          <Rate value={rate} />
+      <Col sm={24} lg={14} className="cardDescription">
+        <Title id="cardTitle" level={4}>
+          {TitleJob}
+        </Title>
+        <div className="cardDescription__top">
+          <div>
+            <Text type="secondary" className="cardRating__text">
+              {rate}
+            </Text>
+            <Rate value={rate} className="cardRating__stars" disabled />
+          </div>
           <Text type="secondary" className="cardLocation">
             location:
             <Text>{city}</Text>
           </Text>
         </div>
         <div>
-          <Text type="secondary" className="cardLocation">
+          <Text type="secondary" className="cardPrice">
             Price:
             <Text>{priceByHour}$</Text>
           </Text>
         </div>
-        <Paragraph>{descriptions}</Paragraph>
+        <Paragraph
+          ellipsis={{
+            rows: 3,
+          }}
+          id="cardDes"
+        >
+          {descriptions}
+        </Paragraph>
       </Col>
-      <Col xs={24} sm={24} md={4} lg={4}>
+      <Col sm={24} lg={4} className="cardHireContener">
         <div className="cardHireMe">
           <div>
-            <Avatar size={100} src={avatarImage} />
+            <Avatar size={75} className="avatarCard" srcImg={avatarImage} />
             <div>
               <Text>{Name}</Text>
             </div>
           </div>
-          <CommonButton
+          <Button
             handelClick={onclick}
             type="primary"
-            className="initial-style primaryButton"
+            className="initial-style fourthButton hireBtn"
           >
             Hire me
-          </CommonButton>
+          </Button>
         </div>
       </Col>
     </Row>
   </Card>
 );
+
 CommonCard.propTypes = {
-  priceByHour: PropTypes.float,
-  ImageSrc: PropTypes.string,
-  TitleJob: PropTypes.string,
-  city: PropTypes.string,
-  rate: PropTypes.Integer,
-  descriptions: PropTypes.string,
-  Name: PropTypes.string,
-  avatarImage: PropTypes.string,
-};
-CommonCard.defaultProps = {
-  priceByHour: 17.5,
-  ImageSrc:
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  avatarImage:
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  TitleJob: 'developer',
-  city: 'Gaza',
-  rate: 3.5,
-  descriptions: 'welcome im my Job card ',
-  Name: 'Reinald',
+  provider: PropTypes.shape({
+    title: PropTypes.string,
+    id: PropTypes.number,
+    username: PropTypes.string,
+    avatar: PropTypes.string,
+    location: PropTypes.string,
+    bio: PropTypes.string,
+    price_hour: PropTypes.number,
+    rating: PropTypes.number,
+    cover_image: PropTypes.string,
+  }).isRequired,
 };
 
 export default CommonCard;
