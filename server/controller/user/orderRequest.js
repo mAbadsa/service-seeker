@@ -4,13 +4,12 @@ const userOrderReguest = async (req, res, next) => {
   try {
     const {
       body: { providerId, description },
-      user: { id, role },
+      user: { id },
     } = req;
 
     await addOrderRequest({
       providerId,
       description,
-      role,
       id,
     });
 
