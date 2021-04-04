@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Row, Col } from 'antd';
 import { AuthContext } from '../../Context/Authentication';
 import Button from '../Button';
 import UserInfo from '../UserInfo';
@@ -25,66 +25,81 @@ const NavBar = () => {
 
   return (
     <Header className="header">
-      <p className="logo">Hound</p>
-      <Menu
-        className="nav-menu"
-        onClick={handleMenu}
-        selectedKeys={[current]}
-        mode="horizontal"
-      >
-        <Menu.Item
-          onClick={() => {
-            history.push(HOME_PAGE);
-          }}
-          key="home"
-        >
-          Home
-        </Menu.Item>
-        <Menu.Item
-          onClick={() => {
-            history.push(ABOUT_US);
-          }}
-          key="About us"
-        >
-          About Us
-        </Menu.Item>
-        {() => {
-          if (isAuth) {
-            if (userData.role === 'user') {
-              <Menu.Item
-                onClick={() => {
-                  history.push(ORDERS_PAGE);
-                }}
-                key="Orders"
-              >
-                Order
-              </Menu.Item>;
-            } else {
-              <Menu.Item
-                onClick={() => {
-                  history.push(PROVIDER_DASHBOARD_PAGE);
-                }}
-                key="Dashboard"
-              >
-                Dashboard
-              </Menu.Item>;
-            }
-          }
+      <Row
+        className="row"
+        gutter={{
+          sm: 24,
+          lg: 16,
         }}
-      </Menu>
-      {!isAuth ? (
-        <Button
-          handelClick={() => {
-            history.push(LOGIN_PAGE);
-          }}
-          className="login-btn"
-          type="thirdButton"
-        >
-          Sign in
-        </Button>
-      ) : (
-        <UserInfo />
-      )}
+        justify="space-between"
+      >
+        <Col className="col" span={8}>
+          <p className="logo">Hound</p>
+        </Col>
+        <Col className="col" span={8}>
+          <Menu
+            className="nav-menu"
+            onClick={handleMenu}
+            selectedKeys={[current]}
+            mode="horizontal"
+          >
+            <Menu.Item
+              onClick={() => {
+                history.push(HOME_PAGE);
+              }}
+              key="home"
+            >
+              Home
+            </Menu.Item>
+            <Menu.Item
+              onClick={() => {
+                history.push(ABOUT_US);
+              }}
+              key="About us"
+            >
+              About Us
+            </Menu.Item>
+            {() => {
+              if (isAuth) {
+                if (userData.role === 'user') {
+                  <Menu.Item
+                    onClick={() => {
+                      history.push(ORDERS_PAGE);
+                    }}
+                    key="Orders"
+                  >
+                    Order
+                  </Menu.Item>;
+                } else {
+                  <Menu.Item
+                    onClick={() => {
+                      history.push(PROVIDER_DASHBOARD_PAGE);
+                    }}
+                    key="Dashboard"
+                  >
+                    Dashboard
+                  </Menu.Item>;
+                }
+              }
+            }}
+          </Menu>
+        </Col>
+        <Col className="col" span={8}>
+          {!isAuth ? (
+            <Button
+              handelClick={() => {
+                history.push(LOGIN_PAGE);
+              }}
+              className="login-btn"
+              type="thirdButton"
+            >
+              Sign in
+            </Button>
+          ) : (
+            <UserInfo />
+          )}
+        </Col>
+      </Row>
     </Header>
   );
 };
