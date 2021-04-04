@@ -12,7 +12,7 @@ const { Content } = Layout;
 
 const LayoutPage = ({ children }) => {
   const { authLoading, userData } = useContext(AuthContext);
-
+  console.log(authLoading, userData, 1111);
   return (
     <>
       {authLoading && !userData ? (

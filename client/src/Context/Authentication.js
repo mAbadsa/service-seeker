@@ -8,32 +8,27 @@ const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
   const [userData, setUserData] = useState(null);
-  const [error, setError] = useState();
 
   useEffect(() => {
     let unmounted = true;
-    const source = Axios.CancelToken.source();
     (async () => {
       try {
-        setError(null);
         const { data: user } = await Axios('/api/v1/is-auth');
         if (unmounted) {
           setUserData(user.data);
           setIsAuth(true);
-          setAuthLoading(!user.data);
+          setAuthLoading(false);
         }
       } catch ({ response: resError }) {
-        setAuthLoading(false);
         setIsAuth(false);
         setUserData(null);
-        setError(resError ? resError.data.message : 'internal server error.');
+        setAuthLoading(false);
       }
     })();
     return () => {
       unmounted = false;
-      source.cancel('Cancelling in cleanup');
     };
-  }, [authLoading, isAuth]);
+  }, [isAuth]);
 
   return (
     <AuthContext.Provider
@@ -42,7 +37,6 @@ const AuthProvider = ({ children }) => {
         isAuth,
         userData,
         authLoading,
-        error,
         setAuthLoading,
       }}
     >
