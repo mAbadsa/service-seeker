@@ -8,7 +8,7 @@ import './style.css';
 
 import { locations, serviceTypes } from '../../Utils/data';
 
-const Filter = ({ handleSearch, handleService, handleLocation }) => (
+const SearchBar = ({ handleSearch, handleService, handleLocation }) => (
   <div className="filter-container">
     <Select
       className="filter-select"
@@ -33,10 +33,10 @@ const Filter = ({ handleSearch, handleService, handleLocation }) => (
   </div>
 );
 
-Filter.propTypes = {
+SearchBar.propTypes = {
   handleSearch: PropTypes.func.isRequired,
   handleService: PropTypes.func.isRequired,
   handleLocation: PropTypes.func.isRequired,
 };
 
-export default Filter;
+export default SearchBar;
