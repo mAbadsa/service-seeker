@@ -48,9 +48,9 @@ const NavBar = () => {
         >
           About Us
         </Menu.Item>
-        {!isAuth ? null : (
-          <>
-            {isAuth && userData.role === 'user' ? (
+        {() => {
+          if (isAuth) {
+            if (userData.role === 'user') {
               <Menu.Item
                 onClick={() => {
                   history.push(ORDERS_PAGE);
@@ -58,8 +58,8 @@ const NavBar = () => {
                 key="Orders"
               >
                 Order
-              </Menu.Item>
-            ) : (
+              </Menu.Item>;
+            } else {
               <Menu.Item
                 onClick={() => {
                   history.push(PROVIDER_DASHBOARD_PAGE);
@@ -67,10 +67,10 @@ const NavBar = () => {
                 key="Dashboard"
               >
                 Dashboard
-              </Menu.Item>
-            )}
-          </>
-        )}
+              </Menu.Item>;
+            }
+          }
+        }}
       </Menu>
       {!isAuth ? (
         <Button
