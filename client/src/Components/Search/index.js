@@ -17,6 +17,7 @@ const SearchBar = ({ handleSearch, handleService, handleLocation }) => (
       type="primaryButton"
       handelClick={handleSearch}
       icon={<SearchOutlined />}
+      className="search-btn"
     >
       Search
     </Button>
