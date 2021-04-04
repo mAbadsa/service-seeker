@@ -3,7 +3,7 @@ import { Row, Col, Typography } from 'antd';
 import './style.css';
 
 import Axios from 'axios';
-import Card from '../../Components/Card';
+import CardContainer from '../../Components/CardContainer';
 
 const { Title } = Typography;
 
@@ -39,20 +39,9 @@ const LandingPage = () => {
           All Service
         </Title>
         <Row gutter={[0, 16]} type="flex" justify="center">
-          {providers?.map((row, index) => (
-            <Col span={24} key={index}>
-              <Card
-                ImageSrc={row.avatar}
-                TitleJob={row.job_title}
-                city={row.location}
-                rate={row.rating}
-                priceByHour={row.price_houer}
-                descriptions={row.bio}
-                Name={row.username}
-                avatarImage={row.avatar}
-              />
-            </Col>
-          ))}
+          <Col span={24}>
+            <CardContainer providers={providers} />
+          </Col>
         </Row>
       </Col>
     </Row>

@@ -16,16 +16,14 @@ import LandingPage from '../Pages/Landing';
 import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
-
 import './style.css';
 
 const App = () => (
   <div className="App">
-    <LandingPage />
     <AuthProvider>
       <Switch>
         <Route exact path={HOME_PAGE}>
-          Home Page
+          <LandingPage />
         </Route>
         <Route exact path={ABOUT_US}>
           About Us
