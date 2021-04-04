@@ -14,6 +14,7 @@ import {
 import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
+import Orders from '../Pages/Orders';
 
 import './style.css';
 
@@ -22,7 +23,7 @@ const App = () => (
     <AuthProvider>
       <Switch>
         <Route exact path={HOME_PAGE}>
-          Home Page
+          <Orders />
         </Route>
         <Route exact path={ABOUT_US}>
           About Us

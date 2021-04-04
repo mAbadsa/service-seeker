@@ -1,0 +1,44 @@
+.Orders {
+  position: relative;
+  min-height: 400px;
+  text-align: left;
+  /* width: 700px; */
+}
+
+.Orders .bg-image {
+  /* background-image: url(../../Utils/assist/images/order-bg.png); */
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  height: 120px;
+  width: 100%;
+}
+
+.Orders .Orders-card {
+  margin: 4.5rem 3rem;
+}
+
+.Orders-details {
+  width: 100%;
+}
+
+.label-text {
+  font-size: 12px;
+}
+
+.label-text__rating {
+  padding-right: 5px;
+}
+
+.rating {
+  font-size: 16px;
+}
+
+.label-text__emp {
+  color: #252525;
+  font-weight: bold;
+}
+
+.ant-typography {
+  font-size: 16px;
+}
