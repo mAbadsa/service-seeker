@@ -5,7 +5,12 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const SelectComponent = ({ options, handleChange, textDefault }) => (
-  <Select size="large" defaultValue={textDefault} onChange={handleChange}>
+  <Select
+    className="filter-select"
+    size="large"
+    defaultValue={textDefault}
+    onChange={handleChange}
+  >
     {options.map((option) => (
       <Option key={option} value={option}>
         {option}

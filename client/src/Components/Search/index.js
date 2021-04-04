@@ -11,14 +11,12 @@ import { locations, serviceTypes } from '../../Utils/data';
 const SearchBar = ({ handleSearch, handleService, handleLocation }) => (
   <div className="filter-container">
     <Select
-      className="filter-select"
       textDefault={serviceTypes[0]}
       handleChange={handleService}
       options={serviceTypes}
     />
     <p className="split-text">in</p>
     <Select
-      className="filter-select"
       textDefault={locations[0]}
       handleChange={handleLocation}
       options={locations}
