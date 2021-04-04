@@ -24,10 +24,10 @@ const CommonCard = ({
 }) => (
   <Card id={id} className="cardStyle">
     <Row gutter={[16, 16]} type="flex" justify="center">
-      <Col sm={24} lg={6} className="imageContener">
+      <Col sm={24} md={6} lg={6} className="imageContener">
         <Image src={ImageSrc} className="imageStyle" preview={false} />
       </Col>
-      <Col sm={24} lg={14} className="cardDescription">
+      <Col sm={24} md={14} lg={14} className="cardDescription">
         <Title id="cardTitle" level={4}>
           {TitleJob}
         </Title>
@@ -58,7 +58,7 @@ const CommonCard = ({
           {descriptions}
         </Paragraph>
       </Col>
-      <Col sm={24} lg={4} className="cardHireContener">
+      <Col sm={24} md={4} lg={4} className="cardHireContener">
         <div className="cardHireMe">
           <div>
             <Avatar size={75} className="avatarCard" srcImg={avatarImage} />

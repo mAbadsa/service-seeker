@@ -8,13 +8,13 @@ import Card from '../Card';
 import './style.css';
 
 const { Title } = Typography;
-const cardContainer = ({ title, providers, ...rest }) => {
+const cardContainer = ({ providers, title, ...rest }) => {
   const numEachPage = 8;
   const [limit, setLimit] = useState([0, numEachPage]);
 
   return (
     <Row type="flex" justify="center" {...rest}>
-      <Col xs={23} lg={18}>
+      <Col xs={22} md={20} lg={18}>
         <Title id="container-title" level={2}>
           {title}
         </Title>
