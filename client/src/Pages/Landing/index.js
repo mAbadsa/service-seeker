@@ -4,6 +4,7 @@ import './style.css';
 
 import Axios from 'axios';
 import CardContainer from '../../Components/CardContainer';
+import SearchBar from '../../Components/Search';
 
 const { Title } = Typography;
 
@@ -33,7 +34,10 @@ const LandingPage = () => {
           To represent a product
         </Title>
       </Col>
-      <Col span={24}>search bar</Col>
+
+      <Col span={14}>
+        <SearchBar />
+      </Col>
       <Col xs={24} md={20} lg={20}>
         <Title level={4} className="subTitle fine">
           All Service
