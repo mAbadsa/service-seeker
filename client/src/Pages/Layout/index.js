@@ -12,11 +12,11 @@ const { Content } = Layout;
 
 const LayoutPage = ({ children }) => {
   const { authLoading, userData } = useContext(AuthContext);
-  console.log(authLoading, userData, 1111);
+
   return (
     <>
       {authLoading && !userData ? (
-        <Spin size="large" />
+        <Spin size="large" className="loading" />
       ) : (
         <>
           <Header />
