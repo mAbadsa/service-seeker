@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 import { HOME_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 
-const LoggedOutRoutes = ({ component, ...otherProps }) => {
+const LoggedOutRoutes = ({ children, ...otherProps }) => {
   const { isAuth, authLoading } = useContext(AuthContext);
 
   if (!authLoading && !isAuth) {
-    return <Route {...otherProps} component={component} />;
+    return <Route {...otherProps}>{children}</Route>;
   }
   return <Redirect to={HOME_PAGE} />;
 };
 
 LoggedOutRoutes.propTypes = {
-  component: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default LoggedOutRoutes;
