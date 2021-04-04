@@ -17,8 +17,10 @@ const UserInfo = () => {
       setLoading(true);
       await Axios('api/v1/logout');
       setIsAuth(false);
+      setLoading(false);
     } catch (err) {
       setErrMsg('set interval error');
+      setLoading(false);
     }
   };
 
