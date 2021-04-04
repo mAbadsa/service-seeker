@@ -10,7 +10,7 @@ import './style.css';
 const { Title, Text, Paragraph } = Typography;
 
 const CommonCard = ({
-  provide: {
+  provider: {
     id,
     username: Name,
     cover_image: ImageSrc,
@@ -80,7 +80,7 @@ const CommonCard = ({
 );
 
 CommonCard.propTypes = {
-  provide: PropTypes.shape({
+  provider: PropTypes.shape({
     title: PropTypes.string,
     id: PropTypes.number,
     username: PropTypes.string,

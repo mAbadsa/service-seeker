@@ -8,7 +8,7 @@ import Card from '../Card';
 import './style.css';
 
 const { Title } = Typography;
-const cardContainer = ({ title, provides, ...rest }) => {
+const cardContainer = ({ title, providers, ...rest }) => {
   const numEachPage = 8;
   const [limit, setLimit] = useState([0, numEachPage]);
 
@@ -18,16 +18,16 @@ const cardContainer = ({ title, provides, ...rest }) => {
         <Title id="container-title" level={2}>
           {title}
         </Title>
-        {provides && provides.length !== 0 ? (
-          provides
+        {providers && providers.length !== 0 ? (
+          providers
             .slice(limit[0], limit[1])
-            .map((item) => <Card key={item.id} provide={item} />)
+            .map((item) => <Card key={item.id} provider={item} />)
         ) : (
           <Empty />
         )}
         <Pagination
           defaultPageSize={numEachPage}
-          total={provides.length}
+          total={providers.length}
           onChange={(value) => {
             setLimit([(value - 1) * numEachPage, value * numEachPage]);
           }}
