@@ -8,7 +8,7 @@ import Card from '../Card';
 import './style.css';
 
 const { Title } = Typography;
-const cardContainer = ({ title, providers, ...rest }) => {
+const cardContainer = ({ providers, title, ...rest }) => {
   const numEachPage = 8;
   const [limit, setLimit] = useState([0, numEachPage]);
 
