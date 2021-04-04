@@ -14,6 +14,7 @@ import {
 import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
+import Search from '../Components/Search';
 
 import './style.css';
 
@@ -22,7 +23,11 @@ const App = () => (
     <AuthProvider>
       <Switch>
         <Route exact path={HOME_PAGE}>
-          Home Page
+          <Search
+            handleSearch={() => {}}
+            handleService={() => {}}
+            handleLocation={() => {}}
+          />
         </Route>
         <Route exact path={ABOUT_US}>
           About Us
