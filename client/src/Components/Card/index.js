@@ -10,17 +10,20 @@ import './style.css';
 const { Title, Text, Paragraph } = Typography;
 
 const CommonCard = ({
-  ImageSrc,
-  TitleJob,
-  city,
-  rate,
-  priceByHour,
-  descriptions,
-  Name,
-  avatarImage,
+  provide: {
+    id,
+    username: Name,
+    cover_image: ImageSrc,
+    title: TitleJob,
+    location: city,
+    rating: rate,
+    bio: descriptions,
+    price_hour: priceByHour,
+    avatar: avatarImage,
+  },
 }) => (
-  <Card className="cardStyle">
-    <Row gutter={[16, 16]} type="flex" justify="start">
+  <Card id={id} className="cardStyle">
+    <Row gutter={[16, 16]} type="flex" justify="center">
       <Col sm={24} lg={6} className="imageContener">
         <Image src={ImageSrc} className="imageStyle" preview={false} />
       </Col>
@@ -77,14 +80,17 @@ const CommonCard = ({
 );
 
 CommonCard.propTypes = {
-  priceByHour: PropTypes.number.isRequired,
-  ImageSrc: PropTypes.string.isRequired,
-  TitleJob: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
-  rate: PropTypes.number.isRequired,
-  descriptions: PropTypes.string.isRequired,
-  Name: PropTypes.string.isRequired,
-  avatarImage: PropTypes.string.isRequired,
+  provide: PropTypes.shape({
+    title: PropTypes.string,
+    id: PropTypes.number,
+    username: PropTypes.string,
+    avatar: PropTypes.string,
+    location: PropTypes.string,
+    bio: PropTypes.string,
+    price_hour: PropTypes.number,
+    rating: PropTypes.number,
+    cover_image: PropTypes.string,
+  }).isRequired,
 };
 
 export default CommonCard;
