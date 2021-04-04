@@ -21,7 +21,7 @@ const LayoutPage = ({ children }) => {
         <>
           <Header />
           <Content>{children}</Content>
-          <Footer />;
+          <Footer />
         </>
       )}
     </>
