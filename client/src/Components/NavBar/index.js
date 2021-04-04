@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Layout, Typography, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 import { AuthContext } from '../../Context/Authentication';
 import Button from '../Button';
 import UserInfo from '../UserInfo';
 
 const { Header } = Layout;
-const { Title } = Typography;
 
 const NavBar = () => {
   const { isAuth, userData } = useContext(AuthContext);
@@ -18,8 +17,8 @@ const NavBar = () => {
   };
 
   return (
-    <Header>
-      <Title level={4}>Hound</Title>
+    <Header className="header">
+      <p className="logo">Hound</p>
       <Menu
         className="nav-menu"
         onClick={handleMenu}
@@ -42,18 +41,7 @@ const NavBar = () => {
         >
           About Us
         </Menu.Item>
-        {!isAuth ? (
-          <Menu.Item>
-            <Button
-              handelClick={() => {
-                history.push('/login');
-              }}
-              className="thirdButton"
-            >
-              Sign in
-            </Button>
-          </Menu.Item>
-        ) : (
+        {!isAuth ? null : (
           <>
             {isAuth && userData.role === 'user' ? (
               <Menu.Item
@@ -74,12 +62,22 @@ const NavBar = () => {
                 Dashboard
               </Menu.Item>
             )}
-            <Menu.Item>
-              <UserInfo />
-            </Menu.Item>
           </>
         )}
       </Menu>
+      {!isAuth ? (
+        <Button
+          handelClick={() => {
+            history.push('/login');
+          }}
+          className="login-btn"
+          type="thirdButton"
+        >
+          Sign in
+        </Button>
+      ) : (
+        <UserInfo />
+      )}
     </Header>
   );
 };

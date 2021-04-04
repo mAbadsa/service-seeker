@@ -5,4 +5,5 @@
     "source.fixAll": true,
   },
   "files.eol": "\n",
+  "prettier.enable": false,
 }
