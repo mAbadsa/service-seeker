@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  const { setIsAuth } = useContext(AuthContext);
+  const { setIsAuth, setAuthLoading } = useContext(AuthContext);
 
   const onFinish = async ({ email, password }) => {
     try {
@@ -27,6 +27,7 @@ const LoginPage = () => {
       });
       setIsAuth(true);
       setIsLoading(false);
+      setAuthLoading(true);
     } catch (err) {
       if (err.response) {
         setError(

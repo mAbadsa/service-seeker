@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
       unmounted = false;
       source.cancel('Cancelling in cleanup');
     };
-  }, [isAuth]);
+  }, [authLoading, isAuth]);
 
   return (
     <AuthContext.Provider
@@ -43,6 +43,7 @@ const AuthProvider = ({ children }) => {
         userData,
         authLoading,
         error,
+        setAuthLoading,
       }}
     >
       {children}
