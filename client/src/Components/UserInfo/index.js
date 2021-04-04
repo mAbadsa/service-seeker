@@ -4,12 +4,12 @@ import Axios from 'axios';
 import { LogoutOutlined, BellOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
-import AuthProvider from '../../Context/Authentication';
+import { AuthContext } from '../../Context/Authentication';
 
 const UserInfo = () => {
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-  const { userData, setIsAuth } = useContext(AuthProvider);
+  const { userData, setIsAuth } = useContext(AuthContext);
   const { username, avatar } = userData;
 
   const handleClick = async () => {

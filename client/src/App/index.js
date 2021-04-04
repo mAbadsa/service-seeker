@@ -20,8 +20,8 @@ import './style.css';
 
 const App = () => (
   <div className="App">
-    <Layout>
-      <AuthProvider>
+    <AuthProvider>
+      <Layout>
         <Switch>
           <Route exact path={HOME_PAGE}>
             Home Page
@@ -46,8 +46,8 @@ const App = () => (
           </Route>
           <Route>Not Found 404</Route>
         </Switch>
-      </AuthProvider>
-    </Layout>
+      </Layout>
+    </AuthProvider>
   </div>
 );
 
