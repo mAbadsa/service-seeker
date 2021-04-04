@@ -14,9 +14,9 @@ const userOrderReguest = async (req, res, next) => {
       id,
     });
 
-    res.status(201).json({
-      status: 201,
-      message: 'Order sent successfully',
+    res.status(200).json({
+      status: 200,
+      message: 'Order request sent successfully',
     });
   } catch (error) {
     next(error);
