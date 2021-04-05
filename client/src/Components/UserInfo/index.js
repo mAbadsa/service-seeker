@@ -46,7 +46,10 @@ const UserInfo = () => {
               minWidth: '43px',
             }}
           />
-          <Text className="user-name">{userData.username}</Text>
+
+          <Text className="user-name" ellipsis={true}>
+            {userData.username}
+          </Text>
           <BellOutlined className="UserInfo-icon" />
           {isLoading ? (
             <Spin className="UserInfo-icon" />
