@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Row, Col, Form, Typography, Select, Radio, Alert } from 'antd';
+import { Row, Col, Form, Typography, Radio, Alert } from 'antd';
 
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
+import Select from '../../Components/Select';
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 import './style.css';
 import { locations } from '../../Utils/data';
 
 const { Title, Paragraph } = Typography;
-const { Option } = Select;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -135,13 +135,14 @@ const Register = () => {
               },
             ]}
           >
-            <Select placeholder="Location" allowClear size="small">
-              {locations.map((city, idx) => (
-                <Option value={city} key={idx}>
-                  {city.slice(0, 1).toUpperCase() + city.slice(1)}
-                </Option>
-              ))}
-            </Select>
+            <Select
+              options={locations}
+              placeholder="Location"
+              allowClear
+              style={{
+                width: '100%',
+              }}
+            />
           </Form.Item>
           <Form.Item className="select-input" name="role" label="Role">
             <Radio.Group>
