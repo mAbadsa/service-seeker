@@ -47,7 +47,7 @@ const UserInfo = () => {
             }}
           />
 
-          <Text className="user-name" ellipsis={true}>
+          <Text className="user-name" ellipsis>
             {userData.username}
           </Text>
           <BellOutlined className="UserInfo-icon" />
