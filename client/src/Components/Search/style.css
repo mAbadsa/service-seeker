@@ -28,8 +28,10 @@
     align-items: center;
     height: 40px;
     width: 100%;
-   
-
+    
+}
+.searchBtn span{
+    font-size: initial;
 }
 
 .fourthButton {
@@ -38,7 +40,7 @@
     color: #fdcb6e;
     height: 40px;
     line-height: 1;
-    width:95%
+    width: 100%
   }
   
   .fourthButton:hover,

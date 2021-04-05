@@ -80,7 +80,11 @@ const LandingPage = () => {
       <Col xs={24} md={24} lg={24}>
         <Row gutter={[0, 16]} type="flex" justify="center">
           <Col>
-            {isLoading ? <Spin /> : <CardContainer providers={searchResult} />}
+            {isLoading ? (
+              <Spin className="UserInfo-icon" />
+            ) : (
+              <CardContainer providers={searchResult} />
+            )}
           </Col>
         </Row>
       </Col>
