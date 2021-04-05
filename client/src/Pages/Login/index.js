@@ -8,6 +8,8 @@ import { AuthContext } from '../../Context/Authentication';
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
 
+import handelError from '../../Utils/errorHandel';
+
 import './style.css';
 
 const { Title, Text } = Typography;
@@ -16,7 +18,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  const { setIsAuth, setAuthLoading, authLoading } = useContext(AuthContext);
+  const { refresh, setRefresh, setAuthLoading } = useContext(AuthContext);
   const history = useHistory();
 
   const onFinish = async ({ email, password }) => {
@@ -26,18 +28,12 @@ const LoginPage = () => {
         email,
         password,
       });
-      setIsAuth(true);
+      setRefresh(!refresh);
       setIsLoading(false);
-      setAuthLoading(!authLoading);
+      setAuthLoading(true);
       history.push(HOME_PAGE);
     } catch (err) {
-      if (err.response) {
-        setError(
-          err.response.status === 500
-            ? 'Something went wrong!'
-            : err.response.data.message
-        );
-      }
+      handelError(setError, err);
       setIsLoading(false);
     }
   };

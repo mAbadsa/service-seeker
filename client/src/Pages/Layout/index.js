@@ -11,11 +11,10 @@ import './style.css';
 const { Content } = Layout;
 
 const LayoutPage = ({ children }) => {
-  const { authLoading, userData } = useContext(AuthContext);
-
+  const { authLoading } = useContext(AuthContext);
   return (
     <>
-      {authLoading && !userData ? (
+      {authLoading ? (
         <Spin size="large" className="loading" />
       ) : (
         <>

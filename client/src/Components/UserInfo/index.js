@@ -12,7 +12,9 @@ import { HOME_PAGE } from '../../Utils/routes.constant';
 const UserInfo = () => {
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-  const { userData, setIsAuth } = useContext(AuthContext);
+  const { userData, setRefresh, refresh, setAuthLoading } = useContext(
+    AuthContext
+  );
   const history = useHistory();
 
   const handleClick = async () => {
@@ -20,8 +22,9 @@ const UserInfo = () => {
       setLoading(true);
       setErrMsg('');
       await Axios('/api/v1/logout');
-      setIsAuth(false);
+      setRefresh(!refresh);
       setLoading(false);
+      setAuthLoading(true);
       history.push(HOME_PAGE);
     } catch (err) {
       setErrMsg('interval server error');
