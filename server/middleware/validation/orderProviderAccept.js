@@ -1,11 +1,12 @@
-const { object, date } = require('yup');
+const { object, date, number } = require('yup');
 
 const { boomify } = require('../../utils');
 
 const orderAcceptValidation = async (req, res, next) => {
   try {
     const schema = object().shape({
-      arrive_time: date().required(),
+      arriveTime: date().required(),
+      orderID: number().required(),
     });
     await schema.validate(req.body, {
       abortEarly: false,
