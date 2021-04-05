@@ -1,9 +1,10 @@
 const connection = require('../../config/connection');
 
-const deleteOrder = (orderReqId) => {
+const deleteOrder = (orderReqId, userId) => {
   const sql = {
-    text: 'DELETE FROM ordes_request WHERE id=$1;',
-    values: [orderReqId],
+    text:
+      "DELETE FROM ordes_request WHERE id=$1 AND state='pending' AND user_id=$2;",
+    values: [orderReqId, userId],
   };
 
   return connection.query(sql);
