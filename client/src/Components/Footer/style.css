@@ -1,5 +1,11 @@
-.footer{
-    text-align: center;
-    background-color: #FFEAA7;
-    font-size: 14px,
+.footer {
+  text-align: center;
+  background-color: transparent;
+  font-size: 14px;
+  background-image: url(../../Utils/assist/images/footer.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 116px;
+  padding: 0;
+  padding-top: 92px;
 }
