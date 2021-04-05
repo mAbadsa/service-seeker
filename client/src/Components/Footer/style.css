@@ -1,4 +1,8 @@
 .footer {
+  position: absolute;
+  width: 100%;
+  font-size: 0.8rem;
+  bottom: 0;
   text-align: center;
   background-color: transparent;
   font-size: 14px;
