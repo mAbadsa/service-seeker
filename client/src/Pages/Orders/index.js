@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Typography, Rate, Input } from 'antd';
+import Axios from 'axios';
+import { Row, Col, Typography, Rate, Input, Form, Alert } from 'antd';
 
 import Button from '../../Components/Button';
 
@@ -20,11 +21,33 @@ function Orders({
   price,
 }) {
   const [rateValue, setRateValue] = useState(2.5);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleChange = (value) => {
-    setRateValue(value);
-    setIsLoading(true);
+  const handleChange = async (value) => {
+    try {
+      setRateValue(value);
+      await Axios.post('/api/v1/rating', value);
+      setIsLoading(false);
+    } catch (err) {
+      if (err.response) {
+        setError(err.response.message || 'Something went wrong!');
+      }
+      setIsLoading(false);
+    }
+  };
+
+  const handleFinish = async (value) => {
+    try {
+      setIsLoading(true);
+      await Axios.post('/api/v1/login', value);
+      setIsLoading(false);
+    } catch (err) {
+      if (err.response) {
+        setError(err.response.message || 'Something went wrong!');
+      }
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -105,15 +128,16 @@ function Orders({
             </Row>
           </Col>
           <Col span={24} className="Orders-detail-input">
-            <TextArea
-              placeholder="Controlled autosize"
-              autoSize={{
-                minRows: 3,
-                maxRows: 5,
-              }}
-            />
-          </Col>
-          <Col span={24}>
+            {error && <Alert id="alert" message={error} type="info" showIcon />}
+            <Form onFinish={handleFinish}>
+              <TextArea
+                placeholder="Controlled autosize"
+                autoSize={{
+                  minRows: 3,
+                  maxRows: 5,
+                }}
+              />
+            </Form>
             <Button
               className="hireme-btn"
               type="primary"
