@@ -5,7 +5,7 @@ const { boomify } = require('../../utils');
 const orderAcceptValidation = async (req, res, next) => {
   try {
     const schema = object().shape({
-      arrive_time: date(),
+      arrive_time: date().required(),
     });
     await schema.validate(req.body, {
       abortEarly: false,
