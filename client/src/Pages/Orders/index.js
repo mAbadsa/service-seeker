@@ -15,32 +15,19 @@ function Orders({
   coverImage,
   userAvatar,
   professionTitle,
-  ratings,
+  ratingsNum,
   location,
   mobile,
   price,
+  ratings,
 }) {
-  const [rateValue, setRateValue] = useState(2.5);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const handleChange = async (value) => {
-    try {
-      setRateValue(value);
-      await Axios.post('/api/v1/rating', value);
-      setIsLoading(false);
-    } catch (err) {
-      if (err.response) {
-        setError(err.response.message || 'Something went wrong!');
-      }
-      setIsLoading(false);
-    }
-  };
 
   const handleFinish = async (value) => {
     try {
       setIsLoading(true);
-      await Axios.post('/api/v1/login', value);
+      await Axios.post('/api/v1/order-request', value);
       setIsLoading(false);
     } catch (err) {
       if (err.response) {
@@ -80,17 +67,11 @@ function Orders({
             <Row>
               <Col xs={24} sm={24} md={12}>
                 <span className="label-text label-text__rating label-text__emp">
-                  {rateValue}
+                  {ratings}
                 </span>
-                <Rate
-                  className="rating"
-                  allowHalf
-                  defaultValue={2.5}
-                  value={rateValue}
-                  onChange={handleChange}
-                />
-                <span className="label-text">{`(${ratings} ${
-                  ratings === 1 ? 'rating' : 'ratings'
+                <Rate className="rating" allowHalf defaultValue={2.5} />
+                <span className="label-text">{`(${ratingsNum} ${
+                  ratingsNum === 1 ? 'rating' : 'ratings'
                 })`}</span>
               </Col>
               <Col xs={24} sm={24} md={5}>
@@ -158,10 +139,11 @@ Orders.defaultProps = {
   coverImage: '/static/order-bg.png',
   userAvatar: '/static/avatar.png',
   professionTitle: 'Electrician',
-  ratings: 2,
+  ratingsNum: 2,
   location: 'Gaza',
   mobile: '0599000000',
   price: 15,
+  ratings: 2.5,
 };
 
 Orders.propTypes = {
@@ -169,10 +151,11 @@ Orders.propTypes = {
   coverImage: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   professionTitle: PropTypes.string.isRequired,
-  ratings: PropTypes.number.isRequired,
+  ratingsNum: PropTypes.number.isRequired,
   location: PropTypes.string.isRequired,
   mobile: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  ratings: PropTypes.number.isRequired,
 };
 
 export default Orders;
