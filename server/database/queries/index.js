@@ -1,8 +1,9 @@
 const { createNewUser, checkUserByEmail } = require('./user');
-const { createNewProvider } = require('./provider');
+const { createNewProvider, deleteOrder } = require('./provider');
 
 module.exports = {
   createNewUser,
   checkUserByEmail,
   createNewProvider,
+  deleteOrder,
 };
