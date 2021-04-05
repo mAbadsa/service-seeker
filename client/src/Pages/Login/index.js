@@ -45,7 +45,7 @@ const LoginPage = () => {
           <Title id="login-left__title" level={3}>
             Service Seeker
           </Title>
-          {error && <Alert id="alert" message={error} type="info" showIcon />}
+          {error && <Alert id="alert" message={error} type="error" showIcon />}
           <Form.Item
             name="email"
             rules={[
