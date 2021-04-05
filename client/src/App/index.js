@@ -14,6 +14,7 @@ import {
 import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
+import Register from '../Pages/Register';
 
 import './style.css';
 
@@ -31,7 +32,7 @@ const App = () => (
           <LoginPage />
         </LoggedOutRoutes>
         <Route exact path={REGISTER_PAGE}>
-          Register Page
+          <Register />
         </Route>
         <Route exact path={ORDERS_PAGE}>
           Orders Page

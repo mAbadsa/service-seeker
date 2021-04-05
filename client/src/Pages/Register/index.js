@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Row, Col, Form, Typography, Select, Radio } from 'antd';
+import { Row, Col, Form, Typography, Select, Radio, Alert } from 'antd';
 
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 import './style.css';
+import { locations } from '../../Utils/data';
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
@@ -25,11 +26,7 @@ const Register = () => {
       setIsAuth(true);
     } catch (err) {
       if (err.response) {
-        setError(
-          err.response.status === 500
-            ? 'Something went wrong!'
-            : err.response.data.message
-        );
+        setError(err.response.data.message || 'Something went wrong!');
       }
       setLoading(false);
     }
@@ -52,6 +49,7 @@ const Register = () => {
         <Title className="title" level={2}>
           Create A New Account
         </Title>
+        {error && <Alert id="alert" message={error} type="info" showIcon />}
         <Form
           onFinish={onFinish}
           initialValues={{
@@ -69,7 +67,7 @@ const Register = () => {
               },
               {
                 pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
-                message: 'Must be two parts.',
+                message: 'Type your fullname.',
               },
             ]}
           >
@@ -138,14 +136,16 @@ const Register = () => {
             ]}
           >
             <Select placeholder="Location" allowClear size="small">
-              <Option value="gaza">Gaza</Option>
-              <Option value="khan Yunis">khan Yunis</Option>
-              <Option value="rafah">Rafah</Option>
+              {locations.map((city, idx) => (
+                <Option value={city} key={idx}>
+                  {city.slice(0, 1).toUpperCase() + city.slice(1)}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item className="select-input" name="role" label="Role">
             <Radio.Group>
-              <Radio className="radio-label" value="customer">
+              <Radio className="radio-label" value="user">
                 Customer
               </Radio>
               <Radio className="radio-label" value="provider">
