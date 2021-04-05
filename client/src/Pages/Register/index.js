@@ -53,7 +53,7 @@ const Register = () => {
         <Form
           onFinish={onFinish}
           initialValues={{
-            role: 'customer',
+            role: 'user',
             location: 'gaza',
           }}
         >
@@ -153,9 +153,6 @@ const Register = () => {
               </Radio>
             </Radio.Group>
           </Form.Item>
-          {error && {
-            error,
-          }}
           <Form.Item>
             <Button className="signup-btn" htmlType="submit" loading={loading}>
               Signup
