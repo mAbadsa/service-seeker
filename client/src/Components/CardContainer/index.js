@@ -7,15 +7,15 @@ import Card from '../Card';
 import './style.css';
 
 const { Title } = Typography;
-const cardContainer = ({ providers, title, ...rest }) => {
+const cardContainer = ({ providers, ...rest }) => {
   const numEachPage = 8;
   const [limit, setLimit] = useState([0, numEachPage]);
 
   return (
     <Row type="flex" justify="center" {...rest}>
       <Col xs={22} md={20} lg={18}>
-        <Title id="container-title" level={2}>
-          {title}
+        <Title id="container-title" level={3}>
+          {`${providers.length} Result `}
         </Title>
         {providers && providers.length !== 0 ? (
           providers
@@ -38,7 +38,6 @@ const cardContainer = ({ providers, title, ...rest }) => {
 };
 
 cardContainer.propTypes = {
-  title: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,

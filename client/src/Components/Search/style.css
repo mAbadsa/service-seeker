@@ -32,3 +32,19 @@
 
 }
 
+.fourthButton {
+    background-color: transparent;
+    border-color: #ffeaa7;
+    color: #fdcb6e;
+    height: 40px;
+    line-height: 1;
+    width:95%
+  }
+  
+  .fourthButton:hover,
+  .fourthButton:focus {
+    color: #ffffff;
+    border-color: #ffc107;
+    background-color: #ffc107;
+  }
+  

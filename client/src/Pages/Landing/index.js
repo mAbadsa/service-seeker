@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Typography } from 'antd';
+import { Row, Col, Typography, message, Spin } from 'antd';
 import './style.css';
 
 import Axios from 'axios';
@@ -9,65 +9,78 @@ import SearchBar from '../../Components/Search';
 const { Title } = Typography;
 
 const LandingPage = () => {
+  const [isLoading, setLoading] = useState(false);
   const [providers, setProvidersList] = useState([]);
-  const [searchRuselt, seSearchResult] = useState([]);
-  const [service, setService] = useState('');
-  const [location, setLocation] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [service, setService] = useState(null);
+  const [location, setLocation] = useState(null);
+
   useEffect(() => {
     let unmounted = true;
-    const source = Axios.CancelToken.source();
+
     (async () => {
-      const { data } = await Axios.get('api/v1/providers');
-      if (unmounted) {
-        setProvidersList(data.data);
+      try {
+        setLoading(true);
+        const { data } = await Axios.get('api/v1/providers');
+        if (unmounted) {
+          setLoading(false);
+          setProvidersList(data.data);
+          setSearchResult(data.data);
+        }
+      } catch (error) {
+        message.error('Something went wrong!');
+        setLoading(false);
       }
     })();
     return () => {
       unmounted = false;
-      source.cancel('Cancelling in cleanup');
     };
   }, []);
-  const handleService = (e) => {
-    setService(e);
-  };
-  const handleLocation = (e) => {
-    setLocation(e);
+
+  const handelClear = () => {
+    setSearchResult(providers);
+    setLocation(null);
+    setService(null);
   };
   const handleSearch = () => {
-    console.log(service, location, searchRuselt);
-    console.log(
-      providers.filter(
-        (row) => row.title === service && row.location === location
-      )
-    );
-    seSearchResult(
-      providers.filter(
-        (row) => row.title === service && row.location === location
-      )
-    );
+    if (service && location) {
+      setSearchResult(
+        providers.filter(
+          (row) => row.title === service && row.location === location
+        )
+      );
+    } else if (service) {
+      setSearchResult(providers.filter((row) => row.title === service));
+    } else if (location) {
+      setSearchResult(providers.filter((row) => row.location === location));
+    }
   };
+
   return (
     <Row type="flex" justify="center">
       <Col span={24}>
         <Title level={2}>
-          Combine <span className="fine">fine</span> images
+          Find your <span className="fine">Service</span>
         </Title>
         <Title level={3} className="subTitle">
-          To represent a product
+          To fix your Home
         </Title>
       </Col>
 
       <Col span={14}>
         <SearchBar
-          handleService={handleService}
-          handleLocation={handleLocation}
+          handleService={setService}
+          handleLocation={setLocation}
           handleSearch={handleSearch}
+          handelClear={handelClear}
+          service={service}
+          location={location}
         />
       </Col>
       <Col xs={24} md={24} lg={24}>
         <Row gutter={[0, 16]} type="flex" justify="center">
           <Col>
-            <CardContainer title="All Service" providers={providers} />
+            {isLoading ? <Spin /> : <CardContainer providers={searchResult} />}
           </Col>
         </Row>
       </Col>
