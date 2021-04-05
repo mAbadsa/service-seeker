@@ -36,7 +36,7 @@ const NavBar = () => {
         <Col className="col" span={5}>
           <p className="logo">Hound</p>
         </Col>
-        <Col className="col" span={11}>
+        <Col className="col" span={12}>
           <Menu
             className="nav-menu"
             onClick={handleMenu}
@@ -79,10 +79,12 @@ const NavBar = () => {
                     Dashboard
                   </Menu.Item>
                 )}
-                <UserInfo />
+                <Menu.Item>
+                  <UserInfo />
+                </Menu.Item>
               </>
             ) : (
-              <Col className="col" span={8}>
+              <Menu.Item className="btn-menu">
                 <Button
                   handelClick={() => {
                     history.push(LOGIN_PAGE);
@@ -91,7 +93,7 @@ const NavBar = () => {
                 >
                   Sign in
                 </Button>
-              </Col>
+              </Menu.Item>
             )}
           </Menu>
         </Col>

@@ -13,6 +13,16 @@
     min-height: 100vh
 }
 
+.header {
+    padding: 0;
+}
+
+.col-log{
+display: flex;
+justify-content: center;
+height: 100%;
+}
+
 .nav-menu{
     font-size: 1.3rem;
     width: 100%;
@@ -33,13 +43,14 @@ height: 100%;
 
 .logo{
     font-size: 1.9rem;
-    font-weight: 700;
+    font-weight: 700;padding-left: 5px;
 }
 
 .login-btn{
     width: fit-content;
     height: fit-content;
     font-size: 1rem;
+    margin: auto;
 }
 .loading{
     margin-top: 50px;
