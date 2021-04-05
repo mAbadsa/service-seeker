@@ -9,18 +9,39 @@ import './style.css';
 
 import { locations, serviceTypes } from '../../Utils/data';
 
-const SearchBar = ({ handleSearch, handleService, handleLocation }) => (
-  <Row gutter={[8, 8]} className="filter-container">
+const SearchBar = ({
+  handleSearch,
+  handleService,
+  handleLocation,
+  ...rest
+}) => (
+  <Row gutter={[10, 10]} className="filter-container" {...rest}>
     <Col xs={24} sm={24} md={24} lg={8}>
-      <Select handleChange={handleService} options={serviceTypes} />
+      <Select
+        handleChange={handleService}
+        options={serviceTypes}
+        type="Service"
+      />
     </Col>
     <Col xs={24} sm={24} md={24} lg={2}>
       <p className="split-text">in</p>
     </Col>
     <Col xs={24} sm={24} md={24} lg={8}>
-      <Select handleChange={handleLocation} options={locations} />
+      <Select
+        handleChange={handleLocation}
+        options={locations}
+        type="Location"
+      />
     </Col>
-    <Col xs={24} sm={24} md={24} lg={6}>
+    <Col
+      xs={24}
+      sm={24}
+      md={24}
+      lg={6}
+      style={{
+        padding: '0 10px',
+      }}
+    >
       <Button
         type="primary"
         handelClick={handleSearch}

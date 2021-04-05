@@ -4,12 +4,13 @@ import { Select } from 'antd';
 
 const { Option } = Select;
 
-const SelectComponent = ({ options, handleChange }) => (
+const SelectComponent = ({ options, type, handleChange, ...rest }) => (
   <Select
     className="filter-select"
     size="large"
-    defaultValue={options[0]}
+    placeholder={type}
     onChange={handleChange}
+    {...rest}
   >
     {options.map((option) => (
       <Option key={option} value={option}>
@@ -22,6 +23,7 @@ const SelectComponent = ({ options, handleChange }) => (
 SelectComponent.propTypes = {
   handleChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  type: PropTypes.object,
 };
 
 export default SelectComponent;
