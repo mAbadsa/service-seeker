@@ -1,20 +1,15 @@
 const { addOrderRequest } = require('../../database/queries');
 
 const userOrderReguest = async (req, res, next) => {
+  const { id: userId } = req.user;
   try {
-    const {
-      body: { providerId, description },
-      user: { id },
-    } = req;
-
     await addOrderRequest({
-      providerId,
-      description,
-      id,
+      userId,
+      ...req.body,
     });
 
-    res.status(200).json({
-      status: 200,
+    res.status(201).json({
+      statusCode: 201,
       message: 'Order request sent successfully',
     });
   } catch (error) {
