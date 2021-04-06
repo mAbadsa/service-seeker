@@ -43,17 +43,11 @@ const LandingPage = () => {
     setService(null);
   };
   const handleSearch = () => {
-    if (service && location) {
-      setSearchResult(
-        providers.filter(
-          (row) => row.title === service && row.location === location
-        )
-      );
-    } else if (service) {
-      setSearchResult(providers.filter((row) => row.title === service));
-    } else if (location) {
-      setSearchResult(providers.filter((row) => row.location === location));
-    }
+    setSearchResult(
+      providers
+        .filter((element) => (service ? element.title === service : true))
+        .filter((element) => (location ? element.location === location : true))
+    );
   };
 
   return (

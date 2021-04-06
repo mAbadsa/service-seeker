@@ -21,7 +21,7 @@ const SearchBar = ({
   <Row gutter={[10, 10]} className="filter-container" {...rest}>
     <Col xs={24} sm={24} md={24} lg={7}>
       <Select
-        handleChange={handleService}
+        onChange={handleService}
         options={serviceTypes}
         type="Service"
         initialValue={service}
@@ -32,7 +32,7 @@ const SearchBar = ({
     </Col>
     <Col xs={24} sm={24} md={24} lg={7}>
       <Select
-        handleChange={handleLocation}
+        onChange={handleLocation}
         options={locations}
         type="Location"
         initialValue={location}
@@ -61,7 +61,7 @@ const SearchBar = ({
       <Button
         handelClick={handelClear}
         icon={<ClearOutlined />}
-        className="fourthButton "
+        className="IconButton "
         size="middle"
         disabled={!service && !location}
       />

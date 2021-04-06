@@ -34,7 +34,7 @@
     font-size: initial;
 }
 
-.fourthButton {
+.IconButton {
     background-color: transparent;
     border-color: #ffeaa7;
     color: #fdcb6e;
@@ -43,8 +43,8 @@
     width: 100%
   }
   
-  .fourthButton:hover,
-  .fourthButton:focus {
+  .IconButton:hover,
+  .IconButton:focus {
     color: #ffffff;
     border-color: #ffc107;
     background-color: #ffc107;
