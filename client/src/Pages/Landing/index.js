@@ -17,11 +17,10 @@ const LandingPage = () => {
 
   useEffect(() => {
     let unmounted = true;
-
     (async () => {
       try {
         setLoading(true);
-        const { data } = await Axios.get('api/v1/providers');
+        const { data } = await Axios.get('/api/v1/providers');
         if (unmounted) {
           setLoading(false);
           setProvidersList(data.data);
@@ -37,7 +36,7 @@ const LandingPage = () => {
   }, []);
 
   const handelClear = () => {
-    setSearchResult(providers);
+    setSearchResult(null);
     setLocation(null);
     setService(null);
   };
