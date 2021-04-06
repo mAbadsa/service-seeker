@@ -1,4 +1,8 @@
-const { createNewUser, checkUserByEmail } = require('./user');
+const {
+  createNewUser,
+  checkUserByEmail,
+  getUserOrdersReqQuery,
+} = require('./user');
 const {
   createNewProvider,
   acceptOrder,
@@ -13,4 +17,5 @@ module.exports = {
   acceptOrder,
   updateStateOrderRequest,
   getOrderByUserID,
+  getUserOrdersReqQuery,
 };
