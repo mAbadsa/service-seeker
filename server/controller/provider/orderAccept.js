@@ -24,8 +24,8 @@ const acceptOrderController = async (req, res, next) => {
     await acceptOrder(arriveTime, id, 'accepted');
 
     res
-      .status(200)
-      .json({ status: 200, message: 'order accepted successfully' });
+      .status(201)
+      .json({ status: 201, message: 'order accepted successfully' });
   } catch (err) {
     next(err);
   }
