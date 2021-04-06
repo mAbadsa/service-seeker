@@ -15,6 +15,7 @@ import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 import LoginPage from '../Pages/Login';
 import Register from '../Pages/Register';
+import PendingProvider from '../Pages/DashboardProvider/Orders/pending';
 
 import './style.css';
 
@@ -23,7 +24,7 @@ const App = () => (
     <AuthProvider>
       <Switch>
         <Route exact path={HOME_PAGE}>
-          Home Page
+          <PendingProvider />
         </Route>
         <Route exact path={ABOUT_US}>
           About Us
