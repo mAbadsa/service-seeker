@@ -7,8 +7,8 @@ const {
 } = require('../controller');
 
 router.get('/is-auth', isAuthController);
-
-router.get('/user/orders', getUserOrdersController);
+// user orders
 router.get('/user/order-requests', getUserOrdersReqController);
+router.get('/user/orders', getUserOrdersController);
 
 module.exports = router;
