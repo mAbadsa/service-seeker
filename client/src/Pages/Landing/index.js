@@ -1,58 +1,90 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Typography } from 'antd';
+import { Row, Col, Typography, message, Spin } from 'antd';
 import './style.css';
 
 import Axios from 'axios';
-import Card from '../../Components/Card';
+import CardContainer from '../../Components/CardContainer';
+import SearchBar from '../../Components/Search';
 
 const { Title } = Typography;
 
 const LandingPage = () => {
-  const [providers, setProvidersList] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [providers, setProvidersList] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
+  const [service, setService] = useState(null);
+  const [location, setLocation] = useState(null);
+
   useEffect(() => {
     let unmounted = true;
-    const source = Axios.CancelToken.source();
     (async () => {
-      const { data } = await Axios.get('api/v1/providers');
-      if (unmounted) {
-        setProvidersList(data.data);
+      try {
+        setLoading(true);
+        const { data } = await Axios.get('/api/v1/providers');
+        if (unmounted) {
+          setLoading(false);
+          setProvidersList(data.data);
+        }
+      } catch (error) {
+        message.error('Something went wrong!');
+        setLoading(false);
       }
     })();
     return () => {
       unmounted = false;
-      source.cancel('Cancelling in cleanup');
     };
   }, []);
+
+  const handelClear = () => {
+    setSearchResult(null);
+    setLocation(null);
+    setService(null);
+  };
+  const handleSearch = () => {
+    setSearchResult(
+      providers
+        .filter((element) => (service ? element.title === service : true))
+        .filter((element) => (location ? element.location === location : true))
+    );
+  };
+
   return (
     <Row type="flex" justify="center">
       <Col span={24}>
         <Title level={2}>
-          Combine <span className="fine">fine</span> images
+          Find your <span className="fine">Service</span>
         </Title>
         <Title level={3} className="subTitle">
-          To represent a product
+          To fix your Home
         </Title>
       </Col>
-      <Col span={24}>search bar</Col>
-      <Col xs={24} md={20} lg={20}>
-        <Title level={4} className="subTitle fine">
-          All Service
-        </Title>
+
+      <Col span={14}>
+        <SearchBar
+          handleService={setService}
+          handleLocation={setLocation}
+          handleSearch={handleSearch}
+          handelClear={handelClear}
+          service={service}
+          location={location}
+        />
+      </Col>
+      <Col xs={24} md={24} lg={24}>
         <Row gutter={[0, 16]} type="flex" justify="center">
-          {providers?.map((row, index) => (
-            <Col span={24} key={index}>
-              <Card
-                ImageSrc={row.avatar}
-                TitleJob={row.job_title}
-                city={row.location}
-                rate={row.rating}
-                priceByHour={row.price_houer}
-                descriptions={row.bio}
-                Name={row.username}
-                avatarImage={row.avatar}
+          <Col>
+            {isLoading ? (
+              <Spin className="UserInfo-icon" />
+            ) : (
+              <CardContainer
+                title={
+                  !service && !location
+                    ? 'All service'
+                    : `${searchResult && searchResult.length} Result `
+                }
+                providers={searchResult || providers}
               />
-            </Col>
-          ))}
+            )}
+          </Col>
         </Row>
       </Col>
     </Row>

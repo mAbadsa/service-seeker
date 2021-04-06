@@ -4,3 +4,11 @@
 .subTitle{
     margin-top: 0 !important ;
 }
+.UserInfo-icon {
+    display: block;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    height: 34px;
+    width: 34px;
+    padding: 7px;
+  }

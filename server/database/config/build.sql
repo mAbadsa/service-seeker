@@ -1,7 +1,7 @@
 BEGIN;
 DROP TABLE IF EXISTS users,
 providers,
-ordes_request,
+orders_request,
 orders,
 notification CASCADE;
 CREATE TABLE users (
@@ -17,27 +17,28 @@ CREATE TABLE users (
 CREATE TABLE providers (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON UPDATE CASCADE NOT NULL,
+    title TEXT,
     bio TEXT,
-    job_title VARCHAR(55),
-    price_houer FLOAT,
+    price_hour FLOAT,
     availability boolean DEFAULT false,
-    rating INTEGER DEFAULT 100
+    rating INTEGER DEFAULT 100,
+    cover_image TEXT
 );
-CREATE TABLE ordes_request (
+CREATE TABLE orders_request (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON UPDATE CASCADE NOT NULL,
     provider_id INTEGER REFERENCES users(id) ON UPDATE CASCADE NOT NULL,
-    decription TEXT NOT NULL,
+    description TEXT NOT NULL,
     state VARCHAR(55) DEFAULT 'pending',
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    ordes_request_id INTEGER REFERENCES ordes_request(id) ON UPDATE CASCADE NOT NULL,
+    orders_request_id INTEGER REFERENCES orders_request(id) ON UPDATE CASCADE NOT NULL,
     start_date TIMESTAMP,
     pasued_date TIMESTAMP,
     state VARCHAR(55),
-    arrive_time TIME(7),
+    arrive_time TIME(6),
     houer_number FLOAT,
     resources_price FLOAT,
     total_bill_price FLOAT
@@ -45,7 +46,7 @@ CREATE TABLE orders (
 CREATE TABLE notification (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON UPDATE CASCADE NOT NULL,
-    decription TEXT NOT NULL,
+    description TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 COMMIT;
