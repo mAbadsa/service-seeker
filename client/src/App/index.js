@@ -11,7 +11,7 @@ import {
   PROVIDER_DASHBOARD_PAGE,
 } from '../Utils/routes.constant';
 
-import LandingPage from '../Pages/Landing';
+import LayoutProvider from '../Components/Sider';
 
 import { LoggedOutRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
@@ -21,7 +21,7 @@ import './style.css';
 
 const App = () => (
   <div className="App">
-    <LandingPage />
+    <LayoutProvider />
     <AuthProvider>
       <Switch>
         <Route exact path={HOME_PAGE}>
