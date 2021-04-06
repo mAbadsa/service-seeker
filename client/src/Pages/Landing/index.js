@@ -83,7 +83,14 @@ const LandingPage = () => {
             {isLoading ? (
               <Spin className="UserInfo-icon" />
             ) : (
-              <CardContainer providers={searchResult} />
+              <CardContainer
+                title={
+                  !service && !location
+                    ? 'All service'
+                    : `${searchResult.length} Result `
+                }
+                providers={searchResult}
+              />
             )}
           </Col>
         </Row>

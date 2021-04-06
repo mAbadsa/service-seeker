@@ -44,7 +44,7 @@ const SearchBar = ({
       md={24}
       lg={5}
       style={{
-        padding: '0 10px',
+        padding: '0 4px',
       }}
     >
       <Button

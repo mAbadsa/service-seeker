@@ -7,7 +7,7 @@ import Card from '../Card';
 import './style.css';
 
 const { Title } = Typography;
-const cardContainer = ({ providers, ...rest }) => {
+const cardContainer = ({ providers, title, ...rest }) => {
   const numEachPage = 8;
   const [limit, setLimit] = useState([0, numEachPage]);
 
@@ -15,7 +15,7 @@ const cardContainer = ({ providers, ...rest }) => {
     <Row type="flex" justify="center" {...rest}>
       <Col xs={22} md={20} lg={18}>
         <Title id="container-title" level={3}>
-          {`${providers.length} Result `}
+          {title}
         </Title>
         {providers && providers.length !== 0 ? (
           providers
@@ -38,6 +38,7 @@ const cardContainer = ({ providers, ...rest }) => {
 };
 
 cardContainer.propTypes = {
+  title: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
