@@ -2,7 +2,7 @@ const { getOrderRequestQuery } = require('../../database/queries');
 
 const getOrderRequest = async (req, res, next) => {
   try {
-    const { id: providerId } = req;
+    const { id: providerId } = req.user;
     const { rows } = await getOrderRequestQuery(providerId);
 
     res.json({
