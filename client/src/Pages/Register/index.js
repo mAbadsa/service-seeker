@@ -10,24 +10,24 @@ import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Authentication';
 import './style.css';
 import { locations } from '../../Utils/data';
+import handelError from '../../Utils/errorHandel';
 
 const { Title, Paragraph } = Typography;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { setIsAuth } = useContext(AuthContext);
+  const { setRefresh, refresh, setAuthLoading } = useContext(AuthContext);
   const onFinish = async (userData) => {
     try {
       setLoading(true);
       setError('');
       await Axios.post('/api/v1/signup', userData);
+      setRefresh(!refresh);
       setLoading(false);
-      setIsAuth(true);
+      setAuthLoading(true);
     } catch (err) {
-      if (err.response) {
-        setError(err.response.data.message || 'Something went wrong!');
-      }
+      handelError(setError, err);
       setLoading(false);
     }
   };
@@ -36,10 +36,10 @@ const Register = () => {
     <Row className="signup">
       <Col className="left-section" span={9}>
         <Title className="title" level={2}>
-          Welcame Back
+          Welcome Back
         </Title>
         <Paragraph className="desc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         </Paragraph>
         <Link className="signin-link" to={LOGIN_PAGE}>
           Signin
@@ -49,7 +49,7 @@ const Register = () => {
         <Title className="title" level={2}>
           Create A New Account
         </Title>
-        {error && <Alert id="alert" message={error} type="info" showIcon />}
+        {error && <Alert id="alert" message={error} type="error" showIcon />}
         <Form
           onFinish={onFinish}
           initialValues={{
@@ -67,7 +67,7 @@ const Register = () => {
               },
               {
                 pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
-                message: 'Type your fullname.',
+                message: 'Type your Full Name.',
               },
             ]}
           >
