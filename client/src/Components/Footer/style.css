@@ -6,7 +6,5 @@
   background-image: url(../../Utils/assets/images/footer.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: auto;
-  padding: 0;
-  padding-top: 92px;
+  padding: 80px 0 10px ;
 }
