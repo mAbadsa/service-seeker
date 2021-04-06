@@ -1,0 +1,35 @@
+
+  .logo {
+    
+    margin: 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+
+  }
+  .logo span{
+      font-size: 32px;
+  }
+  
+  .site-layout .site-layout-background {
+   padding: 24px;
+    background-color: white;
+    min-height: 100vh;  } 
+  .layout{
+      text-align: left;
+  }
+  .ant-menu-item{
+      color: #839BB7;
+  }
+  .ant-menu-item-selected{
+    color: #485C73;
+}
+.layoutHeder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+}
