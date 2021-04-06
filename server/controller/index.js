@@ -5,6 +5,8 @@ const {
   signupController,
   isAuthController,
   logoutController,
+  getUserOrdersController,
+  getUserOrdersReqController,
 } = require('./user');
 
 module.exports = {
@@ -15,4 +17,6 @@ module.exports = {
   isAuthController,
   logoutController,
   providersListController,
+  getUserOrdersController,
+  getUserOrdersReqController,
 };
