@@ -7,7 +7,7 @@ const deleteOrderController = async (req, res, next) => {
     await deleteOrder(orderReqId, userId);
     res
       .status(200)
-      .json({ status: 200, message: 'order deleted successfully' });
+      .json({ statusCode: 200, message: 'order deleted successfully' });
   } catch (err) {
     next(err);
   }
