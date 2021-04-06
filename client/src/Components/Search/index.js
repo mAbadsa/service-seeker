@@ -21,6 +21,7 @@ const SearchBar = ({
   <Row gutter={[10, 10]} className="filter-container" {...rest}>
     <Col xs={24} sm={24} md={24} lg={7}>
       <Select
+        placeholder="service"
         onChange={handleService}
         options={serviceTypes}
         type="Service"
@@ -32,21 +33,14 @@ const SearchBar = ({
     </Col>
     <Col xs={24} sm={24} md={24} lg={7}>
       <Select
+        placeholder="location"
         onChange={handleLocation}
         options={locations}
         type="Location"
         initialValue={location}
       />
     </Col>
-    <Col
-      xs={24}
-      sm={24}
-      md={24}
-      lg={5}
-      style={{
-        padding: '0 4px',
-      }}
-    >
+    <Col xs={24} sm={24} md={24} lg={5}>
       <Button
         type="primary"
         handelClick={handleSearch}
@@ -64,7 +58,9 @@ const SearchBar = ({
         className="IconButton "
         size="middle"
         disabled={!service && !location}
-      />
+      >
+        {' '}
+      </Button>
     </Col>
   </Row>
 );

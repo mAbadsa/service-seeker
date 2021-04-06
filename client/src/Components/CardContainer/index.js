@@ -18,20 +18,22 @@ const cardContainer = ({ providers, title, ...rest }) => {
           {title}
         </Title>
         {providers && providers.length !== 0 ? (
-          providers
-            .slice(limit[0], limit[1])
-            .map((item) => <Card key={item.id} provider={item} />)
+          <>
+            {providers.slice(limit[0], limit[1]).map((item) => (
+              <Card key={item.id} provider={item} />
+            ))}
+            <Pagination
+              defaultPageSize={numEachPage}
+              total={providers.length}
+              onChange={(value) => {
+                setLimit([(value - 1) * numEachPage, value * numEachPage]);
+              }}
+              showSizeChanger={false}
+            />
+          </>
         ) : (
           <Empty />
         )}
-        <Pagination
-          defaultPageSize={numEachPage}
-          total={providers.length}
-          onChange={(value) => {
-            setLimit([(value - 1) * numEachPage, value * numEachPage]);
-          }}
-          showSizeChanger={false}
-        />
       </Col>
     </Row>
   );

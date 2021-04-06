@@ -10,8 +10,8 @@ const { Title } = Typography;
 
 const LandingPage = () => {
   const [isLoading, setLoading] = useState(false);
-  const [providers, setProvidersList] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  const [providers, setProvidersList] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
   const [service, setService] = useState(null);
   const [location, setLocation] = useState(null);
 
@@ -25,7 +25,6 @@ const LandingPage = () => {
         if (unmounted) {
           setLoading(false);
           setProvidersList(data.data);
-          setSearchResult(data.data);
         }
       } catch (error) {
         message.error('Something went wrong!');
@@ -81,9 +80,9 @@ const LandingPage = () => {
                 title={
                   !service && !location
                     ? 'All service'
-                    : `${searchResult.length} Result `
+                    : `${searchResult && searchResult.length} Result `
                 }
-                providers={searchResult}
+                providers={searchResult || providers}
               />
             )}
           </Col>
