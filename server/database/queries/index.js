@@ -1,6 +1,7 @@
 const {
   createNewUser,
   checkUserByEmail,
+  getUserOrdersQuery,
   getUserOrdersReqQuery,
   deleteOrder,
 } = require('./user');
@@ -11,5 +12,6 @@ module.exports = {
   checkUserByEmail,
   createNewProvider,
   deleteOrder,
+  getUserOrdersQuery,
   getUserOrdersReqQuery,
 };

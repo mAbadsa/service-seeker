@@ -2,7 +2,8 @@ const signupController = require('./signup');
 const loginController = require('./login');
 const isAuthController = require('./isAuth');
 const logoutController = require('./logout');
-const deleteOrderController = require('./deleteOrder');
+const deleteOrderController = require('./deleteOrderRequest');
+const getUserOrdersController = require('./getUserOrders');
 const getUserOrdersReqController = require('./getUserOrdersReq');
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   isAuthController,
   logoutController,
   deleteOrderController,
+  getUserOrdersController,
   getUserOrdersReqController,
 };
