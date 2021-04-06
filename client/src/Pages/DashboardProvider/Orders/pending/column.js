@@ -1,18 +1,8 @@
-import React from 'react';
-
-import Avatar from '../../../../Components/Avatar';
-
 const columns = [
   {
     title: 'User Info',
     dataIndex: 'userinfo',
     key: 'userinfo',
-    render: (userinfo) => {
-      <div>
-        <Avatar srcImg={userinfo.userImg} />
-        <span>{userinfo}</span>
-      </div>;
-    },
   },
   {
     title: 'Phone No.',

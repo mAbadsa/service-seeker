@@ -6,10 +6,7 @@ import columns from './column';
 
 const data = [
   {
-    userinfo: {
-      username: 'username_1',
-      userImg: '',
-    },
+    userinfo: 'username_1',
     location: 'Gaza',
     phone: '0599525414',
     description: 'lorem kdjd k dk jkn  jn',
