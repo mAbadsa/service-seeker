@@ -1,0 +1,12 @@
+.footer {
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  font-size: 14px;
+  background-image: url(../../Utils/assets/images/footer.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: auto;
+  padding: 0;
+  padding-top: 92px;
+}
