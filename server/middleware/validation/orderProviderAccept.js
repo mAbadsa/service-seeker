@@ -6,7 +6,9 @@ const orderAcceptValidation = async (req, res, next) => {
   try {
     const schema = object().shape({
       arriveTime: string()
-        .matches(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)
+        .matches(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, {
+          message: 'arrive time must be a 24 h time format',
+        })
         .required(),
       orderID: number().required(),
     });
@@ -15,6 +17,7 @@ const orderAcceptValidation = async (req, res, next) => {
     });
     next();
   } catch (err) {
+    console.log({ err });
     next(boomify(400, err.errors[0]));
   }
 };
