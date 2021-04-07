@@ -3,7 +3,7 @@ const connection = require('../../config/connection');
 const addOrderRequest = ({ userId, providerId, description }) => {
   const sql = {
     text:
-      'INSERT INTO ordes_request (user_id, provider_id, decription) VALUES ($1, $2, $3);',
+      'INSERT INTO orders_request (user_id, provider_id, decription) VALUES ($1, $2, $3);',
     values: [userId, providerId, description],
   };
 
