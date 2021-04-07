@@ -69,6 +69,7 @@ const LandingPage = () => {
         visible={showModal}
         onCancel={handleCloseModal}
         data={modalProviderData}
+        closeModal={handleCloseModal}
       />
       <Col span={24}>
         <Title level={2}>

@@ -26,6 +26,7 @@ function Orders({
     price_hour: price,
     rating,
   },
+  closeModal,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -39,6 +40,7 @@ function Orders({
         providerId: id,
       });
       setIsLoading(false);
+      closeModal();
     } catch (err) {
       if (err.response) {
         errorHandle(setError, err);
@@ -167,6 +169,7 @@ Orders.propTypes = {
     price_hour: PropTypes.number,
     rating: PropTypes.number,
   }),
+  closeModal: PropTypes.func,
 };
 
 export default Orders;

@@ -6,7 +6,7 @@ import { Modal } from 'antd';
 import OrderRequest from '../../Orders';
 
 // eslint-disable-next-line react/prop-types
-const OrderModal = ({ data, ...reset }) => (
+const OrderModal = ({ data, closeModal, ...reset }) => (
   <div>
     <Modal
       width={950}
@@ -17,7 +17,7 @@ const OrderModal = ({ data, ...reset }) => (
       closable
       {...reset}
     >
-      {data && <OrderRequest data={data} />}
+      {data && <OrderRequest data={data} closeModal={closeModal} />}
     </Modal>
   </div>
 );
