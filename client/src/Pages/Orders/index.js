@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { Row, Col, Typography, Rate, Input, Form, Alert } from 'antd';
 
+import errorHandle from '../../Utils/errorHandel';
+import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import Button from '../../Components/Button';
+import { AuthContext } from '../../Context/Authentication';
 
 import './style.css';
 
 const { Title, Paragraph, Text } = Typography;
-const { TextArea } = Input;
 
 function Orders({
   data: {
+    id,
     username,
     cover_image: coverImage,
     avatar,
@@ -25,15 +29,19 @@ function Orders({
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const { isAuth } = useContext(AuthContext);
 
   const handleFinish = async (value) => {
     try {
       setIsLoading(true);
-      await Axios.post('/api/v1/order-request', value);
+      await Axios.post('/api/v1/user/order-requests', {
+        ...value,
+        providerId: id,
+      });
       setIsLoading(false);
     } catch (err) {
       if (err.response) {
-        setError(err.response.message || 'Something went wrong!');
+        errorHandle(setError, err);
       }
       setIsLoading(false);
     }
@@ -104,26 +112,42 @@ function Orders({
               </Col>
             </Row>
           </Col>
-          <Col span={24} className="Orders-detail-input">
-            {error && <Alert id="alert" message={error} type="info" showIcon />}
-            <Form onFinish={handleFinish}>
-              <TextArea
+          {isAuth ? (
+            <Col span={24} className="Orders-detail-input">
+              {error && (
+                <Alert id="alert" message={error} type="info" showIcon />
+              )}
+              <Form onFinish={handleFinish}>
+                <Form.Item name="description">
+                  <Input.TextArea placeholder="Leave your message..." />
+                </Form.Item>
+                {/* <TextArea
                 placeholder="Leave your message..."
                 autoSize={{
                   minRows: 3,
                   maxRows: 5,
                 }}
-              />
-            </Form>
-            <Button
-              className="hireme-btn"
-              type="primary"
-              htmlType="submit"
-              loading={isLoading}
-            >
-              Hire me
-            </Button>
-          </Col>
+              /> */}
+                <Form.Item>
+                  <Button
+                    className="hireme-btn"
+                    type="primary"
+                    htmlType="submit"
+                    loading={isLoading}
+                  >
+                    Hire me
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Col>
+          ) : (
+            <Col span={8} offset={8}>
+              <Paragraph>You must be logged in</Paragraph>
+              <Link className="signin-link" to={LOGIN_PAGE}>
+                Signin
+              </Link>
+            </Col>
+          )}
         </Row>
       </Col>
     </Row>
@@ -132,6 +156,7 @@ function Orders({
 
 Orders.propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.number,
     username: PropTypes.string,
     cover_image: PropTypes.string,
     avatar: PropTypes.string,

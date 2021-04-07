@@ -83,6 +83,27 @@
   margin-top: 1rem;
 }
 
+.signin-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: white;
+  border: 1px solid #FDCB6E;
+  background-color: #FDCB6E;
+  border-radius: 3px;
+  padding-left: 0;
+  width: 200px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  transition: all 0.25s;
+}
+
+.signin-link:hover {
+  color: white;
+  background-color: transparent;
+  transition: all 0.25s;
+}
+
 @media only screen and (max-width: 768px) {
   .image-container {
     margin: 0 auto;
