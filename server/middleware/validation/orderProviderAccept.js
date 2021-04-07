@@ -17,7 +17,6 @@ const orderAcceptValidation = async (req, res, next) => {
     });
     next();
   } catch (err) {
-    console.log({ err });
     next(boomify(400, err.errors[0]));
   }
 };
