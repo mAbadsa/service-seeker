@@ -3,6 +3,7 @@ const loginController = require('./login');
 const isAuthController = require('./isAuth');
 const logoutController = require('./logout');
 const userOrderReguest = require('./orderRequest');
+const getUserOrdersController = require('./getUserOrders');
 const getUserOrdersReqController = require('./getUserOrdersReq');
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   isAuthController,
   logoutController,
   userOrderReguest,
+  getUserOrdersController,
   getUserOrdersReqController,
 };
