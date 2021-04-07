@@ -1,6 +1,6 @@
 const { addOrderRequest } = require('../../database/queries');
 
-const userOrderReguest = async (req, res, next) => {
+const userOrderRequest = async (req, res, next) => {
   const { id: userId } = req.user;
   try {
     await addOrderRequest({
@@ -17,4 +17,4 @@ const userOrderReguest = async (req, res, next) => {
   }
 };
 
-module.exports = userOrderReguest;
+module.exports = userOrderRequest;

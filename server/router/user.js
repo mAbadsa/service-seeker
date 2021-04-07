@@ -3,13 +3,13 @@ const router = require('express').Router();
 const { orderRequestValidation } = require('../middleware/validation');
 const {
   isAuthController,
-  userOrderReguest,
+  userOrderRequest,
   getUserOrdersReqController,
 } = require('../controller');
 
 router.get('/is-auth', isAuthController);
-router.post('/user/order-request', orderRequestValidation, userOrderReguest);
-
+// user order request endpoints
 router.get('/user/order-requests', getUserOrdersReqController);
+router.post('/user/order-requests', orderRequestValidation, userOrderRequest);
 
 module.exports = router;
