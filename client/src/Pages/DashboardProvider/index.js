@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-
 import { Layout, Menu, Typography, Grid, Drawer } from 'antd';
 import {
   AppstoreOutlined,
@@ -11,6 +9,9 @@ import {
   CloseOutlined,
 } from '@ant-design/icons';
 import Avatar from '../../Components/Avatar';
+import Profile from './Profile';
+import Orders from './Orders';
+import Notifications from './Notifications';
 import './style.css';
 
 const { Sider, Content } = Layout;
@@ -19,6 +20,8 @@ const { useBreakpoint } = Grid;
 const DashboardProvider = () => {
   const { md } = useBreakpoint();
   const [visible, setVisible] = useState(false);
+  const [page, setPage] = useState(<Orders />);
+  const [title, setTitle] = useState('Orders');
 
   const showDrawer = () => {
     setVisible(true);
@@ -27,15 +30,27 @@ const DashboardProvider = () => {
   const onClose = () => {
     setVisible(false);
   };
+  const handleChangMenu = (e) => {
+    if (e.key === '1') {
+      setPage(<Orders />);
+      setTitle('Orders');
+    } else if (e.key === '2') {
+      setPage(<Notifications />);
+      setTitle('Notifications');
+    } else if (e.key === '3') {
+      setPage(<Profile />);
+      setTitle('Profile');
+    }
+  };
   const mySider = (
     <Sider>
       <div className="logo">
         <Avatar size={100} />
         <Text>name</Text>
       </div>
-      <Menu mode="inline" defaultSelectedKeys={['1']}>
+      <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys={['1']}>
         <Menu.Item key="1" icon={<AppstoreOutlined />}>
-          Dashboard
+          Orders
         </Menu.Item>
         <Menu.Item key="2" icon={<BellOutlined />}>
           Notifications
@@ -67,16 +82,14 @@ const DashboardProvider = () => {
                 </Drawer>
               </>
             ) : null}
-            <Text>Profile</Text>
+            <Text>{title}</Text>
             <BellFilled />
           </div>
+          {page}
         </Content>
       </Layout>
     </Layout>
   );
-};
-DashboardProvider.propTypes = {
-  children: PropTypes.node,
 };
 
 export default DashboardProvider;
