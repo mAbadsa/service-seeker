@@ -1,16 +1,20 @@
-const { deleteOrder } = require('../../database/queries');
+const { deleteOrderReq } = require('../../database/queries');
+const { boomify } = require('../../utils');
 
-const deleteOrderController = async (req, res, next) => {
+const deleteOrderReqController = async (req, res, next) => {
   const { id: userId } = req.user;
   const { orderReqId } = req.params;
+
   try {
-    await deleteOrder(orderReqId, userId);
-    res
-      .status(201)
-      .json({ statusCode: 201, message: 'order deleted successfully' });
+    const { rowCount } = await deleteOrderReq(orderReqId, userId);
+
+    if (rowCount === 0) {
+      throw boomify(409, 'no orders were found');
+    }
+    res.json({ statusCode: 200, message: 'order deleted successfully' });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = deleteOrderController;
+module.exports = deleteOrderReqController;
