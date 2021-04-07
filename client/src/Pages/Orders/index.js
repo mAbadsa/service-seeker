@@ -11,15 +11,17 @@ const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
 
 function Orders({
-  username,
-  coverImage,
-  userAvatar,
-  professionTitle,
-  ratingsNum,
-  location,
-  mobile,
-  price,
-  ratings,
+  data: {
+    username,
+    cover_image: coverImage,
+    avatar,
+    title: professionTitle,
+    bio,
+    location,
+    mobile,
+    price_hour: price,
+    rating,
+  },
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -52,7 +54,7 @@ function Orders({
             <div
               className="image-container"
               style={{
-                backgroundImage: `url(${userAvatar})`,
+                backgroundImage: `url(${avatar})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
               }}
@@ -65,16 +67,14 @@ function Orders({
               <Title level={5}>{professionTitle}</Title>
             </Row>
             <Row>
-              <Col xs={24} sm={24} md={12}>
+              <Col xs={24} sm={24} md={9}>
                 <span className="label-text label-text__rating label-text__emp">
-                  {ratings}
+                  {rating}
                 </span>
                 <Rate className="rating" allowHalf defaultValue={2.5} />
-                <span className="label-text">{`(${ratingsNum} ${
-                  ratingsNum === 1 ? 'rating' : 'ratings'
-                })`}</span>
+                <span className="label-text">(15 ratings)</span>
               </Col>
-              <Col xs={24} sm={24} md={5}>
+              <Col xs={24} sm={24} md={8}>
                 <span className="label-text">
                   Location: <span className="label-text__emp">{location}</span>
                 </span>
@@ -99,11 +99,7 @@ function Orders({
                     rows: 3,
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  varius elit erat odio dictum felis dolor adipiscing varius.
-                  Nisl bibendum orci in eleifend proin. Leo at lacus, iaculis
-                  aliquet. Felis, turpis dui, rhoncus massa id nisl rutrum
-                  sapien. Eu le...
+                  {bio}
                 </Paragraph>
               </Col>
             </Row>
@@ -134,28 +130,18 @@ function Orders({
   );
 }
 
-Orders.defaultProps = {
-  username: 'Username',
-  coverImage: '/static/order-bg.png',
-  userAvatar: '/static/avatar.png',
-  professionTitle: 'Electrician',
-  ratingsNum: 2,
-  location: 'Gaza',
-  mobile: '0599000000',
-  price: 15,
-  ratings: 2.5,
-};
-
 Orders.propTypes = {
-  username: PropTypes.string.isRequired,
-  coverImage: PropTypes.string.isRequired,
-  userAvatar: PropTypes.string.isRequired,
-  professionTitle: PropTypes.string.isRequired,
-  ratingsNum: PropTypes.number.isRequired,
-  location: PropTypes.string.isRequired,
-  mobile: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  ratings: PropTypes.number.isRequired,
+  data: PropTypes.shape({
+    username: PropTypes.string,
+    cover_image: PropTypes.string,
+    avatar: PropTypes.string,
+    title: PropTypes.string,
+    bio: PropTypes.string,
+    location: PropTypes.string,
+    mobile: PropTypes.string,
+    price_hour: PropTypes.number,
+    rating: PropTypes.number,
+  }),
 };
 
 export default Orders;

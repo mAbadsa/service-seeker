@@ -5,6 +5,7 @@ import './style.css';
 import Axios from 'axios';
 import CardContainer from '../../Components/CardContainer';
 import SearchBar from '../../Components/Search';
+import OrderModal from './OrderModal';
 
 const { Title } = Typography;
 
@@ -14,6 +15,9 @@ const LandingPage = () => {
   const [searchResult, setSearchResult] = useState(null);
   const [service, setService] = useState(null);
   const [location, setLocation] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  // eslint-disable-next-line object-curly-newline
+  const [modalProviderData, setModalProviderData] = useState({});
 
   useEffect(() => {
     let unmounted = true;
@@ -47,9 +51,25 @@ const LandingPage = () => {
         .filter((element) => (location ? element.location === location : true))
     );
   };
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const getProviderById = (id) => {
+    setModalProviderData(providers.filter(({ id: pId }) => pId === id)[0]);
+  };
 
   return (
     <Row type="flex" justify="center">
+      <OrderModal
+        visible={showModal}
+        onCancel={handleCloseModal}
+        data={modalProviderData}
+      />
       <Col span={24}>
         <Title level={2}>
           Find your <span className="fine">Service</span>
@@ -82,6 +102,8 @@ const LandingPage = () => {
                     : `${searchResult && searchResult.length} Result `
                 }
                 providers={searchResult || providers}
+                showModal={handleShowModal}
+                getProviderById={getProviderById}
               />
             )}
           </Col>

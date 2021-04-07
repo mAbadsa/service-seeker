@@ -1,18 +1,19 @@
 .Orders {
   position: relative;
   min-height: 400px;
+  margin: 0 !important;
   /* width: 700px; */
 }
 .Orders-card__details {
   text-align: left;
-  padding-top: 3rem;
+  padding-top: 6rem;
   color: #485C73;
 }
 .Orders .bg-image {
   background-position: center;
   background-size: cover;
   position: absolute;
-  height: 120px;
+  height: 160px;
   width: 100%;
 }
 
@@ -36,6 +37,7 @@
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   left: calc(50% - 50%);
+  text-align: center;
 }
 
 
