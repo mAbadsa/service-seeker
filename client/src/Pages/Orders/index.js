@@ -50,7 +50,7 @@ function Orders({
       ></Col>
       <Col span={24}>
         <Row className="Orders-card">
-          <Col xs={24} sm={24} md={8}>
+          <Col xs={24} sm={24} md={7}>
             <div
               className="image-container"
               style={{
@@ -59,10 +59,10 @@ function Orders({
                 backgroundSize: 'cover',
               }}
             >
-              <Text value={5}>{username}</Text>
+              <Text strong={true}>{username}</Text>
             </div>
           </Col>
-          <Col xm={24} md={16} className="Orders-card__details">
+          <Col xm={24} md={17} className="Orders-card__details">
             <Row align="middle">
               <Title level={5}>{professionTitle}</Title>
             </Row>
@@ -71,7 +71,7 @@ function Orders({
                 <span className="label-text label-text__rating label-text__emp">
                   {rating}
                 </span>
-                <Rate className="rating" allowHalf defaultValue={2.5} />
+                <Rate className="rating" allowHalf defaultValue={rating} />
                 <span className="label-text">(15 ratings)</span>
               </Col>
               <Col xs={24} sm={24} md={8}>
@@ -108,7 +108,7 @@ function Orders({
             {error && <Alert id="alert" message={error} type="info" showIcon />}
             <Form onFinish={handleFinish}>
               <TextArea
-                placeholder="Controlled autosize"
+                placeholder="Leave your message..."
                 autoSize={{
                   minRows: 3,
                   maxRows: 5,
