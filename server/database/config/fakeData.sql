@@ -87,7 +87,7 @@ VALUES(
   ),
   (
     2,
-    3,
+    2,
     'Need to maintenance to my a garden wall',
     'pending'
   ),
@@ -99,7 +99,7 @@ VALUES(
   ),
   (
     1,
-    3,
+    2,
     'Need to maintenance kitchen supplier',
     'accepted'
   );

@@ -12,7 +12,7 @@ const postOrderController = async (req, res, next) => {
   try {
     const { rowCount } = await updateStateOrderRequest(orderID, userID);
     if (rowCount === 0) {
-      throw boomify(409, 'order already accepted');
+      throw boomify(409, 'failed to accept the order');
     }
     await postOrder(arriveTime, orderID, 'accepted');
 
