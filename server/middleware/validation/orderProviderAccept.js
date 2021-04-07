@@ -3,6 +3,7 @@ const { object, date, number } = require('yup');
 const { boomify } = require('../../utils');
 
 const orderAcceptValidation = async (req, res, next) => {
+  console.log(req.body);
   try {
     const schema = object().shape({
       arriveTime: date().required(),

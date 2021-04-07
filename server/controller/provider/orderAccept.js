@@ -11,6 +11,8 @@ const acceptOrderController = async (req, res, next) => {
     await updateStateOrderRequest(orderID, userID);
     await acceptOrder(arriveTime, orderID, 'accepted');
 
+    // console.log({ arriveTime, orderID, userID });
+
     res
       .status(201)
       .json({ status: 201, message: 'order accepted successfully' });
