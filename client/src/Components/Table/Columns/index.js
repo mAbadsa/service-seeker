@@ -1,44 +1,46 @@
-/* eslint-disable react/display-name */
 import React from 'react';
 import moment from 'moment';
-
 import { CloseOutlined } from '@ant-design/icons';
+
 import Avatar from '../../Avatar';
 
 const getColumnsData = (onActins) => ({
+  // user Order Request Columns
   userOrderReq: [
     {
       title: 'User Info',
       dataIndex: 'userInfo',
       key: 'userInfo',
       width: '18%',
-      render: ([username, avatar]) => (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-          }}
-        >
-          <Avatar
-            shape="circle"
-            srcImg={avatar}
-            size={45}
+      render([username, avatar]) {
+        return (
+          <div
             style={{
-              minWidth: '45px',
+              display: 'flex',
+              flexDirection: 'row',
             }}
-          />
-          <label
-            style={{
-              lineHeight: '45px',
-              paddingLeft: '14px',
-              width: '120px',
-            }}
-            ellipsis
           >
-            {username}
-          </label>
-        </div>
-      ),
+            <Avatar
+              shape="circle"
+              srcImg={avatar}
+              size={45}
+              style={{
+                minWidth: '45px',
+              }}
+            />
+            <label
+              style={{
+                lineHeight: '45px',
+                paddingLeft: '14px',
+                width: '120px',
+              }}
+              ellipsis
+            >
+              {username}
+            </label>
+          </div>
+        );
+      },
       fixed: 'left',
     },
     {
@@ -64,7 +66,9 @@ const getColumnsData = (onActins) => ({
       key: 'date',
       dataIndex: 'date',
       width: '19%',
-      render: (text) => moment(text).format('MMM Do YY, h:mm a'),
+      render(text) {
+        return moment(text).format('MMM Do YY, h:mm a');
+      },
     },
     {
       title: 'Action',
@@ -72,53 +76,58 @@ const getColumnsData = (onActins) => ({
       dataIndex: 'action',
       width: '10%',
       fixed: 'right',
-      render: () => (
-        <div onClick={onActins[0]}>
-          <CloseOutlined
-            style={{
-              paddingLeft: '5px',
-              cursor: 'pointer',
-              fontSize: '21px',
-              color: '#F95151',
-            }}
-          />
-        </div>
-      ),
+      render() {
+        return (
+          <div onClick={onActins[0]}>
+            <CloseOutlined
+              style={{
+                paddingLeft: '5px',
+                cursor: 'pointer',
+                fontSize: '21px',
+                color: '#F95151',
+              }}
+            />
+          </div>
+        );
+      },
     },
   ],
+  // user Order Columns
   userOrder: [
     {
       title: 'User Info',
       dataIndex: 'userInfo',
       key: 'userInfo',
       width: '18%',
-      render: ([username, avatar]) => (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-          }}
-        >
-          <Avatar
-            shape="circle"
-            srcImg={avatar}
-            size={45}
+      render([username, avatar]) {
+        return (
+          <div
             style={{
-              minWidth: '45px',
+              display: 'flex',
+              flexDirection: 'row',
             }}
-          />
-          <label
-            style={{
-              lineHeight: '45px',
-              paddingLeft: '14px',
-              width: '120px',
-            }}
-            ellipsis
           >
-            {username}
-          </label>
-        </div>
-      ),
+            <Avatar
+              shape="circle"
+              srcImg={avatar}
+              size={45}
+              style={{
+                minWidth: '45px',
+              }}
+            />
+            <label
+              style={{
+                lineHeight: '45px',
+                paddingLeft: '14px',
+                width: '120px',
+              }}
+              ellipsis
+            >
+              {username}
+            </label>
+          </div>
+        );
+      },
       fixed: 'left',
     },
     {
@@ -152,7 +161,7 @@ const getColumnsData = (onActins) => ({
       dataIndex: 'status',
       width: '12%',
       fixed: 'right',
-      render: (text) => {
+      render(text) {
         let color = '';
         switch (text) {
           case 'Didn’t start':
