@@ -1,12 +1,13 @@
-const { object, date, number } = require('yup');
+const { object, string, number } = require('yup');
 
 const { boomify } = require('../../utils');
 
 const orderAcceptValidation = async (req, res, next) => {
-  console.log(req.body);
   try {
     const schema = object().shape({
-      arriveTime: date().required(),
+      arriveTime: string()
+        .matches(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)
+        .required(),
       orderID: number().required(),
     });
     await schema.validate(req.body, {
