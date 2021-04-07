@@ -3,15 +3,18 @@ const {
   updateStateOrderRequest,
 } = require('../../database/queries');
 
+const { boomify } = require('../../utils');
+
 const acceptOrderController = async (req, res, next) => {
   const { id: userID } = req.user;
   const { arriveTime, orderID } = req.body;
 
   try {
-    await updateStateOrderRequest(orderID, userID);
+    const { rowCount } = await updateStateOrderRequest(orderID, userID);
+    if (rowCount === 0) {
+      throw boomify(409, 'order already accepted');
+    }
     await acceptOrder(arriveTime, orderID, 'accepted');
-
-    // console.log({ arriveTime, orderID, userID });
 
     res
       .status(201)
