@@ -8,6 +8,8 @@ const {
   signupController,
   isAuthController,
   logoutController,
+  deleteOrderReqController,
+  userOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
 } = require('./user');
@@ -21,6 +23,8 @@ module.exports = {
   logoutController,
   providersListController,
   acceptOrderController,
+  deleteOrderReqController,
+  userOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
 };
