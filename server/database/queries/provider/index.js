@@ -1,11 +1,11 @@
 const getAllProviders = require('./getAllProvider');
 const createNewProvider = require('./createNewProvider');
-const updateStateOrderRequest = require('./changeStateOrderRequest');
-const acceptOrder = require('./acceptOrder');
+const updateStateOrderRequest = require('./updateStateOrderReq');
+const postOrder = require('./insertOrder');
 
 module.exports = {
   getAllProviders,
   createNewProvider,
   updateStateOrderRequest,
-  acceptOrder,
+  postOrder,
 };

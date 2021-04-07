@@ -1,7 +1,7 @@
 const providersListController = require('./providersList');
-const acceptOrderController = require('./orderAccept');
+const postOrderController = require('./postOrder');
 
 module.exports = {
   providersListController,
-  acceptOrderController,
+  postOrderController,
 };

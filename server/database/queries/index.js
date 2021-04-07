@@ -8,7 +8,7 @@ const {
 } = require('./user');
 const {
   createNewProvider,
-  acceptOrder,
+  postOrder,
   updateStateOrderRequest,
 } = require('./provider');
 
@@ -16,7 +16,7 @@ module.exports = {
   createNewUser,
   checkUserByEmail,
   createNewProvider,
-  acceptOrder,
+  postOrder,
   updateStateOrderRequest,
   deleteOrderReq,
   addOrderRequest,

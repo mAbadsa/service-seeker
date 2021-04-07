@@ -1,11 +1,11 @@
 const {
-  acceptOrder,
+  postOrder,
   updateStateOrderRequest,
 } = require('../../database/queries');
 
 const { boomify } = require('../../utils');
 
-const acceptOrderController = async (req, res, next) => {
+const postOrderController = async (req, res, next) => {
   const { id: userID } = req.user;
   const { arriveTime, orderID } = req.body;
 
@@ -14,7 +14,7 @@ const acceptOrderController = async (req, res, next) => {
     if (rowCount === 0) {
       throw boomify(409, 'order already accepted');
     }
-    await acceptOrder(arriveTime, orderID, 'accepted');
+    await postOrder(arriveTime, orderID, 'accepted');
 
     res
       .status(201)
@@ -24,4 +24,4 @@ const acceptOrderController = async (req, res, next) => {
   }
 };
 
-module.exports = acceptOrderController;
+module.exports = postOrderController;
