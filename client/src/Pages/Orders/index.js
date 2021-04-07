@@ -119,15 +119,14 @@ function Orders({
               )}
               <Form onFinish={handleFinish}>
                 <Form.Item name="description">
-                  <Input.TextArea placeholder="Leave your message..." />
+                  <Input.TextArea
+                    placeholder="Leave your message..."
+                    autoSize={{
+                      minRows: 3,
+                      maxRows: 5,
+                    }}
+                  />
                 </Form.Item>
-                {/* <TextArea
-                placeholder="Leave your message..."
-                autoSize={{
-                  minRows: 3,
-                  maxRows: 5,
-                }}
-              /> */}
                 <Form.Item>
                   <Button
                     className="hireme-btn"
