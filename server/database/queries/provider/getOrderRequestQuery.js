@@ -6,7 +6,7 @@ const getOrderRequestQuery = (providerId) => {
       orequest.date, orequest.state 
       FROM orders_request AS orequest 
       INNER JOIN users AS u ON orequest.user_id = u.id 
-      WHERE orequest.provider_id = $1;`,
+      WHERE orequest.provider_id = $1 AND orequest.state = 'pending';`,
     values: [providerId],
   };
   return connection.query(sql);
