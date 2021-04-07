@@ -97,9 +97,9 @@ const LandingPage = () => {
             ) : (
               <CardContainer
                 title={
-                  !service && !location
+                  !searchResult
                     ? 'All service'
-                    : `${searchResult && searchResult.length} Result `
+                    : `${searchResult.length} Result `
                 }
                 providers={searchResult || providers}
                 showModal={handleShowModal}
