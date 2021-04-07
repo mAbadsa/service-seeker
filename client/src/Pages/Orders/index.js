@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Row, Col, Typography, Rate, Input, Form, Alert } from 'antd';
+import { Row, Col, Typography, Rate, Input, Form, Alert, Divider } from 'antd';
 
 import errorHandle from '../../Utils/errorHandel';
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
@@ -140,7 +140,8 @@ function Orders({
               </Form>
             </Col>
           ) : (
-            <Col span={8} offset={8}>
+            <Col span={24} className="loggedin-message">
+              <Divider />
               <Paragraph>You must be logged in</Paragraph>
               <Link className="signin-link" to={LOGIN_PAGE}>
                 Signin

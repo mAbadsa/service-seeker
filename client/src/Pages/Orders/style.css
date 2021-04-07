@@ -104,6 +104,10 @@
   transition: all 0.25s;
 }
 
+.loggedin-message {
+  text-align: center;
+}
+
 @media only screen and (max-width: 768px) {
   .image-container {
     margin: 0 auto;
