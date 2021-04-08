@@ -13,6 +13,7 @@ router.use(publicRoutes);
 // protect endpoints
 router.use(protectMiddleware);
 router.use(user);
+// Provider protect endpoints
 router.use(providerProtectMiddleware);
 router.use(provider);
 

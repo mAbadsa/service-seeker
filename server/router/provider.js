@@ -1,7 +1,11 @@
 const router = require('express').Router();
 
-const { getAcceptedOrdersController } = require('../controller');
+const {
+  getPendingOrderRequestController,
+  getAcceptedOrdersController,
+} = require('../controller');
 
-router.get('/provider/orders/accepted', getAcceptedOrdersController);
+router.get('/provider/order-requests', getPendingOrderRequestController);
+router.get('/provider/orders', getAcceptedOrdersController);
 
 module.exports = router;

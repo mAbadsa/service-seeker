@@ -1,4 +1,5 @@
 const { addOrderRequest } = require('../../database/queries');
+const { boomify } = require('../../utils');
 
 const userOrderRequest = async (req, res, next) => {
   const { id: userId } = req.user;
@@ -13,6 +14,9 @@ const userOrderRequest = async (req, res, next) => {
       message: 'Order request sent successfully',
     });
   } catch (error) {
+    if (error.constraint === 'uc_orders_request') {
+      next(boomify(409, 'order request already sent'));
+    }
     next(error);
   }
 };
