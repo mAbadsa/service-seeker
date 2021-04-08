@@ -59,7 +59,7 @@ const LandingPage = () => {
   };
 
   const getProviderById = (id) => {
-    setModalProviderData(providers.filter(({ id: pId }) => pId === id)[0]);
+    setModalProviderData(providers.find((item) => item.id === id));
   };
 
   return (
