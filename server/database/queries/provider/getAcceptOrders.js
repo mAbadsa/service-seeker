@@ -11,9 +11,3 @@ const getAcceptedOrders = (providerID) => {
 };
 
 module.exports = getAcceptedOrders;
-
-// SELECT users.avatar, users.username, users.mobile, users.location, orders_request.description,
-// orders_request.date, orders.state
-// FROM orders INNER JOIN orders_request ON orders.orders_request_id = orders_request.id
-// INNER JOIN users ON orders_request.user_id = users.id WHERE orders_request.state = 'accepted'
-// AND orders_request.provider_id = 1;
