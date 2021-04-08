@@ -16,8 +16,9 @@ const userOrderRequest = async (req, res, next) => {
   } catch (error) {
     if (error.constraint === 'uc_orders_request') {
       next(boomify(409, 'order request already sent'));
+    } else {
+      next(error);
     }
-    next(error);
   }
 };
 
