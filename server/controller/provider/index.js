@@ -1,7 +1,7 @@
 const providersListController = require('./providersList');
-const getOrderRequest = require('./getOrderRequest');
+const getPendingOrderRequestController = require('./getPendingOrderRequest');
 
 module.exports = {
   providersListController,
-  getOrderRequest,
+  getPendingOrderRequestController,
 };

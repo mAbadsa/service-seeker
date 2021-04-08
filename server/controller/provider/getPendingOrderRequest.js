@@ -1,6 +1,6 @@
 const { getPendingOrderRequest } = require('../../database/queries');
 
-const getOrderRequest = async (req, res, next) => {
+const getPendingOrderRequestController = async (req, res, next) => {
   try {
     const { id: providerId } = req.user;
     const { rows } = await getPendingOrderRequest(providerId);
@@ -14,4 +14,4 @@ const getOrderRequest = async (req, res, next) => {
   }
 };
 
-module.exports = getOrderRequest;
+module.exports = getPendingOrderRequestController;

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const { getOrderRequest } = require('../controller');
+const { getPendingOrderRequestController } = require('../controller');
 
-router.get('/provider/order-requests', getOrderRequest);
+router.get('/provider/order-requests', getPendingOrderRequestController);
 
 module.exports = router;
