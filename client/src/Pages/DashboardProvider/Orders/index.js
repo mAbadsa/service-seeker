@@ -9,53 +9,6 @@ import errorHandel from '../../../Utils/errorHandel';
 
 const { TabPane } = Tabs;
 
-// const sampleData = [
-//   {
-//     userinfo: [
-//       'username_1',
-//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-//     ],
-//     location: 'Gaza',
-//     phone: '0599525414',
-//     description: 'lorem kdjd k dk jkn  jn',
-//     state: 'pending',
-//     key: '1',
-//   },
-//   {
-//     userinfo: [
-//       'username_1',
-//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-//     ],
-//     location: 'Gaza',
-//     phone: '0599525414',
-//     description: 'lorem kdjd k dk jkn  jn',
-//     state: 'pending',
-//     key: '2',
-//   },
-//   {
-//     userinfo: [
-//       'username_1',
-//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-//     ],
-//     location: 'Gaza',
-//     phone: '0599525414',
-//     description: 'lorem kdjd k dk jkn  jn',
-//     state: 'pending',
-//     key: '3',
-//   },
-//   {
-//     userinfo: [
-//       'username_1',
-//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-//     ],
-//     location: 'Gaza',
-//     phone: '0599525414',
-//     description: 'lorem kdjd k dk jkn  jn',
-//     state: 'pending',
-//     key: '4',
-//   },
-// ];
-
 const Orders = () => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -120,9 +73,5 @@ const Orders = () => {
     </div>
   );
 };
-
-// Orders.propTypes = {
-
-// };
 
 export default Orders;
