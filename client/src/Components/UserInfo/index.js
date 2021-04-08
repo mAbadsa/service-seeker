@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Axios from 'axios';
-import { Spin, message, Typography } from 'antd';
+import { Spin, Typography } from 'antd';
 import { LogoutOutlined, BellOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 
 import Avatar from '../Avatar';
 import { AuthContext } from '../../Context/Authentication';
-import { HOME_PAGE } from '../../Utils/routes.constant';
+import logoutHandler from '../../Utils/logout';
 
 import './style.css';
 
@@ -18,20 +16,9 @@ const UserInfo = () => {
   const { userData, setRefresh, refresh, setAuthLoading } = useContext(
     AuthContext
   );
-  const history = useHistory();
 
   const handleClick = async () => {
-    try {
-      setLoading(true);
-      await Axios('/api/v1/logout');
-      setRefresh(!refresh);
-      setLoading(false);
-      setAuthLoading(true);
-      history.push(HOME_PAGE);
-    } catch (err) {
-      message.error('Something went wrong!');
-      setLoading(false);
-    }
+    logoutHandler(setLoading, setRefresh, setAuthLoading, refresh);
   };
 
   return (

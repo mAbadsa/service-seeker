@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import { Layout, Menu, Typography, Grid, Drawer, message, Switch } from 'antd';
 import {
@@ -10,13 +9,14 @@ import {
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
+
 import Avatar from '../../Components/Avatar';
 import Button from '../../Components/Button';
 import Profile from './Profile';
 import Orders from './Orders';
 import Notifications from './Notifications';
 import { AuthContext } from '../../Context/Authentication';
-import { HOME_PAGE } from '../../Utils/routes.constant';
+import logoutHandler from '../../Utils/logout';
 
 import './style.css';
 
@@ -30,8 +30,7 @@ const DashboardProvider = () => {
   const [title, setTitle] = useState('Orders');
 
   const { setRefresh, refresh, setAuthLoading } = useContext(AuthContext);
-  const history = useHistory();
-
+  const [isLoading, setLoading] = useState(false);
   const showDrawer = () => {
     setVisible(true);
   };
@@ -39,6 +38,7 @@ const DashboardProvider = () => {
   const onClose = () => {
     setVisible(false);
   };
+
   const handleChangMenu = (e) => {
     if (e.key === '1') {
       setPage(<Orders />);
@@ -51,17 +51,11 @@ const DashboardProvider = () => {
       setTitle('Profile');
     }
   };
-  const handleClick = async () => {
-    try {
-      await Axios('/api/v1/logout');
-      setRefresh(!refresh);
 
-      setAuthLoading(true);
-      history.push(HOME_PAGE);
-    } catch (err) {
-      message.error('Something went wrong!');
-    }
+  const handleClick = async () => {
+    logoutHandler(setLoading, setRefresh, setAuthLoading, refresh);
   };
+
   const availability = async (checked) => {
     try {
       await Axios.patch('/api/v1/provider/availability');
@@ -70,6 +64,7 @@ const DashboardProvider = () => {
       message.error('Something went wrong!');
     }
   };
+
   const mySider = (
     <Sider className="siderStyle">
       <div>
@@ -99,7 +94,11 @@ const DashboardProvider = () => {
           <span> Available ?</span>
           <Switch onChange={availability} />
         </div>
-        <Button className="fourthButton initial-style" onClick={handleClick}>
+        <Button
+          loading={isLoading}
+          className="fourthButton initial-style"
+          onClick={handleClick}
+        >
           LogOut
         </Button>
       </div>
