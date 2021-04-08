@@ -1,12 +1,9 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Row, Col, Typography, Rate, Input, Form, Alert, Divider } from 'antd';
+import { Row, Col, Typography, Rate } from 'antd';
 
 import errorHandle from '../../Utils/errorHandel';
-import { LOGIN_PAGE } from '../../Utils/routes.constant';
-import Button from '../../Components/Button';
 import { AuthContext } from '../../Context/Authentication';
 
 import './style.css';
@@ -27,6 +24,7 @@ function Orders({
     rating,
   },
   closeModal,
+  Component,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -114,42 +112,12 @@ function Orders({
               </Col>
             </Row>
           </Col>
-          {isAuth ? (
-            <Col span={24} className="Orders-detail-input">
-              {error && (
-                <Alert id="alert" message={error} type="info" showIcon />
-              )}
-              <Form onFinish={handleFinish}>
-                <Form.Item name="description">
-                  <Input.TextArea
-                    placeholder="Leave your message..."
-                    autoSize={{
-                      minRows: 3,
-                      maxRows: 5,
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item>
-                  <Button
-                    className="hireme-btn"
-                    type="primary"
-                    htmlType="submit"
-                    loading={isLoading}
-                  >
-                    Hire me
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Col>
-          ) : (
-            <Col span={24} className="loggedin-message">
-              <Divider />
-              <Paragraph>You must be logged in</Paragraph>
-              <Link className="signin-link" to={LOGIN_PAGE}>
-                Signin
-              </Link>
-            </Col>
-          )}
+          <Component
+            handleFinish={handleFinish}
+            isLoading={isLoading}
+            error={error}
+            isAuth={isAuth}
+          />
         </Row>
       </Col>
     </Row>
@@ -170,6 +138,7 @@ Orders.propTypes = {
     rating: PropTypes.number,
   }),
   closeModal: PropTypes.func,
+  Component: PropTypes.func.isRequired,
 };
 
 export default Orders;

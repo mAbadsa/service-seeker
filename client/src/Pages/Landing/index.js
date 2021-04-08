@@ -6,6 +6,7 @@ import Axios from 'axios';
 import CardContainer from '../../Components/CardContainer';
 import SearchBar from '../../Components/Search';
 import OrderModal from './OrderModal';
+import OrderForm from '../Orders/OrderForm';
 
 const { Title } = Typography;
 
@@ -70,6 +71,7 @@ const LandingPage = () => {
         onCancel={handleCloseModal}
         data={modalProviderData}
         closeModal={handleCloseModal}
+        Component={OrderForm}
       />
       <Col span={24}>
         <Title level={2}>

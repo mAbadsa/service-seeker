@@ -71,19 +71,19 @@
   font-size: 16px;
 }
 
-.Orders-detail-input {
+/* .Orders-detail-input {
   margin-top: 2rem;
-}
+} */
 
-.hireme-btn {
+/* .hireme-btn {
   width: 100%;
   font-size: 24px;
   font-weight: normal;
   border-radius: 3px;
   margin-top: 1rem;
-}
+} */
 
-.signin-link {
+/* .signin-link {
   display: inline-block;
   margin-top: 0.5rem;
   color: white;
@@ -102,11 +102,11 @@
   color: white;
   background-color: transparent;
   transition: all 0.25s;
-}
+} */
 
-.loggedin-message {
+/* .loggedin-message {
   text-align: center;
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .image-container {
