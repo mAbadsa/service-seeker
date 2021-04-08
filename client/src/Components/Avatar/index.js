@@ -6,7 +6,7 @@ import { UserOutlined } from '@ant-design/icons';
 const AvatarUsers = ({ srcImg, size, ...rest }) => (
   <Avatar
     src={srcImg}
-    icon={!srcImg ? <UserOutlined /> : null}
+    icon={!srcImg && <UserOutlined />}
     {...rest}
     size={size}
   />
