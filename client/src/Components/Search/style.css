@@ -1,52 +1,52 @@
 .filter-container{
-   background: #FFFFFF;
-    box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.17);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 30px 0px;
+    background: #FFFFFF;
+     box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.17);
+     border-radius: 12px;
+     padding: 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 30px 0px;
 }
-
+ 
 .filter-select{
-    width: 100% ;     
+     width: 100% ;     
 }
 .filter-select .ant-select-selector{
     background-color: #efefef !important;
     border-radius: 5px !important;
 }
-
+ 
 .split-text{
-     font-size: 24px;
+    font-size: 24px;
     color: #5C5C5C;
     margin: 0;
-}
+ }
 .searchBtn{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     width: 100%;
-    
+     
 }
 .searchBtn span{
     font-size: initial;
 }
-
+ 
 .IconButton {
     background-color: transparent;
     border-color: #ffeaa7;
     color: #fdcb6e;
-    height: 40px;
-    line-height: 1;
+    height: 42px;
+    line-height:1;
     width: 100%
-  }
-  
-  .IconButton:hover,
-  .IconButton:focus {
+}
+   
+.IconButton:hover,
+.IconButton:focus {
     color: #ffffff;
     border-color: #ffc107;
     background-color: #ffc107;
-  }
-  
+}
+   
