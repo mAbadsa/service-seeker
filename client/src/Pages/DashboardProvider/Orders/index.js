@@ -61,7 +61,7 @@ const Orders = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [error, setError] = useState('');
-  console.log(ordersData);
+
   useEffect(() => {
     let unmounted = true;
     (async () => {
@@ -69,7 +69,6 @@ const Orders = () => {
         setIsLoading(true);
         const { data } = await Axios.get('/api/v1/provider/order-requests');
         const { data: resData } = data;
-        console.log(resData);
         const sourceData = resData.reduce((acc, crr, idx) => {
           acc[idx] = {
             userinfo: [crr.username, crr.avatar],
@@ -90,7 +89,6 @@ const Orders = () => {
         }
       } catch (err) {
         errorHandel(setError, err);
-        console.log(err);
         setIsLoading(false);
       }
     })();
@@ -104,7 +102,6 @@ const Orders = () => {
     setRefresh(!refresh);
   };
 
-  console.log(ordersData);
   return (
     <div>
       {error && <Alert type="error" />}

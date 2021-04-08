@@ -29,7 +29,6 @@ function PendingProvider({ data, refresh }) {
       setIsLoading(false);
       refresh();
     } catch (err) {
-      console.log(err);
       errorHandel(setError, err);
       setIsLoading(false);
     }
