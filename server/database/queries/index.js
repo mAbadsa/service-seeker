@@ -7,7 +7,7 @@ const {
   deleteOrderReq,
 } = require('./user');
 
-const { createNewProvider } = require('./provider');
+const { createNewProvider, getAcceptedOrders } = require('./provider');
 
 module.exports = {
   createNewUser,
@@ -17,4 +17,5 @@ module.exports = {
   addOrderRequest,
   getUserOrdersQuery,
   getUserOrdersReqQuery,
+  getAcceptedOrders,
 };
