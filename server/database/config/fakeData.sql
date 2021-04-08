@@ -77,31 +77,36 @@ INSERT INTO orders_request(
     user_id,
     provider_id,
     description,
-    state
+    state,
+    date
   )
 VALUES(
     2,
     1,
     'Need to maintenance to my a garden wall',
-    'pending'
+    'pending',
+    '2021-04-07 21:31:11.276724'
   ),
   (
     2,
     3,
     'Need to maintenance to my a garden wall',
-    'pending'
+    'pending',
+    '2021-04-08 15:41:01.276724'
   ),
   (
     2,
     1,
     'Need to maintenance to my a garden wall',
-    'accepted'
+    'accepted',
+    '2021-04-09 21:31:01.276724'
   ),
   (
     1,
     3,
     'Need to maintenance kitchen supplier',
-    'accepted'
+    'accepted',
+    '2021-04-10 11:51:01.276724'
   );
 INSERT INTO orders(
     orders_request_id,
