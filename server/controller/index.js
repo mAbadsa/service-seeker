@@ -1,5 +1,9 @@
 const { clientError, serverError } = require('./error');
-const { providersListController, postOrderController } = require('./provider');
+const {
+  providersListController,
+  getPendingOrderRequestController,
+  postOrderController,
+} = require('./provider');
 const {
   loginController,
   signupController,
@@ -20,6 +24,7 @@ module.exports = {
   logoutController,
   providersListController,
   postOrderController,
+  getPendingOrderRequestController,
   deleteOrderReqController,
   userOrderRequest,
   getUserOrdersController,
