@@ -17,6 +17,7 @@ const { Paragraph } = Typography;
 
 function HireMeModal({ data, closeModal, ...reset }) {
   const { isAuth } = useContext(AuthContext);
+  const [form] = Form.useForm();
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -29,6 +30,7 @@ function HireMeModal({ data, closeModal, ...reset }) {
         providerId: data.id,
       });
       setIsLoading(false);
+      form.resetFields();
       closeModal();
       Modal.success({
         content: 'The hiring is successful',
@@ -56,19 +58,21 @@ function HireMeModal({ data, closeModal, ...reset }) {
               }}
             />
           )}
-          <Form onFinish={handleFinish}>
-            <Form.Item name="description">
+          <Form onFinish={handleFinish} form={form}>
+            <Form.Item
+              name="description"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the description!',
+                },
+                {
+                  min: 20,
+                  message: 'The description must be at least 20 character',
+                },
+              ]}
+            >
               <Input.TextArea
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please enter the description!',
-                  },
-                  {
-                    min: 20,
-                    message: 'The description must be at least 20 character',
-                  },
-                ]}
                 placeholder="Leave your message..."
                 autoSize={{
                   minRows: 3,
