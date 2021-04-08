@@ -9,55 +9,55 @@ import errorHandel from '../../../Utils/errorHandel';
 
 const { TabPane } = Tabs;
 
-const sampleData = [
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '1',
-  },
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '2',
-  },
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '3',
-  },
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '4',
-  },
-];
+// const sampleData = [
+//   {
+//     userinfo: [
+//       'username_1',
+//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
+//     ],
+//     location: 'Gaza',
+//     phone: '0599525414',
+//     description: 'lorem kdjd k dk jkn  jn',
+//     state: 'pending',
+//     key: '1',
+//   },
+//   {
+//     userinfo: [
+//       'username_1',
+//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
+//     ],
+//     location: 'Gaza',
+//     phone: '0599525414',
+//     description: 'lorem kdjd k dk jkn  jn',
+//     state: 'pending',
+//     key: '2',
+//   },
+//   {
+//     userinfo: [
+//       'username_1',
+//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
+//     ],
+//     location: 'Gaza',
+//     phone: '0599525414',
+//     description: 'lorem kdjd k dk jkn  jn',
+//     state: 'pending',
+//     key: '3',
+//   },
+//   {
+//     userinfo: [
+//       'username_1',
+//       'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
+//     ],
+//     location: 'Gaza',
+//     phone: '0599525414',
+//     description: 'lorem kdjd k dk jkn  jn',
+//     state: 'pending',
+//     key: '4',
+//   },
+// ];
 
 const Orders = () => {
-  const [ordersData, setOrdersData] = useState(null);
+  const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -67,9 +67,11 @@ const Orders = () => {
       try {
         setIsLoading(true);
         const { data } = await Axios.get('/api/v1/provider/order-requests');
+        const { data: resData } = data;
+        console.log(resData);
         if (unmounted) {
           setIsLoading(false);
-          setOrdersData(data);
+          setOrdersData(resData);
         }
       } catch (err) {
         errorHandel(setError, err);
@@ -77,8 +79,6 @@ const Orders = () => {
       }
     })();
   }, []);
-
-  console.log(ordersData);
 
   return (
     <div>
@@ -88,7 +88,7 @@ const Orders = () => {
       ) : (
         <Tabs className="order-tabs" defaultActiveKey="1" centered>
           <TabPane tab="Orders Request" key="1">
-            <PendingProvider data={sampleData} />
+            <PendingProvider data={ordersData} />
           </TabPane>
           <TabPane tab="Orders" key="2">
             <p>Nothing here, Go out!</p>
