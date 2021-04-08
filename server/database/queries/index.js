@@ -9,6 +9,7 @@ const {
 const {
   createNewProvider,
   getPendingOrderRequest,
+  getAcceptedOrders,
   postOrder,
   updateStateOrderRequest,
 } = require('./provider');
@@ -24,4 +25,5 @@ module.exports = {
   addOrderRequest,
   getUserOrdersQuery,
   getUserOrdersReqQuery,
+  getAcceptedOrders,
 };
