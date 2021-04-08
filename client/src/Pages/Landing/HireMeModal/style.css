@@ -34,3 +34,14 @@
   background-color: transparent;
   transition: all 0.25s;
 }
+
+.ant-modal-root .ant-btn{
+  height: 41px;
+  padding: 0px 18px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.ant-modal-root .ant-modal-confirm-title{
+  font-size: 20px;
+}

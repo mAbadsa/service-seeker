@@ -5,8 +5,7 @@ import './style.css';
 import Axios from 'axios';
 import CardContainer from '../../Components/CardContainer';
 import SearchBar from '../../Components/Search';
-import OrderModal from './OrderModal';
-import OrderForm from '../Orders/OrderForm';
+import HireMeModal from './HireMeModal';
 
 const { Title } = Typography;
 
@@ -65,13 +64,14 @@ const LandingPage = () => {
 
   return (
     <>
-      <OrderModal
-        visible={showModal}
-        onCancel={handleCloseModal}
-        data={modalProviderData}
-        closeModal={handleCloseModal}
-        Component={OrderForm}
-      />
+      {modalProviderData && (
+        <HireMeModal
+          visible={showModal}
+          onCancel={handleCloseModal}
+          data={modalProviderData}
+          closeModal={handleCloseModal}
+        />
+      )}
       <Row gutter={[0, 16]} type="flex" justify="center" className="bg">
         <Col xs={24} md={16} lg={16} span={24}>
           <Title level={1} className="mainTitle">
