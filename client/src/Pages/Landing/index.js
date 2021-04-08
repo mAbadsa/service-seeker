@@ -50,30 +50,29 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="bg">
-        <Row type="flex" justify="center" align="bottom">
-          <Col span={24}>
-            <Title level={1}>
-              Find your <span className="fine">Service</span>
-            </Title>
-            <Title level={2} className="subTitle">
-              To fix your Home
-            </Title>
-          </Col>
+      <Row gutter={[0, 16]} type="flex" justify="center" className="bg">
+        <Col xs={24} md={16} lg={16} span={24}>
+          <Title level={1} className="mainTitle">
+            Find your <span className="fine">Service</span>
+          </Title>
+          <Title level={2} className="subTitle">
+            To fix your Home
+          </Title>
+        </Col>
 
-          <Col span={12}>
-            <SearchBar
-              handleService={setService}
-              handleLocation={setLocation}
-              handleSearch={handleSearch}
-              handelClear={handelClear}
-              service={service}
-              location={location}
-            />
-          </Col>
-        </Row>
-      </div>
-      <Row>
+        <Col xs={24} md={16} lg={16} span={12}>
+          <SearchBar
+            handleService={setService}
+            handleLocation={setLocation}
+            handleSearch={handleSearch}
+            handelClear={handelClear}
+            service={service}
+            location={location}
+          />
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]} type="flex" justify="center">
         <Col xs={24} md={24} lg={24}>
           <Row gutter={[0, 16]} type="flex" justify="center">
             <Col>

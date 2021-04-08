@@ -40,7 +40,7 @@
     color: #fdcb6e;
     height: 42px;
     line-height:1;
-    width: 53px !important;
+    width: 100%
 }
    
 .IconButton:hover,
