@@ -49,45 +49,50 @@ const LandingPage = () => {
   };
 
   return (
-    <Row type="flex" justify="center">
-      <Col span={24}>
-        <Title level={2}>
-          Find your <span className="fine">Service</span>
-        </Title>
-        <Title level={3} className="subTitle">
-          To fix your Home
-        </Title>
-      </Col>
+    <>
+      <Row gutter={[0, 16]} type="flex" justify="center" className="bg">
+        <Col xs={24} md={16} lg={16} span={24}>
+          <Title level={1} className="mainTitle">
+            Find your <span className="fine">Service</span>
+          </Title>
+          <Title level={2} className="subTitle">
+            To fix your Home
+          </Title>
+        </Col>
 
-      <Col span={14}>
-        <SearchBar
-          handleService={setService}
-          handleLocation={setLocation}
-          handleSearch={handleSearch}
-          handelClear={handelClear}
-          service={service}
-          location={location}
-        />
-      </Col>
-      <Col xs={24} md={24} lg={24}>
-        <Row gutter={[0, 16]} type="flex" justify="center">
-          <Col>
-            {isLoading ? (
-              <Spin className="UserInfo-icon" />
-            ) : (
-              <CardContainer
-                title={
-                  !searchResult
-                    ? 'All service'
-                    : `${searchResult.length} Result `
-                }
-                providers={searchResult || providers}
-              />
-            )}
-          </Col>
-        </Row>
-      </Col>
-    </Row>
+        <Col xs={24} md={16} lg={16} span={12}>
+          <SearchBar
+            handleService={setService}
+            handleLocation={setLocation}
+            handleSearch={handleSearch}
+            handelClear={handelClear}
+            service={service}
+            location={location}
+          />
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]} type="flex" justify="center">
+        <Col xs={24} md={24} lg={24}>
+          <Row gutter={[0, 16]} type="flex" justify="center">
+            <Col>
+              {isLoading ? (
+                <Spin className="UserInfo-icon" />
+              ) : (
+                <CardContainer
+                  title={
+                    !searchResult
+                      ? 'All service'
+                      : `${searchResult.length} Result `
+                  }
+                  providers={searchResult || providers}
+                />
+              )}
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </>
   );
 };
 export default LandingPage;
