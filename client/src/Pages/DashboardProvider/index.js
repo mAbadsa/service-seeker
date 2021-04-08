@@ -62,9 +62,14 @@ const DashboardProvider = () => {
       message.error('Something went wrong!');
     }
   };
-  function onChange(checked) {
-    console.log(`switch to ${checked}`);
-  }
+  const availability = async (checked) => {
+    try {
+      await Axios.patch('/api/v1/provider/availability');
+      console.log(checked);
+    } catch (err) {
+      message.error('Something went wrong!');
+    }
+  };
   const mySider = (
     <Sider className="siderStyle">
       <div>
@@ -92,7 +97,7 @@ const DashboardProvider = () => {
       <div>
         <div className="available">
           <span> Available ?</span>
-          <Switch onChange={onChange} />
+          <Switch onChange={availability} />
         </div>
         <Button className="fourthButton initial-style" onClick={handleClick}>
           LogOut
