@@ -1,25 +1,18 @@
-import React, { useContext, useState } from 'react';
-import { Spin, Typography } from 'antd';
-import { LogoutOutlined, BellOutlined } from '@ant-design/icons';
+import React, { useContext } from 'react';
+import { Typography } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 
 import Avatar from '../Avatar';
+import LogoutComponent from '../Logout';
 import { AuthContext } from '../../Context/Authentication';
-import logoutHandler from '../../Utils/logout';
 
 import './style.css';
 
 const { Text } = Typography;
 
 const UserInfo = () => {
-  const [isLoading, setLoading] = useState(false);
-  const { userData, setRefresh, refresh, setAuthLoading } = useContext(
-    AuthContext
-  );
-
-  const handleClick = async () => {
-    logoutHandler(setLoading, setRefresh, setAuthLoading, refresh);
-  };
+  const { userData } = useContext(AuthContext);
 
   return (
     <div className="logged-user-info">
@@ -38,11 +31,8 @@ const UserInfo = () => {
             {userData.username}
           </Text>
           <BellOutlined className="UserInfo-icon" />
-          {isLoading ? (
-            <Spin className="UserInfo-icon" />
-          ) : (
-            <LogoutOutlined className="UserInfo-icon" onClick={handleClick} />
-          )}
+
+          <LogoutComponent dashBoard={false} />
         </>
       ) : (
         <spin />

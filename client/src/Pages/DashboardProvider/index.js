@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import { Layout, Menu, Typography, Grid, Drawer, message, Switch } from 'antd';
 import {
@@ -10,13 +10,11 @@ import {
   CloseOutlined,
 } from '@ant-design/icons';
 
+import LogoutComponent from '../../Components/Logout';
 import Avatar from '../../Components/Avatar';
-import Button from '../../Components/Button';
 import Profile from './Profile';
 import Orders from './Orders';
 import Notifications from './Notifications';
-import { AuthContext } from '../../Context/Authentication';
-import logoutHandler from '../../Utils/logout';
 
 import './style.css';
 
@@ -29,8 +27,6 @@ const DashboardProvider = () => {
   const [page, setPage] = useState(<Orders />);
   const [title, setTitle] = useState('Orders');
 
-  const { setRefresh, refresh, setAuthLoading } = useContext(AuthContext);
-  const [isLoading, setLoading] = useState(false);
   const showDrawer = () => {
     setVisible(true);
   };
@@ -38,7 +34,6 @@ const DashboardProvider = () => {
   const onClose = () => {
     setVisible(false);
   };
-
   const handleChangMenu = (e) => {
     if (e.key === '1') {
       setPage(<Orders />);
@@ -50,10 +45,6 @@ const DashboardProvider = () => {
       setPage(<Profile />);
       setTitle('Profile');
     }
-  };
-
-  const handleClick = async () => {
-    logoutHandler(setLoading, setRefresh, setAuthLoading, refresh);
   };
 
   const availability = async (checked) => {
@@ -94,13 +85,7 @@ const DashboardProvider = () => {
           <span> Available ?</span>
           <Switch onChange={availability} />
         </div>
-        <Button
-          loading={isLoading}
-          className="fourthButton initial-style"
-          onClick={handleClick}
-        >
-          LogOut
-        </Button>
+        <LogoutComponent dashBoard={true} />
       </div>
     </Sider>
   );
