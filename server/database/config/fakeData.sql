@@ -89,21 +89,14 @@ VALUES(
   ),
   (
     2,
-    3,
+    2,
     'Need to maintenance to my a garden wall',
     'pending',
     '2021-04-08 15:41:01.276724'
   ),
   (
-    4,
-    3,
-    'Need to maintenance to my a garden wall',
-    'accepted',
-    '2021-04-09 21:31:01.276724'
-  ),
-  (
     1,
-    3,
+    2,
     'Need to maintenance kitchen supplier',
     'accepted',
     '2021-04-10 11:51:01.276724'
