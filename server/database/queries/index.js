@@ -10,12 +10,16 @@ const {
   createNewProvider,
   getPendingOrderRequest,
   getAcceptedOrders,
+  postOrder,
+  updateStateOrderRequest,
 } = require('./provider');
 
 module.exports = {
   createNewUser,
   checkUserByEmail,
   createNewProvider,
+  postOrder,
+  updateStateOrderRequest,
   getPendingOrderRequest,
   deleteOrderReq,
   addOrderRequest,

@@ -3,6 +3,7 @@ const {
   providersListController,
   getAcceptedOrdersController,
   getPendingOrderRequestController,
+  postOrderController,
 } = require('./provider');
 const {
   loginController,
@@ -23,6 +24,7 @@ module.exports = {
   isAuthController,
   logoutController,
   providersListController,
+  postOrderController,
   getPendingOrderRequestController,
   deleteOrderReqController,
   userOrderRequest,
