@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import Axios from 'axios';
 import { Alert, Spin, Tabs } from 'antd';
@@ -59,27 +59,52 @@ const { TabPane } = Tabs;
 const Orders = () => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [error, setError] = useState('');
-
+  console.log(ordersData);
   useEffect(() => {
-    const unmounted = true;
+    let unmounted = true;
     (async () => {
       try {
         setIsLoading(true);
         const { data } = await Axios.get('/api/v1/provider/order-requests');
         const { data: resData } = data;
         console.log(resData);
+        const sourceData = resData.reduce((acc, crr, idx) => {
+          acc[idx] = {
+            userinfo: [crr.username, crr.avatar],
+            location: crr.location,
+            phone: crr.mobile,
+            state: crr.state,
+            description: crr.description,
+            key: crr.id,
+            time: moment(crr.date).format('MMM-Do-YYYY'),
+            orderId: crr.order_id,
+            action: crr.order_id,
+          };
+          return acc;
+        }, []);
         if (unmounted) {
           setIsLoading(false);
-          setOrdersData(resData);
+          setOrdersData(sourceData);
         }
       } catch (err) {
         errorHandel(setError, err);
+        console.log(err);
         setIsLoading(false);
       }
     })();
-  }, []);
 
+    return () => {
+      unmounted = false;
+    };
+  }, [refresh]);
+
+  const handleRefresh = () => {
+    setRefresh(!refresh);
+  };
+
+  console.log(ordersData);
   return (
     <div>
       {error && <Alert type="error" />}
@@ -88,7 +113,7 @@ const Orders = () => {
       ) : (
         <Tabs className="order-tabs" defaultActiveKey="1" centered>
           <TabPane tab="Orders Request" key="1">
-            <PendingProvider data={ordersData} />
+            <PendingProvider data={ordersData} refresh={handleRefresh} />
           </TabPane>
           <TabPane tab="Orders" key="2">
             <p>Nothing here, Go out!</p>

@@ -7,25 +7,27 @@ import { Alert } from 'antd';
 import TableComponent from '../../../../Components/Table';
 import errorHandel from '../../../../Utils/errorHandel';
 
-function PendingProvider({ data }) {
+function PendingProvider({ data, refresh }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleAcceptOrder = async () => {
+  const handleAcceptOrder = async (orderId) => {
     try {
       setIsLoading(true);
-      await Axios.get('/api/v1/user/order-requests/1');
+      await Axios.get(`/api/v1/user/order-requests/${orderId}`);
       setIsLoading(false);
+      refresh();
     } catch (err) {
       errorHandel(setError, err);
     }
   };
 
-  const handleCancelOrder = async () => {
+  const handleCancelOrder = async (orderId) => {
     try {
       setIsLoading(true);
-      await Axios.delete('/api/v1/user/order-requests/1');
+      await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
       setIsLoading(false);
+      refresh();
     } catch (err) {
       console.log(err);
       errorHandel(setError, err);
@@ -39,7 +41,7 @@ function PendingProvider({ data }) {
       <TableComponent
         ColumnsType={'providerOrderPending'}
         dataSource={data}
-        onActins={[handleAcceptOrder, handleCancelOrder, () => isLoading]}
+        onActions={[handleAcceptOrder, handleCancelOrder, () => isLoading]}
       />
     </div>
   );
@@ -47,6 +49,7 @@ function PendingProvider({ data }) {
 
 PendingProvider.propTypes = {
   data: PropTypes.array.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 
 export default PendingProvider;

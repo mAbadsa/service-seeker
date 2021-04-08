@@ -8,7 +8,7 @@ import {
 
 import Avatar from '../../Avatar';
 
-const getColumnsData = (onActins) => ({
+const getColumnsData = (onActions) => ({
   // user Order Request Columns
   userOrderReq: [
     {
@@ -82,7 +82,7 @@ const getColumnsData = (onActins) => ({
       fixed: 'right',
       render() {
         return (
-          <div onClick={onActins[0]}>
+          <div onClick={onActions[0]}>
             <CloseOutlined
               style={{
                 paddingLeft: '5px',
@@ -255,10 +255,10 @@ const getColumnsData = (onActins) => ({
       title: 'Action',
       dataIndex: 'action',
       key: 'action',
-      render() {
+      render(action) {
         return (
           <>
-            {onActins[2]() ? (
+            {onActions[2]() ? (
               <LoadingOutlined
                 style={{
                   margin: '5px',
@@ -269,7 +269,7 @@ const getColumnsData = (onActins) => ({
             ) : (
               <>
                 <CheckOutlined
-                  onClick={onActins[0]}
+                  onClick={() => onActions[0](action)}
                   style={{
                     marginRight: '15px',
                     fontSize: '24px',
@@ -278,7 +278,7 @@ const getColumnsData = (onActins) => ({
                   }}
                 />
                 <CloseOutlined
-                  onClick={onActins[1]}
+                  onClick={() => onActions[1](action)}
                   style={{
                     fontSize: '24px',
                     color: '#c2141a',
