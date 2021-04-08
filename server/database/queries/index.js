@@ -6,13 +6,13 @@ const {
   getUserOrdersReqQuery,
   deleteOrderReq,
 } = require('./user');
-const { createNewProvider, getOrderRequestQuery } = require('./provider');
+const { createNewProvider, getPendingOrderRequest } = require('./provider');
 
 module.exports = {
   createNewUser,
   checkUserByEmail,
   createNewProvider,
-  getOrderRequestQuery,
+  getPendingOrderRequest,
   deleteOrderReq,
   addOrderRequest,
   getUserOrdersQuery,

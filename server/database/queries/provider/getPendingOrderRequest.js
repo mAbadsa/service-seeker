@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const getOrderRequestQuery = (providerId) => {
+const getPendingOrderRequest = (providerId) => {
   const sql = {
     text: `SELECT orequest.id, orequest.provider_id, u.username, u.avatar, u.location, u.mobile, orequest.description, 
       orequest.date, orequest.state 
@@ -12,4 +12,4 @@ const getOrderRequestQuery = (providerId) => {
   return connection.query(sql);
 };
 
-module.exports = getOrderRequestQuery;
+module.exports = getPendingOrderRequest;

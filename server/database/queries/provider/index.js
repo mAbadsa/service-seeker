@@ -1,9 +1,9 @@
 const getAllProviders = require('./getAllProvider');
 const createNewProvider = require('./createNewProvider');
-const getOrderRequestQuery = require('./getOrderRequestQuery');
+const getPendingOrderRequest = require('./getPendingOrderRequest');
 
 module.exports = {
   getAllProviders,
   createNewProvider,
-  getOrderRequestQuery,
+  getPendingOrderRequest,
 };
