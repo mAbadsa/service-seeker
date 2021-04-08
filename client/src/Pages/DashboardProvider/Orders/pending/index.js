@@ -1,62 +1,17 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+
 import Axios from 'axios';
 import { Alert } from 'antd';
 
 import TableComponent from '../../../../Components/Table';
 import errorHandel from '../../../../Utils/errorHandel';
 
-const data = [
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '1',
-  },
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '2',
-  },
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '3',
-  },
-  {
-    userinfo: [
-      'username_1',
-      'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
-    ],
-    location: 'Gaza',
-    phone: '0599525414',
-    description: 'lorem kdjd k dk jkn  jn',
-    state: 'pending',
-    key: '4',
-  },
-];
-
-function PendingProvider() {
+function PendingProvider({ data }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const handleAccept = async () => {
+
+  const handleAcceptOrder = async () => {
     try {
       setIsLoading(true);
       await Axios.get('/api/v1/user/order-requests/1');
@@ -66,7 +21,7 @@ function PendingProvider() {
     }
   };
 
-  const handleCancel = async () => {
+  const handleCancelOrder = async () => {
     try {
       setIsLoading(true);
       await Axios.delete('/api/v1/user/order-requests/1');
@@ -84,12 +39,14 @@ function PendingProvider() {
       <TableComponent
         ColumnsType={'providerOrderPending'}
         dataSource={data}
-        onActins={[handleAccept, handleCancel, () => isLoading]}
+        onActins={[handleAcceptOrder, handleCancelOrder, () => isLoading]}
       />
     </div>
   );
 }
 
-// PendingProvider.propTypes = {};
+PendingProvider.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default PendingProvider;
