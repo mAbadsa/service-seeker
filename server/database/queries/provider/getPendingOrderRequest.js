@@ -2,11 +2,8 @@ const connection = require('../../config/connection');
 
 const getPendingOrderRequest = (providerId) => {
   const sql = {
-    text: `SELECT orequest.id, orequest.provider_id, u.username, u.avatar, u.location, u.mobile, orequest.description, 
-      orequest.date, orequest.state 
-      FROM orders_request AS orequest 
-      INNER JOIN users AS u ON orequest.user_id = u.id 
-      WHERE orequest.provider_id = $1 AND orequest.state = 'pending';`,
+    text:
+      "SELECT users.id, users.username, users.avatar, users.location, users.mobile, orders_request.description, orders_request.date, orders_request.state FROM orders_request INNER JOIN users ON orders_request.user_id = users.id WHERE orders_request.provider_id = $1 AND orders_request.state = 'pending';",
     values: [providerId],
   };
   return connection.query(sql);

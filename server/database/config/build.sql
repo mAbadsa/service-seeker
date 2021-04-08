@@ -31,7 +31,7 @@ CREATE TABLE orders_request (
     description TEXT NOT NULL,
     state VARCHAR(55) DEFAULT 'pending',
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT UC_Orders_Request UNIQUE (user_id, provider_id, date)
+    CONSTRAINT UC_Orders_Request UNIQUE (user_id, provider_id, description)
 );
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
