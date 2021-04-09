@@ -106,12 +106,12 @@ const DashboardProvider = () => {
   );
   return (
     <Layout className="layout">
-      {md ? mySider : null}
+      {md && mySider}
 
       <Layout className="site-layout">
         <Content className="site-layout-background">
           <div className="layoutHeder">
-            {!md ? (
+            {!md && (
               <>
                 <MenuOutlined onClick={showDrawer} />
                 <Drawer
@@ -124,7 +124,7 @@ const DashboardProvider = () => {
                   {mySider}
                 </Drawer>
               </>
-            ) : null}
+            )}
             <Text>{title}</Text>
             <div className="bell">
               <BellFilled />
