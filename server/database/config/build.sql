@@ -18,6 +18,7 @@ CREATE TABLE providers (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON UPDATE CASCADE NOT NULL,
     title TEXT,
+    service_type VARCHAR(55),
     bio TEXT,
     price_hour FLOAT,
     availability boolean DEFAULT false,
