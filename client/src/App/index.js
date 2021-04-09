@@ -17,7 +17,7 @@ import LandingPage from '../Pages/Landing';
 import Login from '../Pages/Login';
 import Layout from '../Pages/Layout';
 import Register from '../Pages/Register';
-
+import DashboardProvider from '../Pages/DashboardProvider';
 import './style.css';
 
 const App = () => (
@@ -37,7 +37,7 @@ const App = () => (
             Orders Page
           </PrivateRoutes>
           <PrivateRoutes isProvider exact path={PROVIDER_DASHBOARD_PAGE}>
-            Provider Dashboard Page
+            <DashboardProvider />
           </PrivateRoutes>
           <Route>Not Found 404</Route>
         </Switch>

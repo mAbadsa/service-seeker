@@ -7,7 +7,13 @@ import Card from '../Card';
 import './style.css';
 
 const { Title } = Typography;
-const cardContainer = ({ providers, title, ...rest }) => {
+const cardContainer = ({
+  providers,
+  title,
+  showModal,
+  getProviderById,
+  ...rest
+}) => {
   const numEachPage = 8;
   const [limit, setLimit] = useState([0, numEachPage]);
 
@@ -20,7 +26,12 @@ const cardContainer = ({ providers, title, ...rest }) => {
         {providers && providers.length !== 0 ? (
           <>
             {providers.slice(limit[0], limit[1]).map((item) => (
-              <Card key={item.id} provider={item} />
+              <Card
+                key={item.id}
+                provider={item}
+                showModal={showModal}
+                getProviderById={getProviderById}
+              />
             ))}
             <Pagination
               defaultPageSize={numEachPage}
@@ -53,6 +64,8 @@ cardContainer.propTypes = {
       rating: PropTypes.number,
     }).isRequired
   ),
+  showModal: PropTypes.func.isRequired,
+  getProviderById: PropTypes.func.isRequired,
 };
 
 export default cardContainer;
