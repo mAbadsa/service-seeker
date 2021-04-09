@@ -21,6 +21,8 @@ const CommonCard = ({
     price_hour: priceByHour,
     avatar: avatarImage,
   },
+  showModal,
+  getProviderById,
 }) => (
   <Card id={id} className="cardStyle">
     <Row gutter={[16, 16]} type="flex" justify="center">
@@ -63,13 +65,17 @@ const CommonCard = ({
           <div>
             <Avatar size={75} className="avatarCard" srcImg={avatarImage} />
             <div>
-              <Text>{Name}</Text>
+              <Text className="name">{Name}</Text>
             </div>
           </div>
           <Button
             handelClick={onclick}
             type="primary"
             className="initial-style fourthButton hireBtn"
+            onClick={(e) => {
+              showModal(e);
+              getProviderById(id);
+            }}
           >
             Hire me
           </Button>
@@ -91,6 +97,8 @@ CommonCard.propTypes = {
     rating: PropTypes.number,
     cover_image: PropTypes.string,
   }).isRequired,
+  showModal: PropTypes.func.isRequired,
+  getProviderById: PropTypes.func.isRequired,
 };
 
 export default CommonCard;

@@ -57,9 +57,7 @@ VALUES (
     1,
     'Lipsum generator',
     'Phasellus in felis. Donec semper sapien a libero. Nam dui.
-
 Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
-
 Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
     4.6,
     true,
@@ -71,34 +69,43 @@ Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
     3,
     'Lipsum generator',
     'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
-
 Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
     7.8,
-    true,
+    false,
     3,
     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     "carpenter"
   );
-INSERT INTO ordes_request(
+INSERT INTO orders_request(
     user_id,
     provider_id,
-    decription,
-    state
+    description,
+    state,
+    date
   )
 VALUES(
-    1,
+    2,
     1,
     'Need to maintenance to my a garden wall',
-    'pending'
+    'pending',
+    '2021-04-07 21:31:11.276724'
   ),
   (
-    3,
+    2,
+    2,
+    'Need to maintenance to my a garden wall',
+    'pending',
+    '2021-04-08 15:41:01.276724'
+  ),
+  (
+    1,
     2,
     'Need to maintenance kitchen supplier',
-    'accepted'
+    'accepted',
+    '2021-04-10 11:51:01.276724'
   );
 INSERT INTO orders(
-    ordes_request_id,
+    orders_request_id,
       start_date,
     pasued_date,
     state,
@@ -107,7 +114,7 @@ INSERT INTO orders(
     resources_price,
     total_bill_price
   )VALUES(
-    1,
+    3,
     null,
     null,
     'accepted',
@@ -116,7 +123,7 @@ INSERT INTO orders(
     null,
     null
   ),(
-    2,
+    3,
     '2021-04-15 14:30:10',
     '2021-04-15 15:20:10',
     'completed',
@@ -127,7 +134,7 @@ INSERT INTO orders(
   );
   INSERT INTO notification(
     user_id,
-    decription
+    description
   )VALUES(
     1,
     'order request number 2 completed'

@@ -1,0 +1,47 @@
+.Orders-detail-input {
+  margin-top: 2rem;
+}
+
+.loggedin-message {
+  text-align: center;
+}
+
+.hireme-btn {
+  width: 100%;
+  font-size: 24px;
+  font-weight: normal;
+  border-radius: 3px;
+  margin-top: 1rem;
+}
+
+.signin-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: white;
+  border: 1px solid #FDCB6E;
+  background-color: #FDCB6E;
+  border-radius: 3px;
+  padding-left: 0;
+  width: 200px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  transition: all 0.25s;
+}
+
+.signin-link:hover {
+  color: white;
+  background-color: transparent;
+  transition: all 0.25s;
+}
+
+.ant-modal-root .ant-btn{
+  height: 41px;
+  padding: 0px 18px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.ant-modal-root .ant-modal-confirm-title{
+  font-size: 20px;
+}
