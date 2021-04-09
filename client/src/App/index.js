@@ -20,30 +20,33 @@ import Register from '../Pages/Register';
 import DashboardProvider from '../Pages/DashboardProvider';
 import './style.css';
 
-const App = () => (
-  <div className="App">
-    <AuthProvider>
-      <Layout>
-        <Switch>
-          <Route exact path={HOME_PAGE}>
-            <LandingPage />
-          </Route>
-          <Route exact path={ABOUT_US}>
-            About Us
-          </Route>
-          <LoggedOutRoutes exact path={LOGIN_PAGE} component={Login} />
-          <LoggedOutRoutes exact path={REGISTER_PAGE} component={Register} />
-          <PrivateRoutes exact path={ORDERS_PAGE}>
-            Orders Page
-          </PrivateRoutes>
-          <PrivateRoutes isProvider exact path={PROVIDER_DASHBOARD_PAGE}>
-            <DashboardProvider />
-          </PrivateRoutes>
-          <Route>Not Found 404</Route>
-        </Switch>
-      </Layout>
-    </AuthProvider>
-  </div>
-);
+const App = (props) => {
+  console.log(props);
+  return (
+    <div className="App">
+      <AuthProvider>
+        <Layout>
+          <Switch>
+            <Route exact path={HOME_PAGE}>
+              <LandingPage />
+            </Route>
+            <Route exact path={ABOUT_US}>
+              About Us
+            </Route>
+            <LoggedOutRoutes exact path={LOGIN_PAGE} component={Login} />
+            <LoggedOutRoutes exact path={REGISTER_PAGE} component={Register} />
+            <PrivateRoutes exact path={ORDERS_PAGE}>
+              Orders Page
+            </PrivateRoutes>
+            <PrivateRoutes isProvider exact path={PROVIDER_DASHBOARD_PAGE}>
+              <DashboardProvider />
+            </PrivateRoutes>
+            <Route>Not Found 404</Route>
+          </Switch>
+        </Layout>
+      </AuthProvider>
+    </div>
+  );
+};
 
 export default App;

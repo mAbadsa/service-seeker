@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Axios from 'axios';
-import { Layout, Menu, Typography, Grid, Drawer, message, Switch } from 'antd';
+import {
+  Layout,
+  Menu,
+  Typography,
+  Grid,
+  Drawer,
+  message,
+  Switch,
+  Spin,
+} from 'antd';
 import {
   AppstoreOutlined,
   BellOutlined,
@@ -9,6 +18,8 @@ import {
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
+
+import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
 import Avatar from '../../Components/Avatar';
@@ -21,11 +32,37 @@ import './style.css';
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
+
 const DashboardProvider = () => {
   const { md } = useBreakpoint();
   const [visible, setVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [providerDetails, setProviderDetails] = useState(null);
   const [page, setPage] = useState(<Orders />);
   const [title, setTitle] = useState('Orders');
+  const [isSwitchLoading, setSwitchLoading] = useState(false);
+  const [isSwitch, setSwitch] = useState(false);
+  const { userData } = useContext(AuthContext);
+  useEffect(() => {
+    let unmounted = true;
+    (async () => {
+      try {
+        setLoading(true);
+        const { data } = await Axios.get(`/api/v1/provider/${userData.id}`);
+        if (unmounted) {
+          setLoading(false);
+          setProviderDetails(data.data[0]);
+          setSwitch(data.data[0].availability);
+        }
+      } catch (error) {
+        message.error('Something went wrong!');
+        setLoading(false);
+      }
+    })();
+    return () => {
+      unmounted = false;
+    };
+  }, [userData.id]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -34,6 +71,7 @@ const DashboardProvider = () => {
   const onClose = () => {
     setVisible(false);
   };
+
   const handleChangMenu = (e) => {
     if (e.key === '1') {
       setPage(<Orders />);
@@ -49,8 +87,14 @@ const DashboardProvider = () => {
 
   const availability = async (checked) => {
     try {
-      await Axios.patch('/api/v1/provider/availability');
-      console.log(checked);
+      setSwitchLoading(true);
+      await Axios.patch('/api/v1/provider/availability', {
+        id: providerDetails?.id,
+      });
+      setSwitch(checked);
+      setSwitchLoading(false);
+      message.destroy();
+      message.success('status updated successfully');
     } catch (err) {
       message.error('Something went wrong!');
     }
@@ -83,7 +127,11 @@ const DashboardProvider = () => {
       <div>
         <div className="available">
           <span> Available ?</span>
-          <Switch onChange={availability} />
+          <Switch
+            onChange={availability}
+            loading={isSwitchLoading}
+            checked={isSwitch}
+          />
         </div>
         <LogoutComponent dashBoard={true} />
       </div>
@@ -115,7 +163,7 @@ const DashboardProvider = () => {
               <BellFilled />
             </div>
           </div>
-          {page}
+          {isLoading ? <Spin className="UserInfo-icon" /> : page}
         </Content>
       </Layout>
     </Layout>
