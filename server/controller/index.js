@@ -1,6 +1,7 @@
 const { clientError, serverError } = require('./error');
 const {
   providersListController,
+  updateAvailabilityController,
   getAcceptedOrdersController,
   getPendingOrderRequestController,
   postOrderController,
@@ -30,5 +31,6 @@ module.exports = {
   userOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
+  updateAvailabilityController,
   getAcceptedOrdersController,
 };
