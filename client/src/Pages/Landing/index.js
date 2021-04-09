@@ -46,7 +46,8 @@ const LandingPage = () => {
   const handleSearch = () => {
     setSearchResult(
       providers
-        .filter((element) => (service ? element.title === service : true))
+        // eslint-disable-next-line prettier/prettier
+        .filter((element) => (service ? element.service_type === service : true))
         .filter((element) => (location ? element.location === location : true))
     );
   };
