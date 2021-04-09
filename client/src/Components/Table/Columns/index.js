@@ -34,7 +34,6 @@ const getColumnsData = (onActins) => ({
                 paddingLeft: '14px',
                 width: '120px',
               }}
-              ellipsis
             >
               {username}
             </label>
@@ -76,9 +75,13 @@ const getColumnsData = (onActins) => ({
       dataIndex: 'action',
       width: '10%',
       fixed: 'right',
-      render() {
+      render(text, record) {
         return (
-          <div onClick={onActins[0]}>
+          <div
+            onClick={(e) => {
+              onActins[0](e, record);
+            }}
+          >
             <CloseOutlined
               style={{
                 paddingLeft: '5px',
@@ -121,7 +124,6 @@ const getColumnsData = (onActins) => ({
                 paddingLeft: '14px',
                 width: '120px',
               }}
-              ellipsis
             >
               {username}
             </label>
