@@ -74,7 +74,7 @@ Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci
     false,
     3,
     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    "carpenter"
+    'carpenter'
   );
 INSERT INTO orders_request(
     user_id,
