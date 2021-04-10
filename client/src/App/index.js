@@ -13,11 +13,15 @@ import {
 import { LoggedOutRoutes, PrivateRoutes } from './Routes';
 import AuthProvider from '../Context/Authentication';
 
-import LandingPage from '../Pages/Landing';
-import Login from '../Pages/Login';
-import Layout from '../Pages/Layout';
-import Register from '../Pages/Register';
-import DashboardProvider from '../Pages/DashboardProvider';
+import {
+  LandingPage,
+  OrdersPage,
+  Login,
+  Layout,
+  Register,
+  DashboardProvider,
+} from '../Pages';
+
 import './style.css';
 
 const App = () => (
@@ -34,7 +38,7 @@ const App = () => (
           <LoggedOutRoutes exact path={LOGIN_PAGE} component={Login} />
           <LoggedOutRoutes exact path={REGISTER_PAGE} component={Register} />
           <PrivateRoutes exact path={ORDERS_PAGE}>
-            Orders Page
+            <OrdersPage />
           </PrivateRoutes>
           <PrivateRoutes isProvider exact path={PROVIDER_DASHBOARD_PAGE}>
             <DashboardProvider />
