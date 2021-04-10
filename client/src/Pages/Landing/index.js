@@ -43,13 +43,15 @@ const LandingPage = () => {
     setLocation(null);
     setService(null);
   };
+
   const handleSearch = () => {
     setSearchResult(
       providers
-        .filter((element) => (service ? element.title === service : true))
-        .filter((element) => (location ? element.location === location : true))
+        .filter((element) => !service || element.service_type === service)
+        .filter((element) => !location || element.location === location)
     );
   };
+
   const handleShowModal = () => {
     setShowModal(true);
   };
