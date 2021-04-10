@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Axios from 'axios';
-import { Layout, Menu, Typography, Grid, Drawer, message, Switch } from 'antd';
+import {
+  Layout,
+  Menu,
+  Typography,
+  Grid,
+  Drawer,
+  message,
+  Switch,
+  Spin,
+} from 'antd';
 import {
   AppstoreOutlined,
   BellOutlined,
@@ -9,6 +18,8 @@ import {
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
+
+import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
 import Avatar from '../../Components/Avatar';
@@ -21,11 +32,39 @@ import './style.css';
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
+
 const DashboardProvider = () => {
+  const { userData } = useContext(AuthContext);
+
   const { md } = useBreakpoint();
+
   const [visible, setVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [providerDetails, setProviderDetails] = useState(null);
   const [page, setPage] = useState(<Orders />);
   const [title, setTitle] = useState('Orders');
+  const [switchLoading, setSwitchLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    let unmounted = true;
+    (async () => {
+      try {
+        setLoading(true);
+        const { data } = await Axios.get('/api/v1/provider/information');
+        if (unmounted) {
+          setLoading(false);
+          setProviderDetails(data.data[0]);
+        }
+      } catch (error) {
+        message.error('Something went wrong!');
+        setLoading(false);
+      }
+    })();
+    return () => {
+      unmounted = false;
+    };
+  }, [refresh]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -34,6 +73,7 @@ const DashboardProvider = () => {
   const onClose = () => {
     setVisible(false);
   };
+
   const handleChangMenu = (e) => {
     if (e.key === '1') {
       setPage(<Orders />);
@@ -47,12 +87,18 @@ const DashboardProvider = () => {
     }
   };
 
-  const availability = async (checked) => {
+  const handleAvailability = async () => {
     try {
+      setSwitchLoading(true);
       await Axios.patch('/api/v1/provider/availability');
-      console.log(checked);
+      setRefresh(!refresh);
+      setSwitchLoading(false);
+      message.destroy();
+      message.success('your status updated successfully');
     } catch (err) {
-      message.error('Something went wrong!');
+      message.destroy();
+      message.error(err.response.data.message);
+      setSwitchLoading(false);
     }
   };
 
@@ -61,7 +107,16 @@ const DashboardProvider = () => {
       <div>
         <div className="logo">
           <Avatar size={100} />
-          <Text>name</Text>
+          {isLoading ? (
+            <Spin />
+          ) : (
+            <>
+              <Text level={3}>{providerDetails?.title}</Text>
+              <Text strong={false} level={4}>
+                {userData?.username}
+              </Text>
+            </>
+          )}
         </div>
         <Menu
           onClick={handleChangMenu}
@@ -83,7 +138,11 @@ const DashboardProvider = () => {
       <div>
         <div className="available">
           <span> Available ?</span>
-          <Switch onChange={availability} />
+          <Switch
+            onChange={handleAvailability}
+            loading={isLoading || switchLoading}
+            checked={providerDetails?.availability}
+          />
         </div>
         <LogoutComponent dashBoard={true} />
       </div>
