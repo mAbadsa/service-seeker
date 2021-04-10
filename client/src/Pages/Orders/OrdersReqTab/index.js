@@ -87,7 +87,7 @@ const OrdersReqTab = () => {
       ) : (
         <TableComponent
           ColumnsType="userOrderReq"
-          onActins={[onOrderRejected]}
+          onActions={[onOrderRejected]}
           onRowDoubleClick={(_, __, { key }) => {
             getOrdersReqById(key);
             handleShowModal();
