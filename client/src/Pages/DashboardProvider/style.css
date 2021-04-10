@@ -1,4 +1,4 @@
-.logo {
+.siderStyle .logo {
     margin: 16px;
     background: #fff;
     display: flex;
@@ -7,7 +7,7 @@
     justify-content: center;
     padding: 24px 0;
   }
-  .logo span{
+  .siderStyle .logo span{
       font-size: 20px;
   }
   .site-layout .site-layout-background {
