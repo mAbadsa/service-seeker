@@ -5,7 +5,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import Avatar from '../../Avatar';
 import getStatusColor from '../../../Utils/getStatusColor';
 
-const getColumnsData = (onActins) => ({
+const getColumnsData = (onActions) => ({
   // user Order Request Columns
   userOrderReq: [
     {
@@ -80,7 +80,7 @@ const getColumnsData = (onActins) => ({
         return (
           <div
             onClick={(e) => {
-              onActins[0](e, record);
+              onActions[0](e, record);
             }}
           >
             <CloseOutlined
