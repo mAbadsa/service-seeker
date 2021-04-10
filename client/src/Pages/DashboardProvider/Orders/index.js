@@ -22,20 +22,29 @@ const Orders = () => {
         setIsLoading(true);
         const { data } = await Axios.get('/api/v1/provider/order-requests');
         const { data: resData } = data;
-        const sourceData = resData.reduce((acc, crr, idx) => {
-          acc[idx] = {
-            userinfo: [crr.username, crr.avatar],
-            location: crr.location,
-            phone: crr.mobile,
-            state: crr.state,
-            description: crr.description,
-            key: crr.id,
-            time: moment(crr.date).format('MMM-Do-YYYY'),
-            orderId: crr.order_id,
-            action: crr.order_id,
-          };
-          return acc;
-        }, []);
+        const sourceData = resData.map(
+          ({
+            username,
+            avatar,
+            location,
+            mobile,
+            state,
+            description,
+            id,
+            date,
+            order_id: orderId,
+          }) => ({
+            userinfo: [username, avatar],
+            location,
+            phone: mobile,
+            state,
+            description,
+            key: id,
+            time: moment(date).format('MMM-Do-YYYY'),
+            action: orderId,
+          })
+        );
+
         if (unmounted) {
           setIsLoading(false);
           setOrdersData(sourceData);
