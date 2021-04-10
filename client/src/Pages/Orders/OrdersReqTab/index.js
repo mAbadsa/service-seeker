@@ -83,7 +83,7 @@ const OrdersReqTab = () => {
         />
       )}
       {isLoading ? (
-        <Spin className="UserInfo-icon" />
+        <Spin className="isLoading-icon" />
       ) : (
         <TableComponent
           ColumnsType="userOrderReq"
