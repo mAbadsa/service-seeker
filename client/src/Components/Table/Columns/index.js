@@ -3,6 +3,7 @@ import moment from 'moment';
 import { CloseOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
+import getStatusColor from '../../../Utils/getStatusColor';
 
 const getColumnsData = (onActins) => ({
   // user Order Request Columns
@@ -164,21 +165,8 @@ const getColumnsData = (onActins) => ({
       width: '12%',
       fixed: 'right',
       render(text) {
-        let color = '';
-        switch (text) {
-          case 'Didn’t start':
-            color = '#F97272';
-            break;
-          case 'Finished':
-            color = '#13E842';
-            break;
-          case 'Pause':
-            color = '#332A94';
-            break;
-          default:
-            color = '#5C5C5C';
-            break;
-        }
+        const color = getStatusColor(text);
+
         return (
           <p
             style={{
