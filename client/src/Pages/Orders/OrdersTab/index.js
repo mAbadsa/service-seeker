@@ -3,12 +3,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import TableComponent from '../../../Components/Table';
+import OrdersModal from './OrdersModal';
 
 import './style.css';
 
 const OrdersTab = () => {
   const [isLoading, setLoading] = useState(false);
   const [orderData, setOrderData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [ordersModalData, setOrdersModalData] = useState(null);
 
   useEffect(() => {
     let unmounted = true;
@@ -29,15 +32,35 @@ const OrdersTab = () => {
       unmounted = false;
     };
   }, []);
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const getOrdersById = (_, __, { key }) => {
+    setOrdersModalData(orderData.find((item) => item.id === key));
+    handleShowModal();
+  };
 
   return (
     <>
+      {ordersModalData && (
+        <OrdersModal
+          visible={showModal}
+          data={ordersModalData}
+          onCancel={handleCloseModal}
+          closeModal={handleCloseModal}
+        />
+      )}
       {isLoading ? (
         <Spin className="UserInfo-icon" />
       ) : (
         <TableComponent
           ColumnsType="userOrder"
-          onRowDoubleClick={() => console.log('Row Double Click')}
+          onRowDoubleClick={getOrdersById}
           dataSource={orderData.map(
             ({
               id: key,

@@ -1,9 +1,10 @@
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Modal, message, Spin } from 'antd';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Modal, message, Spin } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import TableComponent from '../../../Components/Table';
+import OrdersReqModal from './OrdersReqModal';
 
 import './style.css';
 
@@ -12,6 +13,8 @@ const { confirm } = Modal;
 const OrdersReqTab = () => {
   const [isLoading, setLoading] = useState(false);
   const [ordersReqData, setOrdersReqData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [ordersReqModalData, setOrdersReqModalData] = useState(null);
 
   useEffect(() => {
     let unmounted = true;
@@ -33,7 +36,19 @@ const OrdersReqTab = () => {
     };
   }, []);
 
-  const onOrderRejected = (e, { key }) => {
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const getOrdersReqById = (id) => {
+    setOrdersReqModalData(ordersReqData.find((item) => item.id === id));
+  };
+
+  const openOrderRejected = (currentId) => {
     confirm({
       title: 'Are you sure delete this order?',
       icon: <ExclamationCircleOutlined />,
@@ -42,8 +57,9 @@ const OrdersReqTab = () => {
       cancelText: 'No',
       async onOk() {
         try {
-          await axios.delete(`/api/v1/user/order-requests/${key}`);
-          setOrdersReqData(ordersReqData.filter(({ id }) => id !== key));
+          await axios.delete(`/api/v1/user/order-requests/${currentId}`);
+          setOrdersReqData(ordersReqData.filter(({ id }) => id !== currentId));
+          setShowModal(false);
         } catch (error) {
           message.error('Something went wrong!');
         }
@@ -51,15 +67,31 @@ const OrdersReqTab = () => {
     });
   };
 
+  const onOrderRejected = (_, { key }) => openOrderRejected(key);
+
   return (
     <>
+      {ordersReqModalData && (
+        <OrdersReqModal
+          visible={showModal}
+          data={ordersReqModalData}
+          onCancel={handleCloseModal}
+          closeModal={handleCloseModal}
+          onOrderCancel={() => {
+            openOrderRejected(ordersReqModalData.id);
+          }}
+        />
+      )}
       {isLoading ? (
         <Spin className="UserInfo-icon" />
       ) : (
         <TableComponent
           ColumnsType="userOrderReq"
           onActins={[onOrderRejected]}
-          onRowDoubleClick={() => console.log('Row Double Click')}
+          onRowDoubleClick={(_, __, { key }) => {
+            getOrdersReqById(key);
+            handleShowModal();
+          }}
           dataSource={ordersReqData.map(
             ({
               id: key,
