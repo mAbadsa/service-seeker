@@ -8,7 +8,7 @@ const {
   providerDataController,
 } = require('../controller');
 
-router.get('/provider/:id', providerDataController);
+router.get('/provider/information', providerDataController);
 router.get('/provider/order-requests', getPendingOrderRequestController);
 router.patch('/provider/availability', updateAvailabilityController);
 
