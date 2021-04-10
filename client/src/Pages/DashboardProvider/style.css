@@ -8,7 +8,7 @@
     padding: 24px 0;
   }
   .logo span{
-      font-size: 32px;
+      font-size: 20px;
   }
   .site-layout .site-layout-background {
    padding: 24px;
@@ -17,10 +17,10 @@
   .layout{
       text-align: left;
   }
-  .ant-menu-item{
+ .siderStyle .ant-menu-item{
       color: #839BB7;
   }
-  .ant-menu-item-selected{
+ .siderStyle .ant-menu-item-selected{
     color: #485C73;
 }
 .layoutHeder{
@@ -28,16 +28,20 @@
     justify-content: space-between;
     align-items: center;
     padding:24px 40px;
+  }
+  .layoutHeder span{
+  font-size: 32px !important;
+
 }
 .siderBackground{
   background-color: white;
   display: flex;
 
 }
-.ant-drawer-header{
+ .ant-drawer-header{
 text-align: right;
 }
-.ant-layout-sider-children{
+ .ant-layout-sider-children{
   width:100%
 }
  .ant-drawer-body{

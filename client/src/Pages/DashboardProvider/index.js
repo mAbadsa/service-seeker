@@ -34,25 +34,27 @@ const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 const DashboardProvider = () => {
+  const { userData } = useContext(AuthContext);
+
   const { md } = useBreakpoint();
+
   const [visible, setVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [providerDetails, setProviderDetails] = useState(null);
   const [page, setPage] = useState(<Orders />);
   const [title, setTitle] = useState('Orders');
-  const [isSwitchLoading, setSwitchLoading] = useState(false);
-  const [isSwitch, setSwitch] = useState(false);
-  const { userData } = useContext(AuthContext);
+  const [switchLoading, setSwitchLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
     let unmounted = true;
     (async () => {
       try {
         setLoading(true);
-        const { data } = await Axios.get(`/api/v1/provider/${userData.id}`);
+        const { data } = await Axios.get('/api/v1/provider/information');
         if (unmounted) {
           setLoading(false);
           setProviderDetails(data.data[0]);
-          setSwitch(data.data[0].availability);
         }
       } catch (error) {
         message.error('Something went wrong!');
@@ -62,7 +64,7 @@ const DashboardProvider = () => {
     return () => {
       unmounted = false;
     };
-  }, [userData.id]);
+  }, [refresh]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -85,18 +87,18 @@ const DashboardProvider = () => {
     }
   };
 
-  const availability = async (checked) => {
+  const handleAvailability = async () => {
     try {
       setSwitchLoading(true);
-      await Axios.patch('/api/v1/provider/availability', {
-        id: providerDetails?.id,
-      });
-      setSwitch(checked);
+      await Axios.patch('/api/v1/provider/availability');
+      setRefresh(!refresh);
       setSwitchLoading(false);
       message.destroy();
-      message.success('status updated successfully');
+      message.success('your status updated successfully');
     } catch (err) {
-      message.error('Something went wrong!');
+      message.destroy();
+      message.error(err.response.data.message);
+      setSwitchLoading(false);
     }
   };
 
@@ -105,7 +107,16 @@ const DashboardProvider = () => {
       <div>
         <div className="logo">
           <Avatar size={100} />
-          <Text>name</Text>
+          {isLoading ? (
+            <Spin />
+          ) : (
+            <>
+              <Text level={3}>{providerDetails?.title}</Text>
+              <Text strong={false} level={4}>
+                {userData?.username}
+              </Text>
+            </>
+          )}
         </div>
         <Menu
           onClick={handleChangMenu}
@@ -128,9 +139,9 @@ const DashboardProvider = () => {
         <div className="available">
           <span> Available ?</span>
           <Switch
-            onChange={availability}
-            loading={isSwitchLoading}
-            checked={isSwitch}
+            onChange={handleAvailability}
+            loading={isLoading || switchLoading}
+            checked={providerDetails?.availability}
           />
         </div>
         <LogoutComponent dashBoard={true} />
@@ -163,7 +174,7 @@ const DashboardProvider = () => {
               <BellFilled />
             </div>
           </div>
-          {isLoading ? <Spin className="UserInfo-icon" /> : page}
+          {page}
         </Content>
       </Layout>
     </Layout>
