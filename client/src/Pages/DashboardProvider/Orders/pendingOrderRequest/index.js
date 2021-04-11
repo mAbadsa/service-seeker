@@ -8,6 +8,8 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import errorHandel from '../../../../Utils/errorHandel';
 import TableComponent from '../../../../Components/Table';
 
+import AcceptOrderModal from './acceptModal';
+
 const { confirm } = Modal;
 
 const PendingProvider = ({ refresh, ...rest }) => {
@@ -16,6 +18,9 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const [error, setError] = useState(null);
   const [acceptError, setAcceptError] = useState(null);
   const [cancelError, setCancelError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [time, setTime] = useState('');
+  const [orderID, setOrderID] = useState(null);
   const clearError = () => {
     setCancelError(null);
     setAcceptError(null);
@@ -64,23 +69,38 @@ const PendingProvider = ({ refresh, ...rest }) => {
     });
   };
 
-  const handleAcceptOrder = async (orderId) => {
+  const handleAcceptOrder = (orderId) => {
+    setShowModal(true);
+    setOrderID(orderId);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handelChange = (e) => {
+    setTime(e.value);
+  };
+
+  const handleClickAccept = async () => {
     try {
       clearError();
-      await Axios.post(`/api/v1/user/order-requests/${orderId}`, {
-        time: '',
+      await Axios.post(`/api/v1/user/order-requests/${orderID}`, {
+        time,
       });
     } catch (err) {
       errorHandel(setAcceptError, err);
     }
   };
 
-  const handleMoreDetails = () => {
-    // open popup modal
-  };
-
   return (
     <div>
+      <AcceptOrderModal
+        visible={showModal}
+        onCancel={handleCloseModal}
+        handelChange={handelChange}
+        handelClick={handleClickAccept}
+      />
       {error && <Alert type="error" message={error} />}
       {acceptError && <Alert type="error" message={acceptError} />}
       {cancelError && <Alert type="error" message={cancelError} />}
@@ -108,7 +128,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
           })
         )}
         onActions={[handleAcceptOrder, handleCancelOrder]}
-        onRowDoubleClick={handleMoreDetails}
         loading={isLoading}
         {...rest}
       />
