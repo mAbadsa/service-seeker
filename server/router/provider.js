@@ -5,8 +5,10 @@ const {
   updateAvailabilityController,
   postOrderController,
   getAcceptedOrdersController,
+  providerDataController,
 } = require('../controller');
 
+router.get('/provider/information', providerDataController);
 router.get('/provider/order-requests', getPendingOrderRequestController);
 router.patch('/provider/availability', updateAvailabilityController);
 
