@@ -4,6 +4,7 @@ import { CloseOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
 import providerOrderPending from './providerOrderPending';
+import providerAcceptedOrders from './providerAcceptedOrders';
 
 const getColumnsData = (onActions) => ({
   // user Order Request Columns
@@ -191,6 +192,7 @@ const getColumnsData = (onActions) => ({
   ],
   // Provider pending order columns
   providerOrderPending: providerOrderPending(onActions),
+  providerAcceptedOrders: providerAcceptedOrders(),
 });
 
 export default getColumnsData;
