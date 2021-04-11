@@ -5,6 +5,7 @@ const deleteOrderReq = require('./deleteOrderReq');
 const addOrderRequest = require('./addOrderRequest');
 const getUserOrdersQuery = require('./getUserOrders');
 const getUserOrdersReqQuery = require('./getUserOrdersReq');
+const isAlreadyHeired = require('./isAlreadyHeired');
 
 module.exports = {
   checkUserByEmail,
@@ -14,4 +15,5 @@ module.exports = {
   addOrderRequest,
   getUserOrdersQuery,
   getUserOrdersReqQuery,
+  isAlreadyHeired,
 };
