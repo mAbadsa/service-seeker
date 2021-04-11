@@ -10,7 +10,7 @@ const TableComponent = ({
   ColumnsType,
   dataSource,
   onRowDoubleClick,
-  onActins,
+  onActions,
   scrollX,
   defaultPageSize,
   ...rest
@@ -18,7 +18,7 @@ const TableComponent = ({
   <Row className="table-contener" justify="center">
     <Col sm={24} md={22} lg={19}>
       <Table
-        columns={columnsData(onActins)[ColumnsType]}
+        columns={columnsData(onActions)[ColumnsType]}
         dataSource={dataSource}
         scroll={{
           x: scrollX,
@@ -39,7 +39,7 @@ const TableComponent = ({
 
 TableComponent.propTypes = {
   ColumnsType: PropTypes.string.isRequired,
-  onActins: PropTypes.arrayOf(PropTypes.func),
+  onActions: PropTypes.arrayOf(PropTypes.func),
   dataSource: PropTypes.array.isRequired,
   onRowDoubleClick: PropTypes.func,
   scrollX: PropTypes.string,
@@ -48,7 +48,7 @@ TableComponent.propTypes = {
 
 TableComponent.defaultProps = {
   onRowDoubleClick: () => {},
-  onActins: [],
+  onActions: [],
   scrollX: '800px',
   defaultPageSize: 5,
 };
