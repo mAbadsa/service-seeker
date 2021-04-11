@@ -13,13 +13,21 @@ const { confirm } = Modal;
 const PendingProvider = ({ refresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
+  const [acceptError, setAcceptError] = useState(null);
+  const [cancelError, setCancelError] = useState(null);
+  const clearError = () => {
+    setCancelError(null);
+    setAcceptError(null);
+    setError(null);
+  };
 
   useEffect(() => {
     let unmounted = true;
     (async () => {
       try {
         setIsLoading(true);
+        clearError();
         const { data } = await Axios.get('/api/v1/provider/order-requests');
 
         if (unmounted) {
@@ -36,6 +44,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       unmounted = false;
     };
   }, [refresh]);
+
   const handleCancelOrder = async (orderId) => {
     confirm({
       title: 'Are you sure delete this order?',
@@ -45,10 +54,11 @@ const PendingProvider = ({ refresh, ...rest }) => {
       cancelText: 'No',
       async onOk() {
         try {
+          clearError();
           await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
           setOrdersData(ordersData.filter(({ id }) => id !== orderId));
         } catch (err) {
-          errorHandel(setError, err);
+          errorHandel(setCancelError, err);
         }
       },
     });
@@ -56,11 +66,12 @@ const PendingProvider = ({ refresh, ...rest }) => {
 
   const handleAcceptOrder = async (orderId) => {
     try {
+      clearError();
       await Axios.post(`/api/v1/user/order-requests/${orderId}`, {
         time: '',
       });
     } catch (err) {
-      errorHandel(setError, err);
+      errorHandel(setAcceptError, err);
     }
   };
 
@@ -70,7 +81,9 @@ const PendingProvider = ({ refresh, ...rest }) => {
 
   return (
     <div>
-      {error && <Alert type="error" />}
+      {error && <Alert type="error" message={error} />}
+      {acceptError && <Alert type="error" message={acceptError} />}
+      {cancelError && <Alert type="error" message={cancelError} />}
       <TableComponent
         ColumnsType="providerOrderPending"
         dataSource={ordersData?.map(
