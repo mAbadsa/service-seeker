@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Typography, message, Spin } from 'antd';
-import './style.css';
-
+import React, { useContext, useEffect, useState } from 'react';
 import Axios from 'axios';
+import { Row, Col, Typography, message, Spin } from 'antd';
+
+import { AuthContext } from '../../Context/Authentication';
 import CardContainer from '../../Components/CardContainer';
 import SearchBar from '../../Components/Search';
 import HireMeModal from './HireMeModal';
 
+import './style.css';
+
 const { Title } = Typography;
 
 const LandingPage = () => {
+  const { userData } = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);
   const [providers, setProvidersList] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
@@ -61,7 +64,11 @@ const LandingPage = () => {
   };
 
   const getProviderById = (id) => {
-    setModalProviderData(providers.find((item) => item.id === id));
+    message.destroy();
+    if (userData.id !== id) {
+      setModalProviderData(providers.find((item) => item.id === id));
+    }
+    message.warning("You can't hire your self");
   };
 
   return (

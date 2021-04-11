@@ -92,14 +92,21 @@ VALUES(
   ),
   (
     2,
-    2,
+    3,
     'Need to maintenance to my a garden wall',
-    'pending',
+    'accepted',
     '2021-04-08 15:41:01.276724'
   ),
   (
     1,
-    2,
+    3,
+    'Need to maintenance kitchen supplier',
+    'finished',
+    '2021-04-10 11:51:01.276724'
+  ),
+  (
+    3,
+    1,
     'Need to maintenance kitchen supplier',
     'accepted',
     '2021-04-10 11:51:01.276724'
@@ -114,7 +121,7 @@ INSERT INTO orders(
     resources_price,
     total_bill_price
   )VALUES(
-    3,
+    2,
     null,
     null,
     'accepted',
@@ -126,7 +133,7 @@ INSERT INTO orders(
     3,
     '2021-04-15 14:30:10',
     '2021-04-15 15:20:10',
-    'completed',
+    'finished',
     '13:20:10',
     6.2,
     100.6,

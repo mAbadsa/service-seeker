@@ -1,9 +1,22 @@
-const { addOrderRequest } = require('../../database/queries');
+const { addOrderRequest, isAlreadyHeired } = require('../../database/queries');
 const { boomify } = require('../../utils');
 
 const userOrderRequest = async (req, res, next) => {
   const { id: userId } = req.user;
+  const { providerId } = req.body;
   try {
+    if (userId === providerId) {
+      throw boomify(409, "You can't hire you self.");
+    }
+
+    const { rowCount } = await isAlreadyHeired({
+      userId,
+      providerId,
+    });
+    if (rowCount !== 0) {
+      throw boomify(409, 'You are already heir him/her');
+    }
+
     await addOrderRequest({
       userId,
       ...req.body,
@@ -14,11 +27,7 @@ const userOrderRequest = async (req, res, next) => {
       message: 'Order request sent successfully',
     });
   } catch (error) {
-    if (error.constraint === 'uc_orders_request') {
-      next(boomify(409, 'order request already sent'));
-    } else {
-      next(error);
-    }
+    next(error);
   }
 };
 

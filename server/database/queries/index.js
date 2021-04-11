@@ -5,6 +5,7 @@ const {
   getUserOrdersQuery,
   getUserOrdersReqQuery,
   deleteOrderReq,
+  isAlreadyHeired,
 } = require('./user');
 const {
   createNewProvider,
@@ -30,4 +31,5 @@ module.exports = {
   getAcceptedOrders,
   updateProfileProviders,
   getProviderDataById,
+  isAlreadyHeired,
 };
