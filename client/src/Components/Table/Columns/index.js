@@ -1,12 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import {
-  CloseOutlined,
-  CheckOutlined,
-  LoadingOutlined,
-} from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
+import providerOrderPending from './providerOrderPending';
 
 const getColumnsData = (onActions) => ({
   // user Order Request Columns
@@ -38,7 +35,6 @@ const getColumnsData = (onActions) => ({
                 paddingLeft: '14px',
                 width: '120px',
               }}
-              ellipsis
             >
               {username}
             </label>
@@ -125,7 +121,6 @@ const getColumnsData = (onActions) => ({
                 paddingLeft: '14px',
                 width: '120px',
               }}
-              ellipsis
             >
               {username}
             </label>
@@ -195,106 +190,7 @@ const getColumnsData = (onActions) => ({
     },
   ],
   // Provider pending order columns
-  providerOrderPending: [
-    {
-      title: 'User Info',
-      dataIndex: 'userinfo',
-      key: 'userinfo',
-      render([username, avatar]) {
-        return (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-            }}
-          >
-            <Avatar
-              shape="circle"
-              srcImg={avatar}
-              size={45}
-              style={{
-                minWidth: '45px',
-              }}
-            />
-            <label
-              style={{
-                lineHeight: '45px',
-                paddingLeft: '14px',
-                width: '120px',
-              }}
-              ellipsis
-            >
-              {username}
-            </label>
-          </div>
-        );
-      },
-      fixed: 'left',
-    },
-    {
-      title: 'Phone No.',
-      dataIndex: 'phone',
-      key: 'phone',
-    },
-    {
-      title: 'Location',
-      dataIndex: 'location',
-      key: 'location',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-    },
-    {
-      title: 'Time',
-      dataIndex: 'time',
-      key: 'time',
-      render(text) {
-        return moment(text).format('MMM-Do-YYYY');
-      },
-    },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      key: 'action',
-      render(action) {
-        return (
-          <>
-            {onActions[2]() ? (
-              <LoadingOutlined
-                style={{
-                  margin: '5px',
-                  fontSize: '24px',
-                  color: '#3535a5',
-                }}
-              />
-            ) : (
-              <>
-                <CheckOutlined
-                  onClick={() => onActions[0](action)}
-                  style={{
-                    marginRight: '15px',
-                    fontSize: '24px',
-                    color: '#22c41a',
-                    cursor: 'pointer',
-                  }}
-                />
-                <CloseOutlined
-                  onClick={() => onActions[1](action)}
-                  style={{
-                    fontSize: '24px',
-                    color: '#c2141a',
-                    cursor: 'pointer',
-                  }}
-                />
-              </>
-            )}
-          </>
-        );
-      },
-    },
-  ],
+  providerOrderPending: providerOrderPending(onActions),
 });
 
 export default getColumnsData;
