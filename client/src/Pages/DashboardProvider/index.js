@@ -14,7 +14,7 @@ import {
   AppstoreOutlined,
   BellOutlined,
   UserOutlined,
-  BellFilled,
+  SyncOutlined,
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
@@ -41,10 +41,10 @@ const DashboardProvider = () => {
   const [visible, setVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [providerDetails, setProviderDetails] = useState(null);
-  const [page, setPage] = useState(<Orders />);
   const [title, setTitle] = useState('Orders');
   const [switchLoading, setSwitchLoading] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  const [orderRefresh, setOrderRefresh] = useState(false);
+  const [infoRefresh, setInfoRefresh] = useState(false);
 
   useEffect(() => {
     let unmounted = true;
@@ -64,7 +64,7 @@ const DashboardProvider = () => {
     return () => {
       unmounted = false;
     };
-  }, [refresh]);
+  }, [infoRefresh]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -76,22 +76,23 @@ const DashboardProvider = () => {
 
   const handleChangMenu = (e) => {
     if (e.key === '1') {
-      setPage(<Orders />);
       setTitle('Orders');
     } else if (e.key === '2') {
-      setPage(<Notifications />);
       setTitle('Notifications');
     } else if (e.key === '3') {
-      setPage(<Profile />);
       setTitle('Profile');
     }
+  };
+
+  const handleOrderRefresh = () => {
+    setOrderRefresh(!orderRefresh);
   };
 
   const handleAvailability = async () => {
     try {
       setSwitchLoading(true);
       await Axios.patch('/api/v1/provider/availability');
-      setRefresh(!refresh);
+      setInfoRefresh(!infoRefresh);
       setSwitchLoading(false);
       message.destroy();
       message.success('your status updated successfully');
@@ -171,10 +172,12 @@ const DashboardProvider = () => {
             )}
             <Text>{title}</Text>
             <div className="bell">
-              <BellFilled />
+              <SyncOutlined onClick={handleOrderRefresh} />
             </div>
           </div>
-          {page}
+          {title === 'Orders' && <Orders refresh={orderRefresh} />}
+          {title === 'Notifications' && <Notifications />}
+          {title === 'Profile' && <Profile refresh={infoRefresh} />}
         </Content>
       </Layout>
     </Layout>
