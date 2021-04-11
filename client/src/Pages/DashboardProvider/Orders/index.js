@@ -1,4 +1,6 @@
 import React from 'react';
 
-const Orders = () => <div>Orders Content</div>;
+import AcceptedOrders from '../../../Components/AcceptedOrders';
+
+const Orders = () => <AcceptedOrders />;
 export default Orders;
