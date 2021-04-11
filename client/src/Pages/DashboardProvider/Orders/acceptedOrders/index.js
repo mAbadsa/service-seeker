@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Axios from 'axios';
-import { Spin } from 'antd';
+import { Alert } from 'antd';
 
 import Table from '../../../../Components/Table';
 
-const AcceptedOrders = ({ refresh, ...rest }) => {
-  const [acceptedOrders, setAcceptedOrders] = useState(null);
-  const [loading, setLoading] = useState(false);
+const AcceptedOrders = ({ refresh }) => {
+  const [acceptedOrders, setAcceptedOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState(null);
 
   useEffect(() => {
     let unmounted = true;
     (async () => {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const { data: result } = await Axios.get('/api/v1/provider/orders');
         if (unmounted) {
-          setLoading(false);
+          setIsLoading(false);
           setAcceptedOrders(result.data);
         }
       } catch ({ response: resError }) {
-        setLoading(false);
+        setIsLoading(false);
         setErrMsg(resError);
       }
     })();
@@ -32,16 +32,33 @@ const AcceptedOrders = ({ refresh, ...rest }) => {
     };
   }, [refresh]);
 
-  return loading ? (
-    <Spin />
+  return errMsg ? (
+    <Alert type="error" message={errMsg} />
   ) : (
-    <>
-      {errMsg ? (
-        <p>{errMsg}</p>
-      ) : (
-        <Table ColumnsType="userOrder" dataSource={acceptedOrders} {...rest} />
+    <Table
+      loading={isLoading}
+      ColumnsType="providerAcceptedOrders"
+      dataSource={acceptedOrders?.map(
+        ({
+          username,
+          avatar,
+          location,
+          mobile: phone,
+          state: status,
+          description,
+          id,
+          date,
+        }) => ({
+          userinfo: [username, avatar],
+          location,
+          phone,
+          status,
+          description,
+          key: id,
+          time: date,
+        })
       )}
-    </>
+    />
   );
 };
 
