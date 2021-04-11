@@ -107,23 +107,14 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
-          <Avatar size={100} />
-          {isLoading ? (
-            <Spin />
-          ) : (
-            <>
-              <Text level={3}>{providerDetails?.title}</Text>
-              <Text strong={false} level={4}>
-                {userData?.username}
-              </Text>
-            </>
-          )}
+          <Avatar srcImg={userData.avatar} size={100} />
+
+          <Text strong={false} level={3}>
+            {userData?.username}
+          </Text>
+          <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
         </div>
-        <Menu
-          onClick={handleChangMenu}
-          mode="inline"
-          defaultSelectedKeys={['1']}
-        >
+        <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys="1">
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
             Orders
           </Menu.Item>
