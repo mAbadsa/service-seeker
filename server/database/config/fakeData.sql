@@ -50,7 +50,8 @@ INSERT INTO providers(
     price_hour,
     availability,
     rating,
-    cover_image
+    cover_image,
+    service_type
   )
 VALUES (
     1,
@@ -61,7 +62,8 @@ Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
     4.6,
     true,
     5,
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    'plumber'
   ),
   (
     3,
@@ -71,7 +73,8 @@ Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci
     7.8,
     false,
     3,
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    'carpenter'
   );
 INSERT INTO orders_request(
     user_id,

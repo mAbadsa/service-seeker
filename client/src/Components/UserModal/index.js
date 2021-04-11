@@ -18,6 +18,7 @@ const OrderModal = ({
     mobile,
     price_hour: price,
     rating,
+    service_type: serviceType,
   },
   children,
   ...reset
@@ -51,8 +52,13 @@ const OrderModal = ({
                   backgroundSize: 'cover',
                 }}
               >
-                <Text strong={true}>{username}</Text>
+                <Text strong={true} ellipsis>
+                  {serviceType}
+                </Text>
               </div>
+              <Text className="Orders-card__username" strong={true} ellipsis>
+                {username}
+              </Text>
             </Col>
             <Col xm={24} md={17} className="Orders-card__details">
               <Row align="middle">
@@ -117,6 +123,7 @@ OrderModal.propTypes = {
     mobile: PropTypes.string,
     price_hour: PropTypes.number,
     rating: PropTypes.number,
+    service_type: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
 };
