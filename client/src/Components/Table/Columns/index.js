@@ -250,8 +250,8 @@ const getColumnsData = (onActions) => ({
       title: 'Time',
       dataIndex: 'time',
       key: 'time',
-      render(date) {
-        moment(date).format('MMM-Do-YYYY');
+      render(text) {
+        return moment(text).format('MMM-Do-YYYY');
       },
     },
     {
