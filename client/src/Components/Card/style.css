@@ -41,12 +41,14 @@
 }
 
 .cardLocation,
-.cardPrice {
+.cardPrice,
+.cardService {
   font-size: 15px;
 }
 
 .cardLocation span,
-.cardPrice span {
+.cardPrice span,
+.cardService span{
   margin-left: 5px;
   font-weight: bold;
   margin-right: 5px;
@@ -69,7 +71,8 @@
   line-height: 11px;
 }
 
-.cardDescription__top {
+.cardDescription__top,
+.cardDescription__bottom{
   display: flex;
   flex-direction: row;
 }
@@ -91,7 +94,8 @@
     max-width: 100%;
   }
 
-  .cardDescription__top {
+  .cardDescription__top,
+  .cardDescription__bottom {
     flex-direction: column;
   }
   
