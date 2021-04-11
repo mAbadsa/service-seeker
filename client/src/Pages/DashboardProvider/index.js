@@ -118,11 +118,7 @@ const DashboardProvider = () => {
             </>
           )}
         </div>
-        <Menu
-          onClick={handleChangMenu}
-          mode="inline"
-          defaultSelectedKeys={['1']}
-        >
+        <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys="1">
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
             Orders
           </Menu.Item>
