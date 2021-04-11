@@ -68,7 +68,7 @@ const LandingPage = () => {
     if (userData.id !== id) {
       setModalProviderData(providers.find((item) => item.id === id));
     }
-    message.error("You can't hire your self");
+    message.warning("You can't hire your self");
   };
 
   return (
