@@ -1,6 +1,6 @@
-import { message, Spin } from 'antd';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { message } from 'antd';
 
 import TableComponent from '../../../Components/Table';
 import OrdersModal from './OrdersModal';
@@ -55,34 +55,32 @@ const OrdersTab = () => {
           closeModal={handleCloseModal}
         />
       )}
-      {isLoading ? (
-        <Spin className="isLoading-icon" />
-      ) : (
-        <TableComponent
-          ColumnsType="userOrder"
-          onRowDoubleClick={getOrdersById}
-          dataSource={orderData.map(
-            ({
-              id: key,
-              username,
-              avatar,
-              title: serviceTitle,
-              location,
-              description: yourDescription,
-              date,
-              state: status,
-            }) => ({
-              key,
-              userInfo: [username, avatar],
-              serviceTitle,
-              location,
-              yourDescription,
-              date,
-              status,
-            })
-          )}
-        />
-      )}
+
+      <TableComponent
+        ColumnsType="userOrder"
+        onRowDoubleClick={getOrdersById}
+        loading={isLoading}
+        dataSource={orderData.map(
+          ({
+            id: key,
+            username,
+            avatar,
+            title: serviceTitle,
+            location,
+            description: yourDescription,
+            date,
+            state: status,
+          }) => ({
+            key,
+            userInfo: [username, avatar],
+            serviceTitle,
+            location,
+            yourDescription,
+            date,
+            status,
+          })
+        )}
+      />
     </>
   );
 };

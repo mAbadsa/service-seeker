@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Modal, message, Spin } from 'antd';
+import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import TableComponent from '../../../Components/Table';
@@ -82,36 +82,34 @@ const OrdersReqTab = () => {
           }}
         />
       )}
-      {isLoading ? (
-        <Spin className="isLoading-icon" />
-      ) : (
-        <TableComponent
-          ColumnsType="userOrderReq"
-          onActions={[onOrderRejected]}
-          onRowDoubleClick={(_, __, { key }) => {
-            getOrdersReqById(key);
-            handleShowModal();
-          }}
-          dataSource={ordersReqData.map(
-            ({
-              id: key,
-              username,
-              avatar,
-              title: serviceTitle,
-              location,
-              description: yourDescription,
-              date,
-            }) => ({
-              key,
-              userInfo: [username, avatar],
-              serviceTitle,
-              location,
-              yourDescription,
-              date,
-            })
-          )}
-        />
-      )}
+
+      <TableComponent
+        ColumnsType="userOrderReq"
+        onActions={[onOrderRejected]}
+        onRowDoubleClick={(_, __, { key }) => {
+          getOrdersReqById(key);
+          handleShowModal();
+        }}
+        loading={isLoading}
+        dataSource={ordersReqData.map(
+          ({
+            id: key,
+            username,
+            avatar,
+            title: serviceTitle,
+            location,
+            description: yourDescription,
+            date,
+          }) => ({
+            key,
+            userInfo: [username, avatar],
+            serviceTitle,
+            location,
+            yourDescription,
+            date,
+          })
+        )}
+      />
     </>
   );
 };
