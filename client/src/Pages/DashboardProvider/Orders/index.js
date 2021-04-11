@@ -24,7 +24,4 @@ Orders.propTypes = {
   refresh: PropTypes.bool.isRequired,
 };
 
-import AcceptedOrders from '../../../Components/AcceptedOrders';
-
-const Orders = () => <AcceptedOrders />;
 export default Orders;
