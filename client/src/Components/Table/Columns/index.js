@@ -3,8 +3,9 @@ import moment from 'moment';
 import { CloseOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
+import providerOrderPending from './providerOrderPending';
 
-const getColumnsData = (onActins) => ({
+const getColumnsData = (onActions) => ({
   // user Order Request Columns
   userOrderReq: [
     {
@@ -34,7 +35,6 @@ const getColumnsData = (onActins) => ({
                 paddingLeft: '14px',
                 width: '120px',
               }}
-              ellipsis
             >
               {username}
             </label>
@@ -78,7 +78,7 @@ const getColumnsData = (onActins) => ({
       fixed: 'right',
       render() {
         return (
-          <div onClick={onActins[0]}>
+          <div onClick={onActions[0]}>
             <CloseOutlined
               style={{
                 paddingLeft: '5px',
@@ -121,7 +121,6 @@ const getColumnsData = (onActins) => ({
                 paddingLeft: '14px',
                 width: '120px',
               }}
-              ellipsis
             >
               {username}
             </label>
@@ -190,6 +189,8 @@ const getColumnsData = (onActins) => ({
       },
     },
   ],
+  // Provider pending order columns
+  providerOrderPending: providerOrderPending(onActions),
 });
 
 export default getColumnsData;

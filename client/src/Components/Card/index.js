@@ -20,6 +20,7 @@ const CommonCard = ({
     bio: descriptions,
     price_hour: priceByHour,
     avatar: avatarImage,
+    service_type: serviceType,
   },
   showModal,
   getProviderById,
@@ -45,10 +46,14 @@ const CommonCard = ({
             <Text>{city}</Text>
           </Text>
         </div>
-        <div>
+        <div className="cardDescription__bottom">
           <Text type="secondary" className="cardPrice">
             Price:
             <Text>{priceByHour}$</Text>
+          </Text>
+          <Text type="secondary" className="cardService">
+            Service:
+            <Text>{serviceType}</Text>
           </Text>
         </div>
         <Paragraph
@@ -96,6 +101,7 @@ CommonCard.propTypes = {
     price_hour: PropTypes.number,
     rating: PropTypes.number,
     cover_image: PropTypes.string,
+    service_type: PropTypes.string,
   }).isRequired,
   showModal: PropTypes.func.isRequired,
   getProviderById: PropTypes.func.isRequired,

@@ -1,9 +1,12 @@
 const { clientError, serverError } = require('./error');
 const {
   providersListController,
+  updateAvailabilityController,
   getAcceptedOrdersController,
   getPendingOrderRequestController,
   postOrderController,
+  providerDataController,
+  updateProfileProviderController,
 } = require('./provider');
 const {
   loginController,
@@ -30,5 +33,8 @@ module.exports = {
   userOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
+  updateAvailabilityController,
   getAcceptedOrdersController,
+  providerDataController,
+  updateProfileProviderController,
 };

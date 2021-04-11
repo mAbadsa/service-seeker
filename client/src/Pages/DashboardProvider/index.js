@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Axios from 'axios';
-import { Layout, Menu, Typography, Grid, Drawer, message, Switch } from 'antd';
+import {
+  Layout,
+  Menu,
+  Typography,
+  Grid,
+  Drawer,
+  message,
+  Switch,
+  Spin,
+} from 'antd';
 import {
   AppstoreOutlined,
   BellOutlined,
   UserOutlined,
-  BellFilled,
+  SyncOutlined,
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
+
+import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
 import Avatar from '../../Components/Avatar';
@@ -21,11 +32,39 @@ import './style.css';
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
+
 const DashboardProvider = () => {
+  const { userData } = useContext(AuthContext);
+
   const { md } = useBreakpoint();
+
   const [visible, setVisible] = useState(false);
-  const [page, setPage] = useState(<Orders />);
+  const [isLoading, setLoading] = useState(false);
+  const [providerDetails, setProviderDetails] = useState(null);
   const [title, setTitle] = useState('Orders');
+  const [switchLoading, setSwitchLoading] = useState(false);
+  const [orderRefresh, setOrderRefresh] = useState(false);
+  const [infoRefresh, setInfoRefresh] = useState(false);
+
+  useEffect(() => {
+    let unmounted = true;
+    (async () => {
+      try {
+        setLoading(true);
+        const { data } = await Axios.get('/api/v1/provider/information');
+        if (unmounted) {
+          setLoading(false);
+          setProviderDetails(data.data[0]);
+        }
+      } catch (error) {
+        message.error('Something went wrong!');
+        setLoading(false);
+      }
+    })();
+    return () => {
+      unmounted = false;
+    };
+  }, [infoRefresh]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -34,25 +73,33 @@ const DashboardProvider = () => {
   const onClose = () => {
     setVisible(false);
   };
+
   const handleChangMenu = (e) => {
     if (e.key === '1') {
-      setPage(<Orders />);
       setTitle('Orders');
     } else if (e.key === '2') {
-      setPage(<Notifications />);
       setTitle('Notifications');
     } else if (e.key === '3') {
-      setPage(<Profile />);
       setTitle('Profile');
     }
   };
 
-  const availability = async (checked) => {
+  const handleOrderRefresh = () => {
+    setOrderRefresh(!orderRefresh);
+  };
+
+  const handleAvailability = async () => {
     try {
+      setSwitchLoading(true);
       await Axios.patch('/api/v1/provider/availability');
-      console.log(checked);
+      setInfoRefresh(!infoRefresh);
+      setSwitchLoading(false);
+      message.destroy();
+      message.success('your status updated successfully');
     } catch (err) {
-      message.error('Something went wrong!');
+      message.destroy();
+      message.error(err.response.data.message);
+      setSwitchLoading(false);
     }
   };
 
@@ -60,14 +107,14 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
-          <Avatar size={100} />
-          <Text>name</Text>
+          <Avatar srcImg={userData.avatar} size={100} />
+
+          <Text strong={false} level={3}>
+            {userData?.username}
+          </Text>
+          <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
         </div>
-        <Menu
-          onClick={handleChangMenu}
-          mode="inline"
-          defaultSelectedKeys={['1']}
-        >
+        <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys="1">
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
             Orders
           </Menu.Item>
@@ -83,7 +130,11 @@ const DashboardProvider = () => {
       <div>
         <div className="available">
           <span> Available ?</span>
-          <Switch onChange={availability} />
+          <Switch
+            onChange={handleAvailability}
+            loading={isLoading || switchLoading}
+            checked={providerDetails?.availability}
+          />
         </div>
         <LogoutComponent dashBoard={true} />
       </div>
@@ -91,12 +142,12 @@ const DashboardProvider = () => {
   );
   return (
     <Layout className="layout">
-      {md ? mySider : null}
+      {md && mySider}
 
       <Layout className="site-layout">
         <Content className="site-layout-background">
           <div className="layoutHeder">
-            {!md ? (
+            {!md && (
               <>
                 <MenuOutlined onClick={showDrawer} />
                 <Drawer
@@ -109,13 +160,15 @@ const DashboardProvider = () => {
                   {mySider}
                 </Drawer>
               </>
-            ) : null}
+            )}
             <Text>{title}</Text>
             <div className="bell">
-              <BellFilled />
+              <SyncOutlined onClick={handleOrderRefresh} />
             </div>
           </div>
-          {page}
+          {title === 'Orders' && <Orders refresh={orderRefresh} />}
+          {title === 'Notifications' && <Notifications />}
+          {title === 'Profile' && <Profile refresh={infoRefresh} />}
         </Content>
       </Layout>
     </Layout>
