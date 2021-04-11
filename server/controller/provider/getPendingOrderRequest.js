@@ -1,9 +1,13 @@
-const { getPendingOrderRequest } = require('../../database/queries');
+const {
+  getPendingOrderRequest,
+  getProviderDataById,
+} = require('../../database/queries');
 
 const getPendingOrderRequestController = async (req, res, next) => {
   try {
     const { id: providerId } = req.user;
-    const { rows } = await getPendingOrderRequest(providerId);
+    const { rows: provider } = await getProviderDataById({ id: providerId });
+    const { rows } = await getPendingOrderRequest(provider[0].id);
 
     res.json({
       statusCode: 200,
