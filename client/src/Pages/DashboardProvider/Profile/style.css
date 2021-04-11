@@ -8,3 +8,15 @@
 .selectItem{
     display: flex;
 }
+.profileForm .ant-select{
+    width: 100%  !important;
+}
+.profileForm .ant-input-number{
+    width: 100%;
+}
+/* .locationService{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+} */
