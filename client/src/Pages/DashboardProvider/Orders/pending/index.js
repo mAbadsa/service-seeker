@@ -38,7 +38,7 @@ function PendingProvider({ data, refresh }) {
     <div>
       {error && <Alert type="error" />}
       <TableComponent
-        ColumnsType={'providerOrderPending'}
+        ColumnsType="providerOrderPending"
         dataSource={data}
         onActions={[handleAcceptOrder, handleCancelOrder, () => isLoading]}
       />
