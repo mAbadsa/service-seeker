@@ -1,4 +1,4 @@
-const connection = require('../connection');
+const connection = require('../../config/connection');
 
 const updateProfileProviders = (users, providers) => {
   const sql = {
