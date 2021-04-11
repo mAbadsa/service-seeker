@@ -63,7 +63,11 @@ const AcceptOrderModal = ({ handelChange, handelClick, ...rest }) => (
           }}
         >
           <Col>
-            <Input type="text" handelChange={handelChange} />
+            <Input
+              placeholder="enter time of arrival"
+              type="text"
+              handelChange={handelChange}
+            />
           </Col>
         </Row>
         <Row
