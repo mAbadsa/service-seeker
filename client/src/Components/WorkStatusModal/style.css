@@ -1,3 +1,13 @@
+.WorkStatusModal {
+  padding: 3rem 4rem;
+}
+
+.WorkStatusModal h3 {
+  text-align: center;
+  font-weight: bold;
+  color: #5C5C5C;
+}
+
 .image-container {
   position: relative;
   min-height: 250px;
@@ -22,16 +32,21 @@
   text-align: center;
 }
 
-/* .Orders-card__username{
+.avatar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.WorkStatusModal-username{
   display: block;
   text-align: center;
   width: 180px;
   font-size: 22px !important;
-} */
+}
 
-/* .Orders .Orders-card {
-  margin: 10rem 2rem 1.5rem;
-} */
+.ant-typography {
+  font-size: 18px;
+}
 
 @media only screen and (max-width: 768px) {
   .image-container {

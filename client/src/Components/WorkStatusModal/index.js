@@ -5,7 +5,7 @@ import { Row, Col, Typography, Modal } from 'antd';
 
 import './style.css';
 
-const { Text, Paragraph } = Typography;
+const { Text, Paragraph, Title } = Typography;
 
 const WorkStatusModal = ({
   data: { username, avatar, location, mobile, description, date },
@@ -25,8 +25,16 @@ const WorkStatusModal = ({
       }}
       {...reset}
     >
-      <Row className="" gutter={[16, 16]}>
-        <Col xs={24} sm={24} md={8}>
+      <Row
+        className="WorkStatusModal"
+        gutter={[16, 16]}
+        justify="center"
+        align="middle"
+      >
+        <Col span="24">
+          <Title level={3}>Job details</Title>
+        </Col>
+        <Col className="avatar-container" xs={24} sm={24} md={7}>
           <div
             className="image-container"
             style={{
@@ -35,30 +43,29 @@ const WorkStatusModal = ({
               backgroundSize: 'cover',
             }}
           >
-            <Text strong={true} ellipsis>
-              {/* {serviceType} */}
+            <Text className="WorkStatusModal-username" strong={true} ellipsis>
+              {username}
             </Text>
           </div>
-          <Text className="" strong={true} ellipsis>
-            {username}
-          </Text>
         </Col>
-        <Col xm={24} md={16} className="Orders-card__details">
+        <Col xm={24} md={17} className="">
           <div className="modal-details">
-            <Text level={5}>Phone No.:</Text>
-            <Text level={5}>{mobile}</Text>
+            <Text strong>Phone No.: </Text>
+            <Text>{mobile}</Text>
           </div>
           <div className="modal-details">
-            <Text level={5}>Location:</Text>
-            <Text level={5}>{location}</Text>
+            <Text strong>Location: </Text>
+            <Text>{location}</Text>
           </div>
           <div className="modal-details">
-            <Text level={5}>Description:</Text>
-            <Paragraph level={5}>{description}</Paragraph>
+            <Text strong>Description: </Text>
+            <Paragraph level={5} ellipsis>
+              {description}
+            </Paragraph>
           </div>
           <div className="modal-details">
-            <Text level={5}>Time:</Text>
-            <Text level={5}>{date}</Text>
+            <Text strong>Time: </Text>
+            <Text>{date}</Text>
           </div>
         </Col>
         <Col span={24}>{children}</Col>
