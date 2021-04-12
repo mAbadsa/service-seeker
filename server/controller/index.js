@@ -6,6 +6,7 @@ const {
   getPendingOrderRequestController,
   postOrderController,
   providerDataController,
+  updateProviderController,
 } = require('./provider');
 const {
   loginController,
@@ -35,4 +36,5 @@ module.exports = {
   updateAvailabilityController,
   getAcceptedOrdersController,
   providerDataController,
+  updateProviderController,
 };
