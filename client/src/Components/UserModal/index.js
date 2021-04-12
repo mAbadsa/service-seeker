@@ -31,6 +31,9 @@ const OrderModal = ({
         padding: 0,
       }}
       closable
+      style={{
+        top: 20,
+      }}
       {...reset}
     >
       <Row className="Orders" gutter={[16, 16]}>
