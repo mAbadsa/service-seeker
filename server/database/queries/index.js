@@ -14,6 +14,8 @@ const {
   postOrder,
   updateStateOrderRequest,
   getProviderDataById,
+  getOrderReqByOrderIdQuery,
+  updateOrderStateQuery,
 } = require('./provider');
 
 module.exports = {
@@ -30,4 +32,6 @@ module.exports = {
   getAcceptedOrders,
   getProviderDataById,
   isAlreadyHeired,
+  updateOrderStateQuery,
+  getOrderReqByOrderIdQuery,
 };

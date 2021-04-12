@@ -6,6 +6,8 @@ const updateStateOrderRequest = require('./updateStateOrderReq');
 const postOrder = require('./insertOrder');
 const getPendingOrderRequest = require('./getPendingOrderRequest');
 const getProviderDataById = require('./getProviderById');
+const getOrderReqByOrderIdQuery = require('./getOrderReqByOrderId');
+const updateOrderStateQuery = require('./updateOrderState');
 
 module.exports = {
   getAllProviders,
@@ -16,4 +18,6 @@ module.exports = {
   postOrder,
   getPendingOrderRequest,
   getProviderDataById,
+  getOrderReqByOrderIdQuery,
+  updateOrderStateQuery,
 };
