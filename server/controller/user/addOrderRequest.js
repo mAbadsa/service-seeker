@@ -1,5 +1,5 @@
 const { addOrderRequest, isAlreadyHeired } = require('../../database/queries');
-const { boomify } = require('../../utils');
+const { boomify, sendNotification } = require('../../utils');
 
 const userOrderRequest = async (req, res, next) => {
   const { id: userId } = req.user;
@@ -21,6 +21,7 @@ const userOrderRequest = async (req, res, next) => {
       userId,
       ...req.body,
     });
+    sendNotification(userId, providerId, 'addOrderReq');
 
     res.status(201).json({
       statusCode: 201,
