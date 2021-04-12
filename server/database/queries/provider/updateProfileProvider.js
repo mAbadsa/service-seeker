@@ -1,19 +1,33 @@
 const connection = require('../../config/connection');
 
-const updateProfileProviders = (
+const updateProfileProviders = async ({
   title,
   bio,
-  price_hour,
-  cover_image,
-  service_type,
-  id
-) => {
-  const sql = {
-    text:
-      'UPDATE providers SET title=COALESCE($1,title),bio=COALESCE($2,bio),price_hour= COALESCE($3,price_hour),cover_image=COALESCE($4,cover_image),service_type=COALESCE($5,service_type) WHERE id=$6 returning * ',
-    values: [title, bio, price_hour, cover_image, service_type, id],
-  };
-  return connection.query(sql);
-};
+  price_hour: priceHour,
+  cover_image: coverImage,
+  service_type: serviceType,
+  avatar,
+  mobile,
+  location,
+  id,
+}) => {
+  try {
+    await connection.query('BEGIN TRANSACTION');
+    const updateProvider = await connection.query({
+      text:
+        'UPDATE providers SET title=$1,bio=$2,price_hour=$3,cover_image=$4,service_type=$5 WHERE user_id=$6 ;',
+      values: [title, bio, priceHour, coverImage, serviceType, id],
+    });
+    const userUpdate = await connection.query({
+      text: 'UPDATE users set location=$1 ,mobile=$2 ,avatar=$3 WHERE id=$4 ;',
+      values: [location, mobile, avatar, id],
+    });
 
+    await connection.query('COMMIT');
+    return { updateProvider, userUpdate };
+  } catch (e) {
+    await connection.query('ROLLBACK');
+    throw e;
+  }
+};
 module.exports = updateProfileProviders;
