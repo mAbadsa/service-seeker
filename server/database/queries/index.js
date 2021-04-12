@@ -6,6 +6,9 @@ const {
   getUserOrdersReqQuery,
   deleteOrderReq,
   isAlreadyHeired,
+  getUserData,
+  getUserNotificationsQueries,
+  addUserNotification,
 } = require('./user');
 const {
   createNewProvider,
@@ -30,4 +33,7 @@ module.exports = {
   getAcceptedOrders,
   getProviderDataById,
   isAlreadyHeired,
+  getUserData,
+  getUserNotificationsQueries,
+  addUserNotification,
 };
