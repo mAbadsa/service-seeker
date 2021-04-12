@@ -1,0 +1,40 @@
+.image-container {
+  position: relative;
+  min-height: 250px;
+  width: 180px;
+  border-radius: 3px;
+}
+
+.image-container span {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  width: 100%;
+  background-color: #f0b240af;
+  color: #f5f5f5;
+  bottom: 0;
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  left: calc(50% - 50%);
+  text-align: center;
+}
+
+/* .Orders-card__username{
+  display: block;
+  text-align: center;
+  width: 180px;
+  font-size: 22px !important;
+} */
+
+/* .Orders .Orders-card {
+  margin: 10rem 2rem 1.5rem;
+} */
+
+@media only screen and (max-width: 768px) {
+  .image-container {
+    margin: 0 auto;
+  }
+}
