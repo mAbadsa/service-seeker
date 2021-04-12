@@ -13,7 +13,7 @@ const {
   getAcceptedOrders,
   postOrder,
   updateStateOrderRequest,
-  updateProfileProviders,
+  updateProvider,
   getProviderDataById,
 } = require('./provider');
 
@@ -29,7 +29,7 @@ module.exports = {
   getUserOrdersQuery,
   getUserOrdersReqQuery,
   getAcceptedOrders,
-  updateProfileProviders,
+  updateProvider,
   getProviderDataById,
   isAlreadyHeired,
 };

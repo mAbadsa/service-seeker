@@ -6,7 +6,7 @@ const {
   postOrderController,
   getAcceptedOrdersController,
   providerDataController,
-  updateProfileController,
+  updateProviderController,
 } = require('../controller');
 
 const {
@@ -15,15 +15,16 @@ const {
 } = require('../middleware/validation');
 
 router.get('/provider/information', providerDataController);
-router.get('/provider/order-requests', getPendingOrderRequestController);
-router.patch('/provider/availability', updateAvailabilityController);
 router.patch(
   '/provider/information',
   profileValidation,
-  updateProfileController
+  updateProviderController
 );
+router.patch('/provider/availability', updateAvailabilityController);
 
 router.get('/provider/order-requests', getPendingOrderRequestController);
+router.get('/provider/order-requests', getPendingOrderRequestController);
+
 router.post('/provider/orders', orderAcceptValidation, postOrderController);
 router.get('/provider/orders', getAcceptedOrdersController);
 
