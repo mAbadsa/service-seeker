@@ -16,6 +16,7 @@ const {
   getAcceptedOrders,
   postOrder,
   updateStateOrderRequest,
+  updateProvider,
   getProviderDataById,
 } = require('./provider');
 
@@ -31,6 +32,7 @@ module.exports = {
   getUserOrdersQuery,
   getUserOrdersReqQuery,
   getAcceptedOrders,
+  updateProvider,
   getProviderDataById,
   isAlreadyHeired,
   getUserData,
