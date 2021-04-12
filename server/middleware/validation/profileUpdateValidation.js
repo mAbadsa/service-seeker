@@ -1,4 +1,4 @@
-const { object, string } = require('yup');
+const { object, string, number } = require('yup');
 
 const profileValidation = async (req, res, next) => {
   try {
@@ -14,14 +14,14 @@ const profileValidation = async (req, res, next) => {
     } = req.body;
 
     const profileSchema = object().shape({
-      title: string().required(),
-      bio: string().required(),
-      priceHour: string().required(),
-      coverImage: string().required(),
+      title: string().required('Must be character').min(3),
+      bio: string().required('Must be character').min(20),
+      priceHour: number().required('Must be Number').positive(),
+      coverImage: string().required().url(),
       serviceType: string().required(),
       location: string().required(),
       mobile: string().required(),
-      avatar: string().required(),
+      avatar: string().required().url(),
     });
 
     await profileSchema.validate(

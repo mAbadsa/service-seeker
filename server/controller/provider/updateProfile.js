@@ -1,6 +1,6 @@
 const { updateProfileProviders } = require('../../database/queries/provider');
 
-const updateProfileProviderController = async (req, res, next) => {
+const updateProfileController = async (req, res, next) => {
   try {
     const { id } = req.user;
 
@@ -15,4 +15,4 @@ const updateProfileProviderController = async (req, res, next) => {
   }
 };
 
-module.exports = updateProfileProviderController;
+module.exports = updateProfileController;

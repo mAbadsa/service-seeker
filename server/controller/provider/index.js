@@ -4,7 +4,7 @@ const getPendingOrderRequestController = require('./getPendingOrderRequest');
 const getAcceptedOrdersController = require('./getAcceptedOrders');
 const postOrderController = require('./postOrder');
 const providerDataController = require('./getProviderData');
-const updateProfileProviderController = require('./updateProfile');
+const updateProfileController = require('./updateProfile');
 
 module.exports = {
   providersListController,
@@ -13,5 +13,5 @@ module.exports = {
   getAcceptedOrdersController,
   postOrderController,
   providerDataController,
-  updateProfileProviderController,
+  updateProfileController,
 };

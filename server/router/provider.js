@@ -6,7 +6,7 @@ const {
   postOrderController,
   getAcceptedOrdersController,
   providerDataController,
-  updateProfileProviderController,
+  updateProfileController,
 } = require('../controller');
 
 const {
@@ -18,9 +18,9 @@ router.get('/provider/information', providerDataController);
 router.get('/provider/order-requests', getPendingOrderRequestController);
 router.patch('/provider/availability', updateAvailabilityController);
 router.patch(
-  '/provider/profile',
+  '/provider/information',
   profileValidation,
-  updateProfileProviderController
+  updateProfileController
 );
 
 router.get('/provider/order-requests', getPendingOrderRequestController);
