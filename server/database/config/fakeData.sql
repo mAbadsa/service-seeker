@@ -114,18 +114,18 @@ VALUES(
 INSERT INTO orders(
     orders_request_id,
       start_date,
-    pasued_date,
+    paused_date,
     state,
     arrive_time,
-    houer_number,
+    hour_number,
     resources_price,
     total_bill_price
   )VALUES(
     2,
     null,
     null,
-    'accepted',
-    '16:10:45',
+    'Pause',
+    null,
     null,
     null,
     null
@@ -133,7 +133,7 @@ INSERT INTO orders(
     3,
     '2021-04-15 14:30:10',
     '2021-04-15 15:20:10',
-    'finished',
+    'Pause',
     '13:20:10',
     6.2,
     100.6,

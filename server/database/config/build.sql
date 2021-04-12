@@ -38,10 +38,10 @@ CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     orders_request_id INTEGER REFERENCES orders_request(id) ON UPDATE CASCADE NOT NULL,
     start_date TIMESTAMP,
-    pasued_date TIMESTAMP,
+    paused_date TIMESTAMP,
     state VARCHAR(55),
     arrive_time TIME(6),
-    houer_number FLOAT,
+    hour_number FLOAT,
     resources_price FLOAT,
     total_bill_price FLOAT
 );
