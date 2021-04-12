@@ -77,8 +77,8 @@ const CommonCard = ({
             handelClick={onclick}
             type="primary"
             className="initial-style fourthButton hireBtn"
-            onClick={(e) => {
-              showModal(e);
+            onClick={() => {
+              showModal();
               getProviderById(id);
             }}
           >
