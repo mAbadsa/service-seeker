@@ -6,6 +6,7 @@ const deleteOrderReqController = require('./deleteOrderRequest');
 const userOrderRequest = require('./addOrderRequest');
 const getUserOrdersController = require('./getUserOrders');
 const getUserOrdersReqController = require('./getUserOrdersReq');
+const getUserNotificationsController = require('./getUserNotifications');
 
 module.exports = {
   signupController,
@@ -16,4 +17,5 @@ module.exports = {
   userOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
+  getUserNotificationsController,
 };

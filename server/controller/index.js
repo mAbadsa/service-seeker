@@ -16,6 +16,7 @@ const {
   userOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
+  getUserNotificationsController,
 } = require('./user');
 
 module.exports = {
@@ -35,4 +36,5 @@ module.exports = {
   updateAvailabilityController,
   getAcceptedOrdersController,
   providerDataController,
+  getUserNotificationsController,
 };
