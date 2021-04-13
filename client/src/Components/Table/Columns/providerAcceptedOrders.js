@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import Avatar from '../../Avatar';
 
-import {} from '@ant-design/icons';
+import getStatusColor from '../../../Utils/getStatusColor';
 
 export default () => [
   {
@@ -67,5 +67,21 @@ export default () => [
     title: 'Status',
     dataIndex: 'status',
     key: 'status',
+    width: '12%',
+    fixed: 'right',
+    render(text) {
+      const color = getStatusColor(text);
+
+      return (
+        <p
+          style={{
+            color,
+            margin: 0,
+          }}
+        >
+          {text}
+        </p>
+      );
+    },
   },
 ];
