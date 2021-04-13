@@ -7,6 +7,7 @@ const {
   getUserOrdersReqController,
   getUserOrdersController,
   deleteOrderReqController,
+  getUserNotificationsController,
 } = require('../controller');
 
 router.get('/is-auth', isAuthController);
@@ -20,5 +21,7 @@ router.post(
 router.delete('/user/order-requests/:orderReqId', deleteOrderReqController);
 // user order endpoints
 router.get('/user/orders', getUserOrdersController);
+// User Notifications
+router.get('/user/notifications', getUserNotificationsController);
 
 module.exports = router;
