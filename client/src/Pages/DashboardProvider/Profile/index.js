@@ -1,79 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { Upload, Form, Input, InputNumber, Row, Col } from 'antd';
+import Axios from 'axios';
+import { Form, Input, Row, Col, message, Alert } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
 import './style.css';
+import handelError from '../../../Utils/errorHandel';
 
 const { TextArea } = Input;
-const Profile = (props) => {
-  const [fileList, setFileList] = useState([]);
-  const { providerDetails, userData } = props;
-  const [state, setState] = useState({
-    previewVisible: false,
-    previewImage: '',
-    previewTitle: '',
-    fileList: [],
-    uploading: false,
-  });
-  useEffect(() => {
-    if (providerDetails?.cover_image) {
-      const newImage = [
-        {
-          uid: 1,
-          name: providerDetails?.cover_image.substring(
-            providerDetails?.cover_image.lastIndexOf('/') + 1
-          ),
-          status: 'done',
-          url: providerDetails?.cover_image,
-        },
-      ];
-      setFileList(newImage);
-    }
-  }, [providerDetails?.cover_image]);
-  const handleUploadPhotos = (file) => {
-    console.log(file);
-  };
-  const handlePreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow.document.write(image.outerHTML);
-  };
-  const onRemove = () => {
-    setFileList([]);
-  };
-  const handleChange = ({ file }) => {
-    if (file.status === 'uploading') {
-      setState({
-        ...state,
-        uploading: true,
-      });
+const Profile = ({ providerDetails, userData }) => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const onFinish = async (information) => {
+    try {
+      setLoading(true);
+      setError(null);
+      await Axios.patch('/api/v1/provider/information', information);
+      setLoading(false);
+      message.destroy();
+      message.success('your information updated successfully');
+    } catch (err) {
+      setLoading(false);
+      handelError(setError, err);
     }
   };
-  console.log(props);
+
   return (
     <div className="profileForm ">
-      <Form>
+      <Form onFinish={onFinish}>
         <Row gutter={[16, 16]} type="flex" justify="center">
           <Col span={16}>
             <Form.Item
               label="Title"
               initialValue={providerDetails?.title}
               name="title"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Title!',
+                },
+                {
+                  min: 3,
+                  message: 'Title must be at least 8 characters.',
+                },
+              ]}
             >
-              <Input />
+              <Input placeholder="please enter your Title" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -81,8 +56,18 @@ const Profile = (props) => {
               label="Bio"
               initialValue={providerDetails?.bio}
               name="bio"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Bio!',
+                },
+                {
+                  min: 20,
+                  message: 'Bio must be at least 8 characters.',
+                },
+              ]}
             >
-              <TextArea rows={4} />
+              <TextArea rows={4} placeholder="please enter your Bio" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -90,8 +75,18 @@ const Profile = (props) => {
               label="mobile"
               initialValue={userData?.mobile}
               name="mobile"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Mobile!',
+                },
+                {
+                  min: 8,
+                  message: 'Mobile must be at least 8 characters.',
+                },
+              ]}
             >
-              <Input />
+              <Input placeholder="please enter your Mobile as 059-xxxx-xxx" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -99,8 +94,14 @@ const Profile = (props) => {
               label="Price"
               initialValue={providerDetails?.price_hour}
               name="price_hour"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Price!',
+                },
+              ]}
             >
-              <InputNumber />
+              <Input placeholder="please enter your Price" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -115,7 +116,6 @@ const Profile = (props) => {
                     placeholder="location"
                     options={locations}
                     type="Location"
-                    location
                   />
                 </Form.Item>
               </Col>
@@ -129,7 +129,6 @@ const Profile = (props) => {
                     placeholder="service"
                     options={serviceTypes}
                     type="Service"
-                    service
                   />
                 </Form.Item>
               </Col>
@@ -138,30 +137,32 @@ const Profile = (props) => {
 
           <Col span={16}>
             <Form.Item
-              label="job caver"
+              label="Image"
               initialValue={providerDetails?.cover_image}
               name="cover_image"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your cover image!',
+                },
+              ]}
             >
-              <Upload
-                action={(file) => handleUploadPhotos(file)}
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-                onRemove={onRemove}
-                accept="image/png, image/jpg, image/jpeg"
-              >
-                {fileList.length === 1 ? null : <Button>Upload</Button>}
-              </Upload>
-              ‏
+              <Input placeholder="Enter your cover image url" />
             </Form.Item>
           </Col>
 
-          <Col span={12}>
-            <Button className="sixthButton">Button</Button>
+          <Col span={16}>
+            <Button
+              className="fourthButton"
+              htmlType="submit"
+              loading={loading}
+            >
+              save
+            </Button>
           </Col>
         </Row>
       </Form>
+      {error && <Alert type="error" message={error} />}
     </div>
   );
 };
