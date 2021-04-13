@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
 
 import PendingProvider from './pendingOrderRequest';
+import AcceptedOrders from './acceptedOrders';
 
 const { TabPane } = Tabs;
 
@@ -14,7 +15,7 @@ const Orders = ({ refresh }) => (
         <PendingProvider refresh={refresh} />
       </TabPane>
       <TabPane tab="Orders" key="2">
-        <p>Nothing here, Go out!</p>
+        <AcceptedOrders refresh={refresh} />
       </TabPane>
     </Tabs>
   </div>
