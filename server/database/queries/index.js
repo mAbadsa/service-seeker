@@ -3,6 +3,9 @@ const {
   checkUserByEmail,
   getUserOrdersQuery,
   getUserOrdersReqQuery,
+  getUserData,
+  getUserNotificationsQueries,
+  addUserNotification,
 } = require('./user');
 
 const {
@@ -12,13 +15,13 @@ const {
 } = require('./provider');
 
 const {
-  getPendingOrderRequest,
-  getAcceptedOrders,
-  postOrder,
-  updateStateOrderRequest,
   deleteOrderReq,
   addOrderRequest,
   isAlreadyHeired,
+  getAcceptedOrders,
+  updateStateOrderRequest,
+  postOrder,
+  getPendingOrderRequest,
 } = require('./order');
 
 module.exports = {
@@ -36,4 +39,7 @@ module.exports = {
   updateProvider,
   getProviderDataById,
   isAlreadyHeired,
+  getUserData,
+  getUserNotificationsQueries,
+  addUserNotification,
 };
