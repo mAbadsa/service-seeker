@@ -6,12 +6,16 @@ import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import TableComponent from '../../../../Components/Table';
+import WorkStatusModal from '../../../../Components/WorkStatusModal';
 
 const { confirm } = Modal;
 
 const PendingProvider = ({ refresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [jobDetails, setJobDetails] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     let unmounted = true;
     (async () => {
@@ -62,12 +66,26 @@ const PendingProvider = ({ refresh, ...rest }) => {
     }
   };
 
-  const handleMoreDetails = () => {
-    // open popup modal
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleMoreDetails = (_1, _2, record) => {
+    setJobDetails(record);
+    handleShowModal();
   };
 
   return (
     <div>
+      <WorkStatusModal
+        data={jobDetails}
+        visible={showModal}
+        onCancel={handleCloseModal}
+      />
       <TableComponent
         ColumnsType="providerOrderPending"
         dataSource={ordersData?.map(
