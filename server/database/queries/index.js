@@ -3,6 +3,9 @@ const {
   checkUserByEmail,
   getUserOrdersQuery,
   getUserOrdersReqQuery,
+  getUserData,
+  getUserNotificationsQueries,
+  addUserNotification,
 } = require('./user');
 const {
   createNewProvider,
@@ -35,4 +38,7 @@ module.exports = {
   updateProvider,
   getProviderDataById,
   isAlreadyHeired,
+  getUserData,
+  getUserNotificationsQueries,
+  addUserNotification,
 };
