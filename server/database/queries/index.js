@@ -1,21 +1,24 @@
 const {
   createNewUser,
   checkUserByEmail,
-  addOrderRequest,
   getUserOrdersQuery,
   getUserOrdersReqQuery,
-  deleteOrderReq,
-  isAlreadyHeired,
 } = require('./user');
 const {
   createNewProvider,
-  getPendingOrderRequest,
-  getAcceptedOrders,
-  postOrder,
-  updateStateOrderRequest,
   updateProvider,
   getProviderDataById,
 } = require('./provider');
+
+const {
+  deleteOrderReq,
+  addOrderRequest,
+  isAlreadyHeired,
+  getAcceptedOrders,
+  updateStateOrderRequest,
+  postOrder,
+  getPendingOrderRequest,
+} = require('./order');
 
 module.exports = {
   createNewUser,
