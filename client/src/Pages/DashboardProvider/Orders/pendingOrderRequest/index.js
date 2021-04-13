@@ -19,6 +19,9 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const [cancelError, setCancelError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [orderID, setOrderID] = useState(null);
+  const [successful, setSuccess] = useState(null);
+  const [time, setTime] = useState(null);
+
   const clearError = () => {
     setCancelError(null);
     setAcceptError(null);
@@ -73,16 +76,21 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+  const onChange = (_, timeString) => {
+    setTime(timeString);
+  };
 
-  const handleClickAccept = async ({ arriveTime }) => {
+  const handleClickAccept = async () => {
     try {
       clearError();
+
       await Axios.post('/api/v1/provider/orders', {
-        arriveTime,
+        arriveTime: time,
         orderID,
       });
-      clearError();
+      setOrdersData(ordersData.filter(({ id }) => id !== orderID));
       setShowModal(false);
+      setSuccess('order accepted successfully');
     } catch (err) {
       message.error('Something went wrong!');
     }
@@ -93,11 +101,13 @@ const PendingProvider = ({ refresh, ...rest }) => {
       <AcceptOrderModal
         visible={showModal}
         onCancel={handleCloseModal}
-        handleFinish={handleClickAccept}
+        onClick={handleClickAccept}
+        onChange={onChange}
       />
       {error && <Alert type="error" message={error} />}
       {acceptError && <Alert type="error" message={acceptError} />}
       {cancelError && <Alert type="error" message={cancelError} />}
+      {successful && <Alert type="success" message={successful} />}
       <TableComponent
         ColumnsType="providerOrderPending"
         dataSource={ordersData?.map(

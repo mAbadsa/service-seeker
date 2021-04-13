@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import { Row, Col, Typography, Modal, Form, TimePicker } from 'antd';
+import { Row, Col, Typography, Modal, TimePicker } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 
 import Button from '../../../../Components/Button';
@@ -12,7 +12,7 @@ import './style.css';
 const { Text } = Typography;
 const format = 'HH:mm';
 
-const AcceptOrderModal = ({ handleFinish, ...rest }) => (
+const AcceptOrderModal = ({ onChange, onClick, ...rest }) => (
   <Modal
     width={600}
     footer={null}
@@ -59,67 +59,40 @@ const AcceptOrderModal = ({ handleFinish, ...rest }) => (
           justify="center"
           style={{
             width: 'fit-content',
+            height: '75%',
             margin: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          <Form
-            name="accept-form"
-            onFinish={handleFinish}
+          <Row
+            justify="center"
             style={{
-              height: '100%',
+              width: 'fit-content',
+              margin: 'auto',
             }}
           >
-            <Form.Item
-              name="arriveTime"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your time of arrival!',
-                },
-              ]}
-              style={{
-                height: 'fit-content',
-                width: 'fit-content',
-                margin: 'auto',
-              }}
-            >
-              <Row
-                justify="center"
-                style={{
-                  width: 'fit-content',
-                  margin: 'auto',
-                }}
-              >
-                <Col>
-                  <TimePicker
-                    defaultValue={moment('12:08', format)}
-                    format={format}
-                  />
-                </Col>
-              </Row>
-            </Form.Item>
-            <Form.Item
-              style={{
-                height: 'fit-content',
-                width: 'fit-content',
-                margin: 'auto',
-              }}
-            >
-              <Row
-                justify="center"
-                style={{
-                  width: 'fit-content',
-                  margin: 'auto',
-                }}
-              >
-                <Col>
-                  <Button htmlType="submit" icon={<CheckOutlined />}>
-                    Accept
-                  </Button>
-                </Col>
-              </Row>
-            </Form.Item>
-          </Form>
+            <Col>
+              <TimePicker
+                onChange={onChange}
+                defaultValue={moment()}
+                format={format}
+              />
+            </Col>
+          </Row>
+          <Row
+            justify="center"
+            style={{
+              width: 'fit-content',
+              margin: 'auto',
+            }}
+          >
+            <Col>
+              <Button onClick={onClick} icon={<CheckOutlined />}>
+                Accept
+              </Button>
+            </Col>
+          </Row>
         </Row>
       </Col>
     </Row>
@@ -127,7 +100,8 @@ const AcceptOrderModal = ({ handleFinish, ...rest }) => (
 );
 
 AcceptOrderModal.propTypes = {
-  handleFinish: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default AcceptOrderModal;
