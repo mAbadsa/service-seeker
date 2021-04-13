@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Row, Col, Typography, Modal } from 'antd';
+import { Row, Col, Typography, Modal, Form } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 
 import Input from '../../../../Components/Input';
@@ -12,7 +12,7 @@ import './style.css';
 
 const { Text } = Typography;
 
-const AcceptOrderModal = ({ handelChange, handelClick, ...rest }) => (
+const AcceptOrderModal = ({ handleFinish, ...rest }) => (
   <Modal
     width={600}
     footer={null}
@@ -62,26 +62,61 @@ const AcceptOrderModal = ({ handelChange, handelClick, ...rest }) => (
             margin: 'auto',
           }}
         >
-          <Col>
-            <Input
-              placeholder="enter time of arrival"
-              type="text"
-              handelChange={handelChange}
-            />
-          </Col>
-        </Row>
-        <Row
-          justify="center"
-          style={{
-            width: 'fit-content',
-            margin: 'auto',
-          }}
-        >
-          <Col>
-            <Button handelClick={handelClick} icon={<CheckOutlined />}>
-              Accept
-            </Button>
-          </Col>
+          <Form
+            name="accept-form"
+            onFinish={handleFinish}
+            style={{
+              height: '100%',
+            }}
+          >
+            <Form.Item
+              name="arriveTime"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your time of arrival!',
+                },
+              ]}
+              style={{
+                height: 'fit-content',
+                width: 'fit-content',
+                margin: 'auto',
+              }}
+            >
+              <Row
+                justify="center"
+                style={{
+                  width: 'fit-content',
+                  margin: 'auto',
+                }}
+              >
+                <Col>
+                  <Input placeholder="enter time of arrival" type="text" />
+                </Col>
+              </Row>
+            </Form.Item>
+            <Form.Item
+              style={{
+                height: 'fit-content',
+                width: 'fit-content',
+                margin: 'auto',
+              }}
+            >
+              <Row
+                justify="center"
+                style={{
+                  width: 'fit-content',
+                  margin: 'auto',
+                }}
+              >
+                <Col>
+                  <Button htmlType="submit" icon={<CheckOutlined />}>
+                    Accept
+                  </Button>
+                </Col>
+              </Row>
+            </Form.Item>
+          </Form>
         </Row>
       </Col>
     </Row>
@@ -89,8 +124,7 @@ const AcceptOrderModal = ({ handelChange, handelClick, ...rest }) => (
 );
 
 AcceptOrderModal.propTypes = {
-  handelChange: PropTypes.func,
-  handelClick: PropTypes.func,
+  handleFinish: PropTypes.func,
 };
 
 export default AcceptOrderModal;
