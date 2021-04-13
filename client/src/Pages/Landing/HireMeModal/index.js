@@ -20,11 +20,12 @@ function HireMeModal({ data, closeModal, ...reset }) {
   const [form] = Form.useForm();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState();
 
   const handleFinish = async (value) => {
     try {
       setIsLoading(true);
+      setError(null);
       await Axios.post('/api/v1/user/order-requests', {
         ...value,
         providerId: data.id,

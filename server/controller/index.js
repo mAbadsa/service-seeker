@@ -2,21 +2,24 @@ const { clientError, serverError } = require('./error');
 const {
   providersListController,
   updateAvailabilityController,
-  getAcceptedOrdersController,
-  getPendingOrderRequestController,
-  postOrderController,
   providerDataController,
+  updateProviderController,
 } = require('./provider');
 const {
   loginController,
   signupController,
   isAuthController,
   logoutController,
+} = require('./user');
+const {
+  getPendingOrderRequestController,
+  getAcceptedOrdersController,
+  postOrderController,
   deleteOrderReqController,
-  userOrderRequest,
+  addUserOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
-} = require('./user');
+} = require('./orders');
 
 module.exports = {
   clientError,
@@ -29,10 +32,11 @@ module.exports = {
   postOrderController,
   getPendingOrderRequestController,
   deleteOrderReqController,
-  userOrderRequest,
+  addUserOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
   updateAvailabilityController,
   getAcceptedOrdersController,
   providerDataController,
+  updateProviderController,
 };
