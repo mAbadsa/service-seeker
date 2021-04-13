@@ -37,9 +37,8 @@ function HireMeModal({ data, closeModal, ...reset }) {
         content: 'The hiring is successful',
       });
     } catch (err) {
-      if (err.response) {
-        errorHandle(setError, err);
-      }
+      form.resetFields();
+      errorHandle(setError, err);
       setIsLoading(false);
     }
   };
