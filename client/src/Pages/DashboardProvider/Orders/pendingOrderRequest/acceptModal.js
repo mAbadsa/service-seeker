@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
-import { Row, Col, Typography, Modal, Form } from 'antd';
+import { Row, Col, Typography, Modal, Form, TimePicker } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
-
-import Input from '../../../../Components/Input';
 
 import Button from '../../../../Components/Button';
 
 import './style.css';
 
 const { Text } = Typography;
+const format = 'HH:mm';
 
 const AcceptOrderModal = ({ handleFinish, ...rest }) => (
   <Modal
@@ -91,7 +91,10 @@ const AcceptOrderModal = ({ handleFinish, ...rest }) => (
                 }}
               >
                 <Col>
-                  <Input placeholder="enter time of arrival" type="text" />
+                  <TimePicker
+                    defaultValue={moment('12:08', format)}
+                    format={format}
+                  />
                 </Col>
               </Row>
             </Form.Item>
