@@ -7,7 +7,7 @@ import { Alert } from 'antd';
 import Table from '../../../../Components/Table';
 
 const AcceptedOrders = ({ refresh }) => {
-  const [acceptedOrders, setAcceptedOrders] = useState([]);
+  const [acceptedOrders, setAcceptedOrders] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState(null);
 
@@ -16,6 +16,7 @@ const AcceptedOrders = ({ refresh }) => {
     (async () => {
       try {
         setIsLoading(true);
+        setErrMsg(null);
         const { data: result } = await Axios.get('/api/v1/provider/orders');
         if (unmounted) {
           setIsLoading(false);
