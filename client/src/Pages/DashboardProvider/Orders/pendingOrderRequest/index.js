@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Axios from 'axios';
-import { Alert, Modal } from 'antd';
+import { Modal, message, Alert } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-import errorHandel from '../../../../Utils/errorHandel';
 import TableComponent from '../../../../Components/Table';
 
 import AcceptOrderModal from './acceptModal';
@@ -32,7 +31,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
     (async () => {
       try {
         setIsLoading(true);
-        clearError();
         const { data } = await Axios.get('/api/v1/provider/order-requests');
 
         if (unmounted) {
@@ -40,7 +38,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
           setOrdersData(data.data);
         }
       } catch (err) {
-        errorHandel(setError, err);
+        message.error('Something went wrong!');
         setIsLoading(false);
       }
     })();
@@ -59,11 +57,10 @@ const PendingProvider = ({ refresh, ...rest }) => {
       cancelText: 'No',
       async onOk() {
         try {
-          clearError();
           await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
           setOrdersData(ordersData.filter(({ id }) => id !== orderId));
         } catch (err) {
-          errorHandel(setCancelError, err);
+          message.error('Something went wrong!');
         }
       },
     });
@@ -89,7 +86,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
         time,
       });
     } catch (err) {
-      errorHandel(setAcceptError, err);
+      message.error('Something went wrong!');
     }
   };
 
