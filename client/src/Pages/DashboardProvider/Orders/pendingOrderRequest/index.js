@@ -18,7 +18,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const [acceptError, setAcceptError] = useState(null);
   const [cancelError, setCancelError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [time, setTime] = useState('');
   const [orderID, setOrderID] = useState(null);
   const clearError = () => {
     setCancelError(null);
@@ -75,16 +74,15 @@ const PendingProvider = ({ refresh, ...rest }) => {
     setShowModal(false);
   };
 
-  const handelChange = (e) => {
-    setTime(e.value);
-  };
-
-  const handleClickAccept = async () => {
+  const handleClickAccept = async ({ arriveTime }) => {
     try {
       clearError();
-      await Axios.post(`/api/v1/user/order-requests/${orderID}`, {
-        time,
+      await Axios.post('/api/v1/provider/orders', {
+        arriveTime,
+        orderID,
       });
+      clearError();
+      setShowModal(false);
     } catch (err) {
       message.error('Something went wrong!');
     }
@@ -95,8 +93,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       <AcceptOrderModal
         visible={showModal}
         onCancel={handleCloseModal}
-        handelChange={handelChange}
-        handelClick={handleClickAccept}
+        handleFinish={handleClickAccept}
       />
       {error && <Alert type="error" message={error} />}
       {acceptError && <Alert type="error" message={acceptError} />}
@@ -133,10 +130,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
 };
 
 PendingProvider.propTypes = {
-  data: PropTypes.array.isRequired,
-  handleCancelOrder: PropTypes.func.isRequired,
-  handleAcceptOrder: PropTypes.func.isRequired,
-  handleMoreDetails: PropTypes.func.isRequired,
   error: PropTypes.string,
   refresh: PropTypes.bool.isRequired,
 };
