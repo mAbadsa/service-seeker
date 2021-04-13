@@ -15,7 +15,7 @@ const Orders = ({ refresh }) => (
         <PendingProvider refresh={refresh} />
       </TabPane>
       <TabPane tab="Orders" key="2">
-        <AcceptedOrders />
+        <AcceptedOrders refresh={refresh} />
       </TabPane>
     </Tabs>
   </div>
