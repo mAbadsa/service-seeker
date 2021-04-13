@@ -23,7 +23,6 @@ router.patch(
 router.patch('/provider/availability', updateAvailabilityController);
 
 router.get('/provider/order-requests', getPendingOrderRequestController);
-router.get('/provider/order-requests', getPendingOrderRequestController);
 
 router.post('/provider/orders', orderAcceptValidation, postOrderController);
 router.get('/provider/orders', getAcceptedOrdersController);
