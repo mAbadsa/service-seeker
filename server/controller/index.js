@@ -10,6 +10,7 @@ const {
   signupController,
   isAuthController,
   logoutController,
+  getUserNotificationsController,
 } = require('./user');
 const {
   getPendingOrderRequestController,
@@ -38,5 +39,6 @@ module.exports = {
   updateAvailabilityController,
   getAcceptedOrdersController,
   providerDataController,
+  getUserNotificationsController,
   updateProviderController,
 };
