@@ -1,6 +1,6 @@
 const getStatusColor = (text) => {
   switch (text) {
-    case 'Didn’t start':
+    case 'started':
       return '#F97272';
     case 'finished':
       return '#13E842';
