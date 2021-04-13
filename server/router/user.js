@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { orderRequestValidation } = require('../middleware/validation');
 const {
   isAuthController,
-  userOrderRequest,
+  addUserOrderRequest,
   getUserOrdersReqController,
   getUserOrdersController,
   deleteOrderReqController,
@@ -12,7 +12,11 @@ const {
 router.get('/is-auth', isAuthController);
 // user order request endpoints
 router.get('/user/order-requests', getUserOrdersReqController);
-router.post('/user/order-requests', orderRequestValidation, userOrderRequest);
+router.post(
+  '/user/order-requests',
+  orderRequestValidation,
+  addUserOrderRequest
+);
 router.delete('/user/order-requests/:orderReqId', deleteOrderReqController);
 // user order endpoints
 router.get('/user/orders', getUserOrdersController);
