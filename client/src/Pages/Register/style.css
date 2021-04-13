@@ -68,10 +68,10 @@
   color: #5C5C5C;
 }
 
-.ant-form .ant-form-item .ant-form-item-label {
+/* .signup.ant-form .ant-form-item .ant-form-item-label {
   width: 33%;
   text-align: right;
-}
+}  */
 
 .signup-form-container .ant-form-horizontal .ant-form-item .ant-form-item-label > label {
   color: #6F6F6F;
@@ -79,12 +79,12 @@
   font-weight: 300;
 }
 
-.select-input .ant-form-item-control .ant-form-item-control-input-content {
+.signup.select-input .ant-form-item-control .ant-form-item-control-input-content {
   display: flex;
   justify-content: flex-start;
 }
 
-.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select {
+.signup.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select {
   width: 50%;
 }
 
@@ -145,6 +145,7 @@
 
   .signup .signup-form-container .signin-link {
     display: block;
+    width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
     color: inherit;

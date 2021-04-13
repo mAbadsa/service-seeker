@@ -14,9 +14,17 @@
 .profileForm .ant-input-number{
     width: 100%;
 }
-/* .locationService{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.profileForm .ant-form-item-label > label{
+    width: 100px;
+
+}
+.profileForm .ant-form-item-control{
     width: 100%;
-} */
+
+}
+.profileForm .ant-upload.ant-upload-select{
+    width: 100%;
+}
+.W100{
+    width: 80%;
+}

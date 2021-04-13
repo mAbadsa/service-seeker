@@ -10,7 +10,6 @@ const profileValidation = async (req, res, next) => {
       service_type: serviceType,
       location,
       mobile,
-      avatar,
     } = req.body;
 
     const profileSchema = object().shape({
@@ -21,7 +20,6 @@ const profileValidation = async (req, res, next) => {
       serviceType: string().required(),
       location: string().required(),
       mobile: string().required(),
-      avatar: string().required().url(),
     });
 
     await profileSchema.validate(
@@ -33,7 +31,6 @@ const profileValidation = async (req, res, next) => {
         serviceType,
         location,
         mobile,
-        avatar,
       },
       {
         abortEarly: false,
