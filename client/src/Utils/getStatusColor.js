@@ -1,9 +1,9 @@
 const getStatusColor = (text) => {
   switch (text) {
     case 'started':
-      return '#F97272';
-    case 'finished':
       return '#13E842';
+    case 'finished':
+      return '#F97272';
     case 'pause':
       return '#332A94';
     case 'accepted':
