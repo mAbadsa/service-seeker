@@ -101,10 +101,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
 };
 
 PendingProvider.propTypes = {
-  data: PropTypes.array.isRequired,
-  handleCancelOrder: PropTypes.func.isRequired,
-  handleAcceptOrder: PropTypes.func.isRequired,
-  handleMoreDetails: PropTypes.func.isRequired,
   error: PropTypes.string,
   refresh: PropTypes.bool.isRequired,
 };
