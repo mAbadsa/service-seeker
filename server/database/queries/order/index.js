@@ -15,5 +15,3 @@ module.exports = {
   postOrder,
   getPendingOrderRequest,
 };
-
-module.exports = {};

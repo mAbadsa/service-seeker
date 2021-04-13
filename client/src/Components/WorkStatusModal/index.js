@@ -83,7 +83,7 @@ WorkStatusModal.propTypes = {
     mobile: PropTypes.string,
     date: PropTypes.string,
   }),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default WorkStatusModal;

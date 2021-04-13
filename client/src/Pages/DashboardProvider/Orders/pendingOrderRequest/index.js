@@ -81,11 +81,20 @@ const PendingProvider = ({ refresh, ...rest }) => {
 
   return (
     <div>
-      <WorkStatusModal
-        data={jobDetails}
-        visible={showModal}
-        onCancel={handleCloseModal}
-      />
+      {jobDetails && (
+        <WorkStatusModal
+          data={{
+            username: jobDetails.userinfo[0],
+            location: jobDetails.location,
+            date: jobDetails.time,
+            description: jobDetails.description,
+            mobile: jobDetails.phone,
+            avatar: jobDetails.avatar,
+          }}
+          visible={showModal}
+          onCancel={handleCloseModal}
+        ></WorkStatusModal>
+      )}
       <TableComponent
         ColumnsType="providerOrderPending"
         dataSource={ordersData?.map(
@@ -119,10 +128,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
 };
 
 PendingProvider.propTypes = {
-  data: PropTypes.array.isRequired,
-  handleCancelOrder: PropTypes.func.isRequired,
-  handleAcceptOrder: PropTypes.func.isRequired,
-  handleMoreDetails: PropTypes.func.isRequired,
   error: PropTypes.string,
   refresh: PropTypes.bool.isRequired,
 };
