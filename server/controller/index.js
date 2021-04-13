@@ -4,6 +4,7 @@ const {
   updateAvailabilityController,
   providerDataController,
   updateProviderController,
+  updateCoverImageController,
 } = require('./provider');
 const {
   loginController,
@@ -41,4 +42,5 @@ module.exports = {
   providerDataController,
   getUserNotificationsController,
   updateProviderController,
+  updateCoverImageController,
 };

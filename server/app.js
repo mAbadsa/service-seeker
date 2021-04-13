@@ -4,6 +4,7 @@ const express = require('express');
 const { join } = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const { parse } = require('express-form-data'); // to parse request files (req.files)
 
 const router = require('./router');
 const { serverError, clientError } = require('./controller');
@@ -19,6 +20,7 @@ const middleware = [
     extended: false,
   }),
   cookieParser(),
+  parse(),
   express.static(join(__dirname, '..', 'client', 'build')),
   logger('dev'),
 ];

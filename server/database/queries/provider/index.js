@@ -3,7 +3,7 @@ const createNewProvider = require('./createNewProvider');
 const updateِِِAvailabilityQuery = require('./updateِِِAvailabilityQuery');
 const updateProvider = require('./updateProvider');
 const getProviderDataById = require('./getProviderById');
-const updataAvatarQuery = require('./updateِِِAvailabilityQuery');
+const updateAvatarQuery = require('./updateِِِAvailabilityQuery');
 
 module.exports = {
   getAllProviders,
@@ -11,5 +11,5 @@ module.exports = {
   updateِِِAvailabilityQuery,
   updateProvider,
   getProviderDataById,
-  updataAvatarQuery,
+  updateAvatarQuery,
 };

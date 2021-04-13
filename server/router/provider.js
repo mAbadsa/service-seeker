@@ -7,20 +7,29 @@ const {
   getAcceptedOrdersController,
   providerDataController,
   updateProviderController,
+  updateCoverImageController,
 } = require('../controller');
 
 const {
   orderAcceptValidation,
   profileValidation,
+  updateCoverImageValidation,
 } = require('../middleware/validation');
 
 router.get('/provider/information', providerDataController);
+
 router.patch(
   '/provider/information',
   profileValidation,
   updateProviderController
 );
+
 router.patch('/provider/availability', updateAvailabilityController);
+router.patch(
+  '/provider/cover-image',
+  updateCoverImageValidation,
+  updateCoverImageController
+);
 
 router.get('/provider/order-requests', getPendingOrderRequestController);
 

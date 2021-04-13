@@ -1,9 +1,9 @@
 const connection = require('../../connection');
 
-const updateAvatarQuery = (userId) => {
+const updateCoverImageQuery = (coverImage, id) => {
   connection.query({
-    text: 'UPDATE users SET avatar=$1 WHERE id=$2',
-    values: [userId],
+    text: 'UPDATE providers SET cover_image=$1 WHERE id=$2',
+    values: [coverImage, id],
   });
 };
-module.exports = updateAvatarQuery;
+module.exports = updateCoverImageQuery;
