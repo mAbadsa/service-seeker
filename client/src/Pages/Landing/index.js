@@ -64,11 +64,12 @@ const LandingPage = () => {
   };
 
   const getProviderById = (id) => {
-    message.destroy();
-    if (userData.id !== id) {
-      setModalProviderData(providers.find((item) => item.id === id));
+    setModalProviderData(providers.find((item) => item.id === id));
+    if (userData?.id === id) {
+      setShowModal(false);
+      message.destroy();
+      message.warning("You can't hire your self");
     }
-    message.warning("You can't hire your self");
   };
 
   return (

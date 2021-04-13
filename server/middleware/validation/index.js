@@ -3,6 +3,7 @@ const loginValidation = require('./login');
 const orderAcceptValidation = require('./orderProviderAccept');
 const orderRequestValidation = require('./orderRequest');
 const updateOrderStateValidation = require('./updateOrderState');
+const profileValidation = require('./profileUpdateValidation');
 
 module.exports = {
   signupValidation,
@@ -10,4 +11,5 @@ module.exports = {
   orderAcceptValidation,
   orderRequestValidation,
   updateOrderStateValidation,
+  profileValidation,
 };
