@@ -5,15 +5,14 @@ const updateArtistAvatar = async (req, res, next) => {
   try {
     const { id } = req.user;
 
-    if (req.files && req.files.profileImage) {
-      const { profileImage } = req.files;
+    if (req.files && req.files.coverImage) {
+      const { coverImage } = req.files;
 
-      if (profileImage.type.includes('image/')) {
-        const { url } = await uploadCloudinary(profileImage.path);
-        const { rowCount } = await updateCoverImageQuery(url, id);
+      if (coverImage.type.includes('image/')) {
+        const { url } = await uploadCloudinary(coverImage.path);
+        await updateCoverImageQuery(url, id);
         res.json({
           statusCode: 200,
-          data: { rowCount },
           message: 'Image added successfully',
         });
       } else {
