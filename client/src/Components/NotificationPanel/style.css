@@ -1,0 +1,38 @@
+.not-panel {
+  position: absolute;
+  display: block;
+  width: 290.55px;
+  height: 391.95px;
+  top: 73px;
+  right: 25%;
+  z-index: 2;
+  background: #ffffff;
+  box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.17);
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #5c5c5c;
+  line-height: 20px;
+  padding-bottom: 20px;
+  overflow: auto;
+}
+
+#not-panel__title {
+  font-size: 25px;
+  color: #485c73;
+  margin: 10px;
+}
+
+.not-panel__contener {
+  margin-bottom: 5px;
+}
+
+.not-panel__right {
+  text-align: left;
+  padding: 0 35px;
+}
+.not-panel__left{
+  color:#FDCB6E;
+  text-align: right;
+  padding-right: 35px;
+  margin-bottom: 5px;
+}
