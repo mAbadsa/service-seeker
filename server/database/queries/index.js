@@ -22,7 +22,13 @@ const {
   postOrder,
   getPendingOrderRequest,
   getOrderReqByOrderIdQuery,
-  updateOrderStateQuery,
+  updateOrderStatePauseQuery,
+  updateOrderStateStartQuery,
+  updateStateQuery,
+  updateOrderDurationQuery,
+  updateOrderBillQuery,
+  updateOrderResourceQuery,
+  getOrder,
 } = require('./order');
 
 module.exports = {
@@ -40,9 +46,15 @@ module.exports = {
   updateProvider,
   getProviderDataById,
   isAlreadyHeired,
-  updateOrderStateQuery,
+  updateOrderStatePauseQuery,
   getOrderReqByOrderIdQuery,
   getUserData,
   getUserNotificationsQueries,
   addUserNotification,
+  updateOrderStateStartQuery,
+  updateStateQuery,
+  updateOrderDurationQuery,
+  updateOrderBillQuery,
+  updateOrderResourceQuery,
+  getOrder,
 };
