@@ -46,8 +46,8 @@
 
 .signup .left-section .signin-link:hover {
   color: white;
-  background-color: #FDCB6E;
-  border-color: #FDCB6E;
+  background-color: #fdcb6e;
+  border-color: #fdcb6e;
   transition: all 0.25s;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .signup .signup-form-container .title {
-  color: #5C5C5C;
+  color: #5c5c5c;
 }
 
 .ant-form .ant-form-item .ant-form-item-label {
@@ -73,8 +73,12 @@
   text-align: right;
 }
 
-.signup-form-container .ant-form-horizontal .ant-form-item .ant-form-item-label > label {
-  color: #6F6F6F;
+.signup-form-container
+  .ant-form-horizontal
+  .ant-form-item
+  .ant-form-item-label
+  > label {
+  color: #6f6f6f;
   font-size: 18px;
   font-weight: 300;
 }
@@ -84,11 +88,20 @@
   justify-content: flex-start;
 }
 
-.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select {
+.ant-form
+  .ant-form-item
+  .ant-form-item-control
+  .ant-form-item-control-input-content
+  .ant-select {
   width: 50%;
 }
 
-.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select-selector input {
+.ant-form
+  .ant-form-item
+  .ant-form-item-control
+  .ant-form-item-control-input-content
+  .ant-select-selector
+  input {
   height: 45px;
   line-height: 45px;
   text-align: left;
@@ -96,7 +109,12 @@
   font-weight: 300;
 }
 
-.ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select-selector .ant-select-selection-placeholder {
+.ant-form
+  .ant-form-item
+  .ant-form-item-control
+  .ant-form-item-control-input-content
+  .ant-select-selector
+  .ant-select-selection-placeholder {
   text-align: left;
   font-size: 18px;
   font-weight: 300;
@@ -121,15 +139,15 @@
   color: white !important;
   width: 200px;
   height: 45px !important;
-  border: 1px solid #FDCB6E !important;
-  background-color: #FDCB6E !important;
+  border: 1px solid #fdcb6e !important;
+  background-color: #fdcb6e !important;
   border-radius: 3px !important;
   line-height: 1 !important;
   transition: all 0.25s;
 }
 
 .signup-btn:hover {
-  color: #FDCB6E !important;
+  color: #fdcb6e !important;
   background-color: transparent !important;
   transition: all 0.25s;
 }
@@ -150,7 +168,7 @@
     color: inherit;
     height: 45px;
     line-height: 45px;
-    border: 1px solid #FDCB6E;
+    border: 1px solid #fdcb6e;
     border-radius: 3px;
     background-color: transparent;
     padding-left: 0;
@@ -159,7 +177,7 @@
 
   .signup .signup-form-container .signin-link:hover {
     color: white;
-    background-color: #FDCB6E;
+    background-color: #fdcb6e;
     transition: all 0.25s;
   }
 
@@ -177,7 +195,12 @@
     text-align: left;
   }
 
-  .signup-form-container .ant-form .ant-form-item .ant-form-item-control .ant-form-item-control-input-content .ant-select {
+  .signup-form-container
+    .ant-form
+    .ant-form-item
+    .ant-form-item-control
+    .ant-form-item-control-input-content
+    .ant-select {
     width: 100%;
   }
 
@@ -186,16 +209,25 @@
     min-height: 45px;
   }
 
-  .signup-form-container .ant-form-item .ant-form-item-control .ant-form-item-control-input .ant-select-selector {
+  .signup-form-container
+    .ant-form-item
+    .ant-form-item-control
+    .ant-form-item-control-input
+    .ant-select-selector {
     height: 45px !important;
   }
-  .signup-form-container .ant-form-item .ant-form-item-control .ant-form-item-control-input .ant-select-selector span {
+  .signup-form-container
+    .ant-form-item
+    .ant-form-item-control
+    .ant-form-item-control-input
+    .ant-select-selector
+    span {
     line-height: 45px !important;
   }
 }
 
 @media only screen and (max-width: 640px) {
   .signup .signup-form-container .signin-link .ant-anchor .ant-anchor-ink {
-    display: none;;
+    display: none;
   }
 }

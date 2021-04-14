@@ -43,7 +43,7 @@
 .login-left__input > .ant-input {
   margin-left: 20px;
   height: 45px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 .login-left .ant-form-item-explain-error {
@@ -74,18 +74,18 @@
   line-height: 50px;
 }
 
-.login-right__SignUp-btn:hover{
-  color: #FAFBFC;
-  background-color: #FDD17F;
-  border-color: #FAFBFC;
+.login-right__SignUp-btn:hover {
+  color: #fafbfc;
+  background-color: #fdd17f;
+  border-color: #fafbfc;
 }
 
 .login-btn,
-.mobile-Sign-up-btn{
+.mobile-Sign-up-btn {
   line-height: 28px;
 }
 
-.mobile-Sign-up-btn{
+.mobile-Sign-up-btn {
   line-height: 28px;
   display: none;
   width: 255px;
