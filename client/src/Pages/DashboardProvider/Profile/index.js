@@ -6,8 +6,8 @@ import { Form, Input, Row, Col, message, Alert, Upload } from 'antd';
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
-import './style.css';
 import handelError from '../../../Utils/errorHandel';
+import './style.css';
 
 const { TextArea } = Input;
 const Profile = ({ providerDetails, userData }) => {

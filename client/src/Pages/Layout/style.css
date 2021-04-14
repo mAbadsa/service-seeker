@@ -1,6 +1,7 @@
-.loading{
-    margin: 50px auto;
+.loading {
+  margin: 50px auto;
 }
-.page{
-    min-height:  calc(100vh - 204px)
+
+.page {
+  min-height: calc(100vh - 204px);
 }
