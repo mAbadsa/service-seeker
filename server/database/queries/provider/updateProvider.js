@@ -19,7 +19,7 @@ const updateProfileProviders = async ({
       values: [title, bio, priceHour, coverImage, serviceType, id],
     });
     await connection.query({
-      text: 'UPDATE users set location=$1 ,mobile=$2 ,avatar=$3  WHERE id=$4 ;',
+      text: 'UPDATE users set location=$1 ,mobile=$2 ,avatar=$3 WHERE id=$4 ;',
       values: [location, mobile, avatar, id],
     });
 
