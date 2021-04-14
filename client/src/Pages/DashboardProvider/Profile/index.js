@@ -1,18 +1,108 @@
-import React, { useState } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Form, Input, Row, Col, message, Alert } from 'antd';
+import { Form, Input, Row, Col, message, Alert, Upload, Spin } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
-import './style.css';
 import handelError from '../../../Utils/errorHandel';
+import './style.css';
 
 const { TextArea } = Input;
-const Profile = ({ providerDetails, userData, refresh }) => {
+const Profile = ({ providerDetails, userData }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [fileList, setFileList] = useState([]);
+
+  const [state, setState] = useState({
+    uploading: false,
+  });
+  const [form] = Form.useForm();
+  useEffect(() => {
+    if (Object.keys(providerDetails).length !== 0) {
+      form.setFieldsValue({
+        title: providerDetails?.title,
+        bio: providerDetails?.bio,
+        price_hour: providerDetails?.price_hour,
+        cover_image: providerDetails?.cover_image,
+        service_type: providerDetails?.service_type,
+        avatar: userData?.avatar,
+        location: userData?.location,
+        mobile: userData?.mobile,
+      });
+      if (providerDetails?.cover_image) {
+        const newImage = [
+          {
+            uid: 1,
+            name: providerDetails?.cover_image.substring(
+              providerDetails?.cover_image.lastIndexOf('/') + 1
+            ),
+            status: 'done',
+            url: providerDetails?.cover_image,
+          },
+        ];
+        setFileList(newImage);
+      }
+    }
+  }, [providerDetails]);
+  const handleUploadPhotos = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('coverImage', file);
+      setLoading(true);
+      setError(null);
+      const data = await Axios.patch('/api/v1/provider/cover-image', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setLoading(false);
+      const newUrl = data.data.url;
+      const newImage = [
+        {
+          uid: 1,
+          name: newUrl.substring(newUrl.lastIndexOf('/') + 1),
+          status: 'done',
+          url: newUrl,
+        },
+      ];
+      form.setFieldsValue({
+        cover_image: newUrl,
+      });
+      setFileList(newImage);
+    } catch (err) {
+      setLoading(false);
+      handelError(setError, err);
+    }
+  };
+  const handlePreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow.document.write(image.outerHTML);
+  };
+  const onRemove = () => {
+    setFileList([]);
+  };
+  const handleChange = ({ file }) => {
+    if (file.status === 'uploading') {
+      setState({
+        ...state,
+        uploading: true,
+      });
+    }
+  };
 
   const onFinish = async (information) => {
     try {
@@ -21,7 +111,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
       await Axios.patch('/api/v1/provider/information', information);
       setLoading(false);
       message.destroy();
-      refresh();
       message.success('your information updated successfully');
     } catch (err) {
       setLoading(false);
@@ -31,12 +120,11 @@ const Profile = ({ providerDetails, userData, refresh }) => {
 
   return (
     <div className="profileForm ">
-      <Form onFinish={onFinish}>
-        <Row gutter={[16, 16]} type="flex" justify="center">
+      <Form onFinish={onFinish} form={form}>
+        <Row gutter={[16, 0]} type="flex" justify="center">
           <Col span={16}>
             <Form.Item
               label="Title"
-              initialValue={providerDetails?.title}
               name="title"
               rules={[
                 {
@@ -55,7 +143,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           <Col span={16}>
             <Form.Item
               label="Bio"
-              initialValue={providerDetails?.bio}
               name="bio"
               rules={[
                 {
@@ -74,7 +161,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           <Col span={16}>
             <Form.Item
               label="mobile"
-              initialValue={userData?.mobile}
               name="mobile"
               rules={[
                 {
@@ -93,7 +179,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           <Col span={16}>
             <Form.Item
               label="Price"
-              initialValue={providerDetails?.price_hour}
               name="price_hour"
               rules={[
                 {
@@ -108,11 +193,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           <Col span={16}>
             <Row gutter={[16, 16]} type="flex" justify="center" align="middle">
               <Col xs={24} md={24} lg={12}>
-                <Form.Item
-                  label="Location"
-                  initialValue={userData?.location}
-                  name="location"
-                >
+                <Form.Item label="Location" name="location">
                   <Select
                     placeholder="location"
                     options={locations}
@@ -121,11 +202,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 </Form.Item>
               </Col>
               <Col xs={24} md={24} lg={12}>
-                <Form.Item
-                  label="Service"
-                  initialValue={providerDetails?.service_type}
-                  name="service_type"
-                >
+                <Form.Item label="Service" name="service_type">
                   <Select
                     placeholder="service"
                     options={serviceTypes}
@@ -138,8 +215,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
 
           <Col span={16}>
             <Form.Item
-              label="Image"
-              initialValue={providerDetails?.cover_image}
+              label="job caver"
               name="cover_image"
               rules={[
                 {
@@ -148,11 +224,26 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="Enter your cover image url" />
+              <Upload
+                action={(file) => handleUploadPhotos(file)}
+                listType="picture-card"
+                fileList={fileList}
+                onPreview={handlePreview}
+                onChange={handleChange}
+                onRemove={onRemove}
+                accept="image/png, image/jpg, image/jpeg"
+              >
+                {fileList.length === 1 ? null : loading ? (
+                  <Spin />
+                ) : (
+                  <span>upload cover image</span>
+                )}
+              </Upload>
+              ‏
             </Form.Item>
           </Col>
 
-          <Col span={16}>
+          <Col span={24} className="submitBtn">
             <Button
               className="fourthButton"
               htmlType="submit"
@@ -167,6 +258,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
     </div>
   );
 };
+
 Profile.propTypes = {
   providerDetails: PropTypes.shape({
     title: PropTypes.string,
@@ -180,6 +272,6 @@ Profile.propTypes = {
     location: PropTypes.string,
     mobile: PropTypes.string,
   }).isRequired,
-  refresh: PropTypes.func.isRequired,
 };
+
 export default Profile;

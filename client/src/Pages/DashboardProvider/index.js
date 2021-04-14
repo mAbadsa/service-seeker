@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import Axios from 'axios';
 import {
   Layout,
@@ -17,8 +19,8 @@ import {
   SyncOutlined,
   MenuOutlined,
   CloseOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
-
 import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
@@ -32,10 +34,9 @@ import './style.css';
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
-
 const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
-
+  const history = useHistory();
   const { md } = useBreakpoint();
 
   const [visible, setVisible] = useState(false);
@@ -107,6 +108,10 @@ const DashboardProvider = () => {
     }
   };
 
+  const backHome = () => {
+    history.push('/');
+  };
+
   const mySider = (
     <Sider className="siderStyle">
       <div>
@@ -166,8 +171,19 @@ const DashboardProvider = () => {
               </>
             )}
             <Text>{title}</Text>
-            <div className="bell">
-              <SyncOutlined onClick={handleOrderRefresh} />
+            <div className="headerIcons">
+              <div className="bell">
+                <SyncOutlined
+                  onClick={
+                    title === 'Orders'
+                      ? handleOrderRefresh
+                      : handleInformationRefresh
+                  }
+                />
+              </div>
+              <div className="bell">
+                <HomeOutlined onClick={backHome} />
+              </div>
             </div>
           </div>
           {title === 'Orders' && <Orders refresh={orderRefresh} />}

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { Typography, Alert } from 'antd';
 
-function UserAvatar({ setRefresh, setOpen }) {
+const providerCoverImage = ({ setRefresh, setOpen }) => {
   const [previewSource, setPreviewSource] = useState();
   // eslint-disable-next-line no-unused-vars
   const [inputFileState, setInputFileState] = useState('');
@@ -79,11 +79,12 @@ function UserAvatar({ setRefresh, setOpen }) {
       </div>
     </div>
   );
-}
+};
 
-UserAvatar.propTypes = {
+providerCoverImage.propTypes = {
   setRefresh: PropTypes.func.isRequired,
   setOpen: PropTypes.func.isRequired,
 };
 
-export default UserAvatar;
+export default providerCoverImage;
+ */

@@ -68,10 +68,10 @@
   color: #5c5c5c;
 }
 
-/* .signup .ant-form .ant-form-item .ant-form-item-label {
+ .signup .ant-form .ant-form-item .ant-form-item-label {
   width: 33%;
   text-align: right;
-} */
+} 
 
 .signup-form-container
   .ant-form-horizontal
@@ -96,7 +96,7 @@
   width: 50%;
 }
 
-.ant-form
+.signup .ant-form
   .ant-form-item
   .ant-form-item-control
   .ant-form-item-control-input-content
@@ -109,7 +109,7 @@
   font-weight: 300;
 }
 
-.ant-form
+.signup .ant-form
   .ant-form-item
   .ant-form-item-control
   .ant-form-item-control-input-content
@@ -120,18 +120,18 @@
   font-weight: 300;
 }
 
-.ant-form .ant-form-item .ant-form-item-control input::placeholder {
+.signup .ant-form .ant-form-item .ant-form-item-control input::placeholder {
   font-size: 16px;
   font-weight: 300;
 }
 
-.ant-form .ant-form-item .ant-form-item-control .ant-form-item-explain-error {
+.signup .ant-form .ant-form-item .ant-form-item-control .ant-form-item-explain-error {
   font-size: 16px;
   font-weight: 300;
   padding-bottom: 10px;
 }
 
-.ant-form .radio-label {
+.signup .ant-form .radio-label {
   font-size: 16px;
 }
 

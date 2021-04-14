@@ -13,7 +13,7 @@
 }
 
 .site-layout .site-layout-background {
-  padding: 24px;
+  padding: 0 24px;  
   background-color: white;
   min-height: 100vh;
 }
@@ -93,4 +93,20 @@
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+}
+.headerIcons{
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.submitBtn {
+  text-align: center;
+
+}
+.submitBtn button{
+  width: 200px;
+}
+.ant-menu-root.ant-menu-vertical, .ant-menu-root.ant-menu-vertical-left, .ant-menu-root.ant-menu-vertical-right, .ant-menu-root.ant-menu-inline {
+  padding-top: 30px;
 }
