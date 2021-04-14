@@ -4,7 +4,7 @@ const express = require('express');
 const { join } = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const { parse: upload } = require('express-form-data'); // to parse request files (req.files)
+const { parse: upload } = require('express-form-data');
 
 const router = require('./router');
 const { serverError, clientError } = require('./controller');
