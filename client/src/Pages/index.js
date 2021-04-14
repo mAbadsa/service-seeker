@@ -4,5 +4,14 @@ import Login from './Login';
 import Layout from './Layout';
 import Register from './Register';
 import DashboardProvider from './DashboardProvider';
+import NotFound from './NotFound';
 
-export { LandingPage, OrdersPage, Login, Layout, Register, DashboardProvider };
+export {
+  LandingPage,
+  OrdersPage,
+  Login,
+  Layout,
+  Register,
+  DashboardProvider,
+  NotFound,
+};
