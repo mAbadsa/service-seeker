@@ -20,6 +20,7 @@ import {
   Layout,
   Register,
   DashboardProvider,
+  NotFound,
 } from '../Pages';
 
 import './style.css';
@@ -47,7 +48,9 @@ const App = () => (
           <PrivateRoutes isProvider exact path={PROVIDER_DASHBOARD_PAGE}>
             <DashboardProvider />
           </PrivateRoutes>
-          <Route>Not Found 404</Route>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </Layout>
     </AuthProvider>
