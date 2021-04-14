@@ -1,94 +1,257 @@
-import React from 'react';
-import {
-  Upload,
-  Form,
-  Input,
-  Select,
-  InputNumber,
-  message,
-  Row,
-  Col,
-} from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Axios from 'axios';
+import { Form, Input, Row, Col, message, Alert, Upload } from 'antd';
+
 import Button from '../../../Components/Button';
+import Select from '../../../Components/Select';
+import { locations, serviceTypes } from '../../../Utils/data';
 import './style.css';
+import handelError from '../../../Utils/errorHandel';
 
 const { TextArea } = Input;
-const Profile = () => {
-  const props = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
+const Profile = ({ providerDetails, userData }) => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const [fileList, setFileList] = useState([]);
+
+  const [state, setState] = useState({
+    uploading: false,
+  });
+
+  useEffect(() => {
+    if (providerDetails?.cover_image) {
+      const newImage = [
+        {
+          uid: 1,
+          name: providerDetails?.cover_image.substring(
+            providerDetails?.cover_image.lastIndexOf('/') + 1
+          ),
+          status: 'done',
+          url: providerDetails?.cover_image,
+        },
+      ];
+      setFileList(newImage);
+    }
+  }, [providerDetails?.cover_image]);
+  const handleUploadPhotos = async (file) => {
+    const formData = new FormData();
+    formData.append('profileImg', file);
+    const { data } = await Axios.patch(
+      '/api/v1/provider/cover-image',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
+    );
+    console.log(data);
   };
+  const handlePreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow.document.write(image.outerHTML);
+  };
+  const onRemove = () => {
+    setFileList([]);
+  };
+  const handleChange = ({ file }) => {
+    if (file.status === 'uploading') {
+      setState({
+        ...state,
+        uploading: true,
+      });
+    }
+  };
+
+  const onFinish = async (information) => {
+    try {
+      setLoading(true);
+      setError(null);
+      await Axios.patch('/api/v1/provider/information', information);
+      setLoading(false);
+      message.destroy();
+      message.success('your information updated successfully');
+    } catch (err) {
+      setLoading(false);
+      handelError(setError, err);
+    }
+  };
+
   return (
-    <Form
-      labelCol={{
-        span: 4,
-      }}
-      wrapperCol={{
-        span: 14,
-      }}
-      className="profileForm"
-    >
-      <Row type="flex" justify="center">
-        <Col span={24}>
-          <Form.Item label="Title">
-            <Input />
-          </Form.Item>
-        </Col>
-        <Col span={24}>
-          <Form.Item label="Bio">
-            <TextArea rows={4} />
-          </Form.Item>
-        </Col>
-        <Col span={24}>
-          <Form.Item label="Price">
-            <InputNumber />
-          </Form.Item>
-        </Col>
+    <div className="profileForm ">
+      <Form onFinish={onFinish}>
+        <Row gutter={[16, 16]} type="flex" justify="center">
+          <Col span={16}>
+            <Form.Item
+              label="Title"
+              initialValue={providerDetails?.title}
+              name="title"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Title!',
+                },
+                {
+                  min: 3,
+                  message: 'Title must be at least 8 characters.',
+                },
+              ]}
+            >
+              <Input placeholder="please enter your Title" />
+            </Form.Item>
+          </Col>
+          <Col span={16}>
+            <Form.Item
+              label="Bio"
+              initialValue={providerDetails?.bio}
+              name="bio"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Bio!',
+                },
+                {
+                  min: 20,
+                  message: 'Bio must be at least 8 characters.',
+                },
+              ]}
+            >
+              <TextArea rows={4} placeholder="please enter your Bio" />
+            </Form.Item>
+          </Col>
+          <Col span={16}>
+            <Form.Item
+              label="mobile"
+              initialValue={userData?.mobile}
+              name="mobile"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Mobile!',
+                },
+                {
+                  min: 8,
+                  message: 'Mobile must be at least 8 characters.',
+                },
+              ]}
+            >
+              <Input placeholder="please enter your Mobile as 059-xxxx-xxx" />
+            </Form.Item>
+          </Col>
+          <Col span={16}>
+            <Form.Item
+              label="Price"
+              initialValue={providerDetails?.price_hour}
+              name="price_hour"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Price!',
+                },
+              ]}
+            >
+              <Input placeholder="please enter your Price" />
+            </Form.Item>
+          </Col>
+          <Col span={16}>
+            <Row gutter={[16, 16]} type="flex" justify="center" align="middle">
+              <Col xs={24} md={24} lg={12}>
+                <Form.Item
+                  label="Location"
+                  initialValue={userData?.location}
+                  name="location"
+                >
+                  <Select
+                    placeholder="location"
+                    options={locations}
+                    type="Location"
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={24} lg={12}>
+                <Form.Item
+                  label="Service"
+                  initialValue={providerDetails?.service_type}
+                  name="service_type"
+                >
+                  <Select
+                    placeholder="service"
+                    options={serviceTypes}
+                    type="Service"
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+          </Col>
 
-        <Col xs={24} md={12} lg={12}>
-          <Form.Item label="Location">
-            <Select>
-              <Select.Option value="demo">Demo</Select.Option>
-            </Select>
-          </Form.Item>
-        </Col>
-        <Col xs={24} md={12} lg={12}>
-          <Form.Item label="Service:">
-            <Select>
-              <Select.Option value="demo">Demo</Select.Option>
-            </Select>
-          </Form.Item>
-        </Col>
+          <Col span={16}>
+            <Form.Item
+              label="job caver"
+              initialValue={providerDetails?.cover_image}
+              name="cover_image"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your cover image!',
+                },
+              ]}
+            >
+              <Upload
+                action={(file) => handleUploadPhotos(file)}
+                listType="picture-card"
+                fileList={fileList}
+                onPreview={handlePreview}
+                onChange={handleChange}
+                onRemove={onRemove}
+                accept="image/png, image/jpg, image/jpeg"
+              >
+                {fileList.length === 1 ? null : <Button>Upload</Button>}
+              </Upload>
+              ‏
+            </Form.Item>
+          </Col>
 
-        <Col span={24}>
-          <Form.Item label="job caver">
-            <Upload {...props}>
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
-          </Form.Item>
-        </Col>
-
-        <Col span={24}>
-          <Form.Item>
-            <Button>Button</Button>
-          </Form.Item>
-        </Col>
-      </Row>
-    </Form>
+          <Col span={16}>
+            <Button
+              className="fourthButton"
+              htmlType="submit"
+              loading={loading}
+            >
+              save
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+      {error && <Alert type="error" message={error} />}
+    </div>
   );
 };
+
+Profile.propTypes = {
+  providerDetails: PropTypes.shape({
+    title: PropTypes.string,
+    bio: PropTypes.string,
+    price_hour: PropTypes.number,
+    cover_image: PropTypes.string,
+    service_type: PropTypes.string,
+  }).isRequired,
+  userData: PropTypes.shape({
+    avatar: PropTypes.string,
+    location: PropTypes.string,
+    mobile: PropTypes.string,
+  }).isRequired,
+};
+
 export default Profile;

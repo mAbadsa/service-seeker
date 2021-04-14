@@ -1,4 +1,4 @@
-const connection = require('../../connection');
+const connection = require('../../config/connection');
 
 const updateCoverImageQuery = (coverImage, id) => {
   connection.query({
