@@ -170,13 +170,7 @@ const DashboardProvider = () => {
           {title === 'Notifications' && (
             <Notifications refresh={orderRefresh} />
           )}
-          {title === 'Profile' && (
-            <Profile
-              refresh={infoRefresh}
-              userData={userData}
-              providerDetails={providerDetails}
-            />
-          )}
+          {title === 'Profile' && <Profile refresh={infoRefresh} />}
         </Content>
       </Layout>
     </Layout>

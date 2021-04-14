@@ -20,6 +20,7 @@ import {
   Layout,
   Register,
   DashboardProvider,
+  AboutUs,
   NotFound,
 } from '../Pages';
 
@@ -34,7 +35,7 @@ const App = () => (
             <LandingPage />
           </Route>
           <Route exact path={ABOUT_US}>
-            About Us
+            <AboutUs />
           </Route>
           <LoggedOutRoutes exact path={LOGIN_PAGE}>
             <Login />

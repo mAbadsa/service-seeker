@@ -6,7 +6,7 @@ const { Option } = Select;
 
 const SelectComponent = ({ options, initialValue, ...rest }) => (
   <Select className="filter-select" size="large" value={initialValue} {...rest}>
-    {options?.map((option) => (
+    {options.map((option) => (
       <Option key={option} value={option}>
         {option}
       </Option>

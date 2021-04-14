@@ -4,6 +4,7 @@ import Login from './Login';
 import Layout from './Layout';
 import Register from './Register';
 import DashboardProvider from './DashboardProvider';
+import AboutUs from './AboutUs';
 import NotFound from './NotFound';
 
 export {
@@ -13,5 +14,6 @@ export {
   Layout,
   Register,
   DashboardProvider,
+  AboutUs,
   NotFound,
 };

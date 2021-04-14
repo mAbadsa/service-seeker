@@ -14,35 +14,6 @@
 
 .site-layout .site-layout-background {
   padding: 24px;
-  background-color: white;
-  min-height: 100vh;
-}
-
-.siderStyle .ant-menu-item {
-  color: #839bb7;
-}
-
-.siderStyle .ant-menu-item-selected {
-  color: #485c73;
-}
-
-.layoutHeder {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 40px;
-}
-
-.layoutHeder span {
-  font-size: 32px !important;
-}
-
-.siderStyle .logo span {
-  font-size: 20px;
-}
-
-.site-layout .site-layout-background {
-  padding: 24px;
   background-color: #f9f9f9;
   min-height: 100vh;
 }
