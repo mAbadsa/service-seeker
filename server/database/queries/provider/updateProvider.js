@@ -6,7 +6,6 @@ const updateProfileProviders = async ({
   price_hour: priceHour,
   cover_image: coverImage,
   service_type: serviceType,
-  avatar,
   mobile,
   location,
   id,
@@ -19,8 +18,8 @@ const updateProfileProviders = async ({
       values: [title, bio, priceHour, coverImage, serviceType, id],
     });
     await connection.query({
-      text: 'UPDATE users set location=$1 ,mobile=$2 ,avatar=$3  WHERE id=$4 ;',
-      values: [location, mobile, avatar, id],
+      text: 'UPDATE users set location=$1 ,mobile=$2 WHERE id=$4 ;',
+      values: [location, mobile, id],
     });
 
     await connection.query('COMMIT');
