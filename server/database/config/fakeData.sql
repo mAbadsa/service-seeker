@@ -42,6 +42,14 @@ VALUES (
     '12437 Menomonie Court',
     'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png',
     'user'
+  ),(
+    'test',
+    'slamzed4@gnu.org',
+    '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
+    '429-847-1775',
+    '12437 Menomonie Court',
+    'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png',
+    'provider'
   );
 INSERT INTO providers(
     user_id,
@@ -72,6 +80,16 @@ Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
 Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
     7.8,
     false,
+    3,
+    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    'carpenter'
+  ),(
+    5,
+    'Lipsum mariam',
+    'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
+Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
+    7.8,
+    true,
     3,
     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     'carpenter'

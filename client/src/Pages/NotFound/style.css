@@ -1,0 +1,25 @@
+.NotFound-pg {
+  background-image: url('../../Utils/assets/images/bg.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-y: -79px;
+  background-size: 35% 100%;
+  height: 73vh;
+  margin-top: 5px;
+  min-height: 330px;
+  padding-top: 90px;
+}
+
+.NotFound__text {
+  background-image: url('../../Utils/assets/images/NotFoundText.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+@media only screen and (max-width: 1020px) {
+  .NotFound-pg {
+    background-image: none;
+    height: 73vh;
+    padding-top: 20px;
+  }
+}

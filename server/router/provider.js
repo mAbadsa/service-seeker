@@ -12,14 +12,14 @@ const {
 
 const {
   orderAcceptValidation,
-  profileValidation,
+  updateProviderValidation,
   updateOrderStateValidation,
 } = require('../middleware/validation');
 
 router.get('/provider/information', providerDataController);
 router.patch(
   '/provider/information',
-  profileValidation,
+  updateProviderValidation,
   updateProviderController
 );
 router.patch('/provider/availability', updateAvailabilityController);

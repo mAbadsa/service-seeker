@@ -2,23 +2,30 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Axios from 'axios';
+import moment from 'moment';
 import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import TableComponent from '../../../../Components/Table';
+
+import AcceptOrderModal from './acceptModal';
+import deleteById from '../../../../Utils/deleteById';
 
 const { confirm } = Modal;
 
 const PendingProvider = ({ refresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [orderID, setOrderID] = useState(null);
+  const [time, setTime] = useState(moment().format('HH:mm'));
+
   useEffect(() => {
     let unmounted = true;
     (async () => {
       try {
         setIsLoading(true);
         const { data } = await Axios.get('/api/v1/provider/order-requests');
-
         if (unmounted) {
           setIsLoading(false);
           setOrdersData(data.data);
@@ -44,7 +51,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       async onOk() {
         try {
           await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
-          setOrdersData(ordersData.filter(({ id }) => id !== orderId));
+          setOrdersData(deleteById(ordersData, orderId));
         } catch (err) {
           message.error('Something went wrong!');
         }
@@ -52,22 +59,41 @@ const PendingProvider = ({ refresh, ...rest }) => {
     });
   };
 
-  const handleAcceptOrder = async (orderId) => {
-    try {
-      await Axios.post(`/api/v1/user/order-requests/${orderId}`, {
-        time: '',
-      });
-    } catch (err) {
-      message.error('Something went wrong!');
-    }
+  const handleAcceptOrder = (orderId) => {
+    setShowModal(true);
+    setOrderID(orderId);
   };
 
-  const handleMoreDetails = () => {
-    // open popup modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const onChange = (_, timeString) => {
+    setTime(timeString);
+  };
+
+  const handleClickAccept = async () => {
+    try {
+      await Axios.post('/api/v1/provider/orders', {
+        arriveTime: time,
+        orderID,
+      });
+      setOrdersData(deleteById(ordersData, orderID));
+      setShowModal(false);
+      message.destroy();
+      message.success('order accepted successfully');
+    } catch (err) {
+      message.error(err.response.data.message || 'Something went wrong!');
+    }
   };
 
   return (
     <div>
+      <AcceptOrderModal
+        visible={showModal}
+        onCancel={handleCloseModal}
+        onClick={handleClickAccept}
+        onChange={onChange}
+      />
       <TableComponent
         ColumnsType="providerOrderPending"
         dataSource={ordersData?.map(
@@ -92,7 +118,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
           })
         )}
         onActions={[handleAcceptOrder, handleCancelOrder]}
-        onRowDoubleClick={handleMoreDetails}
         loading={isLoading}
         {...rest}
       />
@@ -101,10 +126,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
 };
 
 PendingProvider.propTypes = {
-  data: PropTypes.array.isRequired,
-  handleCancelOrder: PropTypes.func.isRequired,
-  handleAcceptOrder: PropTypes.func.isRequired,
-  handleMoreDetails: PropTypes.func.isRequired,
   error: PropTypes.string,
   refresh: PropTypes.bool.isRequired,
 };

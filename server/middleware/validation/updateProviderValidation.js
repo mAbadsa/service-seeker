@@ -1,4 +1,5 @@
 const { object, string, number } = require('yup');
+const { boomify } = require('../../utils');
 
 const profileValidation = async (req, res, next) => {
   try {
@@ -10,7 +11,6 @@ const profileValidation = async (req, res, next) => {
       service_type: serviceType,
       location,
       mobile,
-      avatar,
     } = req.body;
 
     const profileSchema = object().shape({
@@ -20,8 +20,7 @@ const profileValidation = async (req, res, next) => {
       coverImage: string().required().url(),
       serviceType: string().required(),
       location: string().required(),
-      mobile: string().required(),
-      avatar: string().required().url(),
+      mobile: string().required('required').min(10, 'mobile too short'),
     });
 
     await profileSchema.validate(
@@ -33,7 +32,6 @@ const profileValidation = async (req, res, next) => {
         serviceType,
         location,
         mobile,
-        avatar,
       },
       {
         abortEarly: false,
@@ -41,7 +39,7 @@ const profileValidation = async (req, res, next) => {
     );
     next();
   } catch (error) {
-    next(error);
+    next(boomify(400, error.errors[0]));
   }
 };
 
