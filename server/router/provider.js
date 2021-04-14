@@ -13,7 +13,6 @@ const {
 const {
   orderAcceptValidation,
   profileValidation,
-  updateCoverImageValidation,
 } = require('../middleware/validation');
 
 router.get('/provider/information', providerDataController);
@@ -25,11 +24,7 @@ router.patch(
 );
 
 router.patch('/provider/availability', updateAvailabilityController);
-router.patch(
-  '/provider/cover-image',
-  updateCoverImageValidation,
-  updateCoverImageController
-);
+router.patch('/provider/cover-image', updateCoverImageController);
 
 router.get('/provider/order-requests', getPendingOrderRequestController);
 

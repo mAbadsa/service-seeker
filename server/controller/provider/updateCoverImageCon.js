@@ -1,21 +1,26 @@
-const { uploadCloudinary } = require('../../utils');
+const { uploadCloudinary, boomify } = require('../../utils');
 const { updateCoverImageQuery } = require('../../database/queries');
 
 const updateArtistAvatar = async (req, res, next) => {
   try {
-    const { profileImg } = req.files;
     const { id } = req.user;
 
-    const { public_id: imgID, format } = await uploadCloudinary(
-      profileImg.path
-    );
+    if (req.files && req.files.coverImage) {
+      const { coverImage } = req.files;
 
-    const { rowCount } = await updateCoverImageQuery(`${imgID}.${format}`, id);
-    res.json({
-      statusCode: 200,
-      data: { rowCount },
-      message: 'Image added successfully',
-    });
+      if (coverImage.type.includes('image/')) {
+        const { url } = await uploadCloudinary(coverImage.path);
+        await updateCoverImageQuery(url, id);
+        res.json({
+          statusCode: 200,
+          message: 'Image added successfully',
+        });
+      } else {
+        throw boomify(400, 'choose image only');
+      }
+    } else {
+      throw boomify(400, 'uploading fail');
+    }
   } catch (err) {
     if (err.message === 'upload image error') {
       res.status(500).json({
