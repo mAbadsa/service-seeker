@@ -88,11 +88,15 @@ const DashboardProvider = () => {
     setOrderRefresh(!orderRefresh);
   };
 
+  const handleInformationRefresh = () => {
+    setInfoRefresh(!infoRefresh);
+  };
+
   const handleAvailability = async () => {
     try {
       setSwitchLoading(true);
       await Axios.patch('/api/v1/provider/availability');
-      setInfoRefresh(!infoRefresh);
+      handleInformationRefresh();
       setSwitchLoading(false);
       message.destroy();
       message.success('your status updated successfully');
@@ -167,10 +171,14 @@ const DashboardProvider = () => {
             </div>
           </div>
           {title === 'Orders' && <Orders refresh={orderRefresh} />}
-          {title === 'Notifications' && (
-            <Notifications refresh={orderRefresh} />
+          {title === 'Notifications' && <Notifications />}
+          {title === 'Profile' && (
+            <Profile
+              userData={userData}
+              refresh={handleInformationRefresh}
+              providerDetails={providerDetails}
+            />
           )}
-          {title === 'Profile' && <Profile refresh={infoRefresh} />}
         </Content>
       </Layout>
     </Layout>
