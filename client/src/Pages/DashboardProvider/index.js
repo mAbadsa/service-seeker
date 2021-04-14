@@ -167,7 +167,9 @@ const DashboardProvider = () => {
             </div>
           </div>
           {title === 'Orders' && <Orders refresh={orderRefresh} />}
-          {title === 'Notifications' && <Notifications />}
+          {title === 'Notifications' && (
+            <Notifications refresh={orderRefresh} />
+          )}
           {title === 'Profile' && <Profile refresh={infoRefresh} />}
         </Content>
       </Layout>
