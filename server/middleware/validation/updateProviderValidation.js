@@ -12,7 +12,6 @@ const profileValidation = async (req, res, next) => {
       location,
       mobile,
     } = req.body;
-    const phoneRegExp = /^(?:(?:(\+?972|\(\+?972\)|\+?\(972\))(?:\s|\.|-)?([1-9]\d?))|(0[23489]{1})|(0[57]{1}[0-9]))(?:\s|\.|-)?([^0\D]{1}\d{2}(?:\s|\.|-)?\d{4})$/;
 
     const profileSchema = object().shape({
       title: string().required('Must be character').min(3),
@@ -21,11 +20,7 @@ const profileValidation = async (req, res, next) => {
       coverImage: string().required().url(),
       serviceType: string().required(),
       location: string().required(),
-      mobile: string()
-        .required('required')
-        .matches(phoneRegExp, 'Phone number is not valid')
-        .min(10, 'to short')
-        .max(20, 'to long'),
+      mobile: string().required('required').min(10, 'mobile too short'),
     });
 
     await profileSchema.validate(

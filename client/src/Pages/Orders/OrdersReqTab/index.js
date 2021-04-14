@@ -5,6 +5,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import TableComponent from '../../../Components/Table';
 import OrdersReqModal from './OrdersReqModal';
+import deleteById from '../../../Utils/deleteById';
 
 import './style.css';
 
@@ -58,10 +59,11 @@ const OrdersReqTab = () => {
       async onOk() {
         try {
           await axios.delete(`/api/v1/user/order-requests/${currentId}`);
-          setOrdersReqData(ordersReqData.filter(({ id }) => id !== currentId));
+          setOrdersReqData(deleteById(ordersReqData, currentId));
+          message.success('order request canceled successfully');
           setShowModal(false);
         } catch (error) {
-          message.error('Something went wrong!');
+          message.error(error.response.data.message || 'Something went wrong!');
         }
       },
     });

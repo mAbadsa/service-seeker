@@ -10,7 +10,7 @@ import './style.css';
 import handelError from '../../../Utils/errorHandel';
 
 const { TextArea } = Input;
-const Profile = ({ providerDetails, userData }) => {
+const Profile = ({ providerDetails, userData, refresh }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -21,6 +21,7 @@ const Profile = ({ providerDetails, userData }) => {
       await Axios.patch('/api/v1/provider/information', information);
       setLoading(false);
       message.destroy();
+      refresh();
       message.success('your information updated successfully');
     } catch (err) {
       setLoading(false);
@@ -179,5 +180,6 @@ Profile.propTypes = {
     location: PropTypes.string,
     mobile: PropTypes.string,
   }).isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 export default Profile;
