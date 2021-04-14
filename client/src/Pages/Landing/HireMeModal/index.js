@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
-import { Input, Form, Divider, Col, Typography, Alert, Modal } from 'antd';
+import { Input, Form, Divider, Col, Typography, Modal, message } from 'antd';
 
 import Button from '../../../Components/Button';
 import { LOGIN_PAGE } from '../../../Utils/routes.constant';
 import { AuthContext } from '../../../Context/Authentication';
 import OrderModal from '../../../Components/UserModal';
-import errorHandle from '../../../Utils/errorHandel';
 
 import './style.css';
 
@@ -20,12 +19,10 @@ function HireMeModal({ data, closeModal, ...reset }) {
   const [form] = Form.useForm();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
 
   const handleFinish = async (value) => {
     try {
       setIsLoading(true);
-      setError(null);
       await Axios.post('/api/v1/user/order-requests', {
         ...value,
         providerId: data.id,
@@ -38,7 +35,8 @@ function HireMeModal({ data, closeModal, ...reset }) {
       });
     } catch (err) {
       form.resetFields();
-      errorHandle(setError, err);
+      message.destroy();
+      message.error(err.response.data.message || 'something went wrong');
       setIsLoading(false);
     }
   };
@@ -47,17 +45,6 @@ function HireMeModal({ data, closeModal, ...reset }) {
     <OrderModal data={data} {...reset}>
       {isAuth ? (
         <Col span={24} className="Orders-detail-input">
-          {error && (
-            <Alert
-              id="alert"
-              message={error}
-              type="error"
-              showIcon
-              style={{
-                marginBottom: '1rem',
-              }}
-            />
-          )}
           <Form onFinish={handleFinish} form={form}>
             <Form.Item
               name="description"

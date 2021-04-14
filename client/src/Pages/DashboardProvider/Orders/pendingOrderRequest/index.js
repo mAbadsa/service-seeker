@@ -10,6 +10,7 @@ import TableComponent from '../../../../Components/Table';
 import WorkStatusModal from '../../../../Components/WorkStatusModal';
 
 import AcceptOrderModal from './acceptModal';
+import deleteById from '../../../../Utils/deleteById';
 
 const { confirm } = Modal;
 
@@ -52,7 +53,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       async onOk() {
         try {
           await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
-          setOrdersData(ordersData.filter(({ id }) => id !== orderId));
+          setOrdersData(deleteById(ordersData, orderId));
         } catch (err) {
           message.error('Something went wrong!');
         }
@@ -79,7 +80,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
         arriveTime: time,
         orderID,
       });
-      setOrdersData(ordersData.filter(({ id }) => id !== orderID));
+      setOrdersData(deleteById(ordersData, orderID));
       setShowModal(false);
       message.destroy();
       message.success('order accepted successfully');
