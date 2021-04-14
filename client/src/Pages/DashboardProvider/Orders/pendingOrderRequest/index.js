@@ -16,7 +16,7 @@ const { confirm } = Modal;
 const PendingProvider = ({ refresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [jobDetails, setJobDetails] = useState(null);
+  const [orderDetails, setOrderDetails] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [orderID, setOrderID] = useState(null);
   const [time, setTime] = useState(moment().format('HH:mm'));
@@ -68,6 +68,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   const onChange = (_, timeString) => {
     setTime(timeString);
   };
@@ -92,21 +93,21 @@ const PendingProvider = ({ refresh, ...rest }) => {
   };
 
   const handleMoreDetails = (_1, _2, record) => {
-    setJobDetails(record);
+    setOrderDetails(record);
     handleShowModal();
   };
 
   return (
     <div>
-      {jobDetails && (
+      {orderDetails && (
         <WorkStatusModal
           data={{
-            username: jobDetails.userinfo[0],
-            location: jobDetails.location,
-            date: jobDetails.time,
-            description: jobDetails.description,
-            mobile: jobDetails.phone,
-            avatar: jobDetails.avatar,
+            username: orderDetails.userinfo[0],
+            location: orderDetails.location,
+            date: orderDetails.time,
+            description: orderDetails.description,
+            mobile: orderDetails.phone,
+            avatar: orderDetails.userinfo[1],
           }}
           visible={showModal}
           onCancel={handleCloseModal}
