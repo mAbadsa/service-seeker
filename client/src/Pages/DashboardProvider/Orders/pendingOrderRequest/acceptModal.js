@@ -10,7 +10,6 @@ import Button from '../../../../Components/Button';
 import './style.css';
 
 const { Text } = Typography;
-const format = 'HH:mm';
 
 const AcceptOrderModal = ({ onChange, onClick, ...rest }) => (
   <Modal
@@ -76,7 +75,7 @@ const AcceptOrderModal = ({ onChange, onClick, ...rest }) => (
               <TimePicker
                 onChange={onChange}
                 defaultValue={moment()}
-                format={format}
+                format="HH:mm"
               />
             </Col>
           </Row>
