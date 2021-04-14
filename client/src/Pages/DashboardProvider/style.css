@@ -14,9 +14,9 @@
    padding: 24px;
     background-color: white;
     min-height: 100vh;  } 
-/*   .layout{
+  .layout{
       text-align: left;
-  } */
+  }
  .siderStyle .ant-menu-item{
       color: #839BB7;
   }

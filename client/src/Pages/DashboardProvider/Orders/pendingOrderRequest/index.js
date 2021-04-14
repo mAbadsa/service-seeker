@@ -50,7 +50,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       async onOk() {
         try {
           await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
-          setOrdersData(ordersData?.filter(({ id }) => id !== orderId));
+          setOrdersData(ordersData.filter(({ id }) => id !== orderId));
         } catch (err) {
           message.error('Something went wrong!');
         }
