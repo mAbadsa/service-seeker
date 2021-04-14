@@ -5,6 +5,7 @@ import Layout from './Layout';
 import Register from './Register';
 import DashboardProvider from './DashboardProvider';
 import AboutUs from './AboutUs';
+import NotFound from './NotFound';
 
 export {
   LandingPage,
@@ -14,4 +15,5 @@ export {
   Register,
   DashboardProvider,
   AboutUs,
+  NotFound,
 };
