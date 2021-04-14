@@ -170,7 +170,9 @@ const DashboardProvider = () => {
               <SyncOutlined onClick={handleOrderRefresh} />
             </div>
           </div>
-          {title === 'Orders' && <Orders refresh={orderRefresh} />}
+          {title === 'Orders' && (
+            <Orders providerDetails={providerDetails} refresh={orderRefresh} />
+          )}
           {title === 'Notifications' && <Notifications />}
           {title === 'Profile' && (
             <Profile

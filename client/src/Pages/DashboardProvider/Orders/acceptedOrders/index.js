@@ -7,7 +7,7 @@ import { Alert } from 'antd';
 import Table from '../../../../Components/Table';
 import StartWorkModal from './StartWorkModal';
 
-const AcceptedOrders = ({ refresh }) => {
+const AcceptedOrders = ({ refresh, providerDetails }) => {
   const [acceptedOrders, setAcceptedOrders] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
@@ -62,7 +62,9 @@ const AcceptedOrders = ({ refresh }) => {
             description: orderDetails.description,
             mobile: orderDetails.phone,
             avatar: orderDetails.userinfo[1],
+            id: orderDetails.id,
           }}
+          providerDetails={providerDetails}
           showModal={showModal}
           onCancel={handleCloseModal}
         />
@@ -87,6 +89,7 @@ const AcceptedOrders = ({ refresh }) => {
             status,
             description,
             key: id,
+            id,
             time: date,
           })
         )}
@@ -98,6 +101,7 @@ const AcceptedOrders = ({ refresh }) => {
 
 AcceptedOrders.propTypes = {
   refresh: PropTypes.bool.isRequired,
+  providerDetails: PropTypes.object,
 };
 
 export default AcceptedOrders;
