@@ -1,0 +1,30 @@
+.profileForm .ant-input {
+  border:1px solid #E0E0E0;
+  border-radius: 5px;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+  border-radius: 5px;
+}
+.selectItem{
+  display: flex;
+}
+.profileForm .ant-select{
+  width: 100%  !important;
+}
+.profileForm .ant-input-number{
+  width: 100%;
+}
+.profileForm .ant-form-item-label > label{
+  width: 100px;
+
+}
+.profileForm .ant-form-item-control{
+  width: 100%;
+
+}
+.profileForm .ant-upload.ant-upload-select{
+  width: 100%;
+}
+.W100{
+  width: 80%;
+}
