@@ -1,18 +1,13 @@
 /* eslint-disable prettier/prettier */
 const moment = require('moment');
 const {
-  updateOrderStatePauseQuery,
   getOrderReqByOrderIdQuery,
-  updateStateQuery,
-  updateOrderStateStartQuery,
-  updateOrderDurationQuery,
   getOrder,
-  updateOrderBillQuery,
   getProviderDataById,
-  updateOrderResourceQuery
+  updateOrderQuery,
 } = require('../../database/queries');
 
-const { boomify } = require('../../utils');
+const { boomify, calculateDuration } = require('../../utils');
 
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
@@ -37,42 +32,35 @@ const updateOrderState = async (req, res, next) => {
 
     switch (state) {
       case 'Start':
-        newData.startTime = moment();
+        newData.start = moment();
 
-        await updateStateQuery(orderId, 'Start');
-        await updateOrderStateStartQuery(orderId, newData.startTime);
-        await updateOrderStatePauseQuery(orderId, null);
+        await updateOrderQuery('start_date', newData.start, orderId);
+        await updateOrderQuery('paused_date', null, orderId);
+        await updateOrderQuery('state', 'Start', orderId);
 
         res.status(200).json({ statusCode: 200, message: 'orders started' });
         break;
       case 'Pause':
-        newData.pauseTime = moment();
-
-        await updateStateQuery(orderId, 'Pause');
-        await updateOrderStatePauseQuery(orderId, newData.pauseTime);
-
         newData.order = (await getOrder(orderId)).rows;
-
         newData.start = moment(newData.order[0].start_date);
-        newData.pause = moment(newData.order[0].paused_date);
 
-        newData.duration = moment
-          .duration(
-            newData.pause.diff(
-              newData.start.add(3, 'hours')
-            )
-          )
-          .asHours();
+        newData.pause = moment();
 
-        await updateOrderDurationQuery(orderId, newData.duration);
+        newData.oldDuration = newData.order[0].hour_number;
+        newData.newDuration = calculateDuration(newData.pause, newData.start);
+        newData.duration = newData.oldDuration + newData.newDuration;
+
+        await updateOrderQuery('paused_date', newData.pauseTime, orderId);
+        await updateOrderQuery('hour_number', newData.duration);
+        await updateOrderQuery('state', 'Pause', orderId);
 
         res.status(200).json({ statusCode: 200, message: 'orders paused' });
         break;
       case 'Finished':
-        await updateOrderResourceQuery(orderId, req.body.resourcesPrice);
         newData.orderFinish = (await getOrder(orderId)).rows;
-
         newData.provider = (await getProviderDataById(providerId)).rows;
+
+        await updateOrderQuery('resources_price', req.body.resourcesPrice, orderId);
 
         newData.hourPrice = newData.provider[0].price_hour;
 
@@ -80,34 +68,26 @@ const updateOrderState = async (req, res, next) => {
           newData.finishTime = moment();
           newData.startFinal = moment(newData.orderFinish[0].start_date);
 
-          newData.FinishDuration = moment
-            .duration(
-              newData.finishTime.diff(
-                newData.startFinal.add(3, 'hours')
-              )
-            )
-            .asHours();
-
-          await updateOrderDurationQuery(orderId, newData.FinishDuration);
-
-          newData.resourcePrice = (await getOrder(orderId)).rows;
+          newData.oldDuration = newData.orderFinish[0].hour_number;
+          newData.newDuration = calculateDuration(newData.finishTime, newData.startFinal);
+          newData.duration = newData.oldDuration + newData.newDuration;
 
           newData.Bill = (newData.hourPrice * newData.FinishDuration)
-          + newData.orderFinish[0].resources_price;
+          + req.body.resourcesPrice;
 
-          await updateOrderBillQuery(orderId, newData.Bill);
-          await updateStateQuery(orderId, 'Finished');
-
-          res.status(200).json({ statusCode: 200, message: 'orders finished' });
+          await updateOrderQuery('hour_number', newData.duration, orderId);
+          await updateOrderQuery('total_bill_price', newData.Bill, orderId);
+          await updateOrderQuery('state', 'Finished', orderId);
         } else {
           newData.Bill = (newData.hourPrice * newData.orderFinish[0].hour_number)
-          + newData.orderFinish[0].resources_price;
+          + req.body.resourcesPrice;
 
-          await updateOrderBillQuery(orderId, newData.Bill);
-          await updateStateQuery(orderId, 'Finished');
-
-          res.status(200).json({ statusCode: 200, message: 'orders finished' });
+          await updateOrderQuery('total_bill_price', newData.Bill, orderId);
+          await updateOrderQuery('state', 'Finished', orderId);
         }
+
+        newData.finishOrder = (await getOrder(orderId)).rows;
+        res.status(200).json({ statusCode: 200, data: newData.finishOrder });
         break;
       default:
         res.json({ statusCode: 200, message: 'Nothing to Change' });
