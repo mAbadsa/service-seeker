@@ -60,11 +60,11 @@ const updateOrderState = async (req, res, next) => {
           newData.duration = order.hour_number + newData.newDuration;
 
           newData.hoursPayment = newData.provider[0].price_hour * newData.duration;
-          newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
         } else {
           newData.hoursPayment = newData.provider[0].price_hour * order.hour_number;
-          newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
         }
+
+        newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
 
         await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         break;
