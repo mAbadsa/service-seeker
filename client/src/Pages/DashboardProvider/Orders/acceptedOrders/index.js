@@ -23,6 +23,7 @@ const AcceptedOrders = ({ refresh, providerDetails }) => {
         const { data: result } = await Axios.get('/api/v1/provider/orders');
         if (unmounted) {
           setIsLoading(false);
+          console.log(result.data);
           setAcceptedOrders(result.data);
         }
       } catch ({ response: resError }) {
@@ -48,7 +49,23 @@ const AcceptedOrders = ({ refresh, providerDetails }) => {
     setOrderDetails(record);
     handleShowModal();
   };
-
+  const onStateChange = (id, state) => {
+    console.log({
+      id,
+      state,
+    });
+    setAcceptedOrders(
+      acceptedOrders.map((data) => {
+        if (data.id === id) {
+          return {
+            ...data,
+            state,
+          };
+        }
+        return data;
+      })
+    );
+  };
   return errMsg ? (
     <Alert type="error" message={errMsg} />
   ) : (
@@ -63,10 +80,13 @@ const AcceptedOrders = ({ refresh, providerDetails }) => {
             mobile: orderDetails.phone,
             avatar: orderDetails.userinfo[1],
             id: orderDetails.id,
+            // state: 'Paused',
+            state: orderDetails.status,
           }}
           providerDetails={providerDetails}
           showModal={showModal}
           onCancel={handleCloseModal}
+          onStateChange={onStateChange}
         />
       )}
       <Table

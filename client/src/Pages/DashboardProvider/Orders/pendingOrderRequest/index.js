@@ -9,7 +9,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import TableComponent from '../../../../Components/Table';
 import WorkStatusModal from '../../../../Components/WorkStatusModal';
 
-import AcceptOrderModal from './acceptModal';
+import AcceptOrderModal from './AcceptModal';
 import deleteById from '../../../../Utils/deleteById';
 
 const { confirm } = Modal;
@@ -18,7 +18,8 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showMoreDetailModal, setShowMoreDetailModal] = useState(false);
+  const [showAcceptModal, setShowAcceptModal] = useState(false);
   const [orderID, setOrderID] = useState(null);
   const [time, setTime] = useState(moment().format('HH:mm'));
 
@@ -62,12 +63,16 @@ const PendingProvider = ({ refresh, ...rest }) => {
   };
 
   const handleAcceptOrder = (orderId) => {
-    setShowModal(true);
+    setShowAcceptModal(true);
     setOrderID(orderId);
   };
 
+  const handleAcceptModal = () => {
+    setShowAcceptModal(false);
+  };
+
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowMoreDetailModal(false);
   };
 
   const onChange = (_, timeString) => {
@@ -81,7 +86,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
         orderID,
       });
       setOrdersData(deleteById(ordersData, orderID));
-      setShowModal(false);
+      setShowAcceptModal(false);
       message.destroy();
       message.success('order accepted successfully');
     } catch (err) {
@@ -90,7 +95,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
   };
 
   const handleShowModal = () => {
-    setShowModal(true);
+    setShowMoreDetailModal(true);
   };
 
   const handleMoreDetails = (_1, _2, record) => {
@@ -110,13 +115,13 @@ const PendingProvider = ({ refresh, ...rest }) => {
             mobile: orderDetails.phone,
             avatar: orderDetails.userinfo[1],
           }}
-          visible={showModal}
+          visible={showMoreDetailModal}
           onCancel={handleCloseModal}
         ></WorkStatusModal>
       )}
       <AcceptOrderModal
-        visible={showModal}
-        onCancel={handleCloseModal}
+        visible={showAcceptModal}
+        onCancel={handleAcceptModal}
         onClick={handleClickAccept}
         onChange={onChange}
       />
