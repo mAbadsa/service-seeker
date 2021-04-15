@@ -39,7 +39,7 @@ CREATE TABLE orders (
     orders_request_id INTEGER REFERENCES orders_request(id) ON UPDATE CASCADE NOT NULL,
     start_date TIMESTAMP,
     paused_date TIMESTAMP,
-    state VARCHAR(55),
+    state VARCHAR(55) DEFAULT 'accepted',
     arrive_time TIME(6),
     hour_number FLOAT,
     resources_price FLOAT,

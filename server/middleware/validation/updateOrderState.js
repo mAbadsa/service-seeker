@@ -5,7 +5,7 @@ const { boomify } = require('../../utils');
 const updateOrderState = async (req, res, next) => {
   try {
     const updateOrderStateSchema = object().shape({
-      state: string().oneOf(['Finished', 'Pause', 'Start']).required(),
+      state: string().oneOf(['Finished', 'Paused', 'Start']).required(),
       resourcesPrice: number(),
     });
     await updateOrderStateSchema.validate(req.body, {
