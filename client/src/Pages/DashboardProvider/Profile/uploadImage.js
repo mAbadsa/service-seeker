@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Typography, Alert } from 'antd';
+import { Upload, message } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
-function UserAvatar({ setRefresh, setOpen }) {
-  const [previewSource, setPreviewSource] = useState();
-  // eslint-disable-next-line no-unused-vars
-  const [inputFileState, setInputFileState] = useState('');
-  const [selectedFile, setSelectedFile] = useState();
-  const [errorMsg, setErrorMsg] = useState('');
+function UserAvatar({ image, setRefresh }) {
+  const [loading, setLoading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(image);
 
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
-  };
-
-  const handleUploadFile = (e) => {
-    const file = e.target.files[0];
-    previewFile(file);
+  function beforeUpload(file) {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+    }
     setSelectedFile(file);
-  };
-
+  }
   const uploadImage = async () => {
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append('coverImage', selectedFile);
       await Axios.patch('/api/v1/provider/cover-image', formData, {
@@ -33,57 +29,46 @@ function UserAvatar({ setRefresh, setOpen }) {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setInputFileState('');
-      setPreviewSource('');
-      setRefresh(true);
-      setOpen(false);
-      setErrorMsg('Image uploaded successfully');
+      setLoading(false);
+      setRefresh();
+      message.destroy();
+      message.success('Image uploaded successfully');
     } catch (err) {
-      setErrorMsg('Something went wrong!');
+      setLoading(false);
+      message.error(err.response.data.message || 'Something went wrong!');
     }
   };
-
-  const handleSubmitImage = (e) => {
-    e.preventDefault();
-    if (!selectedFile) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile);
-    reader.onloadend = () => {
-      uploadImage(reader.result);
-    };
-    reader.onerror = () => {
-      setErrorMsg('Something went wrong!');
-    };
-  };
-
-  return (
+  const uploadButton = (
     <div>
-      <Typography variant="h6">Choose an image</Typography>
-      {errorMsg && <Alert variant="error">{errorMsg}</Alert>}
-      <div>
-        <form onSubmit={handleSubmitImage}>
-          <label htmlFor="file-input-select">
-            Choose file
-            <input
-              accept="image/*"
-              type="file"
-              name="image"
-              id="file-input-select"
-              value={inputFileState}
-              onChange={handleUploadFile}
-            />
-          </label>
-          <button type="submit">Upload</button>
-        </form>
-        <div>{previewSource && <img src={previewSource} alt="avatar" />}</div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
       </div>
     </div>
+  );
+  return (
+    <Upload
+      name="coverImage"
+      listType="picture-card"
+      className="avatar-uploader"
+      beforeUpload={beforeUpload}
+      showUploadList={false}
+      file={selectedFile}
+      onChange={uploadImage}
+    >
+      {selectedFile ? <img src={selectedFile} alt="avatar" /> : uploadButton}
+    </Upload>
   );
 }
 
 UserAvatar.propTypes = {
   setRefresh: PropTypes.func.isRequired,
   setOpen: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default UserAvatar;

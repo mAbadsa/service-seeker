@@ -8,6 +8,7 @@ import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
 import './style.css';
 import handelError from '../../../Utils/errorHandel';
+import UploadImage from './uploadImage';
 
 const { TextArea } = Input;
 const Profile = ({ providerDetails, userData, refresh }) => {
@@ -163,6 +164,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           </Col>
         </Row>
       </Form>
+      <UploadImage setRefresh={refresh} image={providerDetails?.cover_image} />
       {error && <Alert type="error" message={error} />}
     </div>
   );
