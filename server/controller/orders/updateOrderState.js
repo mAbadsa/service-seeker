@@ -32,7 +32,7 @@ const updateOrderState = async (req, res, next) => {
 
     switch (state) {
       case 'Start':
-        await updateStart('Start', orderId);
+        await updateStart(state, orderId);
         break;
       case 'Paused':
         newData.pause = new Date();
@@ -40,7 +40,7 @@ const updateOrderState = async (req, res, next) => {
         newData.newDuration = calculateDuration(order.start_date, newData.pause);
         newData.duration = order.hour_number + newData.newDuration;
 
-        await updatePause('Pause', newData.pause, newData.duration, orderId);
+        await updatePause(state, newData.pause, newData.duration, orderId);
         break;
       case 'Finished':
         if (!req.body.resourcesPrice) {
@@ -62,7 +62,7 @@ const updateOrderState = async (req, res, next) => {
 
         newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
 
-        await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
+        await updateFinish(state, newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         break;
       default:
         res.json({ statusCode: 200, message: 'Nothing to Change' });
