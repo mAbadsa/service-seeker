@@ -244,11 +244,7 @@ const Profile = ({ providerDetails, userData }) => {
           </Col>
 
           <Col span={24} className="submitBtn">
-            <Button
-              className="fourthButton"
-              htmlType="submit"
-              loading={loading}
-            >
+            <Button className="fourthButton" htmlType="submit">
               save
             </Button>
           </Col>

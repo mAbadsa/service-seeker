@@ -121,7 +121,14 @@ const DashboardProvider = () => {
           <Text strong={false} level={3}>
             {userData?.username}
           </Text>
-          <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
+          <Text
+            level={5}
+            style={{
+              color: '#6f7475',
+            }}
+          >
+            {isLoading ? <Spin /> : providerDetails?.title}
+          </Text>
         </div>
         <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys="1">
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
