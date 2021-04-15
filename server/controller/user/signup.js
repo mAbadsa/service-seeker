@@ -29,6 +29,7 @@ const signupController = async (req, res, next) => {
       rows: [{ id, role }],
     } = await createNewUser({
       ...req.body,
+      avatar: `https://avatar.oxro.io/avatar.svg?name=${req.body.username}`,
       password: hashedPassword,
     });
 
