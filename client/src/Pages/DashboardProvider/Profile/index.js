@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Form, Input, Row, Col, message, Alert } from 'antd';
+import { Form, Input, Row, Col, message, Alert, Spin } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
@@ -138,9 +138,8 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           </Col>
 
           <Col span={16}>
-            {/* <Form.Item
-              label="Image"
-              initialValue={providerDetails?.cover_image}
+            <Form.Item
+              label="cover Image"
               name="cover_image"
               rules={[
                 {
@@ -149,20 +148,34 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="Enter your cover image url" />
-            </Form.Item> */}
-            <UploadImage
-              setRefresh={refresh}
-              image={providerDetails?.cover_image}
-            />
+              <div
+                style={{
+                  display: 'flex',
+                }}
+              >
+                <UploadImage
+                  setRefresh={refresh}
+                  image={providerDetails?.cover_image}
+                />
+                {loading ? (
+                  <Spin />
+                ) : (
+                  <img
+                    width="200"
+                    height="60"
+                    style={{
+                      marginLeft: 20,
+                      objectFit: 'cover',
+                    }}
+                    src={providerDetails?.cover_image}
+                  />
+                )}
+              </div>
+            </Form.Item>
           </Col>
 
           <Col span={16}>
-            <Button
-              className="fourthButton"
-              htmlType="submit"
-              loading={loading}
-            >
+            <Button htmlType="submit" loading={loading}>
               save
             </Button>
           </Col>
