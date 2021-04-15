@@ -4,16 +4,12 @@ const {
   getOrderReqByOrderIdQuery,
   getOrder,
   getProviderDataById,
-  updateOrderQuery,
+  updateFinish,
+  updatePause,
+  updateStart,
 } = require('../../database/queries');
 
 const { boomify, calculateDuration } = require('../../utils');
-
-/*
-Start => update state, start time
-Pause => update state, pause time and duration
-Finish => update state, duration, resources and bill
-*/
 
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
@@ -40,9 +36,7 @@ const updateOrderState = async (req, res, next) => {
       case 'Start':
         newData.start = moment();
 
-        await updateOrderQuery('start_date', newData.start, orderId);
-        await updateOrderQuery('paused_date', null, orderId);
-        await updateOrderQuery('state', 'Start', orderId);
+        await updateStart('Start', newData.start, orderId);
 
         res.status(200).json({ statusCode: 200, message: 'orders started' });
         break;
@@ -56,21 +50,21 @@ const updateOrderState = async (req, res, next) => {
         newData.newDuration = calculateDuration(newData.pause, newData.start);
         newData.duration = newData.oldDuration + newData.newDuration;
 
-        await updateOrderQuery('paused_date', newData.pauseTime, orderId);
-        await updateOrderQuery('hour_number', newData.duration);
-        await updateOrderQuery('state', 'Pause', orderId);
+        await updatePause('Pause', newData.pause, newData.duration, orderId);
 
         res.status(200).json({ statusCode: 200, message: 'orders paused' });
         break;
       case 'Finished':
+        if (!req.body.resourcesPrice) {
+          throw boomify(400, 'please enter resources price');
+        }
+
         newData.orderFinish = (await getOrder(orderId)).rows;
         newData.provider = (await getProviderDataById(providerId)).rows;
 
-        await updateOrderQuery('resources_price', req.body.resourcesPrice, orderId);
-
         newData.hourPrice = newData.provider[0].price_hour;
 
-        if (!newData.orderFinish[0].paused_date) {
+        if (newData.orderFinish[0].state === 'Start') {
           newData.finishTime = moment();
           newData.startFinal = moment(newData.orderFinish[0].start_date);
 
@@ -78,18 +72,15 @@ const updateOrderState = async (req, res, next) => {
           newData.newDuration = calculateDuration(newData.finishTime, newData.startFinal);
           newData.duration = newData.oldDuration + newData.newDuration;
 
-          newData.Bill = (newData.hourPrice * newData.FinishDuration)
-          + req.body.resourcesPrice;
+          newData.hoursPayment = newData.hourPrice * newData.duration;
+          newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
 
-          await updateOrderQuery('hour_number', newData.duration, orderId);
-          await updateOrderQuery('total_bill_price', newData.Bill, orderId);
-          await updateOrderQuery('state', 'Finished', orderId);
+          await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         } else {
-          newData.Bill = (newData.hourPrice * newData.orderFinish[0].hour_number)
-          + req.body.resourcesPrice;
+          newData.hoursPayment = newData.hourPrice * newData.orderFinish[0].hour_number;
+          newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
 
-          await updateOrderQuery('total_bill_price', newData.Bill, orderId);
-          await updateOrderQuery('state', 'Finished', orderId);
+          await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         }
 
         newData.finishOrder = (await getOrder(orderId)).rows;
