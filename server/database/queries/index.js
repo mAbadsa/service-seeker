@@ -23,7 +23,9 @@ const {
   getPendingOrderRequest,
   getOrderReqByOrderIdQuery,
   getOrder,
-  updateOrderQuery,
+  updateFinish,
+  updatePause,
+  updateStart,
 } = require('./order');
 
 module.exports = {
@@ -46,5 +48,7 @@ module.exports = {
   getUserNotificationsQueries,
   addUserNotification,
   getOrder,
-  updateOrderQuery,
+  updateFinish,
+  updatePause,
+  updateStart,
 };

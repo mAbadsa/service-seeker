@@ -9,6 +9,12 @@ const {
 
 const { boomify, calculateDuration } = require('../../utils');
 
+/*
+Start => update state, start time
+Pause => update state, pause time and duration
+Finish => update state, duration, resources and bill
+*/
+
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
   const { orderId } = req.params;

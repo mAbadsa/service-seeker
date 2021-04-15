@@ -7,7 +7,7 @@ const getAcceptedOrders = require('./getAcceptOrders');
 const updateStateOrderRequest = require('./updateStateOrderReq');
 const getOrderReqByOrderIdQuery = require('./getOrderReqByOrderId');
 const getOrder = require('./getOrder');
-const updateOrderQuery = require('./updateOrder');
+const { updateFinish, updatePause, updateStart } = require('./updateOrders');
 
 module.exports = {
   deleteOrderReq,
@@ -19,5 +19,7 @@ module.exports = {
   getPendingOrderRequest,
   getOrderReqByOrderIdQuery,
   getOrder,
-  updateOrderQuery,
+  updateFinish,
+  updatePause,
+  updateStart,
 };
