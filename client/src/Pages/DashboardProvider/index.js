@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-
 import Axios from 'axios';
 import {
   Layout,
@@ -19,7 +17,6 @@ import {
   SyncOutlined,
   MenuOutlined,
   CloseOutlined,
-  HomeOutlined,
 } from '@ant-design/icons';
 import { AuthContext } from '../../Context/Authentication';
 
@@ -36,7 +33,7 @@ const { Text } = Typography;
 const { useBreakpoint } = Grid;
 const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
-  const history = useHistory();
+
   const { md } = useBreakpoint();
 
   const [visible, setVisible] = useState(false);
@@ -108,10 +105,6 @@ const DashboardProvider = () => {
     }
   };
 
-  const backHome = () => {
-    history.push('/');
-  };
-
   const mySider = (
     <Sider className="siderStyle">
       <div>
@@ -121,14 +114,7 @@ const DashboardProvider = () => {
           <Text strong={false} level={3}>
             {userData?.username}
           </Text>
-          <Text
-            level={5}
-            style={{
-              color: '#6f7475',
-            }}
-          >
-            {isLoading ? <Spin /> : providerDetails?.title}
-          </Text>
+          <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
         </div>
         <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys="1">
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
@@ -178,19 +164,15 @@ const DashboardProvider = () => {
               </>
             )}
             <Text>{title}</Text>
-            <div className="headerIcons">
-              <div className="bell">
-                <SyncOutlined
-                  onClick={
-                    title === 'Orders'
-                      ? handleOrderRefresh
-                      : handleInformationRefresh
-                  }
-                />
-              </div>
-              <div className="bell">
-                <HomeOutlined onClick={backHome} />
-              </div>
+
+            <div className="bell">
+              <SyncOutlined
+                onClick={
+                  title === 'Orders'
+                    ? handleOrderRefresh
+                    : handleInformationRefresh
+                }
+              />
             </div>
           </div>
           {title === 'Orders' && <Orders refresh={orderRefresh} />}

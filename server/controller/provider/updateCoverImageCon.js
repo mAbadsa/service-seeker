@@ -4,6 +4,7 @@ const updateArtistAvatar = async (req, res, next) => {
   try {
     if (req.files && req.files.coverImage) {
       const { coverImage } = req.files;
+      console.log(coverImage);
 
       if (coverImage.type.includes('image/')) {
         const { url } = await uploadCloudinary(coverImage.path);

@@ -52,6 +52,7 @@ const Profile = ({ providerDetails, userData }) => {
     try {
       const formData = new FormData();
       formData.append('coverImage', file);
+
       setLoading(true);
       setError(null);
       const data = await Axios.patch('/api/v1/provider/cover-image', formData, {
