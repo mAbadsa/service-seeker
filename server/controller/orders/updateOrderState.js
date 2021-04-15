@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-const moment = require('moment');
 const {
   getOrderReqByOrderIdQuery,
   getProviderDataById,
@@ -31,16 +30,12 @@ const updateOrderState = async (req, res, next) => {
 
     switch (state) {
       case 'Start':
-        newData.start = moment();
-
-        await updateStart('Start', newData.start, orderId);
+        await updateStart('Start', orderId);
         break;
       case 'Pause':
-        newData.start = moment(order.start_date);
+        newData.pause = new Date().toLocaleString();
 
-        newData.pause = moment();
-
-        newData.newDuration = calculateDuration(newData.pause, newData.start);
+        newData.newDuration = calculateDuration(order.start_date, newData.pause);
         newData.duration = order.hour_number + newData.newDuration;
 
         await updatePause('Pause', newData.pause, newData.duration, orderId);
@@ -53,10 +48,9 @@ const updateOrderState = async (req, res, next) => {
         newData.provider = (await getProviderDataById(providerId)).rows;
 
         if (order.state === 'Start') {
-          newData.finishTime = moment();
-          newData.startFinal = moment(order.start_date);
+          newData.finishTime = new Date().toLocaleString();
 
-          newData.newDuration = calculateDuration(newData.finishTime, newData.startFinal);
+          newData.newDuration = calculateDuration(order.start_date, newData.finishTime);
           newData.duration = order.hour_number + newData.newDuration;
 
           newData.hoursPayment = newData.provider[0].price_hour * newData.duration;
