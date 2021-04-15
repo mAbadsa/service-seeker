@@ -24,6 +24,8 @@ const updateOrderState = async (req, res, next) => {
     }
     if (order.state === state || order.state === 'Finished') {
       throw boomify(409, `the order is already ${order.state}`);
+    } else if (order.state === 'accepted' && state === 'Paused') {
+      throw boomify(409, 'the order is not started yet');
     }
 
     const newData = {};
@@ -32,8 +34,8 @@ const updateOrderState = async (req, res, next) => {
       case 'Start':
         await updateStart('Start', orderId);
         break;
-      case 'Pause':
-        newData.pause = new Date().toLocaleString();
+      case 'Paused':
+        newData.pause = new Date();
 
         newData.newDuration = calculateDuration(order.start_date, newData.pause);
         newData.duration = order.hour_number + newData.newDuration;
@@ -48,7 +50,7 @@ const updateOrderState = async (req, res, next) => {
         newData.provider = (await getProviderDataById(providerId)).rows;
 
         if (order.state === 'Start') {
-          newData.finishTime = new Date().toLocaleString();
+          newData.finishTime = new Date();
 
           newData.newDuration = calculateDuration(order.start_date, newData.finishTime);
           newData.duration = order.hour_number + newData.newDuration;
