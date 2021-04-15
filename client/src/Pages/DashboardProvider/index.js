@@ -18,7 +18,6 @@ import {
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
-
 import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
@@ -32,7 +31,6 @@ import './style.css';
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
-
 const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
 
@@ -166,8 +164,15 @@ const DashboardProvider = () => {
               </>
             )}
             <Text>{title}</Text>
+
             <div className="bell">
-              <SyncOutlined onClick={handleOrderRefresh} />
+              <SyncOutlined
+                onClick={
+                  title === 'Orders'
+                    ? handleOrderRefresh
+                    : handleInformationRefresh
+                }
+              />
             </div>
           </div>
           {title === 'Orders' && <Orders refresh={orderRefresh} />}

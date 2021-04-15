@@ -15,7 +15,7 @@
   width: 100%;
 }
 .profileForm .ant-form-item-label > label{
-  width: 100px;
+  width: 150px;
 
 }
 .profileForm .ant-form-item-control{
@@ -27,4 +27,8 @@
 }
 .W100{
   width: 80%;
+}
+.profileForm .ant-upload-list-picture-card-container{
+  width: 200px;
+  height: 200px;
 }

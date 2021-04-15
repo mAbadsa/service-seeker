@@ -3,7 +3,6 @@ const createNewProvider = require('./createNewProvider');
 const updateِِِAvailabilityQuery = require('./updateِِِAvailabilityQuery');
 const updateProvider = require('./updateProvider');
 const getProviderDataById = require('./getProviderById');
-const updateCoverImageQuery = require('./updateCoverImageQuery');
 
 module.exports = {
   getAllProviders,
@@ -11,5 +10,4 @@ module.exports = {
   updateِِِAvailabilityQuery,
   updateProvider,
   getProviderDataById,
-  updateCoverImageQuery,
 };
