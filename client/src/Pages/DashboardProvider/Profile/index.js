@@ -226,7 +226,7 @@ const Profile = ({ providerDetails, userData }) => {
               ]}
             >
               <Upload
-                action={(file) => handleUploadPhotos(file)}
+                beforeUpload={handleUploadPhotos}
                 listType="picture-card"
                 fileList={fileList}
                 onPreview={handlePreview}
