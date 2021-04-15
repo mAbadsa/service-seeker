@@ -21,13 +21,15 @@ const updateOrderState = async (req, res, next) => {
       rows: [order],
     } = await getOrderReqByOrderIdQuery({ orderId, providerId });
 
+    const {
+      rows: [provider]
+    } = await getProviderDataById(providerId);
+
     if (!order) {
       throw boomify(409, 'There is no order');
     }
     if (order.state === state || order.state === 'Finished') {
       throw boomify(409, `the order is already ${order.state}`);
-    } else if (order.state === 'Didn’t start') {
-      throw boomify(409, 'the order is not started yet.');
     }
 
     const newData = {};
@@ -41,14 +43,12 @@ const updateOrderState = async (req, res, next) => {
         res.status(200).json({ statusCode: 200, message: 'orders started' });
         break;
       case 'Pause':
-        newData.order = (await getOrder(orderId)).rows;
-        newData.start = moment(newData.order[0].start_date);
+        newData.start = moment(order.start_date);
 
         newData.pause = moment();
 
-        newData.oldDuration = newData.order[0].hour_number;
         newData.newDuration = calculateDuration(newData.pause, newData.start);
-        newData.duration = newData.oldDuration + newData.newDuration;
+        newData.duration = order.hour_number + newData.newDuration;
 
         await updatePause('Pause', newData.pause, newData.duration, orderId);
 
@@ -59,30 +59,21 @@ const updateOrderState = async (req, res, next) => {
           throw boomify(400, 'please enter resources price');
         }
 
-        newData.orderFinish = (await getOrder(orderId)).rows;
-        newData.provider = (await getProviderDataById(providerId)).rows;
-
-        newData.hourPrice = newData.provider[0].price_hour;
-
-        if (newData.orderFinish[0].state === 'Start') {
+        if (order.state === 'Start') {
           newData.finishTime = moment();
-          newData.startFinal = moment(newData.orderFinish[0].start_date);
+          newData.startFinal = moment(order.start_date);
 
-          newData.oldDuration = newData.orderFinish[0].hour_number;
           newData.newDuration = calculateDuration(newData.finishTime, newData.startFinal);
-          newData.duration = newData.oldDuration + newData.newDuration;
+          newData.duration = order.hour_number + newData.newDuration;
 
-          newData.hoursPayment = newData.hourPrice * newData.duration;
+          newData.hoursPayment = provider.price_hour * newData.duration;
           newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
-
-          await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         } else {
-          newData.hoursPayment = newData.hourPrice * newData.orderFinish[0].hour_number;
+          newData.hoursPayment = provider.price_hour * order.hour_number;
           newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
-
-          await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         }
 
+        await updateFinish('Finished', newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
         newData.finishOrder = (await getOrder(orderId)).rows;
         res.status(200).json({ statusCode: 200, data: newData.finishOrder });
         break;
