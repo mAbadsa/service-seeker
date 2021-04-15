@@ -1,18 +1,19 @@
 const { uploadCloudinary, boomify } = require('../../utils');
 
-const updateArtistAvatar = async (req, res, next) => {
+const { updateProviderCoverImage } = require('../../database/queries');
+
+const updateCoverImage = async (req, res, next) => {
   try {
     if (req.files && req.files.coverImage) {
       const { coverImage } = req.files;
-      console.log(coverImage);
 
       if (coverImage.type.includes('image/')) {
         const { url } = await uploadCloudinary(coverImage.path);
+        await updateProviderCoverImage(url, req.user.id);
 
         res.json({
           statusCode: 200,
           message: 'Image added successfully',
-          url,
         });
       } else {
         throw boomify(400, 'choose image only');
@@ -32,4 +33,4 @@ const updateArtistAvatar = async (req, res, next) => {
   }
 };
 
-module.exports = updateArtistAvatar;
+module.exports = updateCoverImage;

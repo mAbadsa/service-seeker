@@ -1,21 +1,25 @@
-/* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Upload, message, Button } from 'antd';
+import { Upload, message } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
-function providerCoverImage() {
+function UserAvatar({ image, setRefresh }) {
   const [loading, setLoading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState(image);
 
   function beforeUpload(file) {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
       message.error('Image must smaller than 2MB!');
     }
     setSelectedFile(file);
   }
-  const handleUploadPhotos = async () => {
+  const uploadImage = async () => {
     try {
       setLoading(true);
       const formData = new FormData();
@@ -26,7 +30,7 @@ function providerCoverImage() {
         },
       });
       setLoading(false);
-      // setRefresh();
+      setRefresh();
       message.destroy();
       message.success('Image uploaded successfully');
     } catch (err) {
@@ -34,43 +38,42 @@ function providerCoverImage() {
       message.error(err.response.data.message || 'Something went wrong!');
     }
   };
-  const handlePreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow.document.write(image.outerHTML);
-  };
-  const onRemove = () => {
-    setSelectedFile(null);
-  };
-  const handleChange = ({ file }) => {
-    if (file.status === 'uploading') {
-      setSelectedFile(file);
-    }
-  };
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
   return (
     <>
+      {selectedFile && (
+        <img src={selectedFile} alt="avatar" width="100" height="50" />
+      )}
       <Upload
-        beforeUpload={beforeUpload}
+        name="coverImage"
         listType="picture-card"
-        fileList={selectedFile}
-        onPreview={handlePreview}
-        onChange={handleChange}
-        onRemove={onRemove}
-        accept="image/png, image/jpg, image/jpeg"
+        className="avatar-uploader"
+        beforeUpload={beforeUpload}
+        showUploadList={false}
+        file={selectedFile}
+        onChange={uploadImage}
       >
-        {loading ? <Spin /> : <span>upload cover image</span>}
+        {uploadButton}
       </Upload>
-      <Button onClick={handleUploadPhotos}>save image</Button>
     </>
   );
 }
-export default providerCoverImage;
+
+UserAvatar.propTypes = {
+  setRefresh: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
+export default UserAvatar;

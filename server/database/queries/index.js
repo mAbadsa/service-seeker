@@ -11,6 +11,7 @@ const {
   createNewProvider,
   updateProvider,
   getProviderDataById,
+  updateProviderCoverImage,
 } = require('./provider');
 
 const {
@@ -41,4 +42,5 @@ module.exports = {
   getUserData,
   getUserNotificationsQueries,
   addUserNotification,
+  updateProviderCoverImage,
 };
