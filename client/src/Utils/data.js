@@ -20,6 +20,7 @@ export const locations = [
   'jabalia',
   'nusirat',
   'maghazi',
+  ' al zahra',
   'dir al-balah',
   '2878 Di Loreto Road',
 ];
