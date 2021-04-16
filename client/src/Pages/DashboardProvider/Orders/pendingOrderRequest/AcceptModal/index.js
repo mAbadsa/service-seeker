@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Row, Col, Typography, Modal, TimePicker } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 
-import Button from '../../../../Components/Button';
+import Button from '../../../../../Components/Button';
 
 import './style.css';
 

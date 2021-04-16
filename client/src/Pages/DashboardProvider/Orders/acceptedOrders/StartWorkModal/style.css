@@ -1,0 +1,72 @@
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.actions-container .actions-container-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.actions-container .actions-container-btn .ant-btn {
+  margin: 5px;
+  width: 150px;
+  color: white;
+  transition: all 0.25s;
+}
+
+#done {
+  background-color: #F95151;
+  border-color: #F95151;
+}
+
+#start {
+  background-color: #FDCB6E;
+  border-color: #FDCB6E;
+}
+
+#continue {
+  background-color: #0EB633;
+  border-color: #0EB633;
+}
+
+.resource-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.resource-input input {
+  width: 40%;
+  margin-bottom: 15px;
+}
+
+.resource-input .form-controller {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.resource-input .form-controller label {
+  width: 40%;
+  text-align: right;
+  font-weight: 500;
+  padding-right: 10px;
+}
+
+.resource-input .form-controller .ant-typography {
+  width: 40%;
+}
+
+.resource-input .form-controller.total {
+  margin-bottom: 1.5rem;
+}
