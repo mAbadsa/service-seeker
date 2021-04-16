@@ -11,6 +11,7 @@ const {
   createNewProvider,
   updateProvider,
   getProviderDataById,
+  getPriceHourProvider,
 } = require('./provider');
 
 const {
@@ -22,9 +23,9 @@ const {
   postOrder,
   getPendingOrderRequest,
   getOrderReqByOrderIdQuery,
-  updateFinish,
-  updatePause,
-  updateStart,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
 } = require('./order');
 
 module.exports = {
@@ -46,7 +47,8 @@ module.exports = {
   getUserData,
   getUserNotificationsQueries,
   addUserNotification,
-  updateFinish,
-  updatePause,
-  updateStart,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
+  getPriceHourProvider,
 };

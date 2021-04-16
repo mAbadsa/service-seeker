@@ -1,9 +1,10 @@
 const connection = require('../../../config/connection');
 
-const updateStart = (state, orderId) => {
+const updateStart = (orderId) => {
   const sql = {
-    text: 'UPDATE orders SET state = $1, start_date = (NOW()) WHERE id = $2 ;',
-    values: [state, orderId],
+    text:
+      "UPDATE orders SET state = 'Start', start_date = (NOW()) WHERE id = $1 ;",
+    values: [orderId],
   };
 
   return connection.query(sql);

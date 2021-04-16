@@ -1,10 +1,9 @@
-/* eslint-disable prettier/prettier */
 const {
   getOrderReqByOrderIdQuery,
-  getProviderDataById,
-  updateFinish,
-  updatePause,
-  updateStart,
+  getPriceHourProvider,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
 } = require('../../database/queries');
 
 const { boomify, calculateDuration } = require('../../utils');
@@ -12,63 +11,83 @@ const { boomify, calculateDuration } = require('../../utils');
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
   const { orderId } = req.params;
-  const { state } = req.body;
+  const { state, resourcesPrice } = req.body;
 
   try {
-    const {
-      rows: [order],
-    } = await getOrderReqByOrderIdQuery({ orderId, providerId });
+    const { rows } = await getOrderReqByOrderIdQuery({
+      orderId,
+      providerId,
+    });
+
+    const [order] = rows;
 
     if (!order) {
-      throw boomify(409, 'There is no order');
+      throw boomify(404, 'There is no order');
     }
+
     if (order.state === state || order.state === 'Finished') {
-      throw boomify(409, `the order is already ${order.state}`);
-    } else if (order.state === 'accepted' && state === 'Paused') {
+      throw boomify(400, `the order is already ${order.state}`);
+    }
+
+    if (order.state === 'Accepted' && state !== 'Start') {
       throw boomify(409, 'the order is not started yet');
     }
 
-    const newData = {};
+    const newData = {
+      bill: null,
+      duration: null,
+    };
+
+    let workHours;
+    let providerPriceHour;
 
     switch (state) {
       case 'Start':
-        await updateStart(state, orderId);
+        await updateOrderOnStart(orderId);
         break;
+
       case 'Paused':
-        newData.pause = new Date();
+        workHours = calculateDuration(order.start_date);
 
-        newData.newDuration = calculateDuration(order.start_date, newData.pause);
-        newData.duration = order.hour_number + newData.newDuration;
+        newData.duration = order.hour_number + workHours;
 
-        await updatePause(state, newData.pause, newData.duration, orderId);
+        await updateOrderOnPause(newData.duration, orderId);
         break;
+
       case 'Finished':
-        if (!req.body.resourcesPrice) {
+        if (!resourcesPrice) {
           throw boomify(400, 'please enter resources price');
         }
 
-        newData.provider = (await getProviderDataById(providerId)).rows;
+        providerPriceHour = (await getPriceHourProvider(providerId)).rows[0]
+          .price_hour;
 
         if (order.state === 'Start') {
-          newData.finishTime = new Date();
+          workHours = calculateDuration(order.start_date);
 
-          newData.newDuration = calculateDuration(order.start_date, newData.finishTime);
-          newData.duration = order.hour_number + newData.newDuration;
+          newData.duration = order.hour_number + workHours;
 
-          newData.hoursPayment = newData.provider[0].price_hour * newData.duration;
+          newData.bill = providerPriceHour * workHours;
         } else {
-          newData.hoursPayment = newData.provider[0].price_hour * order.hour_number;
+          newData.bill = providerPriceHour * order.hour_number;
         }
 
-        newData.Bill = newData.hoursPayment + Number(req.body.resourcesPrice);
+        newData.bill += +resourcesPrice;
 
-        await updateFinish(state, newData.duration, req.body.resourcesPrice, newData.Bill, orderId);
+        await updateOrderOnFinish({
+          ...newData,
+          resourcesPrice,
+          orderId,
+        });
         break;
+
       default:
-        res.json({ statusCode: 200, message: 'Nothing to Change' });
     }
 
-    res.json({ statusCode: 200, message: `orders ${state}` });
+    res.json({
+      statusCode: 200,
+      message: `orders ${state}`,
+    });
   } catch (error) {
     next(error);
   }

@@ -1,10 +1,10 @@
 const connection = require('../../../config/connection');
 
-const updatePause = (state, pauseTime, duration, orderId) => {
+const updatePause = (duration, orderId) => {
   const sql = {
     text:
-      'UPDATE orders SET state = $1, paused_date = $2, hour_number = $3 WHERE id = $4 ;',
-    values: [state, pauseTime, duration, orderId],
+      "UPDATE orders SET state = 'Paused', paused_date = (NOW()), hour_number = $1 WHERE id = $2 ;",
+    values: [duration, orderId],
   };
 
   return connection.query(sql);

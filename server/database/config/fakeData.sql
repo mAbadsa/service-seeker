@@ -103,14 +103,14 @@ INSERT INTO orders_request(
   )
 VALUES(
     2,
-    1,
+    3,
     'Need to maintenance to my a garden wall',
     'pending',
     '2021-04-07 21:31:11.276724'
   ),
   (
     2,
-    3,
+    1,
     'Need to maintenance to my a garden wall',
     'accepted',
     '2021-04-08 15:41:01.276724'
@@ -142,7 +142,7 @@ INSERT INTO orders(
     2,
     null,
     null,
-    'Paused',
+    'accepted',
     null,
     null,
     null,

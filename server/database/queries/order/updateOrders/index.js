@@ -1,9 +1,9 @@
-const updateStart = require('./updateStart');
-const updatePause = require('./updatePause');
-const updateFinish = require('./updateFinish');
+const updateOrderOnStart = require('./updateStart');
+const updateOrderOnPause = require('./updatePause');
+const updateOrderOnFinish = require('./updateFinish');
 
 module.exports = {
-  updateStart,
-  updatePause,
-  updateFinish,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
 };
