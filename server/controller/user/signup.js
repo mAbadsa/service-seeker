@@ -13,11 +13,7 @@ const signupController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-<<<<<<< HEAD
-    const { rows: [check]} = await checkUserByEmail({
-=======
     const { rows } = await checkUserByEmail({
->>>>>>> 4537d0f9dc8800d70229a1e86e058e7d46b30434
       email,
     });
     const [check] = rows;
@@ -28,11 +24,7 @@ const signupController = async (req, res, next) => {
 
     const hashedPassword = await hash(password, 10);
 
-<<<<<<< HEAD
-    const { rows: [{ id, role }]} = await createNewUser({
-=======
     const { rows: userData } = await createNewUser({
->>>>>>> 4537d0f9dc8800d70229a1e86e058e7d46b30434
       ...req.body,
       avatar: `https://avatar.oxro.io/avatar.svg?name=${req.body.username}`,
       password: hashedPassword,
