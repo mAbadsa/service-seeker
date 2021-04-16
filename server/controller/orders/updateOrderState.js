@@ -4,6 +4,7 @@ const {
   updateOrderOnStart,
   updateOrderOnPause,
   updateOrderOnFinish,
+  updateOrderRequestState,
 } = require('../../database/queries');
 
 const { boomify, calculateDuration } = require('../../utils');
@@ -79,6 +80,8 @@ const updateOrderState = async (req, res, next) => {
           resourcesPrice,
           orderId,
         });
+
+        await updateOrderRequestState(order.orders_request_id);
         break;
 
       default:

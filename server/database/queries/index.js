@@ -27,6 +27,7 @@ const {
   updateOrderOnStart,
   updateOrderOnPause,
   updateOrderOnFinish,
+  updateOrderRequestState,
 } = require('./order');
 
 module.exports = {
@@ -52,4 +53,5 @@ module.exports = {
   updateOrderOnPause,
   updateOrderOnFinish,
   getPriceHourProvider,
+  updateOrderRequestState,
 };
