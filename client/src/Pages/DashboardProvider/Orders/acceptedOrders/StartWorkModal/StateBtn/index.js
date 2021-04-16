@@ -7,7 +7,12 @@ import Button from '../../../../../../Components/Button';
 
 const { Paragraph } = Typography;
 
-function stateBtn({ currantState, handleDone, handleStatusWork, isLoading }) {
+const stateBtn = ({
+  currantState,
+  handleDone,
+  handleStatusWork,
+  isLoading,
+}) => {
   switch (currantState) {
     case 'Accepted':
       return (
@@ -76,7 +81,7 @@ function stateBtn({ currantState, handleDone, handleStatusWork, isLoading }) {
     default:
       return <></>;
   }
-}
+};
 
 stateBtn.propTypes = {
   currantState: PropTypes.string,

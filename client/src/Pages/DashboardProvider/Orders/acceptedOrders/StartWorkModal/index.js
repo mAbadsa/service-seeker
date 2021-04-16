@@ -10,7 +10,7 @@ import StateBtn from './StateBtn';
 
 import './style.css';
 
-function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
+const StartWorkModal = ({ data, showModal, onCancel, onStateChange }) => {
   const [showTheBill, setShowTheBill] = useState(false);
   const [status, setStatus] = useState(null);
   const [resourcesPrice, setResourcesPrice] = useState(0);
@@ -90,13 +90,12 @@ function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
       </Modal>
     </>
   );
-}
+};
 
 StartWorkModal.propTypes = {
   data: PropTypes.object,
   onCancel: PropTypes.func,
   showModal: PropTypes.bool,
-  providerDetails: PropTypes.object,
   onStateChange: PropTypes.func,
 };
 
