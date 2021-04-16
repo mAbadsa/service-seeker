@@ -142,7 +142,7 @@ INSERT INTO orders(
     2,
     null,
     null,
-    'accepted',
+    'Accepted',
     null,
     null,
     null,
