@@ -2,16 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 
-import { Typography, Divider, message, Modal } from 'antd';
-import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
+import { Divider, message, Modal } from 'antd';
 
 import WorkStatusModal from '../../../../../Components/WorkStatusModal';
-import Button from '../../../../../Components/Button';
 import Input from '../../../../../Components/Input';
+import StateBtn from './StateBtn';
 
 import './style.css';
-
-const { Paragraph } = Typography;
 
 function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
   const [showTheBill, setShowTheBill] = useState(false);
@@ -32,8 +29,9 @@ function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
       }
 
       await Axios.patch(`/api/v1/provider/orders/${data.id}`, sendedData);
-
       setIsLoading(false);
+      message.destroy();
+      message.success('Order State Update Success');
       setStatus(state);
       setShowTheBill(false);
       onStateChange(data.id, state);
@@ -49,80 +47,6 @@ function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
   const handleBill = async () => {
     setShowTheBill(true);
   };
-
-  let stateButton;
-  switch (status) {
-    case 'Accepted':
-      stateButton = (
-        <>
-          <Paragraph strong>Are You Ready to work?</Paragraph>
-          <Button
-            className="start"
-            onClick={() => handleStatusWork('Start')}
-            loading={isLoading}
-          >
-            <PlayCircleOutlined />
-            Start
-          </Button>
-        </>
-      );
-      break;
-    case 'Start':
-      stateButton = (
-        <>
-          <Paragraph strong>
-            In This Time Can You Do The Best You Have
-          </Paragraph>
-          <div
-            style={{
-              display: 'flex',
-            }}
-          >
-            <Button id="done" onClick={handleBill} loading={isLoading}>
-              Done
-            </Button>
-            <Button
-              className="thirdButton"
-              onClick={() => handleStatusWork('Paused')}
-              loading={isLoading}
-            >
-              <PauseCircleOutlined />
-              Pause
-            </Button>
-          </div>
-        </>
-      );
-      break;
-    case 'Paused':
-      stateButton = (
-        <>
-          <Paragraph strong>
-            In This Time Can You Do The Best You Have
-          </Paragraph>
-          <div
-            style={{
-              display: 'flex',
-            }}
-          >
-            <Button id="done" onClick={handleBill}>
-              Done
-            </Button>
-            <Button
-              id="continue"
-              onClick={() => handleStatusWork('Start')}
-              loading={isLoading}
-            >
-              <PlayCircleOutlined />
-              Continue
-            </Button>
-          </div>
-        </>
-      );
-      break;
-
-    default:
-  }
-
   return (
     <>
       <WorkStatusModal
@@ -135,7 +59,14 @@ function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
       >
         <Divider />
         <div className="actions-container">
-          <div className="actions-container-btn">{stateButton}</div>
+          <div className="actions-container-btn">
+            <StateBtn
+              currantState={status}
+              handleDone={handleBill}
+              handleStatusWork={handleStatusWork}
+              isLoading={isLoading}
+            />
+          </div>
         </div>
       </WorkStatusModal>
       <Modal
@@ -148,7 +79,13 @@ function StartWorkModal({ data, showModal, onCancel, onStateChange }) {
       >
         <div className="form-controller">
           <label>Resources Payment: </label>
-          <Input handelChange={handelChange} type="number" />
+          <Input
+            handelChange={handelChange}
+            type="number"
+            min={0}
+            defaultValue={0}
+            required
+          />
         </div>
       </Modal>
     </>
