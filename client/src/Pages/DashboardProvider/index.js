@@ -57,8 +57,8 @@ const DashboardProvider = () => {
           setProviderDetails(data.data[0]);
         }
       } catch (error) {
-        message.error('Something went wrong!');
         setLoading(false);
+        message.error(error.response.data.message, 'Something went wrong!');
       }
     })();
     return () => {
