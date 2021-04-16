@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Axios from 'axios';
-import moment from 'moment';
 import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
@@ -11,6 +10,8 @@ import TableComponent from '../../../../Components/Table';
 import AcceptOrderModal from './acceptModal';
 import deleteById from '../../../../Utils/deleteById';
 
+import getCurrentTime from '../../../../Utils/currentTime';
+
 const { confirm } = Modal;
 
 const PendingProvider = ({ refresh, ...rest }) => {
@@ -18,7 +19,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [orderID, setOrderID] = useState(null);
-  const [time, setTime] = useState(moment().format('HH:mm'));
+  const [time, setTime] = useState(getCurrentTime());
 
   useEffect(() => {
     let unmounted = true;
@@ -58,7 +59,6 @@ const PendingProvider = ({ refresh, ...rest }) => {
       },
     });
   };
-
   const handleAcceptOrder = (orderId) => {
     setShowModal(true);
     setOrderID(orderId);
@@ -68,7 +68,9 @@ const PendingProvider = ({ refresh, ...rest }) => {
     setShowModal(false);
   };
   const onChange = (_, timeString) => {
-    setTime(timeString);
+    if (timeString) {
+      setTime(timeString);
+    }
   };
 
   const handleClickAccept = async () => {
