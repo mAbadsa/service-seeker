@@ -23,7 +23,7 @@ CREATE TABLE providers (
     bio TEXT,
     price_hour FLOAT,
     availability boolean DEFAULT false,
-    rating INTEGER DEFAULT 100,
+    rating FLOAT DEFAULT 3.5,
     cover_image TEXT
 );
 CREATE TABLE orders_request (
