@@ -11,6 +11,7 @@ const {
   updateOrderOnPause,
   updateOrderOnFinish,
 } = require('./updateOrders');
+const updateOrderRequestState = require('./updateOrderRequestState');
 
 module.exports = {
   deleteOrderReq,
@@ -24,4 +25,5 @@ module.exports = {
   updateOrderOnStart,
   updateOrderOnPause,
   updateOrderOnFinish,
+  updateOrderRequestState,
 };
