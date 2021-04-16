@@ -12,6 +12,7 @@ const {
   createNewProvider,
   updateProvider,
   getProviderDataById,
+  getPriceHourProvider,
 } = require('./provider');
 
 const {
@@ -22,6 +23,10 @@ const {
   updateStateOrderRequest,
   postOrder,
   getPendingOrderRequest,
+  getOrderReqByOrderIdQuery,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
 } = require('./order');
 
 module.exports = {
@@ -39,7 +44,12 @@ module.exports = {
   updateProvider,
   getProviderDataById,
   isAlreadyHeired,
+  getOrderReqByOrderIdQuery,
   getUserData,
   getUserNotificationsQueries,
   addUserNotification,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
+  getPriceHourProvider,
 };

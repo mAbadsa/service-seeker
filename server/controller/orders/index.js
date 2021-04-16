@@ -5,6 +5,7 @@ const deleteOrderReqController = require('./deleteOrderRequest');
 const addUserOrderRequest = require('./addOrderRequest');
 const getUserOrdersController = require('./getUserOrders');
 const getUserOrdersReqController = require('./getUserOrdersReq');
+const updateOrderStateController = require('./updateOrderState');
 
 module.exports = {
   getPendingOrderRequestController,
@@ -14,4 +15,5 @@ module.exports = {
   addUserOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
+  updateOrderStateController,
 };

@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const getProviderDataById = ({ id }) => {
+const getProviderDataById = (id) => {
   const sql = {
     text: 'SELECT * FROM providers WHERE user_id = $1;',
     values: [id],
