@@ -23,7 +23,6 @@ const AcceptedOrders = ({ refresh, providerDetails }) => {
         const { data: result } = await Axios.get('/api/v1/provider/orders');
         if (unmounted) {
           setIsLoading(false);
-          console.log(result.data);
           setAcceptedOrders(result.data);
         }
       } catch ({ response: resError }) {
@@ -50,10 +49,6 @@ const AcceptedOrders = ({ refresh, providerDetails }) => {
     handleShowModal();
   };
   const onStateChange = (id, state) => {
-    console.log({
-      id,
-      state,
-    });
     setAcceptedOrders(
       acceptedOrders.map((data) => {
         if (data.id === id) {

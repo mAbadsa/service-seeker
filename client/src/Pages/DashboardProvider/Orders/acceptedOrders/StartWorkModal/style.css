@@ -19,26 +19,19 @@
   transition: all 0.25s;
 }
 
-.actions-container .actions-container-btn .ant-btn:hover {
-  color: #252525;
-  background-color: white;
-  border-color: #252525;
-  transition: all 0.25s;
+#done {
+  background-color: #F95151;
+  border-color: #F95151;
 }
 
-.start, .done {
+#start {
+  background-color: #FDCB6E;
+  border-color: #FDCB6E;
+}
+
+#continue {
   background-color: #0EB633;
   border-color: #0EB633;
-}
-
-.pause {
-  background-color: #5C5C5C;
-  border-color: #5C5C5C;
-}
-
-.continue {
-  background-color: #332A94;
-  border-color: #332A94;
 }
 
 .resource-input {

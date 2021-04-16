@@ -42,9 +42,9 @@
 
 .thirdButton:hover,
 .thirdButton:focus {
-  color: #332a94;
-  border-color: #332a94;
-  background-color: #ffffff;
+  color: #ffffff;
+  border-color: #241e69;
+  background-color: #241e69;
 }
 
 .fourthButton {

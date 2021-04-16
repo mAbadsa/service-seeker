@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import moment from 'moment';
 import { Row, Col, Typography, Modal } from 'antd';
 
 import './style.css';
@@ -59,13 +59,11 @@ const WorkStatusModal = ({
           </div>
           <div className="modal-details">
             <Text strong>Description: </Text>
-            <Paragraph level={5} ellipsis>
-              {description}
-            </Paragraph>
+            <Paragraph level={5}>{description}</Paragraph>
           </div>
           <div className="modal-details">
             <Text strong>Time: </Text>
-            <Text>{date}</Text>
+            <Text>{moment(date).format('MMM-Do-YYYY')}</Text>
           </div>
         </Col>
         <Col span={24}>{children}</Col>
