@@ -6,12 +6,14 @@ const {
   postOrderController,
   getAcceptedOrdersController,
   providerDataController,
+  updateOrderStateController,
   updateProviderController,
 } = require('../controller');
 
 const {
   orderAcceptValidation,
   updateProviderValidation,
+  updateOrderStateValidation,
 } = require('../middleware/validation');
 
 router.get('/provider/information', providerDataController);
@@ -21,10 +23,15 @@ router.patch(
   updateProviderController
 );
 router.patch('/provider/availability', updateAvailabilityController);
-
+router.get('/provider/order-requests', getPendingOrderRequestController);
 router.get('/provider/order-requests', getPendingOrderRequestController);
 
-router.post('/provider/orders', orderAcceptValidation, postOrderController);
 router.get('/provider/orders', getAcceptedOrdersController);
+router.post('/provider/orders', orderAcceptValidation, postOrderController);
+router.patch(
+  '/provider/orders/:orderId',
+  updateOrderStateValidation,
+  updateOrderStateController
+);
 
 module.exports = router;
