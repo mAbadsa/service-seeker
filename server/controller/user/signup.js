@@ -11,7 +11,7 @@ const { promiseJWT, boomify } = require('../../utils');
 
 const signupController = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
 
     const { rows } = await checkUserByEmail({
       email,
@@ -26,7 +26,7 @@ const signupController = async (req, res, next) => {
 
     const { rows: userData } = await createNewUser({
       ...req.body,
-      avatar: `https://avatar.oxro.io/avatar.svg?name=${req.body.username}`,
+      avatar: `https://avatar.oxro.io/avatar.svg?name=${username[0]}`,
       password: hashedPassword,
     });
 
