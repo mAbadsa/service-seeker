@@ -36,6 +36,7 @@ const StartWorkModal = ({ data, showModal, onCancel, onStateChange }) => {
       setShowTheBill(false);
       onStateChange(data.id, state);
     } catch (error) {
+      setIsLoading(false);
       message.error(error.response.data.message || 'Something went wrong!');
     }
   };
