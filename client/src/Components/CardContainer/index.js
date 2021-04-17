@@ -19,7 +19,7 @@ const cardContainer = ({
 
   return (
     <Row type="flex" justify="center" {...rest}>
-      <Col xs={22} md={20} lg={18}>
+      <Col span={24}>
         <Title id="container-title" level={3}>
           {title}
         </Title>

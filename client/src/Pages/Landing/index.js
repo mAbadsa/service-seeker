@@ -107,7 +107,7 @@ const LandingPage = () => {
       <Row gutter={[16, 16]} type="flex" justify="center">
         <Col xs={24} md={24} lg={24}>
           <Row gutter={[0, 16]} type="flex" justify="center">
-            <Col>
+            <Col xs={24} md={24} lg={16}>
               {isLoading ? (
                 <Spin className="UserInfo-icon" />
               ) : (

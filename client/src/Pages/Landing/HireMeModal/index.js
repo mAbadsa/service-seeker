@@ -69,7 +69,7 @@ function HireMeModal({ data, closeModal, ...reset }) {
             </Form.Item>
             <Form.Item>
               <Button
-                className="hireme-btn"
+                className="hireme-btn fourthButton"
                 type="primary"
                 htmlType="submit"
                 loading={isLoading}
