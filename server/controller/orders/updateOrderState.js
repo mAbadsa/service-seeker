@@ -56,7 +56,7 @@ const updateOrderState = async (req, res, next) => {
         break;
 
       case 'Finished':
-        if (resourcesPrice < 0 || typeof resourcesPrice !== 'number') {
+        if (resourcesPrice < 0 || Number.isNaN(resourcesPrice)) {
           throw boomify(400, 'please enter resources price');
         }
 
