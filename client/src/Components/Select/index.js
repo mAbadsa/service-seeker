@@ -8,7 +8,7 @@ const SelectComponent = ({ options, initialValue, ...rest }) => (
   <Select className="filter-select" size="large" value={initialValue} {...rest}>
     {options?.map((option) => (
       <Option key={option} value={option}>
-        {option.charAt(0).toUpperCase() + option.slice(1)}
+        {option}
       </Option>
     ))}
   </Select>
