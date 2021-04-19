@@ -66,7 +66,7 @@ const Register = () => {
                 message: 'Please input your Name!',
               },
               {
-                type: 'string',
+                pattern: /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
                 message: 'Type your Full Name.',
               },
             ]}
