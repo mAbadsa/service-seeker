@@ -7,11 +7,13 @@ const {
   getUserNotificationsQueries,
   addUserNotification,
 } = require('./user');
+
 const {
   createNewProvider,
   updateProvider,
   getProviderDataById,
   updateProviderCoverImage,
+  getPriceHourProvider,
 } = require('./provider');
 
 const {
@@ -22,6 +24,11 @@ const {
   updateStateOrderRequest,
   postOrder,
   getPendingOrderRequest,
+  getOrderReqByOrderIdQuery,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
+  updateOrderRequestState,
 } = require('./order');
 
 module.exports = {
@@ -39,8 +46,14 @@ module.exports = {
   updateProvider,
   getProviderDataById,
   isAlreadyHeired,
+  getOrderReqByOrderIdQuery,
   getUserData,
   getUserNotificationsQueries,
   addUserNotification,
   updateProviderCoverImage,
+  updateOrderOnStart,
+  updateOrderOnPause,
+  updateOrderOnFinish,
+  getPriceHourProvider,
+  updateOrderRequestState,
 };

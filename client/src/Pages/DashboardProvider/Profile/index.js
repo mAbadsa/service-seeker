@@ -138,16 +138,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           </Col>
 
           <Col span={16}>
-            <Form.Item
-              label="cover Image"
-              name="cover_image"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your cover image!',
-                },
-              ]}
-            >
+            <Form.Item label="cover Image" name="cover_image">
               <div
                 style={{
                   display: 'flex',

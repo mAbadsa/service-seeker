@@ -21,6 +21,7 @@ const {
   addUserOrderRequest,
   getUserOrdersController,
   getUserOrdersReqController,
+  updateOrderStateController,
 } = require('./orders');
 
 module.exports = {
@@ -43,4 +44,5 @@ module.exports = {
   getUserNotificationsController,
   updateProviderController,
   updateCoverImageController,
+  updateOrderStateController,
 };

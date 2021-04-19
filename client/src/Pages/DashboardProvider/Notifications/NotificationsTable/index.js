@@ -21,7 +21,7 @@ const NotificationsTable = ({ refresh, ...rest }) => {
           setNotificationsData(data.data);
         }
       } catch (err) {
-        message.error('Something went wrong!');
+        message.error(err.response.data.message || 'Something went wrong!');
         setIsLoading(false);
       }
     })();

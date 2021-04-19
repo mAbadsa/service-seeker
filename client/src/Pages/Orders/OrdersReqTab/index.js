@@ -28,7 +28,7 @@ const OrdersReqTab = () => {
           setOrdersReqData(data.data);
         }
       } catch (error) {
-        message.error('Something went wrong!');
+        message.error(error.response.data.message || 'Something went wrong!');
         setLoading(false);
       }
     })();
@@ -71,6 +71,11 @@ const OrdersReqTab = () => {
 
   const onOrderRejected = (_, { key }) => openOrderRejected(key);
 
+  const onSeeMoreClicked = (_, { key }) => {
+    getOrdersReqById(key);
+    handleShowModal();
+  };
+
   return (
     <>
       {ordersReqModalData && (
@@ -87,7 +92,7 @@ const OrdersReqTab = () => {
 
       <TableComponent
         ColumnsType="userOrderReq"
-        onActions={[onOrderRejected]}
+        onActions={[onOrderRejected, onSeeMoreClicked]}
         onRowDoubleClick={(_, __, { key }) => {
           getOrdersReqById(key);
           handleShowModal();

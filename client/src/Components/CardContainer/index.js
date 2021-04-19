@@ -18,7 +18,7 @@ const cardContainer = ({
   const [limit, setLimit] = useState([0, numEachPage]);
 
   return (
-    <Row type="flex" justify="center" {...rest}>
+    <Row gutter={[16, 16]} type="flex" justify="center" {...rest}>
       <Col span={24}>
         <Title id="container-title" level={3}>
           {title}

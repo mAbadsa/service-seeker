@@ -1,21 +1,11 @@
-.Orders {
-  position: relative;
-  min-height: 400px;
-  margin: 0 !important;
+.WorkStatusModal {
+  padding: 3rem 4rem;
 }
 
-.Orders-card__details {
-  text-align: left;
-  padding-top: 6rem;
-  color: #485C73;
-}
-
-.Orders .bg-image {
-  background-position: center;
-  background-size: cover;
-  position: absolute;
-  height: 250px;
-  width: 100%;
+.WorkStatusModal h3 {
+  text-align: center;
+  font-weight: bold;
+  color: #5C5C5C;
 }
 
 .image-container {
@@ -42,47 +32,24 @@
   text-align: center;
 }
 
-.Orders-card__username{
+.avatar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.WorkStatusModal-username{
   display: block;
   text-align: center;
   width: 180px;
   font-size: 22px !important;
 }
 
-.Orders .Orders-card {
-  margin: 10rem 2rem 1.5rem;
-}
-
-.Orders-details {
-  width: 100%;
-}
-
-.label-text {
-  font-size: 16px;
-}
-
-.label-text__rating {
-  padding-right: 5px;
-}
-
-.rating {
-  font-size: 16px;
-}
-
-.label-text__emp {
-  color: #252525;
-  font-weight: bold;
-}
-
 .ant-typography {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 @media only screen and (max-width: 768px) {
   .image-container {
     margin: 0 auto;
-  }
-  .Orders-card__details {
-    padding-top: 2rem;
   }
 }

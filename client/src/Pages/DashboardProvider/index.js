@@ -55,8 +55,8 @@ const DashboardProvider = () => {
           setProviderDetails(data.data[0]);
         }
       } catch (error) {
-        message.error('Something went wrong!');
         setLoading(false);
+        message.error(error.response.data.message, 'Something went wrong!');
       }
     })();
     return () => {
@@ -100,7 +100,7 @@ const DashboardProvider = () => {
       message.success('your status updated successfully');
     } catch (err) {
       message.destroy();
-      message.error(err.response.data.message);
+      message.error(err.response.data.message || 'Something went wrong!');
       setSwitchLoading(false);
     }
   };

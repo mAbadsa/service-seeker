@@ -31,7 +31,8 @@ function HireMeModal({ data, closeModal, ...reset }) {
       form.resetFields();
       closeModal();
       Modal.success({
-        content: 'The hiring is successful',
+        content:
+          'Order request sent successfully, please wait provider to accept request',
       });
     } catch (err) {
       form.resetFields();
