@@ -6,9 +6,10 @@ const {
   updateOrderOnFinish,
   updateOrderRequestState,
   getUserData,
+  getProviderDataById,
 } = require('../../database/queries');
 
-const { boomify, calculateDuration, sendBill } = require('../../utils');
+const { boomify, calculateDuration, sendTheBill } = require('../../utils');
 
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
@@ -63,9 +64,10 @@ const updateOrderState = async (req, res, next) => {
         if (resourcesPrice < 0 || Number.isNaN(resourcesPrice)) {
           throw boomify(400, 'please enter resources price');
         }
-
-        providerPriceHour = (await getPriceHourProvider(providerId)).rows[0]
-          .price_hour;
+        const { rows: [providerData]} = await getProviderDataById(providerId);
+        // providerPriceHour = (await getPriceHourProvider(providerId)).rows[0]
+        //   .price_hour;
+        providerPriceHour = providerData.price_hour;
 
         if (order.state === 'Start') {
           workHours = calculateDuration(order.start_date);
@@ -86,7 +88,19 @@ const updateOrderState = async (req, res, next) => {
         });
 
         await updateOrderRequestState(order.orders_request_id);
-        sendBill(userData.rows[0].email, 'The Bill', newData, next);
+        sendTheBill(
+          `${userData}, ${providerData.email}`,
+          'Order Bill',
+          {
+            total: 150,
+            hourPrice: 15,
+            hourNumber: 10,
+            description: 'asd mjdj jhfdj jdhjhf jhjhf',
+            client: 'Muhammad',
+            provider: 'Ali',
+          },
+          next
+        );
         break;
 
       default:
