@@ -49,7 +49,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="please enter your Title" />
+              <Input type="text" placeholder="please enter your Title" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -87,7 +87,10 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="please enter your Mobile as 059-xxxx-xxx" />
+              <Input
+                type="text"
+                placeholder="please enter your Mobile as 059-xxxx-xxx"
+              />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -102,7 +105,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="please enter your Price" />
+              <Input type="number" placeholder="please enter your Price" />
             </Form.Item>
           </Col>
           <Col span={16}>
