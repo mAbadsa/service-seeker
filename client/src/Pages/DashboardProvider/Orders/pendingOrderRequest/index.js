@@ -35,7 +35,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
           setOrdersData(data.data);
         }
       } catch (err) {
-        message.error('Something went wrong!');
+        message.error(err.response.data.message || 'Something went wrong!');
         setIsLoading(false);
       }
     })();
@@ -57,7 +57,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
           await Axios.delete(`/api/v1/user/order-requests/${orderId}`);
           setOrdersData(deleteById(ordersData, orderId));
         } catch (err) {
-          message.error('Something went wrong!');
+          message.error(err.response.data.message || 'Something went wrong!');
         }
       },
     });

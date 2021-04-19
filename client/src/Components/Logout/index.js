@@ -23,7 +23,7 @@ export default function Logout({ dashBoard }) {
       setAuthLoading(true);
       history.push(HOME_PAGE);
     } catch (err) {
-      message.error('Something went wrong!');
+      message.error(err.response.data.message || 'Something went wrong!');
       setLoading(false);
     }
   };

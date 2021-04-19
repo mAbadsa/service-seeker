@@ -22,7 +22,7 @@ const NotificationPanel = () => {
           setNotificationsData(data.data.reverse());
         }
       } catch (err) {
-        message.error('Something went wrong!');
+        message.error(err.response.data.message || 'Something went wrong!');
         setIsLoading(false);
       }
     })();
