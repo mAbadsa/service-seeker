@@ -85,7 +85,7 @@ const LoginPage = () => {
           >
             <label htmlFor="password" className="login-left__input">
               Password:
-              <Input type="Password" placeholder="Enter your password..." />
+              <Input type="password" placeholder="Enter your password..." />
             </label>
           </Form.Item>
           <Form.Item>

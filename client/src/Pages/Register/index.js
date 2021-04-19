@@ -66,7 +66,7 @@ const Register = () => {
                 message: 'Please input your Name!',
               },
               {
-                pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
+                type: 'string',
                 message: 'Type your Full Name.',
               },
             ]}
@@ -96,6 +96,10 @@ const Register = () => {
               {
                 required: true,
                 message: 'Please input mobile number!',
+              },
+              {
+                type: 'number',
+                message: 'phone must be a number',
               },
             ]}
           >
