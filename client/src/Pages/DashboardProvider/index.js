@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Axios from 'axios';
 import {
@@ -39,7 +39,6 @@ const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
 
   const { md } = useBreakpoint();
-  const history = useHistory();
 
   const [visible, setVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -86,9 +85,6 @@ const DashboardProvider = () => {
       setTitle('Profile');
     }
   };
-  const redirectHome = () => {
-    history.push('/');
-  };
 
   const handleOrderRefresh = () => {
     setOrderRefresh(!orderRefresh);
@@ -117,9 +113,9 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
-          <Text onClick={redirectHome} className="logoText">
+          <Link to={'/'} className="logoText">
             S-Seeker
-          </Text>
+          </Link>
 
           <Avatar srcImg={userData.avatar} size={100} />
 

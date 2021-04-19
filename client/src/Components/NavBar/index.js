@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Layout, Menu, Row, Col, Drawer, Grid } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
@@ -43,9 +43,7 @@ const NavBar = () => {
   const redirectHandler = (route) => () => {
     history.push(route);
   };
-  const redirectHome = () => {
-    history.push('/');
-  };
+
   const LeftMenu = (
     <Menu
       id="navBar-menu"
@@ -95,9 +93,9 @@ const NavBar = () => {
     <Header className="header">
       <Row>
         <Col xs={9} sm={10} md={5} lg={6}>
-          <p className="logoNav" onClick={redirectHome}>
+          <Link className="logoNav" to={'/'}>
             S-Seeker
-          </p>
+          </Link>
         </Col>
 
         <Col xs={12} sm={9} md={13} lg={12}>
