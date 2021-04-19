@@ -113,7 +113,7 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
-          <Link to={'/'} className="logoText">
+          <Link to="/" className="logoText">
             S-Seeker
           </Link>
 

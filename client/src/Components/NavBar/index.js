@@ -93,7 +93,7 @@ const NavBar = () => {
     <Header className="header">
       <Row>
         <Col xs={9} sm={10} md={5} lg={6}>
-          <Link className="logoNav" to={'/'}>
+          <Link className="logoNav" to="/">
             S-Seeker
           </Link>
         </Col>
