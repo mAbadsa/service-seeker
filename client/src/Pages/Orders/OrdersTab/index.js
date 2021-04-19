@@ -24,7 +24,7 @@ const OrdersTab = () => {
           setOrderData(data.data);
         }
       } catch (error) {
-        message.error('Something went wrong!');
+        message.error(error.response.data.message || 'Something went wrong!');
         setLoading(false);
       }
     })();

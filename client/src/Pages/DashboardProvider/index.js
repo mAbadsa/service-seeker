@@ -102,7 +102,7 @@ const DashboardProvider = () => {
       message.success('your status updated successfully');
     } catch (err) {
       message.destroy();
-      message.error(err.response.data.message);
+      message.error(err.response.data.message || 'Something went wrong!');
       setSwitchLoading(false);
     }
   };

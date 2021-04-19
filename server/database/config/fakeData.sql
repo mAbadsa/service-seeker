@@ -13,7 +13,7 @@ VALUES (
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0597806990',
     'nusirat',
-    'https://avatar.oxro.io/avatar.svg?name=ahmed eid',
+    'https://avatar.oxro.io/avatar.svg?name=A',
     'provider'
   ),
   (
@@ -22,7 +22,7 @@ VALUES (
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0597888666',
     'Gaza',
-    'https://avatar.oxro.io/avatar.svg?name=zein jendeya',
+    'https://avatar.oxro.io/avatar.svg?name=Z',
     'user'
   ),
   (
@@ -31,7 +31,7 @@ VALUES (
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0593500993',
     'Gaza',
-    'https://avatar.oxro.io/avatar.svg?name=mariam isa',
+    'https://avatar.oxro.io/avatar.svg?name=M',
     'provider'
   ),
   (
@@ -40,7 +40,7 @@ VALUES (
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0599777999',
     'al zahra',
-    'https://avatar.oxro.io/avatar.svg?name=osama yonis',
+    'https://avatar.oxro.io/avatar.svg?name=O',
     'user'
   ),(
     'Muhammed abds',
@@ -48,7 +48,7 @@ VALUES (
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0597222555',
     'khan younis',
-    'https://avatar.oxro.io/avatar.svg?name=Muhammed abds ',
+    'https://avatar.oxro.io/avatar.svg?name=M',
     'provider'
   );
 INSERT INTO providers(
