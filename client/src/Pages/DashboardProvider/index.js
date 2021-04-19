@@ -30,6 +30,7 @@ import Orders from './Orders';
 import Notifications from './Notifications';
 
 import './style.css';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -113,7 +114,7 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
-          <Link to="/" className="logoText">
+          <Link to={HOME_PAGE} className="logoText">
             S-Seeker
           </Link>
 
