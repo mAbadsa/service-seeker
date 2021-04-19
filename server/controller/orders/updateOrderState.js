@@ -5,9 +5,10 @@ const {
   updateOrderOnPause,
   updateOrderOnFinish,
   updateOrderRequestState,
+  getUserData,
 } = require('../../database/queries');
 
-const { boomify, calculateDuration } = require('../../utils');
+const { boomify, calculateDuration, sendBill } = require('../../utils');
 
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
@@ -21,6 +22,9 @@ const updateOrderState = async (req, res, next) => {
     });
 
     const [order] = rows;
+    const userData = await getUserData({
+      userId: order.user_id,
+    });
 
     if (!order) {
       throw boomify(404, 'There is no order');
@@ -82,6 +86,7 @@ const updateOrderState = async (req, res, next) => {
         });
 
         await updateOrderRequestState(order.orders_request_id);
+        sendBill(userData.rows[0].email, 'The Bill', newData, next);
         break;
 
       default:
