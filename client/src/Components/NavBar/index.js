@@ -43,7 +43,9 @@ const NavBar = () => {
   const redirectHandler = (route) => () => {
     history.push(route);
   };
-
+  const redirectHome = () => {
+    history.push('/');
+  };
   const LeftMenu = (
     <Menu
       id="navBar-menu"
@@ -66,7 +68,7 @@ const NavBar = () => {
               onClick={redirectHandler(PROVIDER_DASHBOARD_PAGE)}
               key={PROVIDER_DASHBOARD_PAGE}
             >
-              Dashboard
+              Control Panel
             </Menu.Item>
           )}
         </>
@@ -93,7 +95,9 @@ const NavBar = () => {
     <Header className="header">
       <Row>
         <Col xs={9} sm={10} md={5} lg={6}>
-          <p className="logo">S-Seeker</p>
+          <p className="logoNav" onClick={redirectHome}>
+            S-Seeker
+          </p>
         </Col>
 
         <Col xs={12} sm={9} md={13} lg={12}>

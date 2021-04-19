@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import Axios from 'axios';
 import {
   Layout,
@@ -37,6 +39,7 @@ const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
 
   const { md } = useBreakpoint();
+  const history = useHistory();
 
   const [visible, setVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -83,6 +86,9 @@ const DashboardProvider = () => {
       setTitle('Profile');
     }
   };
+  const redirectHome = () => {
+    history.push('/');
+  };
 
   const handleOrderRefresh = () => {
     setOrderRefresh(!orderRefresh);
@@ -111,9 +117,13 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
+          <Text onClick={redirectHome} className="logoText">
+            S-Seeker
+          </Text>
+
           <Avatar srcImg={userData.avatar} size={100} />
 
-          <Text strong={false} level={3}>
+          <Text strong={false} level={3} className="logoTextName">
             {userData?.username}
           </Text>
           <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
@@ -133,7 +143,7 @@ const DashboardProvider = () => {
 
       <div>
         <div className="available">
-          <span> Available ?</span>
+          <span> Ready to work ?</span>
           <Switch
             onChange={handleAvailability}
             loading={isLoading || switchLoading}
