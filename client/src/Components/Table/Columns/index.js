@@ -6,10 +6,10 @@ import notifications from './notifications';
 
 const getColumnsData = (onActions) => ({
   userOrderReq: UserOrderReq(onActions),
-  userOrder: UserOrder(),
+  userOrder: UserOrder(onActions),
   providerOrderPending: providerOrderPending(onActions),
-  providerAcceptedOrders: providerAcceptedOrders(),
-  notifications: notifications(),
+  providerAcceptedOrders: providerAcceptedOrders(onActions),
+  notifications: notifications(onActions),
 });
 
 export default getColumnsData;

@@ -1,8 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import { CloseOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+import { CloseOutlined, MoreOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
+
+const { Text, Paragraph } = Typography;
 
 const UserOrderReq = (onActions) => [
   {
@@ -26,15 +29,15 @@ const UserOrderReq = (onActions) => [
               minWidth: '45px',
             }}
           />
-          <label
+          <Text
             style={{
-              lineHeight: '45px',
               paddingLeft: '14px',
               width: '120px',
+              fontSize: '15px',
             }}
           >
             {username}
-          </label>
+          </Text>
         </div>
       );
     },
@@ -57,6 +60,21 @@ const UserOrderReq = (onActions) => [
     key: 'yourDescription',
     dataIndex: 'yourDescription',
     width: '30%',
+    render(text) {
+      return (
+        <Paragraph
+          style={{
+            fontSize: '15px',
+            margin: 0,
+          }}
+          ellipsis={{
+            rows: 2,
+          }}
+        >
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: 'Date',
@@ -76,16 +94,31 @@ const UserOrderReq = (onActions) => [
     render(text, record) {
       return (
         <div
-          onClick={(e) => {
-            onActions[0](e, record);
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
           }}
         >
           <CloseOutlined
+            onClick={(e) => {
+              onActions[0](e, record);
+            }}
             style={{
               paddingLeft: '5px',
               cursor: 'pointer',
               fontSize: '21px',
               color: '#F95151',
+            }}
+          />
+          <MoreOutlined
+            onClick={(e) => {
+              onActions[1](e, record);
+            }}
+            style={{
+              paddingRight: '10px',
+              cursor: 'pointer',
+              fontSize: '25px',
             }}
           />
         </div>
