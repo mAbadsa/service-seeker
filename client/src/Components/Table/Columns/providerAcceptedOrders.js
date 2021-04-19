@@ -1,11 +1,14 @@
 import React from 'react';
 import moment from 'moment';
+import { Typography } from 'antd';
+import { MoreOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
-
 import getStatusColor from '../../../Utils/getStatusColor';
 
-export default () => [
+const { Text, Paragraph } = Typography;
+
+export default (onActions) => [
   {
     title: 'User Info',
     dataIndex: 'userinfo',
@@ -26,15 +29,15 @@ export default () => [
               minWidth: '45px',
             }}
           />
-          <label
+          <Text
             style={{
-              lineHeight: '45px',
               paddingLeft: '14px',
               width: '120px',
+              fontSize: '15px',
             }}
           >
             {username}
-          </label>
+          </Text>
         </div>
       );
     },
@@ -54,6 +57,21 @@ export default () => [
     title: 'Description',
     dataIndex: 'description',
     key: 'description',
+    render(text) {
+      return (
+        <Paragraph
+          style={{
+            fontSize: '15px',
+            margin: 0,
+          }}
+          ellipsis={{
+            rows: 2,
+          }}
+        >
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: 'Time',
@@ -81,6 +99,29 @@ export default () => [
         >
           {text}
         </p>
+      );
+    },
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    dataIndex: 'action',
+    width: '10%',
+    fixed: 'right',
+    render(text, record) {
+      return (
+        <div>
+          <MoreOutlined
+            onClick={(e) => {
+              onActions[0](e, record);
+            }}
+            style={{
+              paddingLeft: '10px',
+              cursor: 'pointer',
+              fontSize: '25px',
+            }}
+          />
+        </div>
       );
     },
   },

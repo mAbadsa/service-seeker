@@ -100,9 +100,15 @@ const PendingProvider = ({ refresh, ...rest }) => {
     setShowMoreDetailModal(true);
   };
 
-  const handleMoreDetails = (_1, _2, record) => {
-    setOrderDetails(record);
+  const handleMoreDetails = (data) => {
+    setOrderDetails(data);
     handleShowModal();
+  };
+  const handleMoreDetailsOnDoubleClick = (_1, _2, record) => {
+    handleMoreDetails(record);
+  };
+  const handleMoreDetailsOnActions = (_1, record) => {
+    handleMoreDetails(record);
   };
 
   return (
@@ -150,8 +156,12 @@ const PendingProvider = ({ refresh, ...rest }) => {
             action: id,
           })
         )}
-        onActions={[handleAcceptOrder, handleCancelOrder]}
-        onRowDoubleClick={handleMoreDetails}
+        onActions={[
+          handleAcceptOrder,
+          handleCancelOrder,
+          handleMoreDetailsOnActions,
+        ]}
+        onRowDoubleClick={handleMoreDetailsOnDoubleClick}
         loading={isLoading}
         {...rest}
       />
