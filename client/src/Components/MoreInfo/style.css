@@ -11,3 +11,8 @@
 .icon-border .anticon-info{
   margin: 0;
 }
+
+.ant-popover-inner-content {
+  width: 340px;
+  font-size: 15px;
+}
