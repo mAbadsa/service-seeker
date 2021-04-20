@@ -44,9 +44,15 @@ const AcceptedOrders = ({ refresh }) => {
     setShowModal(false);
   };
 
-  const handleMoreDetails = (_1, _2, record) => {
-    setOrderDetails(record);
+  const handleMoreDetails = (data) => {
+    setOrderDetails(data);
     handleShowModal();
+  };
+  const onStateChangeOnDoubleClick = (_1, _2, record) => {
+    handleMoreDetails(record);
+  };
+  const handleMoreDetailsOnActions = (_, record) => {
+    handleMoreDetails(record);
   };
   const onStateChange = (id, state) => {
     setAcceptedOrders(
@@ -106,7 +112,8 @@ const AcceptedOrders = ({ refresh }) => {
             time: date,
           })
         )}
-        onRowDoubleClick={handleMoreDetails}
+        onActions={[handleMoreDetailsOnActions]}
+        onRowDoubleClick={onStateChangeOnDoubleClick}
       />
     </>
   );

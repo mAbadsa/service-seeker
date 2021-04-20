@@ -1,8 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+import { CloseOutlined, CheckOutlined, MoreOutlined } from '@ant-design/icons';
 
 import Avatar from '../../Avatar';
+
+const { Text, Paragraph } = Typography;
 
 export default (onActions) => [
   {
@@ -25,15 +28,15 @@ export default (onActions) => [
               minWidth: '45px',
             }}
           />
-          <label
+          <Text
             style={{
-              lineHeight: '45px',
               paddingLeft: '14px',
               width: '120px',
+              fontSize: '15px',
             }}
           >
             {username}
-          </label>
+          </Text>
         </div>
       );
     },
@@ -53,6 +56,21 @@ export default (onActions) => [
     title: 'Description',
     dataIndex: 'description',
     key: 'description',
+    render(text) {
+      return (
+        <Paragraph
+          style={{
+            fontSize: '15px',
+            margin: 0,
+          }}
+          ellipsis={{
+            rows: 2,
+          }}
+        >
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: 'Time',
@@ -66,27 +84,45 @@ export default (onActions) => [
     title: 'Action',
     dataIndex: 'action',
     key: 'action',
-    render(action) {
+    render(action, record) {
       return (
-        <>
-          <CheckOutlined
-            onClick={() => onActions[0](action)}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <CheckOutlined
+              onClick={() => onActions[0](action)}
+              style={{
+                marginRight: '15px',
+                fontSize: '24px',
+                color: '#22c41a',
+                cursor: 'pointer',
+              }}
+            />
+            <CloseOutlined
+              onClick={() => onActions[1](action)}
+              style={{
+                fontSize: '24px',
+                color: '#c2141a',
+                cursor: 'pointer',
+              }}
+            />
+          </div>
+          <MoreOutlined
+            onClick={() => {
+              onActions[2](action, record);
+            }}
             style={{
-              marginRight: '15px',
-              fontSize: '24px',
-              color: '#22c41a',
+              paddingRight: '10px',
               cursor: 'pointer',
+              fontSize: '25px',
             }}
           />
-          <CloseOutlined
-            onClick={() => onActions[1](action)}
-            style={{
-              fontSize: '24px',
-              color: '#c2141a',
-              cursor: 'pointer',
-            }}
-          />
-        </>
+        </div>
       );
     },
   },
