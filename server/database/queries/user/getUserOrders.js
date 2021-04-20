@@ -3,7 +3,7 @@ const connection = require('../../config/connection');
 const getUserOrders = ({ userId }) => {
   const sql = {
     text:
-      "SELECT R.description, R.date, U.username, U.mobile, U.avatar, U.location, P.title, P.bio, P.price_hour, P.rating, P.cover_image, P.service_type, O.id, O.state, O.arrive_time FROM orders_request AS R INNER JOIN orders AS O ON R.id = O.orders_request_id INNER JOIN users AS U ON R.provider_id = U.id INNER JOIN providers AS P ON R.provider_id = P.user_id WHERE R.user_id = $1 AND R.state='accepted' ORDER BY orders_request.id DESC;",
+      "SELECT R.description, R.date, U.username, U.mobile, U.avatar, U.location, P.title, P.bio, P.price_hour, P.rating, P.cover_image, P.service_type, O.id, O.state, O.arrive_time FROM orders_request AS R INNER JOIN orders AS O ON R.id = O.orders_request_id INNER JOIN users AS U ON R.provider_id = U.id INNER JOIN providers AS P ON R.provider_id = P.user_id WHERE R.user_id = $1 AND R.state='accepted' ORDER BY R.id DESC;",
     values: [userId],
   };
   return connection.query(sql);
