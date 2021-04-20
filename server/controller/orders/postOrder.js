@@ -14,11 +14,12 @@ const postOrderController = async (req, res, next) => {
     if (rowCount === 0) {
       throw boomify(409, 'failed to accept the order');
     }
-    await postOrder(arriveTime, orderID, 'accepted');
+    await postOrder(arriveTime, orderID);
 
-    res
-      .status(201)
-      .json({ status: 201, message: 'order accepted successfully' });
+    res.status(201).json({
+      status: 201,
+      message: 'order accepted successfully',
+    });
   } catch (err) {
     next(err);
   }

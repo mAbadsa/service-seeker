@@ -32,7 +32,7 @@ const LandingPage = () => {
           setProvidersList(data.data);
         }
       } catch (error) {
-        message.error('Something went wrong!');
+        message.error(error.response.data.message || 'Something went wrong!');
         setLoading(false);
       }
     })();
@@ -105,25 +105,19 @@ const LandingPage = () => {
       </Row>
 
       <Row gutter={[16, 16]} type="flex" justify="center">
-        <Col xs={24} md={24} lg={24}>
-          <Row gutter={[0, 16]} type="flex" justify="center">
-            <Col xs={24} md={24} lg={18}>
-              {isLoading ? (
-                <Spin className="UserInfo-icon" />
-              ) : (
-                <CardContainer
-                  title={
-                    !searchResult
-                      ? 'All service'
-                      : `${searchResult.length} Result `
-                  }
-                  providers={searchResult || providers}
-                  showModal={handleShowModal}
-                  getProviderById={getProviderById}
-                />
-              )}
-            </Col>
-          </Row>
+        <Col xs={23} md={22} lg={17}>
+          {isLoading ? (
+            <Spin className="UserInfo-icon" />
+          ) : (
+            <CardContainer
+              title={
+                !searchResult ? 'All service' : `${searchResult.length} Result `
+              }
+              providers={searchResult || providers}
+              showModal={handleShowModal}
+              getProviderById={getProviderById}
+            />
+          )}
         </Col>
       </Row>
     </>

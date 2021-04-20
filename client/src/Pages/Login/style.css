@@ -32,30 +32,6 @@
   background-color: #fafbfc;
 }
 
-.login-left__input {
-  display: flex;
-  width: 580px;
-  margin-right: 53px;
-  line-height: 40px;
-}
-
-.login-left__input .ant-input-password,
-.login-left__input > .ant-input {
-  margin-left: 20px;
-  height: 45px;
-  border-radius: 5px;
-}
-
-.login-left .ant-form-item-explain-error {
-  font-size: 20px;
-  text-align: left;
-  margin-left: 118px;
-}
-
-.login-left .ant-alert {
-  margin: 23px;
-}
-
 .login-right__SignUp-btn,
 .login-btn {
   width: 210px;
@@ -95,6 +71,9 @@
   padding-top: 20px;
   font-weight: bold;
   font-size: 27px;
+}
+.login .ant-form-item-label > label{
+  width: 115px;
 }
 
 @media only screen and (max-width: 1060px) {

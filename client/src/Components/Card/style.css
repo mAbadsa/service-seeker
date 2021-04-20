@@ -17,9 +17,7 @@
 
 .imageStyle {
   border-radius: 10px;
-  max-width: 184px;
-  width: 100%;
-}
+ }
 
 .cardDescription {
   text-align: left;
@@ -58,11 +56,6 @@
   font-size: 14px;
 }
 
-.cardHireMe {
-  padding-top: 20px;
-  padding-left: 20px;
-}
-
 .hireBtn {
   margin-top: 20px;
   border-radius: 12px;
@@ -82,30 +75,11 @@
 
 @media only screen and (max-width: 990px) {
   .cardLocation {
-    margin: 0;
+    margin-left: 0;
   }
-
-  .cardHireMe {
-    border: none;
-    border-top: 1.5px solid #f2f3f4;
-  }
-
-  .imageStyle {
-    max-width: 100%;
-  }
-
-  .cardDescription__top,
+ .cardDescription__top,
   .cardDescription__bottom {
     flex-direction: column;
-  }
+  } 
   
-  .hireBtn {
-    
-    height: 43px;
-    font-size: 14px;
-  }
-
-  .cardHireContener {
-    margin: 0 auto;
-  }
 }

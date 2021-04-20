@@ -24,7 +24,7 @@ const OrdersTab = () => {
           setOrderData(data.data);
         }
       } catch (error) {
-        message.error('Something went wrong!');
+        message.error(error.response.data.message || 'Something went wrong!');
         setLoading(false);
       }
     })();
@@ -40,9 +40,17 @@ const OrdersTab = () => {
     setShowModal(false);
   };
 
-  const getOrdersById = (_, __, { key }) => {
-    setOrdersModalData(orderData.find((item) => item.id === key));
+  const ordersModalHandler = (id) => {
+    setOrdersModalData(orderData.find((item) => item.id === id));
     handleShowModal();
+  };
+
+  const ordersModalOnActions = (_, { key }) => {
+    ordersModalHandler(key);
+  };
+
+  const ordersModalOnRowDoubleClick = (_, __, { key }) => {
+    ordersModalHandler(key);
   };
 
   return (
@@ -58,7 +66,8 @@ const OrdersTab = () => {
 
       <TableComponent
         ColumnsType="userOrder"
-        onRowDoubleClick={getOrdersById}
+        onActions={[ordersModalOnActions]}
+        onRowDoubleClick={ordersModalOnRowDoubleClick}
         loading={isLoading}
         dataSource={orderData.map(
           ({

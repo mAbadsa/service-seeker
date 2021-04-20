@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
-import { Col, Row, Typography, Spin, message } from 'antd';
+import { Col, Row, Typography, Spin, message, Popover } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
 
 import './style.css';
 
@@ -10,6 +11,8 @@ const { Text, Title } = Typography;
 const NotificationPanel = () => {
   const [notificationsData, setNotificationsData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     let unmounted = true;
@@ -22,7 +25,7 @@ const NotificationPanel = () => {
           setNotificationsData(data.data.reverse());
         }
       } catch (err) {
-        message.error('Something went wrong!');
+        message.error(err.response.data.message || 'Something went wrong!');
         setIsLoading(false);
       }
     })();
@@ -30,29 +33,38 @@ const NotificationPanel = () => {
     return () => {
       unmounted = false;
     };
-  }, []);
+  }, [refresh]);
+
+  const onNotificationClick = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      setRefresh(!refresh);
+    }
+  };
+
+  const notificationContent = !isLoading ? (
+    <>
+      <Title id="not-panel__title">Notifications</Title>
+
+      {notificationsData.map(({ id, description, created_at: time }) => (
+        <Row className="not-panel__contener" key={id}>
+          <Col sm={24} className="not-panel__right">
+            <Text>{description}</Text>
+          </Col>
+          <Col sm={24} className="not-panel__left">
+            {moment(time).startOf('hour').fromNow()}
+          </Col>
+        </Row>
+      ))}
+    </>
+  ) : (
+    <Spin />
+  );
 
   return (
-    <div className="not-panel">
-      {!isLoading ? (
-        <>
-          <Title id="not-panel__title">Notifications</Title>
-
-          {notificationsData.map(({ id, description, created_at: time }) => (
-            <Row className="not-panel__contener" key={id}>
-              <Col sm={24} className="not-panel__right">
-                <Text>{description}</Text>
-              </Col>
-              <Col sm={24} className="not-panel__left">
-                {moment(time).startOf('hour').fromNow()}
-              </Col>
-            </Row>
-          ))}
-        </>
-      ) : (
-        <Spin />
-      )}
-    </div>
+    <Popover content={notificationContent} trigger="click">
+      <BellOutlined className="UserInfo-icon" onClick={onNotificationClick} />
+    </Popover>
   );
 };
 

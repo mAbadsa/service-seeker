@@ -93,7 +93,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           </Col>
           <Col span={16}>
             <Form.Item
-              label="Price"
+              label=" price/hour"
               initialValue={providerDetails?.price_hour}
               name="price_hour"
               rules={[
@@ -139,7 +139,8 @@ const Profile = ({ providerDetails, userData, refresh }) => {
 
           <Col span={16}>
             <Form.Item
-              label="cover Image"
+              label="Cover Image "
+              initialValue={providerDetails?.cover_image}
               name="cover_image"
               rules={[
                 {

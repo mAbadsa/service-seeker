@@ -8,47 +8,47 @@ INSERT INTO users(
     role
   )
 VALUES (
-    'Reinald',
-    'rhrishanok0@google.com',
+    'ahmed eid',
+  'aeid767@gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
-    '959-398-7264',
-    '2878 Di Loreto Road',
-    'https://cdn2.iconfinder.com/data/icons/asia-man-professions/512/profession_avatar_man_people_user_professional_asia_work_job-20-512.png',
+    '0597806990',
+    'nusirat',
+    'https://avatar.oxro.io/avatar.svg?name=A',
     'provider'
   ),
   (
-    'Melicent',
-    'mllewelyn1@ucoz.com',
+    'zein jendeya',
+    'z.jendeya@gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
-    '124-136-6347',
-    '0724 Kim Crossing',
-    'https://previews.123rf.com/images/anwarsikumbang/anwarsikumbang1502/anwarsikumbang150200445/36649700-man-avatar-user-picture-cartoon-character-vector-illustration.jpg',
+    '0597888666',
+    'Gaza',
+    'https://avatar.oxro.io/avatar.svg?name=Z',
     'user'
   ),
   (
-    'Dugald',
-    'dstrotone2@umich.edu',
+    'mariam isa',
+    'mariam@gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
-    '697-350-0993',
-    '76 Birchwood Trail',
-    'https://cdn0.iconfinder.com/data/icons/male-profession-flat/32/engineer-512.png',
+    '0593500993',
+    'Gaza',
+    'https://avatar.oxro.io/avatar.svg?name=M',
     'provider'
   ),
   (
-    'Shelli',
-    'slamzed3@gnu.org',
+    'osama yonis',
+    'osama.gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
-    '429-847-1775',
-    '12437 Menomonie Court',
-    'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png',
+    '0599777999',
+    'al zahra',
+    'https://avatar.oxro.io/avatar.svg?name=O',
     'user'
   ),(
-    'test',
-    'slamzed4@gnu.org',
+    'Muhammed abds',
+    'Muhammed@gmil.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
-    '429-847-1775',
-    '12437 Menomonie Court',
-    'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png',
+    '0597222555',
+    'khan younis',
+    'https://avatar.oxro.io/avatar.svg?name=M',
     'provider'
   );
 INSERT INTO providers(
@@ -63,35 +63,36 @@ INSERT INTO providers(
   )
 VALUES (
     1,
-    'Lipsum generator',
-    'Phasellus in felis. Donec semper sapien a libero. Nam dui.
-Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
-Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
+    'Builder/Developer services',
+    'oversee, coordinate and work on the construction,
+     repair and renovation of homes and other buildings',
     4.6,
     true,
     5,
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    'plumber'
+    'https://resources.stuff.co.nz/content/dam/images/1/w/e/9/7/k/image.related.StuffLandscapeSixteenByNine.710x400.1w0s0r.png/1565436771578.jpg?format=pjpg&optimize=medium',
+    'builder'
   ),
   (
     3,
-    'Lipsum generator',
-    'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
-Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
+    'Master Electrician',
+    'Read blueprints or technical diagrams.
+     Install and maintain wiring, control,
+      and lighting systems. Inspect electrical components,
+       such as transformers and circuit breakers. 
+       Identify electrical problems using a variety of testing devices.',
     7.8,
     false,
     3,
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    'carpenter'
+    'https://www.thebalancecareers.com/thmb/s1X5a3Lr_OI6mVwrpDyfrzBBgZM=/400x0/filters:max_bytes(150000):strip_icc()/Electrician_526009_final_2-f3c6d0f5bd6744abb3cbdb155502f1fb.png',
+    'Electrician'
   ),(
     5,
-    'Lipsum mariam',
-    'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.
-Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
+    'Trim carpenter',
+    'Specialises in mouldings and trims, such as mantles, skirting boards), and other ornamental work.',
     7.8,
     true,
     3,
-    'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY-y-rFTnxhVi5G9OTD3rX0aMBn55vlhg0kmZlagqgx8vmmYDqJfBoKX0ULC_F_y-tDM&usqp=CAU',
     'carpenter'
   );
 INSERT INTO orders_request(
@@ -103,14 +104,14 @@ INSERT INTO orders_request(
   )
 VALUES(
     2,
-    1,
-    'Need to maintenance to my a garden wall',
+    3,
+    'Need to maintenance to my electricety in my home',
     'pending',
     '2021-04-07 21:31:11.276724'
   ),
   (
     2,
-    3,
+    1,
     'Need to maintenance to my a garden wall',
     'accepted',
     '2021-04-08 15:41:01.276724'
@@ -118,7 +119,7 @@ VALUES(
   (
     1,
     3,
-    'Need to maintenance kitchen supplier',
+    'need to maintenance electricity in my office',
     'finished',
     '2021-04-10 11:51:01.276724'
   ),
@@ -132,18 +133,18 @@ VALUES(
 INSERT INTO orders(
     orders_request_id,
       start_date,
-    pasued_date,
+    paused_date,
     state,
     arrive_time,
-    houer_number,
+    hour_number,
     resources_price,
     total_bill_price
   )VALUES(
     2,
     null,
     null,
-    'accepted',
-    '16:10:45',
+    'Accepted',
+    null,
     null,
     null,
     null
@@ -151,7 +152,7 @@ INSERT INTO orders(
     3,
     '2021-04-15 14:30:10',
     '2021-04-15 15:20:10',
-    'finished',
+    'Paused',
     '13:20:10',
     6.2,
     100.6,

@@ -12,7 +12,8 @@ CREATE TABLE users (
     mobile VARCHAR(255) NOT NULL,
     avatar TEXT,
     location VARCHAR(255) NOT NULL,
-    role VARCHAR(55) DEFAULT 'user'
+    role VARCHAR(55) DEFAULT 'user',
+    check(role in ('user','provider'))
 );
 CREATE TABLE providers (
     id SERIAL PRIMARY KEY,
@@ -22,7 +23,7 @@ CREATE TABLE providers (
     bio TEXT,
     price_hour FLOAT,
     availability boolean DEFAULT false,
-    rating INTEGER DEFAULT 100,
+    rating FLOAT DEFAULT 3.5,
     cover_image TEXT
 );
 CREATE TABLE orders_request (
@@ -32,18 +33,20 @@ CREATE TABLE orders_request (
     description TEXT NOT NULL,
     state VARCHAR(55) DEFAULT 'pending',
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    check(state in ('pending', 'accepted', 'finished')),
     CONSTRAINT UC_Orders_Request UNIQUE (user_id, provider_id, description)
 );
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     orders_request_id INTEGER REFERENCES orders_request(id) ON UPDATE CASCADE NOT NULL,
     start_date TIMESTAMP,
-    pasued_date TIMESTAMP,
-    state VARCHAR(55),
+    paused_date TIMESTAMP,
+    state VARCHAR(55) DEFAULT 'Accepted',
     arrive_time TIME(6),
-    houer_number FLOAT,
+    hour_number FLOAT,
     resources_price FLOAT,
-    total_bill_price FLOAT
+    total_bill_price FLOAT,
+    check(state in ('Accepted', 'Finished', 'Paused', 'Start'))
 );
 CREATE TABLE notification (
     id SERIAL PRIMARY KEY,

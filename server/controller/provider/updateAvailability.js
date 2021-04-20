@@ -1,6 +1,4 @@
-const {
-  updateِِِAvailabilityQuery,
-} = require('../../database/queries/provider');
+const { updateِِِAvailabilityQuery} = require('../../database/queries/provider');
 
 const { boomify } = require('../../utils');
 

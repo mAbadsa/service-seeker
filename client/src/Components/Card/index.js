@@ -27,10 +27,10 @@ const CommonCard = ({
 }) => (
   <Card id={id} className="cardStyle">
     <Row gutter={[16, 16]} type="flex" justify="center">
-      <Col sm={24} md={6} lg={6} className="imageContener">
+      <Col xs={24} sm={24} md={6} lg={6} className="imageContener">
         <Image src={ImageSrc} className="imageStyle" preview={false} />
       </Col>
-      <Col sm={24} md={14} lg={14} className="cardDescription">
+      <Col xs={24} sm={24} md={14} lg={13} className="cardDescription">
         <Title id="cardTitle" level={4}>
           {TitleJob}
         </Title>
@@ -65,26 +65,24 @@ const CommonCard = ({
           {descriptions}
         </Paragraph>
       </Col>
-      <Col sm={24} md={4} lg={4} className="cardHireContener">
-        <div className="cardHireMe">
+      <Col xs={24} sm={24} md={4} lg={5}>
+        <div>
+          <Avatar size={75} className="avatarCard" srcImg={avatarImage} />
           <div>
-            <Avatar size={75} className="avatarCard" srcImg={avatarImage} />
-            <div>
-              <Text className="name">{Name}</Text>
-            </div>
+            <Text className="name">{Name}</Text>
           </div>
-          <Button
-            handelClick={onclick}
-            type="primary"
-            className="initial-style fourthButton hireBtn"
-            onClick={() => {
-              showModal();
-              getProviderById(id);
-            }}
-          >
-            Hire me
-          </Button>
         </div>
+        <Button
+          handelClick={onclick}
+          type="primary"
+          className="initial-style fourthButton hireBtn"
+          onClick={() => {
+            showModal();
+            getProviderById(id);
+          }}
+        >
+          Hire me
+        </Button>
       </Col>
     </Row>
   </Card>

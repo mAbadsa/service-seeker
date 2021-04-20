@@ -11,13 +11,12 @@ const { promiseJWT, boomify } = require('../../utils');
 
 const signupController = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
 
-    const {
-      rows: [check],
-    } = await checkUserByEmail({
+    const { rows } = await checkUserByEmail({
       email,
     });
+    const [check] = rows;
 
     if (check) {
       throw boomify(409, 'User already exist.');
@@ -25,13 +24,13 @@ const signupController = async (req, res, next) => {
 
     const hashedPassword = await hash(password, 10);
 
-    const {
-      rows: [{ id, role }],
-    } = await createNewUser({
+    const { rows: userData } = await createNewUser({
       ...req.body,
-      avatar: `https://avatar.oxro.io/avatar.svg?name=${req.body.username}`,
+      avatar: `https://avatar.oxro.io/avatar.svg?name=${username[0]}`,
       password: hashedPassword,
     });
+
+    const [{ id, role }] = userData;
 
     if (role === 'provider') {
       await createNewProvider(id);

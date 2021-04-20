@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import Axios from 'axios';
 import {
   Layout,
@@ -27,6 +29,7 @@ import Orders from './Orders';
 import Notifications from './Notifications';
 
 import './style.css';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -55,8 +58,8 @@ const DashboardProvider = () => {
           setProviderDetails(data.data[0]);
         }
       } catch (error) {
-        message.error('Something went wrong!');
         setLoading(false);
+        message.error(error.response.data.message, 'Something went wrong!');
       }
     })();
     return () => {
@@ -100,7 +103,7 @@ const DashboardProvider = () => {
       message.success('your status updated successfully');
     } catch (err) {
       message.destroy();
-      message.error(err.response.data.message);
+      message.error(err.response.data.message || 'Something went wrong!');
       setSwitchLoading(false);
     }
   };
@@ -109,9 +112,13 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
+          <Link to={HOME_PAGE} className="logoText">
+            S-Seeker
+          </Link>
+
           <Avatar srcImg={userData.avatar} size={100} />
 
-          <Text strong={false} level={3}>
+          <Text strong={false} level={3} className="logoTextName">
             {userData?.username}
           </Text>
           <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
@@ -131,7 +138,7 @@ const DashboardProvider = () => {
 
       <div>
         <div className="available">
-          <span> Available ?</span>
+          <span> Ready to work ?</span>
           <Switch
             onChange={handleAvailability}
             loading={isLoading || switchLoading}
