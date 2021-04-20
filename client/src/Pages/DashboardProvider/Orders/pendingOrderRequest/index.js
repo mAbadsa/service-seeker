@@ -15,7 +15,7 @@ import getCurrentTime from '../../../../Utils/currentTime';
 
 const { confirm } = Modal;
 
-const PendingProvider = ({ refresh, ...rest }) => {
+const PendingProvider = ({ refresh, handelRefresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
@@ -91,6 +91,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       setShowAcceptModal(false);
       message.destroy();
       message.success('order accepted successfully');
+      handelRefresh();
     } catch (err) {
       message.error(err.response.data.message || 'Something went wrong!');
     }
@@ -172,6 +173,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
 PendingProvider.propTypes = {
   error: PropTypes.string,
   refresh: PropTypes.bool.isRequired,
+  handelRefresh: PropTypes.func.isRequired,
 };
 
 export default PendingProvider;
