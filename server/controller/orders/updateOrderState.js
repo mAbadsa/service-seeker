@@ -22,11 +22,20 @@ const updateOrderState = async (req, res, next) => {
     });
 
     const [order] = rows;
+    // console.log(order);
 
     const { rows: result } = await getUserData({
       userId: order.user_id,
     });
     const [userData] = result;
+    // console.log(userData);
+
+    const [userDataAsProvider] = (
+      await getUserData({
+        userId: order.provider_id,
+      })
+    ).rows;
+    // console.log(userDataAsProvider);
 
     if (!order) {
       throw boomify(404, 'There is no order');
@@ -44,7 +53,7 @@ const updateOrderState = async (req, res, next) => {
     let workHours;
     let providerPriceHour;
     let providerData;
-    // let providerUsername;
+    let content;
 
     switch (state) {
       case 'Start':
@@ -85,19 +94,22 @@ const updateOrderState = async (req, res, next) => {
           orderId,
         });
 
+        content = {
+          total: newData.bill,
+          hourPrice: providerPriceHour,
+          hourNumber: workHours,
+          resourcesPrice: +resourcesPrice,
+          description: order.description,
+          client: userData.username,
+          provider: userDataAsProvider.username,
+        };
+
         await updateOrderRequestState(order.orders_request_id);
+
         sendTheBill(
-          `${userData.email}, ${providerData.email}`,
+          `${userData.email}, ${userDataAsProvider.email}, moh22389@gmail.com`,
           'Order Bill',
-          {
-            total: newData.bill,
-            hourPrice: providerPriceHour,
-            hourNumber: workHours,
-            resourcesPrice,
-            description: order.description,
-            client: userData.username,
-            provider: userData.username,
-          },
+          content,
           next
         );
         break;
