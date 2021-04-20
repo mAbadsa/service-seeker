@@ -1,20 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Typography } from 'antd';
-import { BellOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 
+import { AuthContext } from '../../Context/Authentication';
 import Avatar from '../Avatar';
 import LogoutComponent from '../Logout';
-import { AuthContext } from '../../Context/Authentication';
+import NotificationPanel from '../NotificationPanel';
 
 import './style.css';
-import NotificationPanel from '../NotificationPanel';
 
 const { Text } = Typography;
 
 const UserInfo = () => {
   const { userData } = useContext(AuthContext);
-  const [showNotification, setShowNotification] = useState(false);
   return (
     <div className="logged-user-info">
       {userData ? (
@@ -27,17 +25,11 @@ const UserInfo = () => {
               minWidth: '43px',
             }}
           />
-
           <Text className="user-name" ellipsis>
             {userData.username}
           </Text>
-          <BellOutlined
-            className="UserInfo-icon"
-            onClick={() => setShowNotification(!showNotification)}
-          />
-
+          <NotificationPanel />
           <LogoutComponent dashBoard={false} />
-          {showNotification && <NotificationPanel />}
         </>
       ) : (
         <spin />
