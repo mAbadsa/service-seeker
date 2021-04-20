@@ -1,7 +1,7 @@
 .ant-popover-inner-content {
   display: block;
-  width: 290.55px;
-  max-height: 391.95px;
+  width: 291px;
+  max-height: 392px;
   font-size: 14px;
   color: #5c5c5c;
   line-height: 20px;
@@ -25,8 +25,8 @@
 .not-panel__right {
   text-align: left;
 }
-.not-panel__left{
-  color:#FDCB6E;
+.not-panel__left {
+  color: #fdcb6e;
   text-align: right;
   margin-bottom: 5px;
 }
