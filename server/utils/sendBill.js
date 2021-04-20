@@ -30,10 +30,10 @@ const sendTheBill = async (
       subject,
       html: `
       <h2>Service Seeker</h2>
-      <div style="padding: 10px; background-color: #353535; color: #fff"><span>Invoice to: </span>${client}</div>
-      <div style="padding: 10px; background-color: #353535; color: #fff"><span>Date: </span>${new Date().toDateString()}</div>
+      <div style="padding: 10px; background-color: #839bb7; color: #252525; font-weight: bold"><span style="font-weight: normal;">Invoice to: </span>${client}</div>
+      <div style="padding: 10px; background-color: #839bb7; color: #252525; font-weight: bold"><span style="font-weight: normal;">Date: </span>${new Date().toDateString()}</div>
       <hr/>
-      <table style="border:none;border-collapse:collapse;border-color:#aaa;border-spacing:0;">
+      <table style="border:none;border-collapse:collapse;border-color:#aaa;border-spacing:0; margin: 1rem auto;">
       <thead>
         <tr>
           <th style="text-align:left;vertical-align:top; background-color:#FDCB6E;border-color:#aaa;border-style:solid;border-width:0px;color:#fff;
