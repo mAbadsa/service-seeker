@@ -1,20 +1,16 @@
 const nodemailer = require('nodemailer');
 
-const sendTheBill = async (
-  to,
-  subject,
-  {
-    total,
-    hourPrice,
-    resourcesPrice,
-    hourNumber,
-    description,
-    client,
-    provider,
-  },
-  next
-) => {
+const sendTheBill = async (to, subject, content, next) => {
   try {
+    const {
+      total,
+      hourPrice,
+      resourcesPrice,
+      hourNumber,
+      description,
+      client,
+      provider,
+    } = content;
     const { NODEMAILER_SENDER_EMAIL, SENDER_EMAIL_PASSWORD } = process.env;
     const smtpTransport = nodemailer.createTransport({
       service: 'Gmail',
@@ -29,9 +25,9 @@ const sendTheBill = async (
       to,
       subject,
       html: `
-      <h2>Service Seeker</h2>
-      <div style="padding: 10px; background-color: #839bb7; color: #252525; font-weight: bold"><span style="font-weight: normal;">Invoice to: </span>${client}</div>
-      <div style="padding: 10px; background-color: #839bb7; color: #252525; font-weight: bold"><span style="font-weight: normal;">Date: </span>${new Date().toDateString()}</div>
+      <h2 style="color: #151515">Service Seeker</h2>
+      <div style="padding: 10px; color: #252525; font-weight: bold"><span style="font-weight: normal;">Invoice to: </span>${client}</div>
+      <div style="padding: 10px; color: #252525; font-weight: bold"><span style="font-weight: normal;">Date: </span>${new Date().toDateString()}</div>
       <hr/>
       <table style="border:none;border-collapse:collapse;border-color:#aaa;border-spacing:0; margin: 1rem auto;">
       <thead>

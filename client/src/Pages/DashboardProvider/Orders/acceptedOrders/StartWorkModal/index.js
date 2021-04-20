@@ -31,7 +31,11 @@ const StartWorkModal = ({ data, showModal, onCancel, onStateChange }) => {
       await Axios.patch(`/api/v1/provider/orders/${data.id}`, sendedData);
       setIsLoading(false);
       message.destroy();
-      message.success('Order State Update Success');
+      message.success(
+        state === 'Finished'
+          ? 'Your order completed successfully, please check your email you will receive an email contains your order bill'
+          : 'Order State Updated Successfully'
+      );
       setStatus(state);
       setShowTheBill(false);
       onStateChange(data.id, state);
