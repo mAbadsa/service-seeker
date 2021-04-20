@@ -8,11 +8,11 @@ import AcceptedOrders from './acceptedOrders';
 
 const { TabPane } = Tabs;
 
-const Orders = ({ refresh }) => (
+const Orders = ({ refresh, handelRefresh }) => (
   <div>
     <Tabs className="order-tabs" defaultActiveKey="1" centered>
       <TabPane tab="Orders Request" key="1">
-        <PendingProvider refresh={refresh} />
+        <PendingProvider refresh={refresh} handelRefresh={handelRefresh} />
       </TabPane>
       <TabPane tab="Orders" key="2">
         <AcceptedOrders refresh={refresh} />
@@ -23,6 +23,7 @@ const Orders = ({ refresh }) => (
 
 Orders.propTypes = {
   refresh: PropTypes.bool.isRequired,
+  handelRefresh: PropTypes.func.isRequired,
 };
 
 export default Orders;
