@@ -3,7 +3,15 @@ const nodemailer = require('nodemailer');
 const sendTheBill = async (
   to,
   subject,
-  { total, hourPrice, hourNumber, description, client, provider },
+  {
+    total,
+    hourPrice,
+    resourcesPrice,
+    hourNumber,
+    description,
+    client,
+    provider,
+  },
   next
 ) => {
   try {
@@ -36,6 +44,8 @@ const sendTheBill = async (
           <th style="text-align:left;vertical-align:top; background-color:#f38630;border-color:#aaa;border-style:solid;border-width:0px;color:#fff;
           font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;"><span style="font-weight:bold;font-style:normal">price/hour</span></th>
           <th style="text-align:left;vertical-align:top; background-color:#f38630;border-color:#aaa;border-style:solid;border-width:0px;color:#fff;
+          font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;"><span style="font-weight:bold;font-style:normal">Resources Price</span></th>
+          <th style="text-align:left;vertical-align:top; background-color:#f38630;border-color:#aaa;border-style:solid;border-width:0px;color:#fff;
           font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;"><span style="font-weight:bold">#Hours</span></th>
           <th style="text-align:left;vertical-align:top; background-color:#f38630;border-color:#aaa;border-style:solid;border-width:0px;color:#fff;
           font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;"><span style="font-weight:bold">Total Price</span></th>
@@ -51,6 +61,8 @@ const sendTheBill = async (
           font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;">${description}</td>
           <td style="border-color:inherit;text-align:left;vertical-align:top; background-color:#fff;border-color:#aaa;border-style:solid;border-width:0px;color:#333;
           font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;">${hourPrice}$</td>
+          <td style="border-color:inherit;text-align:left;vertical-align:top; background-color:#fff;border-color:#aaa;border-style:solid;border-width:0px;color:#333;
+          font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;">${resourcesPrice}$</td>
           <td style="border-color:inherit;text-align:left;vertical-align:top; background-color:#fff;border-color:#aaa;border-style:solid;border-width:0px;color:#333;
           font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;">${hourNumber}Hr.</td>
           <td style="border-color:inherit;text-align:left;vertical-align:top; background-color:#fff;border-color:#aaa;border-style:solid;border-width:0px;color:#333;
