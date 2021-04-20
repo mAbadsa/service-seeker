@@ -96,7 +96,7 @@ const updateOrderState = async (req, res, next) => {
         ).rows;
 
         sendTheBill(
-          `${userData.email}, ${userDataAsProvider.email}, moh22389@gmail.com`,
+          `${userData.email}, ${userDataAsProvider.email}`,
           'Order Bill',
           {
             total: newData.bill,
