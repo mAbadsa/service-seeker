@@ -47,9 +47,11 @@ const LoginPage = () => {
           </Title>
           {error && <Alert id="alert" message={error} type="error" showIcon />}
           <Form.Item
+            label="Email"
             name="email"
             rules={[
               {
+                type: 'email',
                 required: true,
                 message: 'Please enter your email!',
               },
@@ -59,18 +61,10 @@ const LoginPage = () => {
               },
             ]}
           >
-            <label
-              htmlFor="email"
-              className="login-left__input"
-              style={{
-                paddingLeft: '42px',
-              }}
-            >
-              Email:
-              <Input placeholder="Enter your email..." />
-            </label>
+            <Input placeholder="Enter your email..." />
           </Form.Item>
           <Form.Item
+            label="Password"
             name="password"
             rules={[
               {
@@ -83,10 +77,7 @@ const LoginPage = () => {
               },
             ]}
           >
-            <label htmlFor="password" className="login-left__input">
-              Password:
-              <Input type="password" placeholder="Enter your password..." />
-            </label>
+            <Input type="Password" placeholder="Enter your password..." />
           </Form.Item>
           <Form.Item>
             <Button

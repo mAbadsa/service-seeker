@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Layout, Menu, Row, Col, Drawer, Grid } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
@@ -66,7 +66,7 @@ const NavBar = () => {
               onClick={redirectHandler(PROVIDER_DASHBOARD_PAGE)}
               key={PROVIDER_DASHBOARD_PAGE}
             >
-              Dashboard
+              Control Panel
             </Menu.Item>
           )}
         </>
@@ -93,7 +93,9 @@ const NavBar = () => {
     <Header className="header">
       <Row>
         <Col xs={9} sm={10} md={5} lg={6}>
-          <p className="logo">S-Seeker</p>
+          <Link className="logoNav" to={HOME_PAGE}>
+            S-Seeker
+          </Link>
         </Col>
 
         <Col xs={12} sm={9} md={13} lg={12}>

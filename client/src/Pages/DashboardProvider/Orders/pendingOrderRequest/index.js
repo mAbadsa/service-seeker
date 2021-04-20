@@ -15,7 +15,7 @@ import getCurrentTime from '../../../../Utils/currentTime';
 
 const { confirm } = Modal;
 
-const PendingProvider = ({ refresh, ...rest }) => {
+const PendingProvider = ({ refresh, handelRefresh, ...rest }) => {
   const [ordersData, setOrdersData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
@@ -91,6 +91,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
       setShowAcceptModal(false);
       message.destroy();
       message.success('order accepted successfully');
+      handelRefresh();
     } catch (err) {
       message.error(err.response.data.message || 'Something went wrong!');
     }
@@ -100,9 +101,15 @@ const PendingProvider = ({ refresh, ...rest }) => {
     setShowMoreDetailModal(true);
   };
 
-  const handleMoreDetails = (_1, _2, record) => {
-    setOrderDetails(record);
+  const handleMoreDetails = (data) => {
+    setOrderDetails(data);
     handleShowModal();
+  };
+  const handleMoreDetailsOnDoubleClick = (_1, _2, record) => {
+    handleMoreDetails(record);
+  };
+  const handleMoreDetailsOnActions = (_1, record) => {
+    handleMoreDetails(record);
   };
 
   return (
@@ -150,8 +157,12 @@ const PendingProvider = ({ refresh, ...rest }) => {
             action: id,
           })
         )}
-        onActions={[handleAcceptOrder, handleCancelOrder]}
-        onRowDoubleClick={handleMoreDetails}
+        onActions={[
+          handleAcceptOrder,
+          handleCancelOrder,
+          handleMoreDetailsOnActions,
+        ]}
+        onRowDoubleClick={handleMoreDetailsOnDoubleClick}
         loading={isLoading}
         {...rest}
       />
@@ -162,6 +173,7 @@ const PendingProvider = ({ refresh, ...rest }) => {
 PendingProvider.propTypes = {
   error: PropTypes.string,
   refresh: PropTypes.bool.isRequired,
+  handelRefresh: PropTypes.func.isRequired,
 };
 
 export default PendingProvider;

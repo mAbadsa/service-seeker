@@ -1,13 +1,14 @@
 const {
   getOrderReqByOrderIdQuery,
-  getPriceHourProvider,
   updateOrderOnStart,
   updateOrderOnPause,
   updateOrderOnFinish,
   updateOrderRequestState,
+  getUserData,
+  getProviderDataById,
 } = require('../../database/queries');
 
-const { boomify, calculateDuration } = require('../../utils');
+const { boomify, calculateDuration, sendTheBill } = require('../../utils');
 
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
@@ -24,14 +25,10 @@ const updateOrderState = async (req, res, next) => {
 
     if (!order) {
       throw boomify(404, 'There is no order');
-    }
-
-    if (order.state === state || order.state === 'Finished') {
-      throw boomify(400, `the order is already ${order.state}`);
-    }
-
-    if (order.state === 'Accepted' && state !== 'Start') {
-      throw boomify(409, 'the order is not started yet');
+    } else if (order.state === state || order.state === 'Finished') {
+      throw boomify(400, `The order is already ${order.state}`);
+    } else if (order.state === 'Accepted' && state !== 'Start') {
+      throw boomify(409, 'The order is not started yet');
     }
 
     const newData = {
@@ -41,6 +38,9 @@ const updateOrderState = async (req, res, next) => {
 
     let workHours;
     let providerPriceHour;
+    let providerData;
+    let userData;
+    let userDataAsProvider;
 
     switch (state) {
       case 'Start':
@@ -59,9 +59,9 @@ const updateOrderState = async (req, res, next) => {
         if (resourcesPrice < 0 || Number.isNaN(resourcesPrice)) {
           throw boomify(400, 'please enter resources price');
         }
+        [providerData] = (await getProviderDataById(providerId)).rows;
 
-        providerPriceHour = (await getPriceHourProvider(providerId)).rows[0]
-          .price_hour;
+        providerPriceHour = providerData.price_hour;
 
         if (order.state === 'Start') {
           workHours = calculateDuration(order.start_date);
@@ -82,6 +82,33 @@ const updateOrderState = async (req, res, next) => {
         });
 
         await updateOrderRequestState(order.orders_request_id);
+
+        [userData] = (
+          await getUserData({
+            userId: order.user_id,
+          })
+        ).rows;
+
+        [userDataAsProvider] = (
+          await getUserData({
+            userId: order.provider_id,
+          })
+        ).rows;
+
+        sendTheBill(
+          `${userData.email}, ${userDataAsProvider.email}`,
+          'Order Bill',
+          {
+            total: newData.bill,
+            hourPrice: providerPriceHour,
+            hourNumber: newData.duration,
+            resourcesPrice,
+            description: order.description,
+            client: userData.username,
+            provider: userDataAsProvider.username,
+          },
+          next
+        );
         break;
 
       default:
@@ -89,7 +116,10 @@ const updateOrderState = async (req, res, next) => {
 
     res.json({
       statusCode: 200,
-      message: `orders ${state}`,
+      message:
+        state === 'Finished'
+          ? 'Your order completed successfully, please check your email you will receive an email contains your order bill'
+          : ` Orders ${state}`,
     });
   } catch (error) {
     next(error);

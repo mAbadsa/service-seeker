@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import Axios from 'axios';
 import {
   Layout,
@@ -28,6 +30,7 @@ import Orders from './Orders';
 import Notifications from './Notifications';
 
 import './style.css';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -111,9 +114,13 @@ const DashboardProvider = () => {
     <Sider className="siderStyle">
       <div>
         <div className="logo">
+          <Link to={HOME_PAGE} className="logoText">
+            S-Seeker
+          </Link>
+
           <Avatar srcImg={userData.avatar} size={100} />
 
-          <Text strong={false} level={3}>
+          <Text strong={false} level={3} className="logoTextName">
             {userData?.username}
           </Text>
           <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
@@ -133,7 +140,7 @@ const DashboardProvider = () => {
 
       <div>
         <div className="available">
-          <span> Available ?</span>
+          <span> Ready to work ?</span>
           <Switch
             onChange={handleAvailability}
             loading={isLoading || switchLoading}
@@ -170,7 +177,9 @@ const DashboardProvider = () => {
               <SyncOutlined onClick={handleOrderRefresh} />
             </div>
           </div>
-          {title === 'Orders' && <Orders refresh={orderRefresh} />}
+          {title === 'Orders' && (
+            <Orders refresh={orderRefresh} handelRefresh={handleOrderRefresh} />
+          )}
           {title === 'Notifications' && <Notifications />}
           {title === 'Profile' && (
             <Profile
