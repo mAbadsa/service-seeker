@@ -109,11 +109,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <InputNumber
-                stringMode
-                step="0.01"
-                placeholder="please enter your Price"
-              />
+              <InputNumber stringMode step="0.01" defaultValue="5" />
             </Form.Item>
           </Col>
           <Col span={16}>
