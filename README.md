@@ -16,7 +16,7 @@ Make an app to facilitate users reaching the appropriate services and connect wi
 ### as a customer:
 I can sign up in the app by filling the form that lets me enter full details about me to let the people see my profile and contact me and I can see all available services providers, book a provider and contact them with my needs.
 ### as a provider:
-I can register to specify my service, hourly pricing, and extra information, and see all orders from customers with details, accept or reject them, contact them and receive notification (bill/receipt) after complete my work.
+I can register to specify my service, hourly pricing, and extra information, and see all orders from customers with details, accept or reject them, contact them and receive notification after completing my work.
 
 ## User Stories :open_book:
 
@@ -27,7 +27,7 @@ I can register to specify my service, hourly pricing, and extra information, and
 * I can see specific information about any service provider.
 * I can order a service provider.
 * I can cancel the order as long as the provider hasn't accepted it yet.
-* I need to receive notification contains bill/receipt and order state(on change).
+* I need to receive an Email that contains the bill/receipt and order state.
 
 **As a service provider**
 * I need a Profile to add my information.
@@ -36,10 +36,10 @@ I can register to specify my service, hourly pricing, and extra information, and
     * I need to specify the time to arrive before starting my work.
 * I can see all orders I have with their status.
     * I can start work when I arrive at the customer location.
-    * I can end the service when I finished it.
+    * I can end the service when I finish it.
     * I can pause timers if the work needs multiple days.
 * I need to receive my bill and input some information about the service that I did.
-* I need to receive notification contains bill/receipt and order state(on change).
+* I need to receive an Email that contains the bill/receipt and order state.
 
 ## Prototype :art:
 [Figma Link](https://www.figma.com/file/4gyWA11DmZOmlnle5mC4TG/hound?node-id=0%3A1)
