@@ -8,13 +8,7 @@ export const serviceTypes = [
 
 export const locations = [
   'Gaza',
-  'Haifa',
-  'Yafa',
-  'Jerusalem',
-  'Jericho',
-  'Hebron',
   'Khan Younis',
-  'Safad',
   'Rafah',
   'Jabalia',
   'Nusirat',
