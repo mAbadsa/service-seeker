@@ -22,8 +22,8 @@ const stateBtn = ({
             className="start"
             onClick={() => handleStatusWork('Start')}
             loading={isLoading}
+            icon={<PlayCircleOutlined />}
           >
-            <PlayCircleOutlined />
             Start
           </Button>
         </>
@@ -46,8 +46,8 @@ const stateBtn = ({
               className="thirdButton"
               onClick={() => handleStatusWork('Paused')}
               loading={isLoading}
+              icon={<PauseCircleOutlined />}
             >
-              <PauseCircleOutlined />
               Pause
             </Button>
           </div>
@@ -71,8 +71,8 @@ const stateBtn = ({
               id="continue"
               onClick={() => handleStatusWork('Start')}
               loading={isLoading}
+              icon={<PlayCircleOutlined />}
             >
-              <PlayCircleOutlined />
               Continue
             </Button>
           </div>

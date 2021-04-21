@@ -96,16 +96,10 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           <Col span={16}>
             <Form.Item
               label=" price/hour"
-              initialValue={providerDetails?.price_hour}
+              initialValue={providerDetails?.price_hour || 5}
               name="price_hour"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your Price!',
-                },
-              ]}
             >
-              <InputNumber stringMode step="0.01" defaultValue="5" />
+              <InputNumber stringMode step="0.01" />
             </Form.Item>
           </Col>
           <Col span={16}>
