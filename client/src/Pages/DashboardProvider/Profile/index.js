@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Form, Input, Row, Col, message, Alert } from 'antd';
+import { Form, Input, Row, Col, message, Alert, InputNumber } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
-import './style.css';
 import handelError from '../../../Utils/errorHandel';
+import UploadImage from './uploadImage';
+
+import './style.css';
 
 const { TextArea } = Input;
+
 const Profile = ({ providerDetails, userData, refresh }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,9 +33,9 @@ const Profile = ({ providerDetails, userData, refresh }) => {
   };
 
   return (
-    <div className="profileForm ">
+    <div className="profileForm">
       <Form onFinish={onFinish}>
-        <Row gutter={[16, 16]} type="flex" justify="center">
+        <Row gutter={[18, 18]} justify="center" className="profile-contener">
           <Col span={16}>
             <Form.Item
               label="Title"
@@ -64,7 +67,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
                 {
                   min: 20,
-                  message: 'Bio must be at least 8 characters.',
+                  message: 'Bio must be at least 20 characters.',
                 },
               ]}
             >
@@ -93,25 +96,32 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           <Col span={16}>
             <Form.Item
               label=" price/hour"
-              initialValue={providerDetails?.price_hour}
+              initialValue={providerDetails?.price_hour || 5}
               name="price_hour"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your Price!',
-                },
-              ]}
             >
-              <Input placeholder="please enter your Price" />
+              <InputNumber stringMode step="0.01" />
             </Form.Item>
           </Col>
           <Col span={16}>
-            <Row gutter={[16, 16]} type="flex" justify="center" align="middle">
+            <Row
+              id="select-contener"
+              gutter={[16, 16]}
+              type="flex"
+              justify="center"
+              align="middle"
+            >
               <Col xs={24} md={24} lg={12}>
                 <Form.Item
                   label="Location"
                   initialValue={userData?.location}
                   name="location"
+                  className="location"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your Location!',
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="location"
@@ -125,6 +135,13 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                   label="Service"
                   initialValue={providerDetails?.service_type}
                   name="service_type"
+                  className="service"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your Service!',
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="service"
@@ -141,24 +158,24 @@ const Profile = ({ providerDetails, userData, refresh }) => {
               label="Cover Image "
               initialValue={providerDetails?.cover_image}
               name="cover_image"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your cover image!',
-                },
-              ]}
             >
-              <Input placeholder="Enter your cover image url" />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <UploadImage
+                  setRefresh={refresh}
+                  image={providerDetails?.cover_image}
+                />
+              </div>
             </Form.Item>
           </Col>
 
-          <Col span={16}>
-            <Button
-              className="fourthButton"
-              htmlType="submit"
-              loading={loading}
-            >
-              save
+          <Col className="btn-contener" span={16}>
+            <Button htmlType="submit" loading={loading}>
+              Save
             </Button>
           </Col>
         </Row>
@@ -167,6 +184,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
     </div>
   );
 };
+
 Profile.propTypes = {
   providerDetails: PropTypes.shape({
     title: PropTypes.string,
@@ -182,4 +200,5 @@ Profile.propTypes = {
   }).isRequired,
   refresh: PropTypes.func.isRequired,
 };
+
 export default Profile;

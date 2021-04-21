@@ -40,13 +40,14 @@ const TableComponent = ({
 TableComponent.propTypes = {
   ColumnsType: PropTypes.string.isRequired,
   onActions: PropTypes.arrayOf(PropTypes.func),
-  dataSource: PropTypes.array.isRequired,
+  dataSource: PropTypes.array,
   onRowDoubleClick: PropTypes.func,
   scrollX: PropTypes.string,
   defaultPageSize: PropTypes.number,
 };
 
 TableComponent.defaultProps = {
+  dataSource: [],
   onRowDoubleClick: () => {},
   onActions: [],
   scrollX: '800px',

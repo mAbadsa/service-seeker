@@ -32,22 +32,27 @@
   background-color: #fafbfc;
 }
 
-.login-right__SignUp-btn,
+.login-btn,
+.login-right__SignUp-btn {
+  width: 200px;
+  height: 45px;
+  border-radius: 5px;
+}
+
 .login-btn {
-  width: 210px;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 24px;
   margin-top: 20px;
   margin-bottom: 40px;
 }
 
 .login-right__SignUp-btn {
-  border: 2px solid #ffffff;
+  line-height: 39px;
+  border: 1px solid #ffffff;
   color: #fff;
   background-color: transparent;
-  height: 58px;
-  border-radius: 12px;
-  line-height: 50px;
+  margin-top: 1.5rem;
+  padding-left: 0;
+  transition: all 0.25s;
 }
 
 .login-right__SignUp-btn:hover {
@@ -56,9 +61,8 @@
   border-color: #fafbfc;
 }
 
-.login-btn,
-.mobile-Sign-up-btn {
-  line-height: 28px;
+.login-btn {
+  line-height: 11px;
 }
 
 .mobile-Sign-up-btn {
@@ -72,8 +76,28 @@
   font-weight: bold;
   font-size: 27px;
 }
-.login .ant-form-item-label > label{
-  width: 115px;
+
+.login .ant-input,
+.login .ant-input-password {
+  width: 380px;
+}
+
+.login .ant-form .ant-form-item .ant-form-item-label {
+  width: 23%;
+  text-align: right;
+  color: #6f6f6f;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.login .ant-form-item input::placeholder,
+.login .ant-form-item .ant-form-item-explain-error {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.login .input-container {
+  margin-right: 94px;
 }
 
 @media only screen and (max-width: 1060px) {
@@ -87,6 +111,14 @@
 
   .login-left {
     min-width: 100%;
+  }
+
+  .login .ant-form .ant-form-item .ant-form-item-label {
+    text-align: left;
+  }
+
+  .login .input-container {
+    margin-right: 0;
   }
 }
 

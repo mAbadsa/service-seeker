@@ -1,29 +1,47 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import { Tabs } from 'antd';
 
+import { SyncOutlined } from '@ant-design/icons';
 import PendingProvider from './pendingOrderRequest';
 import AcceptedOrders from './acceptedOrders';
 
 const { TabPane } = Tabs;
 
-const Orders = ({ refresh, handelRefresh }) => (
-  <div>
-    <Tabs className="order-tabs" defaultActiveKey="1" centered>
-      <TabPane tab="Orders Request" key="1">
-        <PendingProvider refresh={refresh} handelRefresh={handelRefresh} />
-      </TabPane>
-      <TabPane tab="Orders" key="2">
-        <AcceptedOrders refresh={refresh} />
-      </TabPane>
-    </Tabs>
-  </div>
-);
+const Orders = () => {
+  const [orderRefresh, setOrderRefresh] = useState(false);
 
-Orders.propTypes = {
-  refresh: PropTypes.bool.isRequired,
-  handelRefresh: PropTypes.func.isRequired,
+  const handleOrderRefresh = () => {
+    setOrderRefresh(!orderRefresh);
+  };
+
+  return (
+    <div>
+      <Tabs id="order-tabs" defaultActiveKey="1" centered>
+        <TabPane tab="Orders Request" key="1">
+          <PendingProvider
+            refresh={orderRefresh}
+            handelRefresh={handleOrderRefresh}
+          />
+        </TabPane>
+        <TabPane tab="Orders" key="2">
+          <AcceptedOrders refresh={orderRefresh} />
+        </TabPane>
+        <TabPane
+          className="order-refresh"
+          tab={
+            <SyncOutlined
+              onClick={handleOrderRefresh}
+              style={{
+                color: '#8f8f8f',
+              }}
+            />
+          }
+          disabled
+        />
+      </Tabs>
+    </div>
+  );
 };
 
 export default Orders;

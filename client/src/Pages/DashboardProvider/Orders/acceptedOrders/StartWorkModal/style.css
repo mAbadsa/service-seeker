@@ -20,18 +20,18 @@
 }
 
 #done {
-  background-color: #F95151;
-  border-color: #F95151;
+  background-color: #f95151;
+  border-color: #f95151;
 }
 
 #start {
-  background-color: #FDCB6E;
-  border-color: #FDCB6E;
+  background-color: #fdcb6e;
+  border-color: #fdcb6e;
 }
 
 #continue {
-  background-color: #0EB633;
-  border-color: #0EB633;
+  background-color: #0eb633;
+  border-color: #0eb633;
 }
 
 .resource-input {
