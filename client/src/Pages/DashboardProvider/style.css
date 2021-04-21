@@ -8,15 +8,13 @@
   padding: 24px 0;
   text-align: center;
 }
-.logoText{
+.logoText {
   padding-bottom: 15px;
- 
 }
-.logoTextName{
+.logoTextName {
   padding-top: 15px;
   padding-bottom: 3px;
-
-} 
+}
 .siderStyle .logo span {
   font-size: 20px;
 }

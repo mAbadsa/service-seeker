@@ -43,41 +43,45 @@ const LoginPage = () => {
       <Col className="login-left" span={15}>
         <Form name="login" onFinish={onFinish}>
           <Title id="login-left__title" level={3}>
-            Service Seeker
+            <Link to={HOME_PAGE}>Service Seeker</Link>
           </Title>
-          {error && <Alert id="alert" message={error} type="error" showIcon />}
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                type: 'email',
-                message: 'Please enter a valid email!',
-              },
-              {
-                required: true,
-                message: 'Please input your Email!',
-              },
-            ]}
-          >
-            <Input placeholder="Enter your email..." />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter your password!',
-              },
-              {
-                min: 8,
-                message: 'Password must be at least 8 characters.',
-              },
-            ]}
-          >
-            <Input type="Password" placeholder="Enter your password..." />
-          </Form.Item>
+          <div className="input-container">
+            {error && (
+              <Alert id="alert" message={error} type="error" showIcon />
+            )}
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'Please enter a valid email!',
+                },
+                {
+                  required: true,
+                  message: 'Please input your Email!',
+                },
+              ]}
+            >
+              <Input placeholder="Enter your email..." />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your password!',
+                },
+                {
+                  min: 8,
+                  message: 'Password must be at least 8 characters.',
+                },
+              ]}
+            >
+              <Input type="password" placeholder="Enter your password..." />
+            </Form.Item>
+          </div>
           <Form.Item>
             <Button
               className="login-btn"
