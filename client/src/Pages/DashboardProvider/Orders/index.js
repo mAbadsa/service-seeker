@@ -20,7 +20,10 @@ const Orders = () => {
     <div>
       <Tabs id="order-tabs" defaultActiveKey="1" centered>
         <TabPane tab="Orders Request" key="1">
-          <PendingProvider refresh={orderRefresh} />
+          <PendingProvider
+            refresh={orderRefresh}
+            handelRefresh={handleOrderRefresh}
+          />
         </TabPane>
         <TabPane tab="Orders" key="2">
           <AcceptedOrders refresh={orderRefresh} />
@@ -44,6 +47,7 @@ const Orders = () => {
 
 Orders.propTypes = {
   refresh: PropTypes.bool.isRequired,
+  handelRefresh: PropTypes.func.isRequired,
 };
 
 export default Orders;
