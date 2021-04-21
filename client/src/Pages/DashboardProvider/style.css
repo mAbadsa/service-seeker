@@ -105,3 +105,22 @@
 .layout .icon-border span {
   font-size: 23px;
 }
+.headerIcons{
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.submitBtn {
+  text-align: center;
+
+}
+.submitBtn button{
+  width: 200px;
+}
+.ant-menu-root.ant-menu-vertical, .ant-menu-root.ant-menu-vertical-left, .ant-menu-root.ant-menu-vertical-right, .ant-menu-root.ant-menu-inline {
+  padding-top: 30px;
+}
+.siderStyle .anticon .anticon-home{
+margin-left: 8px;
+}

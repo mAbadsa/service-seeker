@@ -18,8 +18,8 @@ import {
   UserOutlined,
   MenuOutlined,
   CloseOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
-
 import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
@@ -36,7 +36,6 @@ import './style.css';
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
-
 const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
 
@@ -112,6 +111,7 @@ const DashboardProvider = () => {
         <div className="logo">
           <Link to={HOME_PAGE} className="logoText">
             S-Seeker
+            <HomeOutlined />
           </Link>
 
           <Avatar srcImg={userData.avatar} size={100} />
