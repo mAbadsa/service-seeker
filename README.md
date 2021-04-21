@@ -81,7 +81,7 @@ npm run build  # Building bundle
 npm run dev  # Running production server
 ```
 
-Now the app should be running at [http://localhost:8080](http://localhost:3000)
+Now the app should be running at [http://localhost:3000](http://localhost:3000)
 
 
 ## Technologies :computer:
