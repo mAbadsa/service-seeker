@@ -103,56 +103,45 @@ const Profile = ({ providerDetails, userData, refresh }) => {
             </Form.Item>
           </Col>
           <Col span={16}>
-            <Row
-              id="select-contener"
-              gutter={[16, 16]}
-              type="flex"
-              justify="center"
-              align="middle"
+            <Form.Item
+              label="Location"
+              initialValue={userData?.location}
+              name="location"
+              className="location"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Location!',
+                },
+              ]}
             >
-              <Col xs={24} md={24} lg={12}>
-                <Form.Item
-                  label="Location"
-                  initialValue={userData?.location}
-                  name="location"
-                  className="location"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please enter your Location!',
-                    },
-                  ]}
-                >
-                  <Select
-                    placeholder="location"
-                    options={locations}
-                    type="Location"
-                  />
-                </Form.Item>
-              </Col>
-              <Col xs={24} md={24} lg={12}>
-                <Form.Item
-                  label="Service"
-                  initialValue={providerDetails?.service_type}
-                  name="service_type"
-                  className="service"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please enter your Service!',
-                    },
-                  ]}
-                >
-                  <Select
-                    placeholder="service"
-                    options={serviceTypes}
-                    type="Service"
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+              <Select
+                placeholder="location"
+                options={locations}
+                type="Location"
+              />
+            </Form.Item>
           </Col>
-
+          <Col span={16}>
+            <Form.Item
+              label="Service"
+              initialValue={providerDetails?.service_type}
+              name="service_type"
+              className="service"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your Service!',
+                },
+              ]}
+            >
+              <Select
+                placeholder="service"
+                options={serviceTypes}
+                type="Service"
+              />
+            </Form.Item>
+          </Col>
           <Col span={16}>
             <Form.Item
               label="Cover Image "
@@ -172,13 +161,12 @@ const Profile = ({ providerDetails, userData, refresh }) => {
               </div>
             </Form.Item>
           </Col>
-
-          <Col className="btn-contener" span={16}>
-            <Button htmlType="submit" loading={loading}>
-              Save
-            </Button>
-          </Col>
         </Row>
+        <Col className="btn-contener" span={24}>
+          <Button htmlType="submit" loading={loading}>
+            Save
+          </Button>
+        </Col>
       </Form>
       {error && <Alert type="error" message={error} />}
     </div>

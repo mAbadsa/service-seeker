@@ -16,7 +16,7 @@ const signupValidation = async (req, res, next) => {
 
     const signupSchema = object().shape({
       username: string()
-        .matches(/^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/, {
+        .matches(/^[A-Za-z]([-']?[A-Za-z]+)*( [A-Za-z]([-']?[A-Za-z]+)*)+$/, {
           message:
             'The name must contained from two parts first name and last name.',
         })
