@@ -46,7 +46,7 @@ function UserAvatar({ image, setRefresh }) {
       showUploadList={false}
     >
       <Button
-        className="fourthButton"
+        className="fourthButton uploadButton"
         icon={<UploadOutlined />}
         loading={loading}
       >

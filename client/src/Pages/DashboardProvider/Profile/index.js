@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Form, Input, Row, Col, message, Alert, Spin } from 'antd';
+import { Form, Input, Row, Col, message, Alert, Spin, Image } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
@@ -152,6 +152,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
               <div
                 style={{
                   display: 'flex',
+                  flexDirection: 'column',
                 }}
               >
                 <UploadImage
@@ -161,9 +162,8 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 {loading ? (
                   <Spin />
                 ) : (
-                  <img
-                    width="200"
-                    height="60"
+                  <Image
+                    width={200}
                     style={{
                       marginLeft: 20,
                       objectFit: 'cover',
@@ -176,9 +176,11 @@ const Profile = ({ providerDetails, userData, refresh }) => {
           </Col>
 
           <Col span={16}>
-            <Button htmlType="submit" loading={loading}>
-              save
-            </Button>
+            <div className="saveButton">
+              <Button htmlType="submit" loading={loading}>
+                save
+              </Button>
+            </div>
           </Col>
         </Row>
       </Form>
