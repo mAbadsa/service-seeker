@@ -32,8 +32,8 @@ const updateOrderState = async (req, res, next) => {
     }
 
     const newData = {
-      bill: null,
-      duration: null,
+      bill: 0,
+      duration: 0,
     };
 
     let workHours;
