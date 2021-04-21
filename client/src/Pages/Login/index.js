@@ -52,12 +52,11 @@ const LoginPage = () => {
             rules={[
               {
                 type: 'email',
-                required: true,
-                message: 'Please enter your email!',
+                message: 'Please enter a valid email!',
               },
               {
-                type: 'email',
-                message: 'Enter a valid email!',
+                required: true,
+                message: 'Please input your Email!',
               },
             ]}
           >
