@@ -12,7 +12,7 @@ VALUES (
     'aeid767@gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0597806990',
-    'nusirat',
+    'Nusirat',
     'https://avatar.oxro.io/avatar.svg?name=A',
     'provider'
   ),
@@ -39,7 +39,7 @@ VALUES (
     'osama.gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0599777999',
-    'al zahra',
+    'Al Zahra',
     'https://avatar.oxro.io/avatar.svg?name=O',
     'user'
   ),(
@@ -47,7 +47,7 @@ VALUES (
     'Muhammed@gmil.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0597222555',
-    'khan younis',
+    'Khan Younis',
     'https://avatar.oxro.io/avatar.svg?name=M',
     'provider'
   );
