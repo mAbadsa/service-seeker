@@ -3,7 +3,7 @@
   border-radius: 5px;
 }
 
-.profile-contener{
+.profile-contener {
   width: 90%;
 }
 
@@ -70,7 +70,7 @@
   .profileForm .ant-form .ant-form-item .ant-form-item-label {
     min-width: auto;
   }
-  .profile-contener{
+  .profile-contener {
     width: auto;
   }
 }

@@ -17,7 +17,7 @@
 
 .imageStyle {
   border-radius: 10px;
- }
+}
 
 .cardDescription {
   text-align: left;
@@ -46,7 +46,7 @@
 
 .cardLocation span,
 .cardPrice span,
-.cardService span{
+.cardService span {
   margin-left: 5px;
   font-weight: bold;
   margin-right: 5px;
@@ -65,11 +65,11 @@
 }
 
 .cardDescription__top,
-.cardDescription__bottom{
+.cardDescription__bottom {
   display: flex;
   flex-direction: row;
 }
-.name.ant-typography{
+.name.ant-typography {
   overflow-wrap: initial;
 }
 
@@ -77,9 +77,8 @@
   .cardLocation {
     margin-left: 0;
   }
- .cardDescription__top,
+  .cardDescription__top,
   .cardDescription__bottom {
     flex-direction: column;
-  } 
-  
+  }
 }

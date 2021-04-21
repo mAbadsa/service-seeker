@@ -75,13 +75,13 @@
 
 .seventhButton,
 .seventhButton:focus {
-  background-color: #F95151;
-  border-color: #F95151;
-  color: #F9F9F9;
+  background-color: #f95151;
+  border-color: #f95151;
+  color: #f9f9f9;
 }
 
 .seventhButton:hover {
-  color: #F9F9F9;
-  border-color: #E54A4A;
-  background-color: #E54A4A;
+  color: #f9f9f9;
+  border-color: #e54a4a;
+  background-color: #e54a4a;
 }
