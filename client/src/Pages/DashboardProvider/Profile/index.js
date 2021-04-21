@@ -6,11 +6,13 @@ import { Form, Input, Row, Col, message, Alert, InputNumber } from 'antd';
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
-import './style.css';
 import handelError from '../../../Utils/errorHandel';
 import UploadImage from './uploadImage';
 
+import './style.css';
+
 const { TextArea } = Input;
+
 const Profile = ({ providerDetails, userData, refresh }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -31,9 +33,9 @@ const Profile = ({ providerDetails, userData, refresh }) => {
   };
 
   return (
-    <div className="profileForm ">
+    <div className="profileForm">
       <Form onFinish={onFinish}>
-        <Row gutter={[16, 16]} type="flex" justify="center">
+        <Row gutter={[18, 18]} justify="center" className="profile-contener">
           <Col span={16}>
             <Form.Item
               label="Title"
@@ -107,12 +109,25 @@ const Profile = ({ providerDetails, userData, refresh }) => {
             </Form.Item>
           </Col>
           <Col span={16}>
-            <Row gutter={[16, 16]} type="flex" justify="center" align="middle">
+            <Row
+              id="select-contener"
+              gutter={[16, 16]}
+              type="flex"
+              justify="center"
+              align="middle"
+            >
               <Col xs={24} md={24} lg={12}>
                 <Form.Item
                   label="Location"
                   initialValue={userData?.location}
                   name="location"
+                  className="location"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your Location!',
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="location"
@@ -126,6 +141,13 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                   label="Service"
                   initialValue={providerDetails?.service_type}
                   name="service_type"
+                  className="service"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your Service!',
+                    },
+                  ]}
                 >
                   <Select
                     placeholder="service"
@@ -157,12 +179,10 @@ const Profile = ({ providerDetails, userData, refresh }) => {
             </Form.Item>
           </Col>
 
-          <Col span={16}>
-            <div className="saveButton">
-              <Button htmlType="submit" loading={loading}>
-                save
-              </Button>
-            </div>
+          <Col className="btn-contener" span={16}>
+            <Button htmlType="submit" loading={loading}>
+              Save
+            </Button>
           </Col>
         </Row>
       </Form>
@@ -170,6 +190,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
     </div>
   );
 };
+
 Profile.propTypes = {
   providerDetails: PropTypes.shape({
     title: PropTypes.string,
@@ -185,4 +206,5 @@ Profile.propTypes = {
   }).isRequired,
   refresh: PropTypes.func.isRequired,
 };
+
 export default Profile;

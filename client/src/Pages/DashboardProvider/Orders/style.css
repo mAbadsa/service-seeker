@@ -1,12 +1,13 @@
-.order-tabs .ant-tabs-nav{
-  margin-top: 20px ;
+#order-tabs .ant-tabs-nav {
+  margin-top: 20px;
   min-width: 619px;
 }
 
-.order-tabs .ant-tabs-tab-btn{
+#order-tabs .ant-tabs-tab-btn {
   margin: 0 50px;
   font-weight: 600;
 }
-.order-tabs .ant-tabs-content-holder{
+
+#order-tabs .ant-tabs-content-holder {
   margin-top: 20px;
 }

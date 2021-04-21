@@ -1,37 +1,45 @@
 .profileForm .ant-input {
-  border:1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 5px;
 }
-.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+
+.profile-contener {
+  width: 90%;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
   border-radius: 5px;
 }
-.selectItem{
+
+.selectItem {
   display: flex;
 }
-.profileForm .ant-select{
-  width: 100%  !important;
-}
-.profileForm .ant-input-number{
-  width: 100%;
-}
-.profileForm .ant-form-item-label > label{
-  width: 150px;
 
+.profileForm .ant-select {
+  width: 100% !important;
 }
-.profileForm .ant-form-item-control{
-  width: 100%;
 
-}
-.profileForm .ant-upload.ant-upload-select{
+.profileForm .ant-input-number {
   width: 100%;
 }
-.W100{
+
+.profileForm .ant-form-item-control {
+  width: 100%;
+}
+
+.profileForm .ant-upload.ant-upload-select {
+  width: 100%;
+}
+
+.W100 {
   width: 80%;
 }
-.profileForm .ant-upload-list-picture-card-container{
+
+.profileForm .ant-upload-list-picture-card-container {
   width: 200px;
   height: 200px;
 }
+
 .upload-list-inline .ant-upload-list-item {
   float: left;
   width: 200px;
@@ -41,17 +49,63 @@
 .upload-list-inline [class*='-upload-list-rtl'] .ant-upload-list-item {
   float: right;
 }
-.uploadButton{
+
+.uploadButton {
   width: 100%;
 }
-.profileForm .ant-image{
+
+.profileForm .ant-image {
   align-self: center;
-margin-top: 10px;
+  margin-top: 10px;
 }
-.saveButton{
+
+.saveButton {
   display: flex;
   justify-content: flex-end;
 }
-.saveButton button{
+
+.saveButton button {
   width: 150px;
+}
+
+#select-contener .location .ant-form-item-label {
+  min-width: 46%;
+}
+
+#select-contener .service .ant-form-item-label {
+  min-width: 34%;
+}
+
+.profileForm .ant-form .ant-form-item .ant-form-item-label {
+  min-width: 23%;
+  text-align: right;
+  color: #6f6f6f;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.btn-contener {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.btn-contener .ant-btn-primary {
+  width: 142px;
+  height: 50px;
+  line-height: 0;
+  font-size: 22px;
+  font-weight: 550;
+}
+
+@media only screen and (max-width: 1060px) {
+  #select-contener .location .ant-form-item-label,
+  #select-contener .service .ant-form-item-label,
+  .profileForm .ant-form .ant-form-item .ant-form-item-label {
+    min-width: auto;
+  }
+  
+  .profile-contener {
+    width: auto;
+  }
 }
