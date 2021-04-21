@@ -37,8 +37,8 @@ const updateOrderState = async (req, res, next) => {
     }
 
     const newData = {
-      bill: null,
-      duration: null,
+      bill: 0,
+      duration: 0,
     };
 
     let workHours;
@@ -79,6 +79,8 @@ const updateOrderState = async (req, res, next) => {
         }
 
         newData.bill += +resourcesPrice;
+        newData.duration = newData.duration.toFixed(4);
+        newData.bill = newData.bill.toFixed(2);
 
         await updateOrderOnFinish({
           ...newData,
