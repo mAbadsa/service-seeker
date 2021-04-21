@@ -67,7 +67,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
                 {
                   min: 20,
-                  message: 'Bio must be at least 8 characters.',
+                  message: 'Bio must be at least 20 characters.',
                 },
               ]}
             >
@@ -102,10 +102,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 {
                   required: true,
                   message: 'Please enter your Price!',
-                },
-                {
-                  type: 'number',
-                  message: 'must be a number',
                 },
               ]}
             >
