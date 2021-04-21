@@ -70,7 +70,7 @@ VALUES (
     true,
     5,
     'https://resources.stuff.co.nz/content/dam/images/1/w/e/9/7/k/image.related.StuffLandscapeSixteenByNine.710x400.1w0s0r.png/1565436771578.jpg?format=pjpg&optimize=medium',
-    'builder'
+    'Builder'
   ),
   (
     3,
@@ -93,7 +93,7 @@ VALUES (
     true,
     3,
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY-y-rFTnxhVi5G9OTD3rX0aMBn55vlhg0kmZlagqgx8vmmYDqJfBoKX0ULC_F_y-tDM&usqp=CAU',
-    'carpenter'
+    'Carpenter'
   );
 INSERT INTO orders_request(
     user_id,
