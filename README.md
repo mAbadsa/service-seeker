@@ -69,7 +69,8 @@ npm run project-setup
 - create ./.env file
 - add your Environment variables
 ```sh
-DEV_DATABASE_URL= # PostgreSQL connect
+DEV_DATABASE_URL= # Your development PostgreSQL connect
+DATABASE_URL= # Your production PostgreSQL connect
 JWT_SECRET_KEY= # Your token Secret key
 NODEMAILER_SENDER_EMAIL= # Your email that you will send bills from
 SENDER_EMAIL_PASSWORD= # Your email password
@@ -78,7 +79,7 @@ SENDER_EMAIL_PASSWORD= # Your email password
 
 ```sh
 npm run build  # Building bundle
-npm run dev  # Running production server
+npm start  # Running production server
 ```
 
 Now the app should be running at [http://localhost:3000](http://localhost:3000)
