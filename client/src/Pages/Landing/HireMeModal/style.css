@@ -18,8 +18,8 @@
   display: inline-block;
   margin-top: 0.5rem;
   color: white;
-  border: 1px solid #FDCB6E;
-  background-color: #FDCB6E;
+  border: 1px solid #fdcb6e;
+  background-color: #fdcb6e;
   border-radius: 3px;
   padding-left: 0;
   width: 200px;
@@ -35,13 +35,13 @@
   transition: all 0.25s;
 }
 
-.ant-modal-root .ant-btn{
+.ant-modal-root .ant-btn {
   height: 41px;
   padding: 0px 18px;
   font-size: 18px;
   border-radius: 5px;
 }
 
-.ant-modal-root .ant-modal-confirm-title{
+.ant-modal-root .ant-modal-confirm-title {
   font-size: 20px;
 }

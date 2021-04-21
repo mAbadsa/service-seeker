@@ -7,7 +7,7 @@
 .Orders-card__details {
   text-align: left;
   padding-top: 6rem;
-  color: #485C73;
+  color: #485c73;
 }
 
 .Orders .bg-image {
@@ -42,7 +42,7 @@
   text-align: center;
 }
 
-.Orders-card__username{
+.Orders-card__username {
   display: block;
   text-align: center;
   width: 180px;
