@@ -64,12 +64,17 @@
   color: #5c5c5c;
 }
 
+.signup .ant-input,
+.signup .ant-input-password {
+  width: 380px;
+}
+
 .signup .input-container {
-  margin-right: 100px;
+  margin-right: 94px;
 }
 
 .signup .ant-form .ant-form-item .ant-form-item-label {
-  width: 39%;
+  width: 34%;
   text-align: right;
   color: #6f6f6f;
   font-size: 18px;
@@ -96,7 +101,6 @@
 }
 
 .signup-btn {
-  width: 210px;
   font-weight: bold;
   color: white;
   width: 200px;

@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { Row, Col, Form, Typography, Radio, Alert } from 'antd';
 
+import { AuthContext } from '../../Context/Authentication';
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
 import Select from '../../Components/Select';
-import { LOGIN_PAGE } from '../../Utils/routes.constant';
-import { AuthContext } from '../../Context/Authentication';
-import './style.css';
+import { HOME_PAGE, LOGIN_PAGE } from '../../Utils/routes.constant';
 import { locations } from '../../Utils/data';
 import handelError from '../../Utils/errorHandel';
+
+import './style.css';
 
 const { Title, Paragraph } = Typography;
 
@@ -42,12 +43,12 @@ const Register = () => {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         </Paragraph>
         <Link className="signin-link" to={LOGIN_PAGE}>
-          Signin
+          Login
         </Link>
       </Col>
-      <Col span={15} className="signup-form-container">
+      <Col className="signup-form-container" span={15}>
         <Title className="title" level={2}>
-          Create A New Account
+          <Link to={HOME_PAGE}>Service Seeker</Link>
         </Title>
 
         {error && <Alert id="alert" message={error} type="error" showIcon />}
@@ -181,11 +182,11 @@ const Register = () => {
               type="primary"
               loading={loading}
             >
-              Signup
+              Sign up
             </Button>
           </Form.Item>
           <Link className="signin-link" to={LOGIN_PAGE}>
-            Signin
+            Login
           </Link>
         </Form>
       </Col>
