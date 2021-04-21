@@ -12,6 +12,7 @@
 .filter-select {
   width: 100%;
 }
+
 .filter-select .ant-select-selector {
   background-color: #efefef !important;
   border-radius: 5px !important;
@@ -22,6 +23,7 @@
   color: #5c5c5c;
   margin: 0;
 }
+
 .searchBtn {
   display: flex;
   justify-content: center;
@@ -29,6 +31,7 @@
   height: 40px;
   width: 100%;
 }
+
 .searchBtn span {
   font-size: initial;
 }
