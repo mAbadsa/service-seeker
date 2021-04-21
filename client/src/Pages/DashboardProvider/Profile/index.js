@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Form, Input, Row, Col, message, Alert, Spin, Image } from 'antd';
+import { Form, Input, Row, Col, message, Alert, InputNumber } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
@@ -103,7 +103,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="please enter your Price" />
+              <InputNumber placeholder="please enter your Price" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -142,12 +142,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
               label="Cover Image "
               initialValue={providerDetails?.cover_image}
               name="cover_image"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your cover image!',
-                },
-              ]}
             >
               <div
                 style={{
@@ -159,18 +153,6 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                   setRefresh={refresh}
                   image={providerDetails?.cover_image}
                 />
-                {loading ? (
-                  <Spin />
-                ) : (
-                  <Image
-                    width={200}
-                    style={{
-                      marginLeft: 20,
-                      objectFit: 'cover',
-                    }}
-                    src={providerDetails?.cover_image}
-                  />
-                )}
               </div>
             </Form.Item>
           </Col>

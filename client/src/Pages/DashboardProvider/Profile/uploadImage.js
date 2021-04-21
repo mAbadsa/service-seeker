@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Upload, message } from 'antd';
+import { Upload, message, Spin, Image } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 import Button from '../../../Components/Button';
@@ -20,8 +20,6 @@ function UserAvatar({ image, setRefresh }) {
     }
     setSelectedFile(file);
   };
-
-  // when file change will re-upload the image
   const uploadImage = async (file) => {
     try {
       setLoading(true);
@@ -45,20 +43,24 @@ function UserAvatar({ image, setRefresh }) {
   };
 
   return (
-    <Upload
-      beforeUpload={beforeUpload}
-      showUploadList={false}
-      customRequest={uploadImage}
-      accept="image/png, image/jpeg"
-    >
-      <Button
-        className="fourthButton uploadButton"
-        icon={<UploadOutlined />}
-        loading={loading}
+    <>
+      <Upload
+        beforeUpload={beforeUpload}
+        showUploadList={false}
+        customRequest={uploadImage}
+        accept="image/png, image/jpeg"
       >
-        Upload
-      </Button>
-    </Upload>
+        <Button
+          className="fourthButton uploadButton"
+          icon={<UploadOutlined />}
+          loading={loading}
+        >
+          Upload
+        </Button>
+      </Upload>
+
+      {loading ? <Spin /> : <Image width={200} src={image} />}
+    </>
   );
 }
 
