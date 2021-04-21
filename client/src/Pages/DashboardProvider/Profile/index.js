@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Form, Input, Row, Col, message, Alert } from 'antd';
+import { Form, Input, Row, Col, message, Alert, InputNumber } from 'antd';
 
 import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
@@ -51,7 +51,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input type="text" placeholder="please enter your Title" />
+              <Input placeholder="please enter your Title" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -108,7 +108,11 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input placeholder="please enter your Price" />
+              <InputNumber
+                stringMode
+                step="0.01"
+                placeholder="please enter your Price"
+              />
             </Form.Item>
           </Col>
           <Col span={16}>
