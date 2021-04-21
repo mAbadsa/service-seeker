@@ -15,9 +15,12 @@ app.set('PORT', process.env.PORT || 8080);
 app.disable('x-powered-by');
 
 const middleware = [
-  express.json(),
+  express.json({
+    limit: '50mb',
+  }),
   express.urlencoded({
     extended: false,
+    limit: '50mb',
   }),
   cookieParser(),
   upload(),

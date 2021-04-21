@@ -31,10 +31,6 @@
   width: 100%;
 }
 
-.W100 {
-  width: 80%;
-}
-
 .profileForm .ant-upload-list-picture-card-container {
   width: 200px;
   height: 200px;
@@ -87,7 +83,7 @@
 .btn-contener {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin: 0 0 50px 26px;
 }
 
 .btn-contener .ant-btn-primary {
@@ -98,14 +94,17 @@
   font-weight: 550;
 }
 
-@media only screen and (max-width: 1060px) {
+@media only screen and (max-width: 1073px) {
   #select-contener .location .ant-form-item-label,
   #select-contener .service .ant-form-item-label,
   .profileForm .ant-form .ant-form-item .ant-form-item-label {
     min-width: auto;
   }
-  
+
   .profile-contener {
     width: auto;
+  }
+  .btn-contener {
+    margin-left: 0;
   }
 }

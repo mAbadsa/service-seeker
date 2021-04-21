@@ -119,7 +119,9 @@ const DashboardProvider = () => {
           <Text strong={false} level={3} className="logoTextName">
             {userData?.username}
           </Text>
-          <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
+          <Text level={4} ellipsis={true} className="TextTitle">
+            {isLoading ? <Spin /> : providerDetails?.title}
+          </Text>
         </div>
         <Menu
           className="menu"

@@ -49,6 +49,7 @@ function UserAvatar({ image, setRefresh }) {
         showUploadList={false}
         customRequest={uploadImage}
         accept="image/png, image/jpeg"
+        disabled={loading}
       >
         <Button
           className="fourthButton uploadButton"

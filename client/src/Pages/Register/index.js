@@ -56,7 +56,6 @@ const Register = () => {
           onFinish={onFinish}
           initialValues={{
             role: 'user',
-            location: 'gaza',
           }}
         >
           <div className="input-container">
@@ -66,11 +65,11 @@ const Register = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please input your Name!',
+                  message: 'Please input your full name!',
                 },
                 {
-                  pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
-                  message: 'Type your Full Name.',
+                  pattern: /^[A-Za-z]([-']?[A-Za-z]+)*( [A-Za-z]([-']?[A-Za-z]+)*)+$/,
+                  message: 'Type your Full Name Exp:"Ali Smeth".',
                 },
               ]}
             >
