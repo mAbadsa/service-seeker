@@ -103,9 +103,13 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                   required: true,
                   message: 'Please enter your Price!',
                 },
+                {
+                  type: 'number',
+                  message: 'must be a number',
+                },
               ]}
             >
-              <InputNumber placeholder="please enter your Price" />
+              <InputNumber stringMode step="0.01" defaultValue="5" />
             </Form.Item>
           </Col>
           <Col span={16}>
