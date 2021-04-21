@@ -6,7 +6,10 @@ const getAcceptedOrdersController = async (req, res, next) => {
   try {
     const { rows } = await getAcceptedOrders(providerID);
 
-    res.json({ statusCode: 200, data: rows });
+    res.json({
+      statusCode: 200,
+      data: rows,
+    });
   } catch (err) {
     next(err);
   }
