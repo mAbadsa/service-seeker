@@ -2,7 +2,7 @@
 Service Seeker App that facilitates searching, find an order service provider.
 
 ## Live demo :tv: 
-[Heroku link , Click here to visit our app](service-seeker.herokuapp.com/)
+[Heroku link , Click here to visit our app](https://service-seeker.herokuapp.com/)
 
 ## Main problem :new_moon_with_face:
 People who are busy and cannot find a service quickly and easily or who want to market their services.
@@ -78,8 +78,8 @@ SENDER_EMAIL_PASSWORD= # Your email password
 **4. Start to run it:**
 
 ```sh
-npm run build  # Building bundle
 npm start  # Running production server
+npm run client  # Running app
 ```
 
 Now the app should be running at [http://localhost:3000](http://localhost:3000)
@@ -106,7 +106,7 @@ Now the app should be running at [http://localhost:3000](http://localhost:3000)
 * make a chat for all users.
 * user can confirm the order after the provider accepts the order.
 
-## team
+## Team
 
 ### Lead Mentor :sunglasses:
 * Mariam Isa
@@ -126,4 +126,5 @@ Now the app should be running at [http://localhost:3000](http://localhost:3000)
 * [Cloudinary](https://cloudinary.com/)
 * [Ant Design](https://ant.design/)
 * [moment](https://momentjs.com/)
+* [nodemailer](https://nodemailer.com/)
 
