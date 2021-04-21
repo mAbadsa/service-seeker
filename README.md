@@ -70,7 +70,7 @@ npm run project-setup
 - add your Environment variables
 ```sh
 DEV_DATABASE_URL= # PostgreSQL connect
-JWT_SECRET_KEY= #Y our token Secret key
+JWT_SECRET_KEY= # Your token Secret key
 NODEMAILER_SENDER_EMAIL= # Your email that you will send bills from
 SENDER_EMAIL_PASSWORD= # Your email password
 ```
