@@ -15,7 +15,8 @@
     "lint": "eslint server/",
     "lint-react": "cd client && npm run lint",
     "project-setup": "npm install && cd client && npm install",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "run-both":"npm run dev && npm run client"
   },
   "repository": {
     "type": "git",
