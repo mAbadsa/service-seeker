@@ -40,7 +40,7 @@ const Register = () => {
           Welcome Back
         </Title>
         <Paragraph className="desc">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          If you already have an account, you can log in from here.
         </Paragraph>
         <Link className="signin-link" to={LOGIN_PAGE}>
           Login
