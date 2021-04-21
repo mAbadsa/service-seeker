@@ -12,6 +12,7 @@ function UserAvatar({ image, setRefresh }) {
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(image);
 
+  // validation for the image sizes
   const beforeUpload = (file) => {
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
@@ -19,31 +20,36 @@ function UserAvatar({ image, setRefresh }) {
     }
     setSelectedFile(file);
   };
-  const onChange = async () => {
+
+  // when file change will re-upload the image
+  const uploadImage = async (file) => {
     try {
       setLoading(true);
       const formData = new FormData();
       formData.append('coverImage', selectedFile);
-      await Axios.patch('/api/v1/provider/cover-image', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setLoading(false);
-      setRefresh();
-      message.destroy();
-      message.success('Image uploaded successfully');
+      if (file.file.status !== 'uploading') {
+        await Axios.patch('/api/v1/provider/cover-image', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        setLoading(false);
+        setRefresh();
+        message.destroy();
+        message.success('Image uploaded successfully');
+      }
     } catch (err) {
       setLoading(false);
       message.error(err.response.data.message || 'Something went wrong!');
     }
   };
+
   return (
     <Upload
-      action="/api/v1/provider/cover-image"
       beforeUpload={beforeUpload}
-      onChange={onChange}
       showUploadList={false}
+      customRequest={uploadImage}
+      accept="image/png, image/jpeg"
     >
       <Button
         className="fourthButton uploadButton"
@@ -58,7 +64,6 @@ function UserAvatar({ image, setRefresh }) {
 
 UserAvatar.propTypes = {
   setRefresh: PropTypes.func.isRequired,
-  setOpen: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
 };
 

@@ -19,6 +19,7 @@ import {
   SyncOutlined,
   MenuOutlined,
   CloseOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 import { AuthContext } from '../../Context/Authentication';
 
@@ -114,6 +115,7 @@ const DashboardProvider = () => {
         <div className="logo">
           <Link to={HOME_PAGE} className="logoText">
             S-Seeker
+            <HomeOutlined />
           </Link>
 
           <Avatar srcImg={userData.avatar} size={100} />
