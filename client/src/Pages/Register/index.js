@@ -49,6 +49,7 @@ const Register = () => {
         <Title className="title" level={2}>
           Create A New Account
         </Title>
+
         {error && <Alert id="alert" message={error} type="error" showIcon />}
         <Form
           onFinish={onFinish}
@@ -57,122 +58,129 @@ const Register = () => {
             location: 'gaza',
           }}
         >
-          <Form.Item
-            label="Name"
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Name!',
-              },
-              {
-                pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
-                message: 'Type your Full Name.',
-              },
-            ]}
-          >
-            <Input placeholder="Enter your name..." />
-          </Form.Item>
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                type: 'email',
-                message: 'Please enter a valid email!',
-              },
-              {
-                required: true,
-                message: 'Please input your Email!',
-              },
-            ]}
-          >
-            <Input placeholder="Enter a valid email..." />
-          </Form.Item>
-          <Form.Item
-            label="Mobile"
-            name="mobile"
-            rules={[
-              {
-                required: true,
-                message: 'Please input mobile number!',
-              },
-            ]}
-          >
-            <Input placeholder="Enter your mobile number..." />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
-              {
-                min: 8,
-                message: 'Password must be at least 8 characters.',
-              },
-            ]}
-          >
-            <Input type="password" placeholder="Enter password..." />
-          </Form.Item>
-          <Form.Item
-            label="Confirm Password"
-            name="confirmPassword"
-            dependencies={['password']}
-            rules={[
-              {
-                required: true,
-                message: 'Please confirm your password!',
-              },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(
-                    new Error(
-                      'The two passwords that you entered do not match!'
-                    )
-                  );
+          <div className="input-container">
+            <Form.Item
+              label="Name"
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Name!',
                 },
-              }),
-            ]}
-          >
-            <Input type="password" placeholder="Confirm the password..." />
-          </Form.Item>
-          <Form.Item
-            className="select-input"
-            name="location"
-            label="Location"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Select
-              options={locations}
-              placeholder="Location"
-              allowClear
-              style={{
-                width: '100%',
-              }}
-            />
-          </Form.Item>
-          <Form.Item className="select-input" name="role" label="Role">
-            <Radio.Group>
-              <Radio className="radio-label" value="user">
-                Customer
-              </Radio>
-              <Radio className="radio-label" value="provider">
-                Craftsman
-              </Radio>
-            </Radio.Group>
-          </Form.Item>
+                {
+                  pattern: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/,
+                  message: 'Type your Full Name.',
+                },
+              ]}
+            >
+              <Input placeholder="Enter your name..." />
+            </Form.Item>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'Please enter a valid email!',
+                },
+                {
+                  required: true,
+                  message: 'Please input your Email!',
+                },
+              ]}
+            >
+              <Input placeholder="Enter a valid email..." />
+            </Form.Item>
+            <Form.Item
+              label="Mobile"
+              name="mobile"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input mobile number!',
+                },
+              ]}
+            >
+              <Input placeholder="Enter your mobile number..." />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+                {
+                  min: 8,
+                  message: 'Password must be at least 8 characters.',
+                },
+              ]}
+            >
+              <Input type="password" placeholder="Enter password..." />
+            </Form.Item>
+            <Form.Item
+              label="Confirm Password"
+              name="confirmPassword"
+              dependencies={['password']}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please confirm your password!',
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error(
+                        'The two passwords that you entered do not match!'
+                      )
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input type="password" placeholder="Confirm the password..." />
+            </Form.Item>
+            <Form.Item
+              className="select-input"
+              name="location"
+              label="Location"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Select
+                options={locations}
+                placeholder="Location"
+                allowClear
+                style={{
+                  width: '100%',
+                }}
+              />
+            </Form.Item>
+            <Form.Item className="select-input" name="role" label="Role">
+              <Radio.Group>
+                <Radio className="radio-label" value="user">
+                  Customer
+                </Radio>
+                <Radio className="radio-label" value="provider">
+                  Craftsman
+                </Radio>
+              </Radio.Group>
+            </Form.Item>
+          </div>
           <Form.Item>
-            <Button className="signup-btn" htmlType="submit" loading={loading}>
+            <Button
+              className="signup-btn"
+              htmlType="submit"
+              type="primary"
+              loading={loading}
+            >
               Signup
             </Button>
           </Form.Item>

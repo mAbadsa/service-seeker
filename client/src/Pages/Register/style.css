@@ -9,10 +9,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 400px;
   display: flex;
   flex-direction: column;
@@ -68,87 +64,51 @@
   color: #5c5c5c;
 }
 
- .signup .ant-form .ant-form-item .ant-form-item-label {
-  width: 33%;
-  text-align: right;
-} 
+.signup .input-container {
+  margin-right: 100px;
+}
 
-.signup-form-container
-  .ant-form-horizontal
-  .ant-form-item
-  .ant-form-item-label
-  > label {
+.signup .ant-form .ant-form-item .ant-form-item-label {
+  width: 39%;
+  text-align: right;
   color: #6f6f6f;
   font-size: 18px;
   font-weight: 300;
 }
 
-.signup .select-input .ant-form-item-control .ant-form-item-control-input-content {
+.signup .select-input .ant-form-item-control-input-content {
   display: flex;
   justify-content: flex-start;
 }
 
-.signup .ant-form
-  .ant-form-item
-  .ant-form-item-control
-  .ant-form-item-control-input-content
-  .ant-select {
-  width: 50%;
-}
-
-.ant-form
-  .ant-form-item
-  .ant-form-item-control
-  .ant-form-item-control-input-content
-  .ant-select-selector
-  input {
-  height: 45px;
-  line-height: 45px;
-  text-align: left;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.ant-form
-  .ant-form-item
-  .ant-form-item-control
-  .ant-form-item-control-input-content
-  .ant-select-selector
-  .ant-select-selection-placeholder {
-  text-align: left;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.ant-form .ant-form-item .ant-form-item-control input::placeholder {
+.signup .ant-form-item input::placeholder,
+.signup .ant-form-item .ant-form-item-explain-error {
   font-size: 16px;
   font-weight: 300;
 }
 
-.ant-form .ant-form-item .ant-form-item-control .ant-form-item-explain-error {
-  font-size: 16px;
-  font-weight: 300;
+.ant-form .ant-form-item .ant-form-item-explain-error {
   padding-bottom: 10px;
 }
 
 .ant-form .radio-label {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .signup-btn {
-  color: white !important;
+  width: 210px;
+  font-weight: bold;
+  color: white;
   width: 200px;
-  height: 45px !important;
-  border: 1px solid #fdcb6e !important;
-  background-color: #fdcb6e !important;
-  border-radius: 3px !important;
-  line-height: 1 !important;
+  height: 45px;
+  border-radius: 5px;
+  line-height: 1;
   transition: all 0.25s;
 }
 
 .signup-btn:hover {
-  color: #fdcb6e !important;
-  background-color: transparent !important;
+  color: #fdcb6e;
+  background-color: transparent;
   transition: all 0.25s;
 }
 
@@ -157,22 +117,16 @@
     display: none;
   }
 
-  .signup .signup-form-container .ant-form {
-    width: 100%;
+  .signup .input-container {
+    margin-right: 0;
   }
 
   .signup .signup-form-container .signin-link {
-    display: block;    
+    display: block;
     width: 100%;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     color: inherit;
-    height: 45px;
-    line-height: 45px;
-    border: 1px solid #fdcb6e;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: transparent;
-    padding-left: 0;
     transition: all 0.25s;
   }
 
@@ -196,39 +150,8 @@
     text-align: left;
   }
 
-  .signup-form-container
-    .ant-form
-    .ant-form-item
-    .ant-form-item-control
-    .ant-form-item-control-input-content
-    .ant-select {
-    width: 100%;
-  }
-
   .signup-form-container .ant-form .ant-form-item .ant-form-item-control {
     width: 100%;
     min-height: 45px;
-  }
-
-  .signup-form-container
-    .ant-form-item
-    .ant-form-item-control
-    .ant-form-item-control-input
-    .ant-select-selector {
-    height: 45px !important;
-  }
-  .signup-form-container
-    .ant-form-item
-    .ant-form-item-control
-    .ant-form-item-control-input
-    .ant-select-selector
-    span {
-    line-height: 45px !important;
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .signup .signup-form-container .signin-link .ant-anchor .ant-anchor-ink {
-    display: none;
   }
 }

@@ -5,9 +5,17 @@ import { Input } from 'antd';
 
 import './style.css';
 
-const CommonInput = ({ handelChange, className, type, ...rest }) => (
-  <Input onChange={handelChange} type={type} className={className} {...rest} />
-);
+const CommonInput = ({ handelChange, className, type, ...rest }) => {
+  const InputType = type === 'password' ? Input.Password : Input;
+  return (
+    <InputType
+      onChange={handelChange}
+      type={type}
+      className={className}
+      {...rest}
+    />
+  );
+};
 
 CommonInput.propTypes = {
   className: PropTypes.string,
