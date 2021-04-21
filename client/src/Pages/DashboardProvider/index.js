@@ -174,7 +174,7 @@ const DashboardProvider = () => {
               </>
             )}
             <Text>{title}</Text>
-            <div className="bell">
+            <div>
               <MoreInfo content={DASHBOARD_ORDER} placement="bottomRight" />
             </div>
           </div>
