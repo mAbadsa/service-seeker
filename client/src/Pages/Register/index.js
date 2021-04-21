@@ -109,6 +109,10 @@ const Register = () => {
                 required: true,
                 message: 'Please input your password!',
               },
+              {
+                min: 8,
+                message: 'Password must be at least 8 characters.',
+              },
             ]}
           >
             <Input type="password" placeholder="Enter password..." />
@@ -116,11 +120,24 @@ const Register = () => {
           <Form.Item
             label="Confirm Password"
             name="confirmPassword"
+            dependencies={['password']}
             rules={[
               {
                 required: true,
-                message: 'Please input your the same password!',
+                message: 'Please confirm your password!',
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      'The two passwords that you entered do not match!'
+                    )
+                  );
+                },
+              }),
             ]}
           >
             <Input type="password" placeholder="Confirm the password..." />
