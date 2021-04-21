@@ -49,8 +49,39 @@ I can register to specify my service, hourly pricing, and extra information, and
 
 
 ## DATABASE Schema :file_cabinet:
-[db digram](https://dbdiagram.io/d/6016a66780d742080a3886d8)
-![db image](https://i.imgur.com/3oYE5N3.png)
+[db digram](https://dbdiagram.io/d/60158d7e80d742080a3878db)
+![db image](https://i.imgur.com/umLYRoS.png)
+
+## Getting Started
+**1. You can start by cloning the repository on your local machine by running:**
+
+```sh
+git clone https://github.com/GSG-G9/service-seeker.git
+cd service-seeker
+```
+
+**2. Install all of the dependencies:**
+
+```sh
+npm run project-setup
+```
+**3. Environment variables:**
+- create ./.env file
+- add your Environment variables
+```sh
+DEV_DATABASE_URL= # PostgreSQL connect
+JWT_SECRET_KEY= #Y our token Secret key
+NODEMAILER_SENDER_EMAIL= # Your email that you will send bills from
+SENDER_EMAIL_PASSWORD= # Your email password
+```
+**4. Start to run it:**
+
+```sh
+npm run build  # Building bundle
+npm run dev  # Running production server
+```
+
+Now the app should be running at [http://localhost:8080](http://localhost:3000)
 
 
 ## Technologies :computer:
@@ -58,13 +89,12 @@ I can register to specify my service, hourly pricing, and extra information, and
 #### Front-end :
 
 - ReactJS (Hooks).
-- Antd
+- Antd.
 
 #### Back-end :
 
-- Node JS
+- Node JS.
 - Express.
-- Socket io
 
 #### Database :
 - PostgreSQL.
@@ -95,6 +125,4 @@ I can register to specify my service, hourly pricing, and extra information, and
 * [Cloudinary](https://cloudinary.com/)
 * [Ant Design](https://ant.design/)
 * [moment](https://momentjs.com/)
-* [sokit.io](https://socket.io/get-started/chat#Introduction)
-
 
