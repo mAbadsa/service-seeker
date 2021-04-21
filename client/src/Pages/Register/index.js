@@ -56,7 +56,6 @@ const Register = () => {
           onFinish={onFinish}
           initialValues={{
             role: 'user',
-            location: 'Gaza',
           }}
         >
           <div className="input-container">
