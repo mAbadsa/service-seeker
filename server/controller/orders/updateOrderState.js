@@ -80,7 +80,7 @@ const updateOrderState = async (req, res, next) => {
 
         newData.bill += +resourcesPrice;
         newData.duration = newData.duration.toFixed(4);
-        newData.bill = parseFloat(newData.bill).toFixed(2);
+        newData.bill = newData.bill.toFixed(2);
 
         await updateOrderOnFinish({
           ...newData,
