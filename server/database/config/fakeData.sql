@@ -9,7 +9,7 @@ INSERT INTO users(
   )
 VALUES (
     'ahmed eid',
-  'aeid767@gmail.com',
+    'aeid767@gmail.com',
     '$2b$10$C7Ezul8j9h8pTE3NAV./GOIlzIr0IDqiluVVdCs7K4.Fs/cazPzFe',
     '0597806990',
     'nusirat',

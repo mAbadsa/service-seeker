@@ -25,3 +25,9 @@
 #order-tabs .ant-tabs-tab-disabled:hover {
   cursor: default;
 }
+
+.more-info-contener{
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 21px 0px;
+}

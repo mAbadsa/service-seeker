@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-const MoreInfo = ({ content, ...rest }) => (
-  <Popover placement="bottom" content={content} title="Info" {...rest}>
+const MoreInfo = ({ content, placement, ...rest }) => (
+  <Popover placement={placement} content={content} title="Info" {...rest}>
     <div className="icon-border">
       <InfoOutlined />
     </div>
@@ -16,6 +16,11 @@ const MoreInfo = ({ content, ...rest }) => (
 
 MoreInfo.propTypes = {
   content: PropTypes.node.isRequired,
+  placement: PropTypes.string,
+};
+
+MoreInfo.defaultProps = {
+  placement: 'bottom',
 };
 
 export default MoreInfo;
