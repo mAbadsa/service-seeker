@@ -2,7 +2,7 @@
 Service Seeker App that facilitates searching, find an order service provider.
 
 ## Live demo :tv: 
-[Heroku link , Click here to visit our app]()
+[Heroku link , Click here to visit our app](service-seeker.herokuapp.com/)
 
 ## Main problem :new_moon_with_face:
 People who are busy and cannot find a service quickly and easily or who want to market their services.
