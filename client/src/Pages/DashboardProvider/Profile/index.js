@@ -89,10 +89,7 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                 },
               ]}
             >
-              <Input
-                type="text"
-                placeholder="please enter your Mobile as 059-xxxx-xxx"
-              />
+              <Input placeholder="please enter your Mobile as 059-xxxx-xxx" />
             </Form.Item>
           </Col>
           <Col span={16}>
@@ -105,9 +102,13 @@ const Profile = ({ providerDetails, userData, refresh }) => {
                   required: true,
                   message: 'Please enter your Price!',
                 },
+                {
+                  type: 'number',
+                  message: 'must be a number',
+                },
               ]}
             >
-              <Input type="number" placeholder="please enter your Price" />
+              <Input placeholder="please enter your Price" />
             </Form.Item>
           </Col>
           <Col span={16}>
