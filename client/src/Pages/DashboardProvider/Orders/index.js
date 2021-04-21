@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import { Tabs } from 'antd';
 
@@ -43,11 +42,6 @@ const Orders = () => {
       </Tabs>
     </div>
   );
-};
-
-Orders.propTypes = {
-  refresh: PropTypes.bool.isRequired,
-  handelRefresh: PropTypes.func.isRequired,
 };
 
 export default Orders;
