@@ -8,7 +8,12 @@ const {
   getProviderDataById,
 } = require('../../database/queries');
 
-const { boomify, calculateDuration, sendTheBill } = require('../../utils');
+const {
+  boomify,
+  calculateDuration,
+  sendTheBill,
+  sendNotification,
+} = require('../../utils');
 
 const updateOrderState = async (req, res, next) => {
   const { id: providerId } = req.user;
@@ -113,6 +118,8 @@ const updateOrderState = async (req, res, next) => {
 
       default:
     }
+
+    sendNotification(providerId, order.user_id, state);
 
     res.json({
       statusCode: 200,

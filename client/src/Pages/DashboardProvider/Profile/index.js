@@ -7,6 +7,7 @@ import Button from '../../../Components/Button';
 import Select from '../../../Components/Select';
 import { locations, serviceTypes } from '../../../Utils/data';
 import handelError from '../../../Utils/errorHandel';
+import UploadImage from './uploadImage';
 
 import './style.css';
 
@@ -171,14 +172,18 @@ const Profile = ({ providerDetails, userData, refresh }) => {
               label="Cover Image "
               initialValue={providerDetails?.cover_image}
               name="cover_image"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your cover image!',
-                },
-              ]}
             >
-              <Input placeholder="Enter your cover image url" />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <UploadImage
+                  setRefresh={refresh}
+                  image={providerDetails?.cover_image}
+                />
+              </div>
             </Form.Item>
           </Col>
 

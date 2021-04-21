@@ -45,10 +45,8 @@ const LoginPage = () => {
           <Title id="login-left__title" level={3}>
             <Link to={HOME_PAGE}>Service Seeker</Link>
           </Title>
+          {error && <Alert id="alert" message={error} type="error" showIcon />}
           <div className="input-container">
-            {error && (
-              <Alert id="alert" message={error} type="error" showIcon />
-            )}
             <Form.Item
               label="Email"
               name="email"

@@ -35,9 +35,43 @@
   width: 80%;
 }
 
+.profileForm .ant-upload-list-picture-card-container {
+  width: 200px;
+  height: 200px;
+}
+
+.upload-list-inline .ant-upload-list-item {
+  float: left;
+  width: 200px;
+  margin-right: 8px;
+}
+
+.upload-list-inline [class*='-upload-list-rtl'] .ant-upload-list-item {
+  float: right;
+}
+
+.uploadButton {
+  width: 100%;
+}
+
+.profileForm .ant-image {
+  align-self: center;
+  margin-top: 10px;
+}
+
+.saveButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.saveButton button {
+  width: 150px;
+}
+
 #select-contener .location .ant-form-item-label {
   min-width: 46%;
 }
+
 #select-contener .service .ant-form-item-label {
   min-width: 34%;
 }
@@ -70,6 +104,7 @@
   .profileForm .ant-form .ant-form-item .ant-form-item-label {
     min-width: auto;
   }
+  
   .profile-contener {
     width: auto;
   }

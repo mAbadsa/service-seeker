@@ -7,16 +7,28 @@ const sendNotification = async (from, to, type) => {
     userId: from,
   });
 
-  let description = '';
+  let description = `${user.username} `;
   switch (type) {
     case 'rejectOrder':
-      description = `${user.username} reject order.`;
+      description += 'reject order.';
       break;
     case 'addOrderReq':
-      description = `${user.username} Hired you.`;
+      description += 'hired you.';
+      break;
+    case 'acceptOrderReq':
+      description += 'accept your order.';
+      break;
+    case 'Start':
+      description += 'started your order.';
+      break;
+    case 'Paused':
+      description += 'paused your order.';
+      break;
+    case 'Finished':
+      description += 'finished your order.';
       break;
     default:
-      description = `${user.username} notified you.`;
+      description += 'notified you.';
       break;
   }
 

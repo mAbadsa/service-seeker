@@ -12,6 +12,7 @@ const {
   createNewProvider,
   updateProvider,
   getProviderDataById,
+  updateProviderCoverImage,
   getPriceHourProvider,
 } = require('./provider');
 
@@ -49,6 +50,7 @@ module.exports = {
   getUserData,
   getUserNotificationsQueries,
   addUserNotification,
+  updateProviderCoverImage,
   updateOrderOnStart,
   updateOrderOnPause,
   updateOrderOnFinish,

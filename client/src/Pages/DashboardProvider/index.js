@@ -16,11 +16,10 @@ import {
   AppstoreOutlined,
   BellOutlined,
   UserOutlined,
-  SyncOutlined,
   MenuOutlined,
   CloseOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
-
 import { AuthContext } from '../../Context/Authentication';
 
 import LogoutComponent from '../../Components/Logout';
@@ -28,14 +27,15 @@ import Avatar from '../../Components/Avatar';
 import Profile from './Profile';
 import Orders from './Orders';
 import Notifications from './Notifications';
+import MoreInfo from '../../Components/MoreInfo';
+import { DASHBOARD_ORDER } from '../../Utils/moreInfo.constant';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 import './style.css';
-import { HOME_PAGE } from '../../Utils/routes.constant';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
-
 const DashboardProvider = () => {
   const { userData } = useContext(AuthContext);
 
@@ -46,7 +46,6 @@ const DashboardProvider = () => {
   const [providerDetails, setProviderDetails] = useState(null);
   const [title, setTitle] = useState('Orders');
   const [switchLoading, setSwitchLoading] = useState(false);
-  const [orderRefresh, setOrderRefresh] = useState(false);
   const [infoRefresh, setInfoRefresh] = useState(false);
 
   useEffect(() => {
@@ -87,10 +86,6 @@ const DashboardProvider = () => {
     }
   };
 
-  const handleOrderRefresh = () => {
-    setOrderRefresh(!orderRefresh);
-  };
-
   const handleInformationRefresh = () => {
     setInfoRefresh(!infoRefresh);
   };
@@ -116,6 +111,7 @@ const DashboardProvider = () => {
         <div className="logo">
           <Link to={HOME_PAGE} className="logoText">
             S-Seeker
+            <HomeOutlined />
           </Link>
 
           <Avatar srcImg={userData.avatar} size={100} />
@@ -125,7 +121,12 @@ const DashboardProvider = () => {
           </Text>
           <Text level={4}>{isLoading ? <Spin /> : providerDetails?.title}</Text>
         </div>
-        <Menu onClick={handleChangMenu} mode="inline" defaultSelectedKeys="1">
+        <Menu
+          className="menu"
+          onClick={handleChangMenu}
+          mode="inline"
+          defaultSelectedKeys="1"
+        >
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
             Orders
           </Menu.Item>
@@ -173,13 +174,11 @@ const DashboardProvider = () => {
               </>
             )}
             <Text>{title}</Text>
-            <div className="bell">
-              <SyncOutlined onClick={handleOrderRefresh} />
+            <div>
+              <MoreInfo content={DASHBOARD_ORDER} placement="bottomRight" />
             </div>
           </div>
-          {title === 'Orders' && (
-            <Orders refresh={orderRefresh} handelRefresh={handleOrderRefresh} />
-          )}
+          {title === 'Orders' && <Orders />}
           {title === 'Notifications' && <Notifications />}
           {title === 'Profile' && (
             <Profile
