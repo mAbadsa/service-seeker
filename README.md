@@ -2,7 +2,7 @@
 Service Seeker App that facilitates searching, find an order service provider.
 
 ## Live demo :tv: 
-[Heroku link, Click here to visit our app](https://service-seeker-2.herokuapp.com/)
+[Onrender link, Click here to visit our app](https://service-seeker.onrender.com/)
 * Use these credientials:
 
     ```hs
